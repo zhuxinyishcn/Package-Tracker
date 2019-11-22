@@ -14,14 +14,17 @@ public class DatabaseQuerier {
     public static void closeConnection (Connection conn, PreparedStatement ps, ResultSet rs) {
         try {
             // check ResultSet if still on
-            if (rs != null && !rs.isClosed())
+            if (rs != null && !rs.isClosed()) {
                 rs.close();
+            }
             // check PreparedStatement if still on
-            if (ps != null && !ps.isClosed())
+            if (ps != null && !ps.isClosed()) {
                 ps.close();
+            }
             // check Connection if still on
-            if (conn != null && !conn.isClosed())
+            if (conn != null && !conn.isClosed()) {
                 conn.close();
+            }
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
@@ -38,7 +41,7 @@ public class DatabaseQuerier {
         }
 
         try {
-            conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+            this.conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -53,20 +56,22 @@ public class DatabaseQuerier {
     }
 
     public ResultSet executeQuery (String query, ArrayList<?> inputs) {
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             ps = conn.prepareStatement(query);
             if (inputs != null) {
                 for (int i = 0; i < inputs.size(); i++) {
-                    if (inputs.get(i) instanceof String)
+                    if (inputs.get(i) instanceof String) {
                         ps.setString(i + 1, (String) inputs.get(i));
-                    if (inputs.get(i) instanceof Integer)
+                    }
+                    if (inputs.get(i) instanceof Integer) {
                         ps.setInt(i + 1, (Integer) inputs.get(i));
+                    }
                 }
             }
             rs = ps.executeQuery();
-            // remember to close rs
+            closeConnection(this.conn, ps, rs);
         } catch (SQLException | NullPointerException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -74,15 +79,17 @@ public class DatabaseQuerier {
     }
 
     public void executeUpdate (String query, ArrayList<?> inputs) {
-        PreparedStatement ps;
+        PreparedStatement ps =null;
         try {
             ps = conn.prepareStatement(query);
             if (inputs != null) {
                 for (int i = 1; i < inputs.size(); i++) {
-                    if (inputs.get(i - 1) instanceof String)
+                    if (inputs.get(i - 1) instanceof String) {
                         ps.setString(i, (String) inputs.get(i));
-                    if (inputs.get(i - 1) instanceof Integer)
+                    }
+                    if (inputs.get(i - 1) instanceof Integer) {
                         ps.setInt(i, (Integer) inputs.get(i));
+                    }
                 }
             }
             ps.executeUpdate();
