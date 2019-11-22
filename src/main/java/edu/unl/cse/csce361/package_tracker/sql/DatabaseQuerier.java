@@ -1,61 +1,50 @@
 package edu.unl.cse.csce361.package_tracker.sql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DatabaseQuerier {
-    private String username = "pzhang";
-    private String password = "asd991123";
-    private final String url = "jdbc:mysql://cse.unl.edu/pzhang";
+
     private Connection conn = null;
 
-    public DatabaseQuerier() {
+    public DatabaseQuerier () {
         createConnection();
     }
 
-    private String getUsername() {
-        return username;
-    }
-
-    private void setUsername(String username) {
-        this.username = username;
-    }
-
-    private String getPassword() {
-        return password;
-    }
-
-    private void setPassword(String password) {
-        this.password = password;
-    }
-
-    private String getUrl() {
-        return url;
-    }
-
-    private Connection getConn() {
-        return conn;
-    }
-
-    private void createConnection() {
+    public static void closeConnection (Connection conn, PreparedStatement ps, ResultSet rs) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            // check ResultSet if still on
+            if (rs != null && !rs.isClosed())
+                rs.close();
+            // check PreparedStatement if still on
+            if (ps != null && !ps.isClosed())
+                ps.close();
+            // check Connection if still on
+            if (conn != null && !conn.isClosed())
+                conn.close();
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private void createConnection () {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         try {
-            conn = DriverManager.getConnection(getUrl(), this.username, this.password);
+            conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void closeConn() {
+    public void closeConn () {
         try {
             conn.close();
         } catch (SQLException e) {
@@ -63,7 +52,7 @@ public class DatabaseQuerier {
         }
     }
 
-    public ResultSet executeQuery(String query, ArrayList<?> inputs) {
+    public ResultSet executeQuery (String query, ArrayList<?> inputs) {
         PreparedStatement ps;
         ResultSet rs = null;
         try {
@@ -84,7 +73,7 @@ public class DatabaseQuerier {
         return rs;
     }
 
-    public void executeUpdate(String query, ArrayList<?> inputs) {
+    public void executeUpdate (String query, ArrayList<?> inputs) {
         PreparedStatement ps;
         try {
             ps = conn.prepareStatement(query);
