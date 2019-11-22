@@ -1,4 +1,4 @@
-package edu.unl.cse.csce361.package_tracker.backend.sql;
+package edu.unl.cse.csce361.package_tracker.backend;
 
 public class DatabaseReader {
     private static DatabaseQuerier dbq = new DatabaseQuerier();
