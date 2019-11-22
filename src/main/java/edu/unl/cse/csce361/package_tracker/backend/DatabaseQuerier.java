@@ -38,7 +38,8 @@ public class DatabaseQuerier {
         }
 
         try {
-            this.conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+            DatabaseInfo databaseInfo = new DatabaseInfo();
+            this.conn = DriverManager.getConnection(databaseInfo.URL, databaseInfo.USERNAME, databaseInfo.PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,7 +77,7 @@ public class DatabaseQuerier {
     }
 
     public void executeUpdate (String query, ArrayList<?> inputs) {
-        PreparedStatement ps =null;
+        PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(query);
             if (inputs != null) {

@@ -20,6 +20,7 @@ bin/
 *.iml
 *.iws
 *.ipr
+*.info
 
 # Eclipse files
 bin/
