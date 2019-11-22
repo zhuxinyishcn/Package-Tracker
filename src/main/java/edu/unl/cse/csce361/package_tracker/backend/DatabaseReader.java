@@ -9,11 +9,11 @@ public class DatabaseReader {
         dbq.closeConn();
     }
 
-    public static void addPackage(String inboundID,String OutboundID){
-        dbq.executeUpdate("INSERT INTO `Package` (`InboundID`, `OutboundID`) VALUES ('"+inboundID+"', '"+OutboundID+"');",null);
+    public static void addPackage(String inboundID, String outboundID){
+        dbq.executeUpdate("INSERT INTO `Package` (`InboundID`, `OutboundID`) VALUES ('"+inboundID+"', '"+outboundID+"');",null);
     }
 
-    public static void updatePackage(String packageID,String currentLocation){
+    public static void updatePackage(String packageID, String currentLocation){
         dbq.executeUpdate("UPDATE `Package` SET `CurrentLocation` = '"+currentLocation+"',`Status`='InTransit' WHERE `Package`.`PackageID` = "+packageID+";",null);
     }
 

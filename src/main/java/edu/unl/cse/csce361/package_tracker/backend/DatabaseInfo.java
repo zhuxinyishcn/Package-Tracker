@@ -5,12 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class DatabaseInfo {
+class DatabaseInfo {
     String USERNAME;
     String PASSWORD;
     String URL;
 
-    public DatabaseInfo () {
+    DatabaseInfo () {
 
         try {
             Scanner sc = new Scanner(new File("src/main/resources/database.info"));
@@ -18,13 +18,13 @@ public class DatabaseInfo {
                 String line = sc.nextLine();
 
                 if (line.contains("username")) {
-                    String []token= line.split(":");
+                    String[] token = line.split(":");
                     this.USERNAME = token[1].trim();
                 } else if (line.contains("password")) {
-                    String []token= line.split(":");
+                    String[] token = line.split(":");
                     this.PASSWORD = token[1].trim();
                 } else if (line.contains("url")) {
-                    String []token= line.split(":",2);
+                    String[] token = line.split(":", 2);
                     this.URL = token[1].trim();
                 }
 

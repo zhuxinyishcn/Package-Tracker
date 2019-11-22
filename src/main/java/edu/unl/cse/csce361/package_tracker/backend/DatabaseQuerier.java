@@ -23,7 +23,6 @@ public class DatabaseQuerier {
                 conn.close();
             }
         } catch (SQLException e) {
-
             throw new RuntimeException(e);
         }
     }
