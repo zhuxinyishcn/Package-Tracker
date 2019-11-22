@@ -11,7 +11,7 @@ public class DatabaseQuerier {
         createConnection();
     }
 
-    public static void closeConnection (Connection conn, PreparedStatement ps, ResultSet rs) {
+    public static void closeConnection (Connection conn, PreparedStatement ps) {
         try {
             // check ResultSet if still on
             if (rs != null && !rs.isClosed()) {
@@ -21,10 +21,7 @@ public class DatabaseQuerier {
             if (ps != null && !ps.isClosed()) {
                 ps.close();
             }
-            // check Connection if still on
-            if (conn != null && !conn.isClosed()) {
-                conn.close();
-            }
+
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
@@ -71,7 +68,7 @@ public class DatabaseQuerier {
                 }
             }
             rs = ps.executeQuery();
-            closeConnection(this.conn, ps, rs);
+            closeConnection(this.conn, ps);
         } catch (SQLException | NullPointerException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -93,7 +90,7 @@ public class DatabaseQuerier {
                 }
             }
             ps.executeUpdate();
-            ps.close();
+            closeConnection(this.conn, ps);
         } catch (SQLException | NullPointerException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
