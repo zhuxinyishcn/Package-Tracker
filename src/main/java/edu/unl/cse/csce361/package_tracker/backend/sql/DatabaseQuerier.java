@@ -1,4 +1,4 @@
-package edu.unl.cse.csce361.package_tracker.sql;
+package edu.unl.cse.csce361.package_tracker.backend.sql;
 
 import java.sql.*;
 import java.util.ArrayList;

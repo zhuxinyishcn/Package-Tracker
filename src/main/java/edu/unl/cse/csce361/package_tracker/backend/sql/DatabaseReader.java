@@ -1,7 +1,4 @@
-package edu.unl.cse.csce361.package_tracker.sql;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+package edu.unl.cse.csce361.package_tracker.backend.sql;
 
 public class DatabaseReader {
     private static DatabaseQuerier dbq = new DatabaseQuerier();
