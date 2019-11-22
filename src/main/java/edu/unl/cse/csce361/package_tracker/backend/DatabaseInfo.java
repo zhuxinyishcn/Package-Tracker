@@ -1,4 +1,4 @@
-package edu.unl.cse.csce361.package_tracker.sql;
+package edu.unl.cse.csce361.package_tracker.backend;
 
 
 public class DatabaseInfo {

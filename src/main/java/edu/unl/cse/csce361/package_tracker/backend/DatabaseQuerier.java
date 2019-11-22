@@ -1,4 +1,4 @@
-package edu.unl.cse.csce361.package_tracker.sql;
+package edu.unl.cse.csce361.package_tracker.backend;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,15 +13,15 @@ public class DatabaseQuerier {
 
     public static void closeConnection (Connection conn, PreparedStatement ps) {
         try {
-            // check ResultSet if still on
-            if (rs != null && !rs.isClosed()) {
-                rs.close();
-            }
+
             // check PreparedStatement if still on
             if (ps != null && !ps.isClosed()) {
                 ps.close();
             }
-
+            // check Connection if still on
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
