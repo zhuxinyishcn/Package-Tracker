@@ -6,25 +6,31 @@ import java.sql.SQLException;
 public class DatabaseReader {
     private static DatabaseQuerier dbq = new DatabaseQuerier();
 
-    public static void addPatron(String name,String login, String street, String city){
-        dbq.executeUpdate("INSERT INTO `Address` (`Street`, `City`, `State`, `Type`) VALUES ('"+street+"', '"+city+"', 'NE', 'Patron')",null);
-        int addressId = 9999;
-        try {
-            ResultSet rs = dbq.executeQuery("SELECT LAST_INSERT_ID() FROM Address", null);
-            while (rs.next()) {
-                addressId = rs.getInt("LAST_INSERT_ID()");
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        dbq.executeUpdate("INSERT INTO `Patron` (`PatronLogin`, `Name`,`AddressID`) VALUES ('"+login+"','"+name+"','"+addressId+"' )",null);
+    public static void addPatron(String name,String login, String streetName, String city, String zipCode){
+        String address = streetName+", "+city+", NE "+zipCode;
+        dbq.executeUpdate("INSERT INTO `Patron` (`PatronLogin`, `Name`, `Address`) VALUES ('"+login+"', '"+name+"', '"+address+"')",null);
         dbq.closeConn();
     }
 
+    public static void addPackage(String inboundID,String OutboundID){
+        dbq.executeUpdate("INSERT INTO `Package` (`InboundID`, `OutboundID`) VALUES ('"+inboundID+"', '"+OutboundID+"');",null);
+    }
+
+    public static void updatePackage(String packageID,String currentLocation){
+        dbq.executeUpdate("UPDATE `Package` SET `CurrentLocation` = '"+currentLocation+"',`Status`='InTransit' WHERE `Package`.`PackageID` = "+packageID+";",null);
+    }
+
+    public static void deliverPackage(String packageID){
+        dbq.executeUpdate("UPDATE `Package` SET `Status` = 'Delivered' WHERE `Package`.`PackageID` = "+packageID+";",null);
+    }
+
+
 
     public static void main(String[] args) {
-        //addPatron("ha","pz","1234","Lincoln");
+        //addPatron("Pz","PZH","1234 Y ST","Lincoln","68508");
+        //addPackage("1","2");
+        //updatePackage("000000000000001","3");
+        //deliverPackage("000000000000001");
     }
 
 }
