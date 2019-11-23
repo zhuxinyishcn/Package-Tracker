@@ -56,6 +56,11 @@
             <artifactId>java.jdbc</artifactId>
             <version>0.7.0-alpha3</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.3.12.Final</version>
+        </dependency>
     </dependencies>
 
 
