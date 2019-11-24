@@ -1,25 +1,33 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 
-import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.util.UUID;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name ="Packages")
-public class Package {
+@Table(name = "Packages")
+public class Package implements Serializable {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private int id;
     @Id
-    @GeneratedValue
-    private UUID uuid;
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(name = "trackingNumber", unique = true)
+    private String trackingNumber;
+    @Column(name = "senderID")
     private String senderID;
+    @Column(name = "receiverID")
     private String receiverID;
+    @Column(name = "currentLocation")
     private int currentLocation;
+    @Column(name = "status")
     private String status;
 
-    public Package (String senderID,String receiverID, int currentLocation, String status) {
+    public Package (String senderID, String receiverID, int currentLocation, String status) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.currentLocation = currentLocation;
@@ -34,16 +42,16 @@ public class Package {
         this.id = id;
     }
 
-    @Column(name = "UUID")
-    public UUID getUuid () {
-        return uuid;
+
+    public String getTrackingNumber () {
+        return trackingNumber;
     }
 
-    public void setUuid (UUID uuid) {
-        this.uuid = uuid;
+    public void setTrackingNumber (String trackingNumber) {
+        this.trackingNumber = trackingNumber;
     }
 
-    @Column(name = "senderID")
+
     public String getSenderID () {
         return senderID;
     }
@@ -52,7 +60,7 @@ public class Package {
         this.senderID = senderID;
     }
 
-    @Column(name = "receiverID")
+
     public String getReceiverID () {
         return receiverID;
     }
@@ -61,7 +69,7 @@ public class Package {
         this.receiverID = receiverID;
     }
 
-    @Column(name = "receiverID")
+
     public int getCurrentLocation () {
         return currentLocation;
     }
@@ -70,7 +78,7 @@ public class Package {
         this.currentLocation = currentLocation;
     }
 
-    @Column(name = "status")
+
     public String getStatus () {
         return status;
     }
