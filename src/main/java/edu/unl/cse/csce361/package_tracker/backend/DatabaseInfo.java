@@ -11,7 +11,6 @@ class DatabaseInfo {
     String URL;
 
     DatabaseInfo () {
-
         try {
             Scanner sc = new Scanner(new File("src/main/resources/database.info"));
             while (sc.hasNextLine()) {

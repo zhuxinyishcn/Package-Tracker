@@ -24,7 +24,7 @@ public class DatabaseReader {
 
 
     public static void main(String[] args) {
-        addPatron("Pz3445324","PZH","1234 Y ST","Lincoln","68508");
+        addPatron("Pz344532478","PZH","1234 Y ST","Lincoln","68508");
 //        addPackage("3","5");
         //updatePackage("000000000000001","3");
         //deliverPackage("000000000000001");
