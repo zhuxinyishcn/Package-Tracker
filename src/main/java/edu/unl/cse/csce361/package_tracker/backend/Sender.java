@@ -2,6 +2,7 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Sender", uniqueConstraints = {
@@ -9,11 +10,10 @@ import java.util.HashSet;
 public class Sender {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "snenderid", unique = true, nullable = false, updatable = false)
+    @Column(name = "senderid", unique = true, nullable = false, updatable = false)
     private int id;
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    @Column(name = "address", nullable = false)
     private Address address;
     @Column(name = "name", nullable = false)
     private String name;
@@ -21,7 +21,7 @@ public class Sender {
     private String userName;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "Package_ID")
-    private HashSet packageSet = new HashSet<Package>();
+    private Set packageSet = new HashSet<Package>();
 
     public Sender () {
     }

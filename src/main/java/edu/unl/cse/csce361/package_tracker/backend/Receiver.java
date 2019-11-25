@@ -10,11 +10,13 @@ public class Receiver {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "receiverid", unique = true, nullable = false, updatable = false)
     private int id;
-    @OneToOne(mappedBy = "Address")
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private Address address;
     @Column(name = "name", nullable = false)
     private String name;
-
+    @MapsId
+    @Column(name = "Package_ID", nullable = false)
     private Package packageid;
 
 
