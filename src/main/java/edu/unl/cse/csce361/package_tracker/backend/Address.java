@@ -1,7 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
-import javax.persistence.*;
 
+import javax.persistence.*;
 
 /**
  * @author davidgao
@@ -14,12 +14,28 @@ public class Address {
     @Column(name = "AddressID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int addressId;
-    @Column(name  = "Street")
+    @Column(name = "Street")
     private String street;
-    @Column(name  = "City")
+    @Column(name = "City")
     private String city;
-    @Column(name = "Type")
-    private String addressType;
+    @Column(name = "zip")
+    private String zipCode;
+
+    public Address(String street, String city, String zipCode) {
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+    }
+
+    public Address() {}
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipcode) {
+        this.zipCode = zipcode;
+    }
 
     public int getAddressId() {
         return addressId;
@@ -45,12 +61,5 @@ public class Address {
         this.city = city;
     }
 
-    public String getAddressType() {
-        return addressType;
-    }
-
-    public void setAddressType(String addressType) {
-        this.addressType = addressType;
-    }
 
 }

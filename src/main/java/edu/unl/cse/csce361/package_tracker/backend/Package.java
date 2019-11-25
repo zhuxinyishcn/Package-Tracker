@@ -6,6 +6,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author davidgao
+ */
 @Entity
 @Table(name = "Packages")
 public class Package implements Serializable {
@@ -27,63 +30,66 @@ public class Package implements Serializable {
     @Column(name = "status")
     private String status;
 
-    public Package (String senderID, String receiverID, int currentLocation, String status) {
+    public Package(String senderID, String receiverID, int currentLocation, String status) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.currentLocation = currentLocation;
         this.status = status;
     }
 
-    public int getId () {
+    public Package() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId (int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
 
-    public String getTrackingNumber () {
+    public String getTrackingNumber() {
         return trackingNumber;
     }
 
-    public void setTrackingNumber (String trackingNumber) {
+    public void setTrackingNumber(String trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
 
 
-    public String getSenderID () {
+    public String getSenderID() {
         return senderID;
     }
 
-    public void setSenderID (String senderID) {
+    public void setSenderID(String senderID) {
         this.senderID = senderID;
     }
 
 
-    public String getReceiverID () {
+    public String getReceiverID() {
         return receiverID;
     }
 
-    public void setReceiverID (String receiverID) {
+    public void setReceiverID(String receiverID) {
         this.receiverID = receiverID;
     }
 
 
-    public int getCurrentLocation () {
+    public int getCurrentLocation() {
         return currentLocation;
     }
 
-    public void setCurrentLocation (int currentLocation) {
+    public void setCurrentLocation(int currentLocation) {
         this.currentLocation = currentLocation;
     }
 
 
-    public String getStatus () {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus (String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }
