@@ -1,7 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 import java.util.HashSet;
-import java.util.Set;
 
 public class Sender {
     private int id;
