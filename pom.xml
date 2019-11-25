@@ -57,12 +57,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.4.9.Final</version>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
 

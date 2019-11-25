@@ -1,12 +1,11 @@
-package edu.unl.cse.csce361.package_tracker.backend;
+package edu.unl.cse.csce361.package_tracker;
 
+import edu.unl.cse.csce361.package_tracker.backend.Package;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 
 public class test {
@@ -26,7 +25,6 @@ public class test {
             session.close();
             throw e;
         }
-
 
     }
 }
