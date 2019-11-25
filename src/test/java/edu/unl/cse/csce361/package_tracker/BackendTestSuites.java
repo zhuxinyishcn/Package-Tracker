@@ -10,10 +10,11 @@ import org.junit.Test;
 public class BackendTestSuites {
     @Test
     public void TestInsertAddress () {
-        Session session = HibernateUtil.createSession().openSession();
+
+        final Session session = HibernateUtil.createSession().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            Address address = new Address("1400 R St, Lincoln, NE 68588","Lincoln","68508");
+            Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
             session.save(address);
             transaction.commit();
             HibernateUtil.closeSession(session);
