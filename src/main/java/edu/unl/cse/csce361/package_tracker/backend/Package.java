@@ -27,6 +27,8 @@ public class Package {
     @Column(name = "sender",nullable = false)
     private Sender sender;
     @Column(name = "receiver",nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private Receiver receiver;
     @Column(name = "currentLocation")
     private int currentLocation;
