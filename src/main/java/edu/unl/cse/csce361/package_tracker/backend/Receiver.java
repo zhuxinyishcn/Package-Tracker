@@ -6,18 +6,17 @@ import javax.persistence.*;
  * @author davidgao
  */
 public class Receiver {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "receiverid", unique = true, nullable = false, updatable = false)
     private int id;
     @OneToOne(mappedBy = "Address")
     private Address address;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name  = "packageID")
+
     private Package packageid;
 
-    private Sender sender;
 
     public Receiver () {
     }
@@ -46,11 +45,5 @@ public class Receiver {
         this.packageid = packageid;
     }
 
-    public Sender getSender() {
-        return sender;
-    }
 
-    public void setSender(Sender sender) {
-        this.sender = sender;
-    }
 }

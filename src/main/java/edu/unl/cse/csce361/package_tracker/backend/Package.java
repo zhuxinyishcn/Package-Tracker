@@ -16,13 +16,14 @@ import javax.persistence.*;
 public class Package {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", unique = true, nullable = false, updatable = false)
+    @Column(name = "packageid", unique = true, nullable = false, updatable = false)
     private int id;
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "trackingNumber", unique = true, length = 35, updatable = false)
     private String trackingNumber;
+    @ManyToOne
     @Column(name = "sender",nullable = false)
     private Sender sender;
     @Column(name = "receiver",nullable = false)

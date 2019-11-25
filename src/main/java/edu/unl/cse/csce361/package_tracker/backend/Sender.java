@@ -9,13 +9,18 @@ import java.util.HashSet;
 public class Sender {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", unique = true, nullable = false, updatable = false)
+    @Column(name = "snenderid", unique = true, nullable = false, updatable = false)
     private int id;
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @Column(name = "address", nullable = false)
     private Address address;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "userName", nullable = false, length = 100)
     private String userName;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Package_ID")
     private HashSet packageSet = new HashSet<Package>();
 
     public Sender () {
