@@ -21,7 +21,7 @@ public class Sender {
     private String userName;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "Package_ID")
-    private Set packageSet = new HashSet<Package>();
+    private Set<Package> packageSet;
 
     public Sender () {
     }
