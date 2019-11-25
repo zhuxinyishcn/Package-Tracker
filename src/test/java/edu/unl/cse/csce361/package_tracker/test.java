@@ -15,9 +15,9 @@ public class test {
         Transaction transaction = session.beginTransaction();
 
         try {
-//            Package p = new Package("23423String senderID", "String receiverID432", 7, "String status");
-//            session.save(p);
-//            transaction.commit();
+            Package p = new Package();
+            session.save(p);
+            transaction.commit();
             HibernateUtil.closeSession(session);
         } catch (RuntimeException e) {
             session.getTransaction().rollback();

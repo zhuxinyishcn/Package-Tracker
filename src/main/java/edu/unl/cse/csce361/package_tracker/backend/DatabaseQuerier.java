@@ -68,7 +68,8 @@ public class DatabaseQuerier {
                 }
             }
             rs = ps.executeQuery();
-            closeConnection(this.conn, ps);
+//            ps.close();
+//            closeConnection(conn, ps);        
         } catch (SQLException | NullPointerException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
