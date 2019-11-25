@@ -2,6 +2,7 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Sender", uniqueConstraints = {
@@ -21,7 +22,7 @@ public class Sender {
     private String userName;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "Package_ID")
-    private HashSet packageSet = new HashSet<Package>();
+    private Set<Package> packageSet;
 
     public Sender () {
     }
