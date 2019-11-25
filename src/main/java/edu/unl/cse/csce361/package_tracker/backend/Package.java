@@ -12,11 +12,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Packages", uniqueConstraints = {
         @UniqueConstraint(columnNames = "id"),
-        @UniqueConstraint(columnNames = "trackingNumber"),
-        @UniqueConstraint(columnNames = "priorityID")})
+        @UniqueConstraint(columnNames = "trackingNumber")})
 public class Package {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", unique = true, nullable = false, updatable = false)
     private int id;
     @Id
@@ -24,10 +23,10 @@ public class Package {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "trackingNumber", unique = true, length = 35, updatable = false)
     private String trackingNumber;
-    @Column(name = "senderID")
-    private int senderid;
-    @Column(name = "receiverID")
-    private int receiverid;
+    @Column(name = "sender",nullable = false)
+    private Sender sender;
+    @Column(name = "receiver",nullable = false)
+    private Receiver receiver;
     @Column(name = "currentLocation")
     private int currentLocation;
     @Column(name = "status", nullable = false, length = 50)
@@ -36,8 +35,7 @@ public class Package {
     private int priorityid;
 
 
-    public Package() {
-    }
+    public Package() {}
 
 
 }
