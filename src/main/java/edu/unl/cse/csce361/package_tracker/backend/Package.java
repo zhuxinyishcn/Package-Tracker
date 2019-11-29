@@ -24,9 +24,9 @@ public class Package {
     @Column(name = "trackingNumber", unique = true, length = 35, updatable = false)
     private String trackingNumber;
     @ManyToOne
-    @Column(name = "sender",nullable = false)
+    @Column(name = "sender", nullable = false)
     private Sender sender;
-    @Column(name = "receiver",nullable = false)
+    @Column(name = "receiver", nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Receiver receiver;
@@ -38,61 +38,62 @@ public class Package {
     private int priorityid;
 
 
-    public Package() {}
+    public Package () {
+    }
 
-    public int getId() {
+    public int getId () {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId (int id) {
         this.id = id;
     }
 
-    public String getTrackingNumber() {
+    public String getTrackingNumber () {
         return trackingNumber;
     }
 
-    public void setTrackingNumber(String trackingNumber) {
+    public void setTrackingNumber (String trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
 
-    public Sender getSender() {
+    public Sender getSender () {
         return sender;
     }
 
-    public void setSender(Sender sender) {
+    public void setSender (Sender sender) {
         this.sender = sender;
     }
 
-    public Receiver getReceiver() {
+    public Receiver getReceiver () {
         return receiver;
     }
 
-    public void setReceiver(Receiver receiver) {
+    public void setReceiver (Receiver receiver) {
         this.receiver = receiver;
     }
 
-    public int getCurrentLocation() {
+    public int getCurrentLocation () {
         return currentLocation;
     }
 
-    public void setCurrentLocation(int currentLocation) {
+    public void setCurrentLocation (int currentLocation) {
         this.currentLocation = currentLocation;
     }
 
-    public String getStatus() {
+    public String getStatus () {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus (String status) {
         this.status = status;
     }
 
-    public int getPriorityid() {
+    public int getPriorityid () {
         return priorityid;
     }
 
-    public void setPriorityid(int priorityid) {
+    public void setPriorityid (int priorityid) {
         this.priorityid = priorityid;
     }
 }
