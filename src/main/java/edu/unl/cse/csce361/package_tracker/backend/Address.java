@@ -1,6 +1,9 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+
 import javax.persistence.*;
 
 /**
@@ -8,6 +11,7 @@ import javax.persistence.*;
  * Address class for address sql table
  */
 @Entity
+@Indexed
 @Table(name = "Address", uniqueConstraints = {
         @UniqueConstraint(columnNames = "addressid")})
 public class Address {

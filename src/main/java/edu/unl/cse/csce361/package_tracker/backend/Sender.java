@@ -6,11 +6,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Sender", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "id")})
+        @UniqueConstraint(columnNames = "SenderID")})
 public class Sender {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "senderid", unique = true, nullable = false, updatable = false)
+    @Column(name = "SenderID", unique = true, nullable = false, updatable = false)
     private int id;
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
@@ -20,7 +20,7 @@ public class Sender {
     @Column(name = "userName", nullable = false, length = 100)
     private String userName;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "Package_ID")
+    @JoinColumn(name = "PackageID")
     private Set<Package> packageSet;
 
     public Sender () {

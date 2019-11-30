@@ -1,6 +1,8 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author davidgao
@@ -15,9 +17,10 @@ public class Receiver {
     private Address address;
     @Column(name = "name", nullable = false)
     private String name;
+    @ManyToOne
     @MapsId
-    @Column(name = "Package_ID", nullable = false)
-    private Package packageid;
+    @Column(name = "Package", nullable = false)
+    private Set<Package> packageSet = new HashSet<Package>();
 
 
     public Receiver () {
@@ -39,13 +42,11 @@ public class Receiver {
         this.name = name;
     }
 
-    public Package getPackageid() {
-        return packageid;
+    public Set<Package> getPackageset() {
+        return packageSet;
     }
 
-    public void setPackageid(Package packageid) {
-        this.packageid = packageid;
-    }
+    public void setPackageid(Package p) { packageSet.add(p);}
 
 
 }

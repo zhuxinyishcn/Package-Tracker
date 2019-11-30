@@ -25,22 +25,22 @@ public class BackendTestSuites {
         }
     }
 
-//    @Test
-//    public void TestInsertSeneder () {
-//
-//        Session session = HibernateUtil.createSession().openSession();
-//        Transaction transaction = session.beginTransaction();
-//
-//        try {
-//            Package p = new Package("23423String senderID", "String receiverID432", 7, "String status");
-//            session.save(p);
-//            transaction.commit();
-//            HibernateUtil.closeSession(session);
-//        } catch (RuntimeException e) {
-//            session.getTransaction().rollback();
-//            HibernateUtil.closeSession(session);
-//            throw e;
-//        }
-//
-//    }
+    @Test
+    public void TestInsertSeneder () {
+
+        Session session = HibernateUtil.createSession().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            Package p = new Package();
+            session.save(p);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (RuntimeException e) {
+            session.getTransaction().rollback();
+            HibernateUtil.closeSession(session);
+            throw e;
+        }
+
+    }
 }

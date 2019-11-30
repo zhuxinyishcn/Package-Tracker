@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,13 +11,13 @@ import javax.persistence.*;
  * @author davidgao
  */
 @Entity
-@Table(name = "Packages", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "id"),
+@Table(name = "Package", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "PackageID"),
         @UniqueConstraint(columnNames = "trackingNumber")})
 public class Package {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "packageid", unique = true, nullable = false, updatable = false)
+    @Column(name = "PackageID", unique = true, nullable = false, updatable = false)
     private int id;
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -27,8 +28,11 @@ public class Package {
     @Column(name = "sender", nullable = false)
     private Sender sender;
     @Column(name = "receiver", nullable = false)
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "receiver",
+            joinColumns =  @JoinColumn(name = "name"),
+            inverseJoinColumns = @JoinColumn(name = "receiverid")
+    )
     private Receiver receiver;
     @Column(name = "currentLocation")
     private int currentLocation;
