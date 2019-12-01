@@ -21,7 +21,6 @@ import java.util.UUID;
 
 @Table(name = "Packages", uniqueConstraints = {
         @UniqueConstraint(columnNames = "packageid"),
-
         @UniqueConstraint(columnNames = "trackingNumber")})
 public class Package {
     @Id

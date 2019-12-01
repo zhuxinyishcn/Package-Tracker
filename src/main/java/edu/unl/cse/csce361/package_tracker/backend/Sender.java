@@ -22,7 +22,7 @@ public class Sender {
     private String userName;
     @JoinColumn(name = "PackageSet")
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private Set packageSet = new HashSet<Package>();
+    private Set<Package> packageSet = new HashSet<>();
 
     public Sender (Address address, String name, String userName) {
         this.address = address;
