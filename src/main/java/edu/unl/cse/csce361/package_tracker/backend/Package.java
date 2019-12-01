@@ -1,7 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
@@ -63,8 +62,8 @@ public class Package {
 
     public static void insertPackage (Sender sender, Receiver receiver,
                                       int currentLocation) {
-        Session session = HibernateUtil.createSession().openSession();
-        Transaction transaction = session.beginTransaction();
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
         try {
             Package packageInfo = new Package(sender, receiver, currentLocation);
             receiver.setPackageid(packageInfo);
@@ -77,8 +76,25 @@ public class Package {
             HibernateUtil.closeSession(session);
         } catch (Throwable e) {
             session.getTransaction().rollback();
-            HibernateUtil.closeSession(session);
             throw e;
+        } finally {
+            HibernateUtil.closeSession(session);
+        }
+    }
+
+    public static void deletePakcage (int packageid) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            final Package packages = session.get(Package.class, packageid);
+            session.delete(packages);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            HibernateUtil.closeSession(session);
         }
     }
 

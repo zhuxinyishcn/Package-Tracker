@@ -1,6 +1,9 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
-public class BackendFacade {
+
+import java.util.Observable;
+
+public class BackendFacade extends Observable {
     private static BackendFacade instance;
 
     private BackendFacade () {
@@ -24,12 +27,20 @@ public class BackendFacade {
         Sender sender = new Sender(address, "test", "sxc258");
         Address address2 = new Address("1400 R St2, Lincoln, NE 68588", "Lincoln", "68508");
         Receiver receiver = new Receiver(address2, "dddsx258");
-        backendFacade.addPackageRecord(sender, address, receiver, address2, 1);
+        backendFacade.addPackageRecord(sender, receiver, 1);
 
     }
 
-    public void addPackageRecord (Sender sender, Address senderAddress, Receiver receiver, Address receiverAddress,
+    public void addPackageRecord (Sender sender, Receiver receiver,
                                   int currentLocation) {
         Package.insertPackage(sender, receiver, currentLocation);
+    }
+
+    public void deletePakcageRecord (int packageid) {
+        Package.deletePakcage(packageid);
+    }
+
+    public void deleteUser (int userId) {
+        Sender.deleteUser(userId);
     }
 }

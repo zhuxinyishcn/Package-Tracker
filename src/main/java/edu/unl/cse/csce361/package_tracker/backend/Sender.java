@@ -1,12 +1,14 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "Sender", uniqueConstraints = {
-
         @UniqueConstraint(columnNames = "senderid")})
 public class Sender {
     @Id
@@ -31,6 +33,24 @@ public class Sender {
     }
 
     public Sender () {
+    }
+
+    public static void deleteUser (int userId) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Sender user = session.get(Sender.class, userId);
+            Address address = user.getAddress();
+            session.delete(user);
+            session.delete(address);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            HibernateUtil.closeSession(session);
+        }
     }
 
     public Address getAddress () {
@@ -65,3 +85,4 @@ public class Sender {
         this.packageSet = packageSet;
     }
 }
+
