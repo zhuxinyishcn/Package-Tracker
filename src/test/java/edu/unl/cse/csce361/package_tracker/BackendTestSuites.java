@@ -1,14 +1,18 @@
 package edu.unl.cse.csce361.package_tracker;
 
-import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.backend.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
+
+import java.util.List;
 
 
 public class BackendTestSuites {
     private final BackendFacade backendFacade = BackendFacade.getBackendFacade();
+
     @Test
     public void TestInsertAddress () {
         final Session session = HibernateUtil.createSession().openSession();
@@ -43,5 +47,32 @@ public class BackendTestSuites {
     @Test
     public void TestDeleteUser () {
         backendFacade.deleteUser(1);
+    }
+
+    @Test
+    public void TestSearchWarehouse_Name () throws InterruptedException {
+        final Session session = HibernateUtil.createSession().openSession();
+        FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
+        fullTextSession.createIndexer().startAndWait();
+        Transaction tx = fullTextSession.beginTransaction();
+
+        QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
+                .buildQueryBuilder()
+                .forEntity(Sender.class)
+                .get();
+
+        try {
+            org.apache.lucene.search.Query query = queryBuilder.keyword().onFields("name")
+                    .matching("test").createQuery();
+            org.hibernate.query.Query hibQuery =
+                    fullTextSession.createFullTextQuery(query, Sender.class);
+            List warehouseList = hibQuery.list();
+            System.out.println(((Sender) warehouseList.get(0)).getAddress().getStreet());
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

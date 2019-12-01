@@ -2,12 +2,17 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.Index;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Indexed
 @Table(name = "Sender", uniqueConstraints = {
         @UniqueConstraint(columnNames = "senderid")})
 public class Sender {
@@ -19,12 +24,14 @@ public class Sender {
     @JoinColumn(name = "address")
     private Address address;
     @Column(name = "name", nullable = false, length = 100)
+    @Field(name ="name",index = Index.YES,analyze= Analyze.YES, store= Store.NO)
     private String name;
+    @Field(index = Index.YES,analyze= Analyze.YES, store= Store.NO)
     @Column(name = "userName", nullable = false, length = 100)
     private String userName;
     @JoinColumn(name = "PackageSet")
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private Set<Package> packageSet = new HashSet<>();
+    private HashSet<Package> packageSet = new HashSet<>();
 
     public Sender (Address address, String name, String userName) {
         this.address = address;
@@ -81,7 +88,7 @@ public class Sender {
         return packageSet;
     }
 
-    public void setPackageSet (Set<Package> packageSet) {
+    public void setPackageSet (HashSet<Package> packageSet) {
         this.packageSet = packageSet;
     }
 }

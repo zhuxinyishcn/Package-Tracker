@@ -2,7 +2,6 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 
 import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 
