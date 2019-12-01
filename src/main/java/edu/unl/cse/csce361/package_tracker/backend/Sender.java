@@ -13,16 +13,16 @@ public class Sender {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "SenderID", unique = true, nullable = false, updatable = false)
     private int id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "address")
     private Address address;
-    @Column(name = "name", nullable = false,length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
     @Column(name = "userName", nullable = false, length = 100)
     private String userName;
     @JoinColumn(name = "PackageSet")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Package> packageSet = new HashSet<>();
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private Set packageSet = new HashSet<Package>();
 
     public Sender (Address address, String name, String userName) {
         this.address = address;

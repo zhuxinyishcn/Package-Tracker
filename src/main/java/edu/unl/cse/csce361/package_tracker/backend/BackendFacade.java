@@ -25,10 +25,11 @@ public class BackendFacade {
         Address address2 = new Address("1400 R St2, Lincoln, NE 68588", "Lincoln", "68508");
         Receiver receiver = new Receiver(address2, "dddsx258");
         backendFacade.addPackageRecord(sender, address, receiver, address2, 1);
+
     }
 
     public void addPackageRecord (Sender sender, Address senderAddress, Receiver receiver, Address receiverAddress,
                                   int currentLocation) {
-        Package.insertPackage(sender, senderAddress, receiver, receiverAddress, currentLocation);
+        Package.insertPackage(sender, receiver, currentLocation);
     }
 }

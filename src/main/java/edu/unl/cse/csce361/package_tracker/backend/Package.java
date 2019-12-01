@@ -62,6 +62,27 @@ public class Package {
         this.trackingNumber = UUID.randomUUID();
     }
 
+    public static void insertPackage (Sender sender, Receiver receiver,
+                                      int currentLocation) {
+        Session session = HibernateUtil.createSession().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Package packageInfo = new Package(sender, receiver, currentLocation);
+            receiver.setPackageid(packageInfo);
+            Set<Package> packages = new HashSet<>();
+            packages.add(packageInfo);
+            sender.setPackageSet(packages);
+            session.persist(sender);
+            session.persist(packageInfo);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            HibernateUtil.closeSession(session);
+            throw e;
+        }
+    }
+
     public String getShippingTime () {
         return shippingTime;
     }
@@ -120,28 +141,5 @@ public class Package {
 
     public void setPriorityid (int priorityid) {
         this.priorityid = priorityid;
-    }
-
-    public static void insertPackage (Sender sender, Address senderAddress, Receiver receiver, Address receiverAddress,
-                               int currentLocation) {
-        Session session = HibernateUtil.createSession().openSession();
-        Transaction transaction = session.beginTransaction();
-        try {
-            Package packageInfo = new Package(sender, receiver, currentLocation);
-            receiver.setPackageid(packageInfo);
-            Set<Package> packages = new HashSet<>();
-            packages.add(packageInfo);
-            sender.setPackageSet(packages);
-            session.save(senderAddress);
-            session.save(receiverAddress);
-            session.persist(sender);
-            session.persist(packageInfo);
-            transaction.commit();
-            HibernateUtil.closeSession(session);
-        } catch (Throwable e) {
-            session.getTransaction().rollback();
-            HibernateUtil.closeSession(session);
-            throw e;
-        }
     }
 }

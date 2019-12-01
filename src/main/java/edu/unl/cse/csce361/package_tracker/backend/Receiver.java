@@ -15,7 +15,7 @@ public class Receiver {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "receiverid", unique = true, nullable = false, updatable = false)
     private int id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "address")
     private Address address;
     @Column(name = "name", nullable = false, length = 100)
