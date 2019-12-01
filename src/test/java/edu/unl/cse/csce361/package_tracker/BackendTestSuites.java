@@ -37,16 +37,20 @@ public class BackendTestSuites {
         try {
             Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
             Sender sender = new Sender(address, "test", "sxc258");
-            Receiver receiver = new Receiver(address, "dddsx258");
-            Package packageInfo = new Package(sender, receiver, 2, "rwef");
+            Address address2 = new Address("1400 R St2, Lincoln, NE 68588", "Lincoln", "68508");
+            Receiver receiver = new Receiver(address2, "dddsx258");
+            Package packageInfo = new Package(sender, receiver, 2);
             receiver.setPackageid(packageInfo);
             Set<Package> packages = new HashSet<>();
             packages.add(packageInfo);
             sender.setPackageSet(packages);
-            session.saveOrUpdate(packageInfo);
+            session.save(address);
+            session.save(address2);
+            session.persist(sender);
+            session.persist(packageInfo);
             transaction.commit();
             HibernateUtil.closeSession(session);
-        } catch (RuntimeException e) {
+        } catch (Throwable e) {
             session.getTransaction().rollback();
             HibernateUtil.closeSession(session);
             throw e;

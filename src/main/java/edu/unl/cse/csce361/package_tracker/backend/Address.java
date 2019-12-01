@@ -8,7 +8,8 @@ import javax.persistence.*;
  * Address class for address sql table
  */
 @Entity
-@Table(name = "Address")
+@Table(name = "Address", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "addressid")})
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

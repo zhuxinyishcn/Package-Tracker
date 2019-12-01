@@ -6,19 +6,19 @@ import javax.persistence.*;
  * @author davidgao
  */
 @Entity
-@Table(name = "Receiver")
+@Table(name = "Receiver", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "receiverid")})
 public class Receiver {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "receiverid", unique = true, nullable = false, updatable = false)
     private int id;
     @OneToOne
-    @JoinColumn(name = "address", nullable = false)
+    @JoinColumn(name = "address")
     private Address address;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "package", nullable = false)
+    @OneToOne(mappedBy = "receiver", fetch = FetchType.LAZY)
     private Package packageid;
 
     public Receiver (Address address, String name) {
