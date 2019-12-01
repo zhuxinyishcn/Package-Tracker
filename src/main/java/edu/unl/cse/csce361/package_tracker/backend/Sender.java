@@ -6,23 +6,62 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Sender", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "SenderID")})
+
+        @UniqueConstraint(columnNames = "senderid")})
 public class Sender {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "SenderID", unique = true, nullable = false, updatable = false)
     private int id;
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne
+    @JoinColumn(name = "address")
     private Address address;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false,length = 100)
     private String name;
     @Column(name = "userName", nullable = false, length = 100)
     private String userName;
+    @JoinColumn(name = "PackageSet")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "PackageID")
-    private Set<Package> packageSet;
+    private Set<Package> packageSet = new HashSet<>();
+
+    public Sender (Address address, String name, String userName) {
+        this.address = address;
+        this.name = name;
+        this.userName = userName;
+    }
 
     public Sender () {
+    }
+
+    public Address getAddress () {
+        return address;
+    }
+
+    public void setAddress (Address address) {
+        this.address = address;
+    }
+
+    public String getName () {
+        return name;
+    }
+
+    public void setName (String name) {
+        this.name = name;
+    }
+
+    public String getUserName () {
+        return userName;
+    }
+
+    public void setUserName (String userName) {
+        this.userName = userName;
+    }
+
+    public Set<Package> getPackageSet () {
+        return packageSet;
+    }
+
+    public void setPackageSet (Set<Package> packageSet) {
+        this.packageSet = packageSet;
     }
 }
