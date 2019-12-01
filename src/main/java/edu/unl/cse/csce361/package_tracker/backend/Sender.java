@@ -31,7 +31,7 @@ public class Sender {
     private String userName;
     @JoinColumn(name = "PackageSet")
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private HashSet<Package> packageSet = new HashSet<>();
+    private Set<Package> packageSet = new HashSet<>();
 
     public Sender (Address address, String name, String userName) {
         this.address = address;
@@ -88,7 +88,7 @@ public class Sender {
         return packageSet;
     }
 
-    public void setPackageSet (HashSet<Package> packageSet) {
+    public void setPackageSet (Set<Package> packageSet) {
         this.packageSet = packageSet;
     }
 }
