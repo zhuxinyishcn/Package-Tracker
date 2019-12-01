@@ -1,13 +1,10 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import edu.unl.cse.csce361.package_tracker.backend.Address;
 import edu.unl.cse.csce361.package_tracker.backend.DatabaseQuerier;
 import edu.unl.cse.csce361.package_tracker.frontend.Scaning;
 
-public class Register {
+public class RegisterLogic {
 	Scaning scan = new Scaning();
 	DatabaseQuerier dq = new DatabaseQuerier();
 
@@ -15,7 +12,7 @@ public class Register {
 		Address address = new Address(street, city, zipCode);
 		int warehouseIDtoint = Integer.parseInt(scan.userIn());
 		// TODO: Update database @login, @name, @address, @warehouseIDtoint
-		
+
 //		System.out.println("Please input your username:");
 //		login = scan.userIn();
 //		System.out.println("Please input your name:");
