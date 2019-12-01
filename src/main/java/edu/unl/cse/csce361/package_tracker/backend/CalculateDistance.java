@@ -1,15 +1,17 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
-import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
 public class CalculateDistance {
     public static void main (String[] args) throws java.lang.Exception {
+//        Calendar now2 = Calendar.getInstance();
+//        TimeZone timeZone = now2.getTimeZone();
+//        System.out.println("Current TimeZone is : " + timeZone.getDisplayName());
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(date.format(now)+" "+now.getDayOfWeek());
+        System.out.println(date.format(now) + " " + now.getDayOfWeek());
         //LocalDateTime dateTime = LocalDateTime.from(date.parse("2012-01-10 23:13:26"));
         //System.out.println(dateTime.toString());
 //        System.out.println(distance(40.817663, -96.700037, 40.830192, -96.667434, "M") + " Miles\n");
