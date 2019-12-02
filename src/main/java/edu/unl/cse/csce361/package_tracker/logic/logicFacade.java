@@ -17,6 +17,10 @@ public class logicFacade {
 	public void printMainMenu() {
 		Printer.printMainMenu();
 	}
+	
+	public void printAdminMenu() {
+		Printer.printAdminMenu();
+	}
 
 	public void printInvalid() {
 		Printer.printInvalid();
@@ -30,9 +34,9 @@ public class logicFacade {
 		Printer.printUserMenu();
 	}
 	
-	public void register(String login, String warehouseID, String street, String city, String zipCode) {
-		RegisterLogic rl = new RegisterLogic();
-		rl.register(login, warehouseID, street, city, zipCode);
+	public void getAllPackage() {
+		PackageLogic pl = new PackageLogic();
+		pl.getAllPackage();
 	}
 	
 }

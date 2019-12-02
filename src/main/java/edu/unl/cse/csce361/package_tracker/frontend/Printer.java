@@ -7,13 +7,12 @@ public class Printer {
 		System.out.println("1. Log in as admin.");
 		System.out.println("2. Log in as user.");
 		System.out.println("3. Log in as VIP user.");
-		System.out.println("4. Register.");
-		System.out.println("5. Exit");
+		System.out.println("4. Exit");
 	}
 
 	public static void printAdminMenu() {
 		System.out.println("You're options are as follows:");
-		System.out.println("1. Check ");
+		System.out.println("1. Show all package. ");
 	}
 
 	public static void printUserMenu() {
@@ -22,6 +21,7 @@ public class Printer {
 	}
 
 	public static void printVIPMenu() {
+		System.out.println("Welcome, you're options are as follows:");
 		System.out.println("Enter your name:");
 	}
 

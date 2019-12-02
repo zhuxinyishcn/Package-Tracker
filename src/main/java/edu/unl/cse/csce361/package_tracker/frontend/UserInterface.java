@@ -6,21 +6,16 @@ import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 public class UserInterface {
 	private static logicFacade logic = logicFacade.getInstance();
-	private static Scanner scan = new Scanner(System.in);
+	private static Scanner scnr = new Scanner(System.in);
 	public static void main(String[] args) {
 		boolean programOn = true;
 		while(programOn) {
 			String inputMain;
-			String inputLogin = "";
-			String warehouseID = "";
-			String inputStreet = "";
-			String inputCity = "";
-			String inputZip = "";
 			logic.printMainMenu();
-			inputMain = scan.nextLine();
+			inputMain = scnr.nextLine();
 			switch(inputMain) {
 			case "1": //**ADMIN**
-				
+				adminMenu();
 				break;
 			case "2": //**USER**
 				userMenu();
@@ -29,12 +24,9 @@ public class UserInterface {
 
 				break;
 			case "4":
-				logic.register(inputLogin, warehouseID, inputStreet, inputCity, inputZip);
-				break;
-			case "5":
 				programOn = false;
 				logic.printExit();
-				scan.close();
+				scnr.close();
 				break;
 			default:
 				logic.printInvalid();
@@ -43,11 +35,17 @@ public class UserInterface {
 	}
 
 	public static void adminMenu() {
-
+		String input;
+		logic.printAdminMenu();
+		input = scnr.nextLine();
+		switch(input) {
+		case "1":
+			logic.getAllPackage();
+			break;
+		}
 	}
 
 	public static void userMenu() {
-		String inputUser;
 		logic.printUserMenu();
 	}
 
