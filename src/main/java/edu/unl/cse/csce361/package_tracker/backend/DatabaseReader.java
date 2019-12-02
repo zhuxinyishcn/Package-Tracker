@@ -9,11 +9,11 @@ public class DatabaseReader {
         dbq.closeConn();
     }
 
-    public static void addPackage(String inboundID,String OutboundID){
-        dbq.executeUpdate("INSERT INTO `Package` (`InboundID`, `OutboundID`) VALUES ('"+inboundID+"', '"+OutboundID+"');",null);
+    public static void addPackage(String inboundID, String outboundID){
+        dbq.executeUpdate("INSERT INTO `Package` (`InboundID`, `OutboundID`) VALUES ('"+inboundID+"', '"+outboundID+"');",null);
     }
 
-    public static void updatePackage(String packageID,String currentLocation){
+    public static void updatePackage(String packageID, String currentLocation){
         dbq.executeUpdate("UPDATE `Package` SET `CurrentLocation` = '"+currentLocation+"',`Status`='InTransit' WHERE `Package`.`PackageID` = "+packageID+";",null);
     }
 
@@ -24,7 +24,7 @@ public class DatabaseReader {
 
 
     public static void main(String[] args) {
-        addPatron("Pz3445324","PZH","1234 Y ST","Lincoln","68508");
+        addPatron("Pz344532478","PZH","1234 Y ST","Lincoln","68508");
 //        addPackage("3","5");
         //updatePackage("000000000000001","3");
         //deliverPackage("000000000000001");

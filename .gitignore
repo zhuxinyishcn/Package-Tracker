@@ -21,6 +21,7 @@ bin/
 *.iws
 *.ipr
 *.info
+*.cfg.xml
 
 # Eclipse files
 bin/

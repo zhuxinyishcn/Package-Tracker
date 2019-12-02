@@ -23,7 +23,6 @@ public class DatabaseQuerier {
                 conn.close();
             }
         } catch (SQLException e) {
-
             throw new RuntimeException(e);
         }
     }
@@ -69,7 +68,8 @@ public class DatabaseQuerier {
                 }
             }
             rs = ps.executeQuery();
-            closeConnection(this.conn, ps);
+//            ps.close();
+//            closeConnection(conn, ps);        
         } catch (SQLException | NullPointerException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
