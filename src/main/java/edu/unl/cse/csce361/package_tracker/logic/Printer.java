@@ -27,5 +27,9 @@ public class Printer {
 	public static void printExit() {
 		System.out.println("Thank you for using our program. Terminating");
 	}
+	
+	public static void printInvalid() {
+		System.out.println("Error: invaild input");
+	}
 
 }
