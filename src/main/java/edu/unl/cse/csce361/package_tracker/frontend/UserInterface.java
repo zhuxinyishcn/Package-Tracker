@@ -14,16 +14,21 @@ public class UserInterface {
 			Scanner scan = new Scanner(System.in);
 			logic.printMainMenu();
 			input = scan.nextLine();
-			if (input.compareTo("1") == 0) {//*********************************** login as admin
+			switch(input) {
+			case "1": //*********************************** login as admin
 				
-			}else if (input.compareTo("2") == 0) {//*********************************** login as user
+				break;
+			case "2": //*********************************** login as user
 				
-			}else if (input.compareTo("3") == 0) {//*********************************** login as VIP user
+				break;
+			case "3": //*********************************** login as VIP user
 				
-			}else if (input.compareTo("4") == 0) {//*********************************** EXIT
+				break;
+			case "4":
 				programOn = false;
 				scan.close();
-			}else {
+				break;
+			default:
 				logic.printInvalid();
 			}
 		}
