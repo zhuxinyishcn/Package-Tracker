@@ -98,6 +98,38 @@ public class Package {
         }
     }
 
+    public static void setPackage (int packageid) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction tx = session.beginTransaction();
+        try {
+            Package packages = session.get(Package.class, packageid);
+            packages.setStatus("Arrived");
+            session.update(packages);
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            HibernateUtil.closeSession(session);
+        }
+    }
+
+    public static void setPackage (int packageid, String status) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction tx = session.beginTransaction();
+        try {
+            Package packages = session.get(Package.class, packageid);
+            packages.setStatus(status);
+            session.update(packages);
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            HibernateUtil.closeSession(session);
+        }
+    }
+
     public String getShippingTime () {
         return shippingTime;
     }

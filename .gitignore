@@ -90,4 +90,3 @@ tmp/
 *.gcno
 
 *edu.unl.cse.csce361.package_tracker.backend.Address
-*edu.unl.cse.csce361.package_tracker.backend.Sender

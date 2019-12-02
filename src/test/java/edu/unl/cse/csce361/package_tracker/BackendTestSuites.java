@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class BackendTestSuites {
-    private final BackendFacade backendFacade = BackendFacade.getBackendFacade();
+    private static final BackendFacade backendFacade = BackendFacade.getBackendFacade();
 
     @Test
     public void TestInsertAddress () {
@@ -50,7 +50,7 @@ public class BackendTestSuites {
     }
 
     @Test
-    public void TestSearchWarehouse_Name () throws InterruptedException {
+    public void TestSearchSenderName () throws InterruptedException {
         final Session session = HibernateUtil.createSession().openSession();
         FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
         fullTextSession.createIndexer().startAndWait();
@@ -60,19 +60,25 @@ public class BackendTestSuites {
                 .buildQueryBuilder()
                 .forEntity(Sender.class)
                 .get();
-
         try {
-            org.apache.lucene.search.Query query = queryBuilder.keyword().onFields("name")
-                    .matching("test").createQuery();
+            org.apache.lucene.search.Query query = queryBuilder.keyword().onFields("name", "userName")
+                    .matching("millard airport-east").createQuery();
             org.hibernate.query.Query hibQuery =
                     fullTextSession.createFullTextQuery(query, Sender.class);
-            List warehouseList = hibQuery.list();
-            System.out.println(((Sender) warehouseList.get(0)).getAddress().getStreet());
+            List<Sender> warehouseList = hibQuery.list();
+            warehouseList.forEach(key -> {
+                System.out.println("Iterator Value::" + key.getName());
+            });
             tx.commit();
             session.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void TestSearchUpdateStatus () {
+        backendFacade.setPackageArrived(68);
     }
 }

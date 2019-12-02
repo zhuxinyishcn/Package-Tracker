@@ -1,8 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author davidgao

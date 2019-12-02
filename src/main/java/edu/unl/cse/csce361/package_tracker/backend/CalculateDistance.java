@@ -1,5 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,7 +14,6 @@ public class CalculateDistance {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(date.format(now) + " " + now.getDayOfWeek());
         //LocalDateTime dateTime = LocalDateTime.from(date.parse("2012-01-10 23:13:26"));
-        //System.out.println(dateTime.toString());
 //        System.out.println(distance(40.817663, -96.700037, 40.830192, -96.667434, "M") + " Miles\n");
 //        System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "K") + " Kilometers\n");
 //        System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "N") + " Nautical Miles\n");
