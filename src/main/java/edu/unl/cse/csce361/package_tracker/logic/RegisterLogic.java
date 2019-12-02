@@ -2,15 +2,12 @@ package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.Address;
 import edu.unl.cse.csce361.package_tracker.backend.DatabaseQuerier;
-import edu.unl.cse.csce361.package_tracker.frontend.Scaning;
 
 public class RegisterLogic {
-	Scaning scan = new Scaning();
 	DatabaseQuerier dq = new DatabaseQuerier();
 
 	public void register(String login, String warehouseID, String street, String city, String zipCode) {
 		Address address = new Address(street, city, zipCode);
-		int warehouseIDtoint = Integer.parseInt(scan.userIn());
 		// TODO: Update database @login, @name, @address, @warehouseIDtoint
 
 //		System.out.println("Please input your username:");

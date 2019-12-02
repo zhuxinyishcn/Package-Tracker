@@ -1,7 +1,8 @@
-package edu.unl.cse.csce361.package_tracker.logic;
+package edu.unl.cse.csce361.package_tracker.frontend;
 
 
 public class Printer {
+	
 	public static void printMainMenu() {
 		System.out.println("Welcome, you're options are as follows:");
 		System.out.println("1. Log in as admin.");
@@ -31,5 +32,4 @@ public class Printer {
 	public static void printInvalid() {
 		System.out.println("Error: invaild input");
 	}
-
 }

@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+
 public class logicFacade {
 	private static logicFacade unique;
 	
