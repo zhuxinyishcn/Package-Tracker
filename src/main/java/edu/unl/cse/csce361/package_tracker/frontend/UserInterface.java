@@ -1,5 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
@@ -23,7 +24,10 @@ public class UserInterface {
 			case "3": //**VIP**
 
 				break;
-			case "4":
+			case "4": //**REGISTER**
+				register();
+				break;
+			case "5":
 				programOn = false;
 				logic.printExit();
 				scnr.close();
@@ -52,4 +56,16 @@ public class UserInterface {
 	public static void vipMenu() {
 
 	}
+	
+	public static void register() {
+		ArrayList<String> registerList = new ArrayList<String>();
+		String input;
+		for(int i = 1; i <= 5; i++) {
+			logic.printRegisterMenu(i);
+			input = scnr.nextLine();
+			registerList.add(input);
+		}
+		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3), registerList.get(4));
+	}
+
 }

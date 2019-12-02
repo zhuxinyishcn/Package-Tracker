@@ -7,7 +7,8 @@ public class Printer {
 		System.out.println("1. Log in as admin.");
 		System.out.println("2. Log in as user.");
 		System.out.println("3. Log in as VIP user.");
-		System.out.println("4. Exit");
+		System.out.println("4. Register.");
+		System.out.println("5. Exit");
 	}
 
 	public static void printAdminMenu() {

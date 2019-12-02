@@ -34,9 +34,16 @@ public class logicFacade {
 		Printer.printUserMenu();
 	}
 	
+	public void printRegisterMenu(int count) {
+		Printer.printRegisterMenu(count);
+	}
+	
+	public void register(String login, String warehouseID, String street, String city, String zipCode) {
+		RegisterLogic.register(login, warehouseID, street, city, zipCode);
+	}
+	
 	public void getAllPackage() {
-		PackageLogic pl = new PackageLogic();
-		pl.getAllPackage();
+		PackageLogic.getAllPackage();
 	}
 	
 }
