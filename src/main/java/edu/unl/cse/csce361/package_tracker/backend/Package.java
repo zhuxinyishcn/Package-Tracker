@@ -4,6 +4,8 @@ package edu.unl.cse.csce361.package_tracker.backend;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,7 +19,7 @@ import java.util.UUID;
  * @author davidgao
  */
 @Entity
-
+@Indexed
 @Table(name = "Packages", uniqueConstraints = {
         @UniqueConstraint(columnNames = "packageid"),
         @UniqueConstraint(columnNames = "trackingNumber")})
@@ -28,6 +30,7 @@ public class Package {
     private int id;
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Field(name ="trackingNumber",index = Index.YES,analyze= Analyze.YES, store= Store.NO)
     @Column(name = "trackingNumber", unique = true, length = 40, updatable = false)
     private UUID trackingNumber;
     @ManyToOne
