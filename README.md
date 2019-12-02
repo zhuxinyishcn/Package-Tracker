@@ -2,7 +2,14 @@
 
 ##  Instructions to build and run the program
 
-(Add anything here we'll need to evaluate the functionality)
+In order to connect to the SQL, create a file `database.info` into `src/main/resources`.   
+Type in there three line and change info into the file.  
+
+username: *YourUserName*   
+password: *YourPassWord*  
+url: jdbc:mysql://*YourURL*  
+
+
 
 ##  Description
 
