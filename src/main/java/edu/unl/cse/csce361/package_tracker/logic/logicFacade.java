@@ -14,7 +14,6 @@ public class logicFacade {
 		return unique;
 	}
 	
-	
 	public void printMainMenu() {
 		Printer.printMainMenu();
 	}
@@ -23,5 +22,17 @@ public class logicFacade {
 		Printer.printInvalid();
 	}
 	
+	public void printExit() {
+		Printer.printExit();
+	}
+	
+	public void printUserMenu() {
+		Printer.printUserMenu();
+	}
+	
+	public void register(String login, String warehouseID, String street, String city, String zipCode) {
+		RegisterLogic rl = new RegisterLogic();
+		rl.register(login, warehouseID, street, city, zipCode);
+	}
 	
 }

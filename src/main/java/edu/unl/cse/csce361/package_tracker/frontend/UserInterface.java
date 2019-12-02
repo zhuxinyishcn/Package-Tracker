@@ -6,31 +6,47 @@ import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 public class UserInterface {
 	private static logicFacade logic = logicFacade.getInstance();
-	
+	private static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
 		boolean programOn = true;
 		while(programOn) {
-			String input;
-			Scanner scan = new Scanner(System.in);
+			String inputMain;
 			logic.printMainMenu();
-			input = scan.nextLine();
-			switch(input) {
-			case "1": //*********************************** login as admin
+			inputMain = scan.nextLine();
+			switch(inputMain) {
+			case "1": //**ADMIN**
 				
 				break;
-			case "2": //*********************************** login as user
-				
+			case "2": //**USER**
+				userMenu();
 				break;
-			case "3": //*********************************** login as VIP user
-				
+			case "3": //**VIP**
+
 				break;
 			case "4":
+				//logic.register(login, warehouseID, street, city, zipCode);
+				break;
+			case "5":
 				programOn = false;
+				logic.printExit();
 				scan.close();
 				break;
 			default:
 				logic.printInvalid();
 			}
 		}
+	}
+
+	public static void adminMenu() {
+
+	}
+
+	public static void userMenu() {
+		String inputUser;
+		logic.printUserMenu();
+	}
+
+	public static void vipMenu() {
+
 	}
 }
