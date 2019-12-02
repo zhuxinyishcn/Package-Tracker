@@ -30,6 +30,10 @@ public class Printer {
 	public static void printInvalid() {
 		System.out.println("Error: invaild input");
 	}
+	
+	public static void printDeactivate(String userName) {
+		System.out.println("Confirm remove all data for user: " + userName + "(Y/N)");
+	}
 
 	public static void printWarehouse() {
 		System.out.println(String.format("%-5s %-30s %-50s", "ID", "Name", "Address"));

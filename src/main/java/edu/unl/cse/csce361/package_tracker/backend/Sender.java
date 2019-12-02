@@ -1,28 +1,95 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.Index;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Indexed
 @Table(name = "Sender", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "id")})
+        @UniqueConstraint(columnNames = "senderid")})
 public class Sender {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "senderid", unique = true, nullable = false, updatable = false)
+    @Column(name = "SenderID", unique = true, nullable = false, updatable = false)
     private int id;
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "address")
     private Address address;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
+    @Field(name ="name",index = Index.YES,analyze= Analyze.YES, store= Store.NO)
     private String name;
+    @Field(index = Index.YES,analyze= Analyze.YES, store= Store.NO)
     @Column(name = "userName", nullable = false, length = 100)
     private String userName;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "Package_ID")
-    private Set<Package> packageSet;
+    @JoinColumn(name = "PackageSet")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private Set<Package> packageSet = new HashSet<>();
+
+    public Sender (Address address, String name, String userName) {
+        this.address = address;
+        this.name = name;
+        this.userName = userName;
+    }
 
     public Sender () {
     }
+
+    public static void deleteUser (int userId) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Sender user = session.get(Sender.class, userId);
+            Address address = user.getAddress();
+            session.delete(user);
+            session.delete(address);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            HibernateUtil.closeSession(session);
+        }
+    }
+
+    public Address getAddress () {
+        return address;
+    }
+
+    public void setAddress (Address address) {
+        this.address = address;
+    }
+
+    public String getName () {
+        return name;
+    }
+
+    public void setName (String name) {
+        this.name = name;
+    }
+
+    public String getUserName () {
+        return userName;
+    }
+
+    public void setUserName (String userName) {
+        this.userName = userName;
+    }
+
+    public Set<Package> getPackageSet () {
+        return packageSet;
+    }
+
+    public void setPackageSet (Set<Package> packageSet) {
+        this.packageSet = packageSet;
+    }
 }
+
