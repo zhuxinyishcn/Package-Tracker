@@ -14,14 +14,29 @@ public class logicFacade {
 		return unique;
 	}
 	
-	
 	public void printMainMenu() {
 		Printer.printMainMenu();
+	}
+	
+	public void printAdminMenu() {
+		Printer.printAdminMenu();
 	}
 
 	public void printInvalid() {
 		Printer.printInvalid();
 	}
 	
+	public void printExit() {
+		Printer.printExit();
+	}
+	
+	public void printUserMenu() {
+		Printer.printUserMenu();
+	}
+	
+	public void getAllPackage() {
+		PackageLogic pl = new PackageLogic();
+		pl.getAllPackage();
+	}
 	
 }

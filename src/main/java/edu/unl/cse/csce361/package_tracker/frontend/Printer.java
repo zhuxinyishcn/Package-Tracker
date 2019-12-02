@@ -12,15 +12,38 @@ public class Printer {
 
 	public static void printAdminMenu() {
 		System.out.println("You're options are as follows:");
-		System.out.println("1. Check ");
+		System.out.println("1. Show all package. ");
 	}
 
 	public static void printUserMenu() {
-		System.out.println("you're options are as follows:");
+		System.out.println("Welcome, you're options are as follows:");
+		System.out.println("Enter your user name:");
 	}
 
 	public static void printVIPMenu() {
+		System.out.println("Welcome, you're options are as follows:");
 		System.out.println("Enter your name:");
+	}
+
+	public static void printRegisterMenu(int count) {
+		switch(count) {
+		case 1:
+			System.out.println("Please enter your User Name.");
+			break;
+		case 2:
+			printWarehouse();
+			System.out.println("Please select the closest Warehouse ID.");
+			break;
+		case 3:
+			System.out.println("Please enter Street Name.");
+			break;
+		case 4:
+			System.out.println("Please enter City Name.");
+			break;
+		case 5:
+			System.out.println("Please enter Zip Code.");
+			break;
+		}
 	}
 
 	public static void printExit() {
