@@ -11,6 +11,11 @@ public class UserInterface {
 		boolean programOn = true;
 		while(programOn) {
 			String inputMain;
+			String inputLogin = "";
+			String warehouseID = "";
+			String inputStreet = "";
+			String inputCity = "";
+			String inputZip = "";
 			logic.printMainMenu();
 			inputMain = scan.nextLine();
 			switch(inputMain) {
@@ -24,7 +29,7 @@ public class UserInterface {
 
 				break;
 			case "4":
-				//logic.register(login, warehouseID, street, city, zipCode);
+				logic.register(inputLogin, warehouseID, inputStreet, inputCity, inputZip);
 				break;
 			case "5":
 				programOn = false;
