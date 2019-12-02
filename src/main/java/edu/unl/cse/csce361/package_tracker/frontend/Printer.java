@@ -26,14 +26,13 @@ public class Printer {
 	}
 
 	public static void printRegisterMenu(int count) {
-		System.out.println("Please enter your Username, Warehouse ID, Street, City, Zip Code");
 		switch(count) {
 		case 1:
 			System.out.println("Please enter your User Name.");
 			break;
 		case 2:
-			
-			System.out.println("Please enter Warehouse ID.");
+			printWarehouse();
+			System.out.println("Please select the closest Warehouse ID.");
 			break;
 		case 3:
 			System.out.println("Please enter Street Name.");
