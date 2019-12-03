@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import java.util.ArrayList;
+
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class logicFacade {
@@ -80,5 +82,12 @@ public class logicFacade {
 
 	public void getAllPackage() {
 		AdminLogic.getAllPackage();
+	}
+	public void addWarehouse() {
+		ShippingLogic.addWarehouse();
+	}
+
+	public ArrayList<String> getWarehouse() {
+		return ShippingLogic.warehouse;
 	}
 }

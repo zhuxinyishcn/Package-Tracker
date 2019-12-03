@@ -102,27 +102,27 @@ public class Logic {
 			String city, String zipCode) {
 		// Using @login to search is there a login exist
 		boolean legal = true;
-		if (userName.length() >= 10||userName.isEmpty()) {
+		if (userName.length() >= 10 || userName.isEmpty()) {
 			System.err.println("Username should be less than 10 charactor.");
 			legal = false;
 		}
-		if (realName.length() >= 100||realName.isEmpty()) {
+		if (realName.length() >= 100 || realName.isEmpty()) {
 			System.err.println("Username should be less than 100 charactor.");
 			legal = false;
 		}
-		if (warehouseID.length() >= 5 && isNumber(warehouseID)||warehouseID.isEmpty()) {
+		if (warehouseID.length() >= 5 && isNumber(warehouseID) || warehouseID.isEmpty()) {
 			System.err.println("warehouseID should be less than 5 interger.");
 			legal = false;
 		}
-		if (street.length() >= 100||street.isEmpty()) {
+		if (street.length() >= 100 || street.isEmpty()) {
 			System.err.println("Street should be less than 100 charactor.");
 			legal = false;
 		}
-		if (city.length() >= 50||city.isEmpty()) {
+		if (city.length() >= 50 || city.isEmpty()) {
 			System.err.println("city should be less than 50 charactor.");
 			legal = false;
 		}
-		if (zipCode.length() >= 10||zipCode.isEmpty()) {
+		if (zipCode.length() >= 10 || zipCode.isEmpty()) {
 			System.err.println("city should be less than 10 charactor.");
 			legal = false;
 		}

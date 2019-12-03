@@ -10,6 +10,7 @@ public class UserInterface {
 	private static Scanner scnr = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		logic.addWarehouse();
 		boolean programOn = true;
 		while (programOn) {
 			String inputMain;
