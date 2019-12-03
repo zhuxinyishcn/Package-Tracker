@@ -3,7 +3,7 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 public class Printer {
 
 	public static void printMainMenu() {
-		System.out.println("Welcome, you're options are as follows:");
+		System.out.println("Welcome, options are as follows:");
 		System.out.println("1. Log in as admin.");
 		System.out.println("2. Log in as user.");
 		System.out.println("3. Log in as VIP user.");
@@ -11,37 +11,62 @@ public class Printer {
 		System.out.println("5. Exit");
 	}
 
+	public static void printAskUserName() {
+		System.out.println("Enter your user name:");
+	}
+	
 	public static void printAdminMenu() {
-		System.out.println("You're options are as follows:");
-		System.out.println("1. Show all package. ");
+		System.out.println("Welcome, options are as follows:");
+		System.out.println("1. Show all package.");
+		System.out.println("2. Change destination.");
+		System.out.println("3. Edit user data.");
+		System.out.println("4. Edit package.");
 	}
 
 	public static void printUserMenu() {
-		System.out.println("Welcome, you're options are as follows:");
-		System.out.println("Enter your user name:");
+		System.out.println("Welcome, options are as follows:");
+		System.out.println("1. Send your package.");
+		System.out.println("2. Retuen package.");
+		System.out.println("3. Edit personal data.");
+		System.out.println("4. Check your package.(Tracking# or User Name)");
+		System.out.println("5. Upgrade to VIP.");
+		System.out.println("6. Cancel package.");
+		System.out.println("7. Hold at Warehouse.");
+		System.out.println("8. Estimate dilivery time.");
 	}
 
 	public static void printVIPMenu() {
-		System.out.println("Welcome, you're options are as follows:");
-		System.out.println("Enter your name:");
+		System.out.println("Welcome VIP, options are as follows:");
+		System.out.println("1. Send priority package.");
+		System.out.println("2. Retuen package.");
+		System.out.println("3. Edit personal data.");
+		System.out.println("4. Check your package.(Tracking# or User Name)");
+		System.out.println("5. Upgrade to VIP.");
+		System.out.println("6. Cancel package.");
+		System.out.println("7. Hold at Warehouse.");
+		System.out.println("8. Estimate dilivery time.");
+		System.out.println("9. Change destination.");
 	}
-
+	
 	public static void printRegisterMenu(int count) {
 		switch(count) {
 		case 1:
 			System.out.println("Please enter your User Name.");
 			break;
 		case 2:
+			System.out.println("Please enter your Real Name");
+			break;
+		case 3:
 			printWarehouse();
 			System.out.println("Please select the closest Warehouse ID.");
 			break;
-		case 3:
+		case 4:
 			System.out.println("Please enter Street Name.");
 			break;
-		case 4:
+		case 5:
 			System.out.println("Please enter City Name.");
 			break;
-		case 5:
+		case 6:
 			System.out.println("Please enter Zip Code.");
 			break;
 		}

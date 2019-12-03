@@ -21,6 +21,14 @@ public class logicFacade {
 	public void printAdminMenu() {
 		Printer.printAdminMenu();
 	}
+	
+	public void printUserMenu() {
+		Printer.printUserMenu();
+	}
+	
+	public void printAskUserName() {
+		Printer.printAskUserName();
+	}
 
 	public void printInvalid() {
 		Printer.printInvalid();
@@ -30,16 +38,16 @@ public class logicFacade {
 		Printer.printExit();
 	}
 	
-	public void printUserMenu() {
-		Printer.printUserMenu();
+	public void printVIPMenu() {
+		Printer.printVIPMenu();
 	}
 	
 	public void printRegisterMenu(int count) {
 		Printer.printRegisterMenu(count);
 	}
 	
-	public void register(String login, String warehouseID, String street, String city, String zipCode) {
-		RegisterLogic.register(login, warehouseID, street, city, zipCode);
+	public void register(String login, String realName, String warehouseID, String street, String city, String zipCode) {
+		RegisterLogic.register(login, realName, warehouseID, street, city, zipCode);
 	}
 	
 	public void getAllPackage() {

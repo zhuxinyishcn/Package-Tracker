@@ -22,7 +22,7 @@ public class UserInterface {
 				userMenu();
 				break;
 			case "3": //**VIP**
-
+				vipMenu();
 				break;
 			case "4": //**REGISTER**
 				register();
@@ -50,22 +50,25 @@ public class UserInterface {
 	}
 
 	public static void userMenu() {
+		String input;
+		String userName;
+		logic.printAskUserName();
+		userName = scnr.nextLine();
 		logic.printUserMenu();
 	}
 
 	public static void vipMenu() {
-
+		logic.printVIPMenu();
 	}
-	
+
 	public static void register() {
 		ArrayList<String> registerList = new ArrayList<String>();
 		String input;
-		for(int i = 1; i <= 5; i++) {
+		for(int i = 1; i <= 6; i++) {
 			logic.printRegisterMenu(i);
 			input = scnr.nextLine();
 			registerList.add(input);
 		}
-		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3), registerList.get(4));
+		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3), registerList.get(4), registerList.get(5));
 	}
-
 }

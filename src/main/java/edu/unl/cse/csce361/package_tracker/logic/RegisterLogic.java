@@ -6,7 +6,7 @@ import edu.unl.cse.csce361.package_tracker.backend.DatabaseQuerier;
 public class RegisterLogic {
 	DatabaseQuerier dq = new DatabaseQuerier();
 
-	public static void register(String login, String warehouseID, String street, String city, String zipCode) {
+	public static void register(String login, String realName, String warehouseID, String street, String city, String zipCode) {
 		Address address = new Address(street, city, zipCode);
 		// TODO: Update database @login, @name, @address, @warehouseIDtoint
 
