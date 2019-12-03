@@ -2,13 +2,13 @@ package edu.unl.cse.csce361.package_tracker.logic;
 
 public class Logic {
 
-	public static void editinfo(String userName, boolean isSender, String name, String street, String city, String zip,
+	public static void editinfo(String userName, String isSender, String name, String street, String city, String zip,
 			String warehouseID) {
 		if (userName.length() <= 40) {
 			System.err.println("User name should less than 40 charactor.");
 		}
 		while (userName.length() <= 40) {
-			if (isSender == true) {
+			if (isSender.equalsIgnoreCase("Y")) {
 				if (name != null) {
 					if (name.length() <= 100) {
 						// TODO: Using @userName who is a sender to change name to @name.
@@ -95,8 +95,8 @@ public class Logic {
 			return false;
 	}
 
-	public void register(boolean isSender, String login, String realName, String warehouseID, String street,
-			String city, String zipCode) {
+	public void register(String isSender, String login, String realName, String warehouseID, String street, String city,
+			String zipCode) {
 		// Using @login to search is there a login exist
 		boolean legal = true;
 		if (login.length() <= 10) {
@@ -128,7 +128,7 @@ public class Logic {
 			legal = false;
 		}
 		if (legal) {
-			if (isSender) {
+			if (isSender.equalsIgnoreCase("Y")) {
 				// TODO: Add sender using @login, @realName, @warehouseID to INT, @street,
 				// @city, @zipCode to SENDER
 				System.out.println("You have successfully signup as sender, your username is " + login);

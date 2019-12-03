@@ -7,20 +7,22 @@ import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 public class UserInterface {
 	private static logicFacade logic = logicFacade.getInstance();
 	private static Scanner scnr = new Scanner(System.in);
+
 	public static void main(String[] args) {
+		logic.addWarehouse();
 		boolean programOn = true;
-		while(programOn) {
+		while (programOn) {
 			String inputMain;
 			logic.printMainMenu();
 			inputMain = scnr.nextLine();
-			switch(inputMain) {
-			case "1": //**ADMIN**
+			switch (inputMain) {
+			case "1": // **ADMIN**
 				adminMenu();
 				break;
-			case "2": //**USER**
+			case "2": // **USER**
 				userMenu();
 				break;
-			case "3": //**VIP**
+			case "3": // **VIP**
 
 				break;
 			case "4":
@@ -38,9 +40,9 @@ public class UserInterface {
 		String input;
 		logic.printAdminMenu();
 		input = scnr.nextLine();
-		switch(input) {
+		switch (input) {
 		case "1":
-			//logic.getAllPackage();
+			// logic.getAllPackage();
 			break;
 		}
 	}
