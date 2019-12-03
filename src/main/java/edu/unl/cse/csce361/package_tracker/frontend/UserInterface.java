@@ -8,23 +8,24 @@ import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 public class UserInterface {
 	private static logicFacade logic = logicFacade.getInstance();
 	private static Scanner scnr = new Scanner(System.in);
+
 	public static void main(String[] args) {
 		boolean programOn = true;
-		while(programOn) {
+		while (programOn) {
 			String inputMain;
 			logic.printMainMenu();
 			inputMain = scnr.nextLine();
-			switch(inputMain) {
-			case "1": //**ADMIN**
+			switch (inputMain) {
+			case "1": // **ADMIN**
 				adminMenu();
 				break;
-			case "2": //**USER**
+			case "2": // **USER**
 				userMenu();
 				break;
-			case "3": //**VIP**
+			case "3": // **VIP**
 				vipMenu();
 				break;
-			case "4": //**REGISTER**
+			case "4": // **REGISTER**
 				register();
 				break;
 			case "5":
@@ -39,13 +40,65 @@ public class UserInterface {
 	}
 
 	public static void adminMenu() {
-		String input;
-		logic.printAdminMenu();
-		input = scnr.nextLine();
-		switch(input) {
-		case "1":
-			//logic.getAllPackage();
-			break;
+		boolean programOn = true;
+		while(programOn) {
+			String input;
+			String inputData = "";
+			logic.printAdminMenu();
+			input = scnr.nextLine();
+			switch (input) {
+			case "1":
+				logic.getAllPackage();
+				break;
+			case "2":
+				ArrayList<String> destitation = new ArrayList<String>();
+				for (int i = 1; i <= 2; i++) {
+					logic.PrintChangeDestitation(i);
+					inputData = scnr.nextLine();
+					destitation.add(inputData);
+				}
+				logic.changeDestitation(destitation.get(0), destitation.get(1));
+				break;
+			case "3":
+				ArrayList<String> registerList = new ArrayList<String>();
+				for (int i = 1; i <= 7; i++) {
+					logic.printRegisterMenu(i);
+					inputData = scnr.nextLine();
+					if (i == 1) {
+						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
+							i = 0;
+						} else
+							registerList.add(inputData);
+					} else
+						if(inputData.isEmpty()) {
+							inputData = null;
+							registerList.add(inputData);
+						}else {
+							registerList.add(inputData);
+						}
+				}
+				logic.editInfo(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
+						registerList.get(4), registerList.get(5), registerList.get(6));
+				break;
+			case "4":
+				ArrayList<String> packageList = new ArrayList<String>();
+				for (int i = 1; i <= 7; i++) {
+					logic.printEditPackage(i);
+					inputData = scnr.nextLine();
+					if(inputData.isEmpty()) {
+						inputData = null;
+						packageList.add(inputData);
+					}else {
+						packageList.add(inputData);
+					}
+				}
+				break;
+			case "5":
+				programOn = false;
+				break;
+			default:
+				logic.printInvalid();
+			}
 		}
 	}
 
@@ -63,12 +116,19 @@ public class UserInterface {
 
 	public static void register() {
 		ArrayList<String> registerList = new ArrayList<String>();
-		String input;
-		for(int i = 1; i <= 6; i++) {
+		String inputData;
+		for (int i = 1; i <= 7; i++) {
 			logic.printRegisterMenu(i);
-			input = scnr.nextLine();
-			registerList.add(input);
+			inputData = scnr.nextLine();
+			if (i == 1) {
+				if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
+					i = 0;
+				} else
+					registerList.add(inputData);
+			} else
+				registerList.add(inputData);
 		}
-		//logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3), registerList.get(4), registerList.get(5));
+		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
+				registerList.get(4), registerList.get(5), registerList.get(6));
 	}
 }

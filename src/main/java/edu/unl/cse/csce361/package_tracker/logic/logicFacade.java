@@ -46,10 +46,36 @@ public class logicFacade {
 	public void printRegisterMenu(int count) {
 		Printer.printRegisterMenu(count);
 	}
+	
+	public void PrintChangeDestitation(int count) {
+		Printer.PrintChangeDestitation(count);
+	}
+	
+	public void changeDestitation(String trackingNumber, String destitationLogin){
+		AdminLogic.changeDestitation(trackingNumber, destitationLogin);
+	}
 
-	public void register(boolean isSender, String login, String realName, String warehouseID, String street,
-			String city, String zipCode) {
+	public void printIsSender() {
+		Printer.printIsSender();
+	}
+	
+	public void editInfo(String isSender, String userName, String name, String street, String city, String zip,
+			String warehouseID) {
+		Logic.editInfo(isSender, userName, name, street, city, zip, warehouseID);
+	}
+
+	public void register(String isSender, String login, String realName, String warehouseID, String street, String city,
+			String zipCode) {
 		Logic.register(isSender, login, realName, warehouseID, street, city, zipCode);
+	}
+	
+	public void editPackage(String trackingNumber, String currentLocation, String priorityID,
+			String shippingTime, String status, String receiver, String sender) {
+		AdminLogic.editPackage(trackingNumber, currentLocation, priorityID, shippingTime, status, receiver, sender);
+	}
+
+	public void printEditPackage(int count) {
+		Printer.printEditPackage(count);;
 	}
 
 	public void getAllPackage() {

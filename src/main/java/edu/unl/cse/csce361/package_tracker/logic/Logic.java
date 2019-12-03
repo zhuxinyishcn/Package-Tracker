@@ -2,17 +2,18 @@ package edu.unl.cse.csce361.package_tracker.logic;
 
 public class Logic {
 
-	public static void editinfo(String userName, boolean isSender, String name, String street, String city, String zip,
-			String warehouseID) {
-		if (userName.length() <= 40) {
+	public static void editInfo(String isSender, String userName, String realName, String warehouseID, String street,
+			String city, String zipCode) {
+		if (userName.length() >= 40) {
 			System.err.println("User name should less than 40 charactor.");
 		}
-		while (userName.length() <= 40) {
-			if (isSender == true) {
-				if (name != null) {
-					if (name.length() <= 100) {
+		int userNameLength = userName.length();
+		while (userNameLength <= 40) {
+			if (isSender.equalsIgnoreCase("Y")) {
+				if (realName != null) {
+					if (realName.length() <= 100) {
 						// TODO: Using @userName who is a sender to change name to @name.
-						System.out.println("You have successfully set the name for " + userName + " to " + name);
+						System.out.println("You have successfully set the name for " + userName + " to " + realName);
 					} else
 						System.err.println("Name should be less than 100 charactor.");
 				}
@@ -30,10 +31,10 @@ public class Logic {
 					} else
 						System.err.println("City should be less than 50 charactor.");
 				}
-				if (zip != null) {
-					if (zip.length() <= 10) {
-						// TODO: Using @userName who is a sender to change zipCode to @zip.
-						System.out.println("You have successfully set the zip for " + userName + " to " + zip);
+				if (zipCode != null) {
+					if (zipCode.length() <= 10) {
+						// TODO: Using @userName who is a sender to change zipCode to @zipCode.
+						System.out.println("You have successfully set the zip for " + userName + " to " + zipCode);
 					} else
 						System.err.println("zip should be less than 10 charactor.");
 				}
@@ -44,11 +45,12 @@ public class Logic {
 								"You have successfully set the warehouseID for " + userName + " to " + warehouseID);
 					}
 				}
+
 			} else {
-				if (name != null) {
-					if (name.length() <= 100) {
+				if (realName != null) {
+					if (realName.length() <= 100) {
 						// TODO: Using @userName who is a receiver to change name to @name.
-						System.out.println("You have successfully set the name for " + userName + " to " + name);
+						System.out.println("You have successfully set the name for " + userName + " to " + realName);
 					} else
 						System.err.println("Name should be less than 100 charactor.");
 				}
@@ -66,10 +68,10 @@ public class Logic {
 					} else
 						System.err.println("City should be less than 50 charactor.");
 				}
-				if (zip != null) {
-					if (zip.length() <= 10) {
-						// TODO: Using @userName who is a receiver to change zipCode to @zip.
-						System.out.println("You have successfully set the zip for " + userName + " to " + zip);
+				if (zipCode != null) {
+					if (zipCode.length() <= 10) {
+						// TODO: Using @userName who is a receiver to change zipCode to @zipCode.
+						System.out.println("You have successfully set the zip for " + userName + " to " + zipCode);
 					} else
 						System.err.println("zip should be less than 10 charactor.");
 				}
@@ -82,6 +84,7 @@ public class Logic {
 					}
 				}
 			}
+			userNameLength = 41;
 		}
 	}
 
@@ -95,47 +98,43 @@ public class Logic {
 			return false;
 	}
 
-	public static void register(boolean isSender, String login, String realName, String warehouseID, String street,
+	public static void register(String isSender, String userName, String realName, String warehouseID, String street,
 			String city, String zipCode) {
 		// Using @login to search is there a login exist
 		boolean legal = true;
-		if (login.length() <= 10) {
+		if (userName.length() >= 10||userName.isEmpty()) {
 			System.err.println("Username should be less than 10 charactor.");
 			legal = false;
 		}
-		if (realName.length() <= 100) {
+		if (realName.length() >= 100||realName.isEmpty()) {
 			System.err.println("Username should be less than 100 charactor.");
 			legal = false;
 		}
-		if (warehouseID.length() <= 5 && isNumber(warehouseID)) {
+		if (warehouseID.length() >= 5 && isNumber(warehouseID)||warehouseID.isEmpty()) {
 			System.err.println("warehouseID should be less than 5 interger.");
 			legal = false;
 		}
-		if (street.length() <= 100) {
+		if (street.length() >= 100||street.isEmpty()) {
 			System.err.println("Street should be less than 100 charactor.");
 			legal = false;
 		}
-		if (street.length() <= 100) {
-			System.err.println("Street should be less than 100 charactor.");
-			legal = false;
-		}
-		if (city.length() <= 50) {
+		if (city.length() >= 50||city.isEmpty()) {
 			System.err.println("city should be less than 50 charactor.");
 			legal = false;
 		}
-		if (zipCode.length() <= 10) {
+		if (zipCode.length() >= 10||zipCode.isEmpty()) {
 			System.err.println("city should be less than 10 charactor.");
 			legal = false;
 		}
 		if (legal) {
-			if (isSender) {
+			if (isSender.equalsIgnoreCase("Y")) {
 				// TODO: Add sender using @login, @realName, @warehouseID to INT, @street,
 				// @city, @zipCode to SENDER
-				System.out.println("You have successfully signup as sender, your username is " + login);
+				System.out.println("You have successfully signup as sender, your username is " + userName);
 			} else {
 				// TODO: Add receiver using @login, @realName, @warehouseID to INT, @street,
 				// @city, @zipCode to RECEIVER
-				System.out.println("You have successfully signup as receiver, your username is " + login);
+				System.out.println("You have successfully signup as receiver, your username is " + userName);
 			}
 		}
 	}
