@@ -8,7 +8,7 @@ public class ShippingLogic {
 		// TODO: using @trackingNumber to get orig and dest.
 		if (current == destination) {
 			System.out.println("Your package has arrived. Please confirm receive.");
-			PackageLogic.confirmPackage(trackingNumber);
+			AdminLogic.confirmPackage(trackingNumber);
 		} else {
 			nextWarehouse(trackingNumber, current, destination);
 		}

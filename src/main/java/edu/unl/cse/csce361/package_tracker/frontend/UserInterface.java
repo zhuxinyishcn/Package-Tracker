@@ -40,7 +40,7 @@ public class UserInterface {
 		input = scnr.nextLine();
 		switch(input) {
 		case "1":
-			logic.getAllPackage();
+			//logic.getAllPackage();
 			break;
 		}
 	}
