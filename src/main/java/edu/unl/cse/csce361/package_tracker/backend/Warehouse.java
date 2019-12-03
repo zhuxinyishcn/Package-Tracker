@@ -23,8 +23,6 @@ public class Warehouse extends DefaultStringBridge {
     @Field(name = "Name", index = Index.YES)
     private String name;
     @Field(name = "Address", index = Index.YES)
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "Address", nullable = false)
     private String address;
     @Column(name = "Longitude")
     @Field

@@ -2,17 +2,13 @@ package edu.unl.cse.csce361.package_tracker;
 
 import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.backend.*;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.hibernate.search.FullTextSession;
-import org.hibernate.search.Search;
-import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 
@@ -37,7 +33,6 @@ public class BackendTestSuites {
 
     @Test
     public void TestInsertPackage () {
-
         Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
         Sender sender = new Sender(address, "test", "sxc258");
         Address address2 = new Address("1400 R St2, Lincoln, NE 68588", "Lincoln", "68508");
@@ -47,7 +42,7 @@ public class BackendTestSuites {
 
     @Test
     public void TestDeletePackage () {
-        backendFacade.deletePakcageRecord(3);
+        backendFacade.deletePakcageRecord("79d1cc90-ca30-47ee-8f23-5a9d68658730");
     }
 
     @Test
@@ -85,10 +80,46 @@ public class BackendTestSuites {
 
     @Test
     public void TestSearchUpdateStatus () {
-        backendFacade.setPackageArrived(48);
+        backendFacade.setPackageArrived("79d1cc90-ca30-47ee-8f23-5a9d68658730");
     }
 
-    //
+
+    @Test
+    public void searchReceiver () {
+        backendFacade.setPackageStatus("79d1cc90-ca30-47ee-8f23-5a9d68658730", "just Arrived");
+    }
+
+
+    @Test
+    public void TestReceiveAllData () {
+        final Session session = HibernateUtil.createSession().openSession();
+        List<Package> result = session.createQuery("from Package").list();
+        for (Package packages : (result)) {
+            System.out.println(packages.getTrackingNumber());
+        }
+    }
+
+
+    @Test
+    public void TestEditPackagesInfo () {
+        backendFacade.editPackageAllInfo("40ac7974-1978-4e28-9423-6dab8e8f189c", "1",
+               "4", "2233/12/03 12:13:57",
+                "just Test it! again", "system Admin!", "system Admin:)!");
+    }
+}
+/*
+ *  1.login check if exist(String name check if exist)
+ *  2. add new users
+ *  3. use username find user id
+ *  4. cancel package (search uuid call edit packager)
+ *  5. give uuid find address status
+ *  6. tracking number edit all info
+ *  7. give user name find all package belongs to him
+ *
+ * */
+
+
+//
 //    @Test
 //    public void TestSearchWarehouse_Name() {
 //        final Session session = HibernateUtil.createSession().openSession();
@@ -127,73 +158,3 @@ public class BackendTestSuites {
 //        session1.close();
 //    }
 //
-    @Test
-    public void searchReceiver(){
-        final Session session = HibernateUtil.createSession().openSession();
-        FullTextSession fullTextSession = Search.getFullTextSession(session);
-        FullTextEntityManager fullTextEntityManager;
-        Transaction tx = null;
-        String trackingNumber = "326d2bfc-f78e-4b59-88ee-e63cc005c19a";
-        try{
-            fullTextEntityManager = Search.getFullTextSession(fullTextSession);
-            fullTextSession.createIndexer(Package.class).startAndWait();
-            String[] fields = new String[]{"trackingNumber"};
-//            MultiFieldQueryParser parser = new MultiFieldQueryParser(fields,new StandardAnalyzer());
-            QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Package.class).get();
-            org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber").matching(trackingNumber).createQuery();
-            org.hibernate.search.jpa.FullTextQuery searchQuery = fullTextEntityManager.createFullTextQuery(query,Package.class);
-            List<Package> packageList = searchQuery.getResultList();
-            for (Package p:packageList) {
-                System.out.printf("package Receiver: %s",p.getStatus());
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }finally {
-            HibernateUtil.closeSession(session);
-        }
-    }
-//    @Test
-//    public void searchPackage(){
-//        setUp();
-//        FullTextSession fullTextSession = Search.getFullTextSession(session);
-//        FullTextEntityManager fullTextEntityManager;
-//        Transaction tx = null;
-//        String trackingNumber = "0x81F016D587AE451C94488E06FC3C75A8000000000000000000000000000000000000000000000000";
-//        try{
-//            fullTextEntityManager = Search.getFullTextSession(fullTextSession);
-//            fullTextSession.createIndexer(Package.class).startAndWait();
-//            String[] fields = new String[]{"PackageID","currentLocation","priprityID","shippingTime","status","trackingNumber","receiver","sender","PackageSet"};
-//            MultiFieldQueryParser parser = new MultiFieldQueryParser(fields,new StandardAnalyzer());
-//            QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Package.class).get();
-//            org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber").matching(trackingNumber).createQuery();
-//            org.hibernate.search.jpa.FullTextQuery searchQuery = fullTextEntityManager.createFullTextQuery(query,Package.class);
-//            List<Package> packageList = searchQuery.getResultList();
-//            for (Package p:packageList) {
-//                System.out.printf("package id: %s",p.getId());
-//            }
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }finally {
-//            tearDown();
-//        }
-//    }
-    @Test
-    public void TestReceiveAllData () {
-        final Session session = HibernateUtil.createSession().openSession();
-        List<Package> result = (List<Package>) session.createQuery("from Package").list();
-        for (Package packages: result){
-            System.out.println(packages.getTrackingNumber());
-        }
-    }
-
-}
-/*
-*  1.login check if exist
-*  2. add new users
-*  3. use username find user id
-*  4. cancel package (search uuid call edit packager)
-*  5. give uuid find address status
-*  6. tracking number edit all info
-*  7. give user name find all package belongs to him
-* )
-* */
