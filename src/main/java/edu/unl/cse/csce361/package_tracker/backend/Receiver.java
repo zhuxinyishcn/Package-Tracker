@@ -5,45 +5,55 @@ import javax.persistence.*;
 /**
  * @author davidgao
  */
+@Entity
+@Table(name = "Receiver", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "receiverid")})
 public class Receiver {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "receiverid", unique = true, nullable = false, updatable = false)
-	private int id;
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	private Address address;
-	@Column(name = "name", nullable = false)
-	private String name;
-	@MapsId
-	@Column(name = "Package_ID", nullable = false)
-	private Package packageid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "receiverid", unique = true, nullable = false, updatable = false)
+    private int id;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "address")
+    private Address address;
+    @Column(name = "name", nullable = false, length = 100)
+    private String name;
 
-	public Receiver() {
-	}
+    @OneToOne(mappedBy = "receiver", fetch = FetchType.LAZY)
+    private Package packageid;
 
-	public Address getAddress() {
-		return address;
-	}
+    public Receiver (Address address, String name) {
+        this.address = address;
+        this.name = name;
+    }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+    public Receiver () {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Address getAddress () {
+        return address;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAddress (Address address) {
+        this.address = address;
+    }
 
-	public Package getPackageid() {
-		return packageid;
-	}
+    public String getName () {
+        return name;
+    }
 
-	public void setPackageid(Package packageid) {
-		this.packageid = packageid;
-	}
+    public void setName (String name) {
+        this.name = name;
+    }
+
+
+    public Package getPackageid () {
+        return packageid;
+    }
+
+    public void setPackageid (Package packageid) {
+        this.packageid = packageid;
+    }
+
 
 }

@@ -44,7 +44,7 @@ public class UserInterface {
 		input = scnr.nextLine();
 		switch(input) {
 		case "1":
-			logic.getAllPackage();
+			//logic.getAllPackage();
 			break;
 		}
 	}
@@ -69,6 +69,6 @@ public class UserInterface {
 			input = scnr.nextLine();
 			registerList.add(input);
 		}
-		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3), registerList.get(4), registerList.get(5));
+		//logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3), registerList.get(4), registerList.get(5));
 	}
 }
