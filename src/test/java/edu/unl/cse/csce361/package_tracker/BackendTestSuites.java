@@ -5,7 +5,6 @@ import edu.unl.cse.csce361.package_tracker.backend.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.search.FullTextSession;
-import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 
@@ -133,7 +132,7 @@ public class BackendTestSuites {
         }
     }
 
-//    @Test
+    //    @Test
 //    public void TestGetCurrentLocation(){
 //        Session session = null;
 //        FullTextSession fullTextSession = null;
@@ -158,21 +157,20 @@ public class BackendTestSuites {
     }
 
 
-
     @Test
     public void TestReturnPackage () {
         final Session session = HibernateUtil.createSession().openSession();
         final Transaction transaction = session.beginTransaction();
         try {
-            int packageid = backendFacade.seachPackage(session, "e560889c-ca9b-4bc2-a9c1-d4f3f3d2406d");
+            int packageid = backendFacade.searchPackage(session, "e560889c-ca9b-4bc2-a9c1-d4f3f3d2406d");
             Package packageInfo = session.get(Package.class, packageid);
             packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
             session.update(packageInfo);
             transaction.commit();
             session.close();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
 
