@@ -77,7 +77,7 @@ public class logicFacade {
 	}
 
 	public void printEditPackage(int count) {
-		Printer.printEditPackage(count);;
+		Printer.printEditPackage(count);
 	}
 
 	public void getAllPackage() {

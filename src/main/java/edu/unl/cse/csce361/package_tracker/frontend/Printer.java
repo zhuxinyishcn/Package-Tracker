@@ -66,6 +66,7 @@ public class Printer {
 		System.out.println("7. Hold at Warehouse.");
 		System.out.println("8. Estimate dilivery time.");
 		System.out.println("9. Change destination.");
+		System.out.println("10. Back to main menu.");
 	}
 
 	public static void PrintChangeDestination(int count) {
