@@ -1,5 +1,7 @@
 # Project-specific
-# none (for now)
+# SQL authentication
+*.info
+*.cfg.xml
 
 # Mac file finder metadata
 .DS_Store
@@ -87,3 +89,4 @@ tmp/
 *.swp
 *.gcno
 
+*edu.unl.cse.csce361.package_tracker.backend.Address
