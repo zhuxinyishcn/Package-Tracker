@@ -1,9 +1,13 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.backend.Address;
+import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.Sender;
+
 public class Logic {
 
 	public static void editInfo(String isSender, String userName, String realName, String warehouseID, String street,
-			String city, String zipCode) {
+								String city, String zipCode) {
 		if (userName.length() >= 40) {
 			System.err.println("User name should less than 40 charactor.");
 		}
@@ -88,6 +92,7 @@ public class Logic {
 		}
 	}
 
+
 	public static boolean checkVip(String login) {
 		// TODO: using @login to check user is vip.
 		int vip = 0;
@@ -99,7 +104,7 @@ public class Logic {
 	}
 
 	public static void register(String isSender, String userName, String realName, String warehouseID, String street,
-			String city, String zipCode) {
+								String city, String zipCode, BackendFacade backendFacade) {
 		// Using @login to search is there a login exist
 		boolean legal = true;
 		if (userName.length() >= 10 || userName.isEmpty()) {
@@ -128,12 +133,10 @@ public class Logic {
 		}
 		if (legal) {
 			if (isSender.equalsIgnoreCase("Y")) {
-				// TODO: Add sender using @login, @realName, @warehouseID to INT, @street,
-				// @city, @zipCode to SENDER
+				backendFacade.registerUser(userName, realName, street, city, zipCode);
 				System.out.println("You have successfully signup as sender, your username is " + userName);
 			} else {
-				// TODO: Add receiver using @login, @realName, @warehouseID to INT, @street,
-				// @city, @zipCode to RECEIVER
+				backendFacade.registerReceiver(realName, street, city, zipCode);
 				System.out.println("You have successfully signup as receiver, your username is " + userName);
 			}
 		}
@@ -145,4 +148,6 @@ public class Logic {
 				return false;
 		return true;
 	}
+
+
 }

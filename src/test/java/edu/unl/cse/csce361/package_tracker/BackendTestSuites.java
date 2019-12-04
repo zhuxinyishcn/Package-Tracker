@@ -8,7 +8,6 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 
@@ -22,6 +21,40 @@ public class BackendTestSuites {
         try {
             Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
             session.save(address);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            HibernateUtil.closeSession(session);
+            throw e;
+        }
+    }
+
+    @Test
+    public void TestInsertSender () {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
+            Sender sender = new Sender(address, "admin", "Admin");
+            session.persist(sender);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            HibernateUtil.closeSession(session);
+            throw e;
+        }
+    }
+
+    @Test
+    public void TestInsertReceiver () {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Address address = new Address("140024 R St, Lincoln", "Lincoln", "68508");
+            Receiver receiver = new Receiver(address, "test123");
+            session.persist(receiver);
             transaction.commit();
             HibernateUtil.closeSession(session);
         } catch (Throwable e) {
@@ -103,8 +136,29 @@ public class BackendTestSuites {
     @Test
     public void TestEditPackagesInfo () {
         backendFacade.editPackageAllInfo("40ac7974-1978-4e28-9423-6dab8e8f189c", "1",
-               "4", "2233/12/03 12:13:57",
+                "4", "2233/12/03 12:13:57",
                 "just Test it! again", "system Admin!", "system Admin:)!");
+    }
+
+
+
+    @Test
+    public void TestReturnPackage () {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            int packageid = backendFacade.seachPackage(session, "e560889c-ca9b-4bc2-a9c1-d4f3f3d2406d");
+            Package packageInfo = session.get(Package.class, packageid);
+            packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
+            session.update(packageInfo);
+            transaction.commit();
+            session.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
     }
 }
 /*

@@ -131,5 +131,6 @@ public class UserInterface {
 		}
 		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
 				registerList.get(4), registerList.get(5), registerList.get(6));
+
 	}
 }

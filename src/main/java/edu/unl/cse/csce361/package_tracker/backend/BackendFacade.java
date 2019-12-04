@@ -61,4 +61,18 @@ public class BackendFacade extends Observable {
                 priorityID, shippingTime,
                 status, receiver, sender);
     }
+
+    public void registerUser (String userName, String realName, String street,
+                              String city, String zipCode) {
+        Sender.insertSender(userName, realName, street, city, zipCode);
+    }
+
+    public void registerReceiver (String realName, String street,
+                                  String city, String zipCode) {
+        Receiver.insertReceive(realName, street, city, zipCode);
+    }
+
+    public void returnPackage (String trackingNumber) {
+        Package.returnPackage(trackingNumber);
+    }
 }

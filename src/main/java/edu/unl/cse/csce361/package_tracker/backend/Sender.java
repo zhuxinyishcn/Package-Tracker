@@ -2,11 +2,9 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Store;
 import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,9 +22,9 @@ public class Sender {
     @JoinColumn(name = "address")
     private Address address;
     @Column(name = "name", nullable = false, length = 100)
-    @Field(name ="name",index = Index.YES,analyze= Analyze.YES, store= Store.NO)
+    @Field(name = "name", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String name;
-    @Field(index = Index.YES,analyze= Analyze.YES, store= Store.NO)
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     @Column(name = "userName", nullable = false, length = 100)
     private String userName;
     @JoinColumn(name = "PackageSet")
@@ -46,12 +44,12 @@ public class Sender {
         final Session session = HibernateUtil.createSession().openSession();
         final Transaction transaction = session.beginTransaction();
         try {
-            Sender user = session.get(Sender.class, userId);
+            Sender user = session.load(Sender.class, userId);
             Address address = user.getAddress();
-            session.delete(user);
             session.delete(address);
+            session.delete(user);
+
             transaction.commit();
-            HibernateUtil.closeSession(session);
         } catch (Throwable e) {
             session.getTransaction().rollback();
             throw e;
@@ -91,5 +89,24 @@ public class Sender {
     public void setPackageSet (Set<Package> packageSet) {
         this.packageSet = packageSet;
     }
+
+    public static void insertSender (String userName, String realName, String street,
+                              String city, String zipCode) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Address address = new Address(street, city, zipCode);
+            Sender sender = new Sender(address, realName, userName);
+            session.persist(sender);
+            transaction.commit();
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            HibernateUtil.closeSession(session);
+        }
+    }
+
+
 }
 

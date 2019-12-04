@@ -1,5 +1,8 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import javax.persistence.*;
 
 /**
@@ -30,6 +33,25 @@ public class Receiver {
     public Receiver () {
     }
 
+    public static void insertReceive (String realName, String street,
+                                      String city, String zipCode) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Address address = new Address(street, city, zipCode);
+            Receiver receiver = new Receiver(address, realName);
+            session.persist(receiver);
+            transaction.commit();
+            HibernateUtil.closeSession(session);
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            HibernateUtil.closeSession(session);
+            throw e;
+        } finally {
+            HibernateUtil.closeSession(session);
+        }
+    }
+
     public Address getAddress () {
         return address;
     }
@@ -46,7 +68,6 @@ public class Receiver {
         this.name = name;
     }
 
-
     public Package getPackageid () {
         return packageid;
     }
@@ -54,6 +75,4 @@ public class Receiver {
     public void setPackageid (Package packageid) {
         this.packageid = packageid;
     }
-
-
 }

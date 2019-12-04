@@ -38,7 +38,7 @@ public class Package {
     @Field(name = "trackingNumber", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     @Column(name = "trackingNumber", unique = true, length = 40, updatable = false)
     private String trackingNumber;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "sender")
     private Sender sender;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -157,8 +157,8 @@ public class Package {
     }
 
     public static void editPackageAllInfo (String trackingNumber, String currentLocation,
-                                            String priorityID, String shippingTime,
-                                            String status, String receiver, String sender) {
+                                           String priorityID, String shippingTime,
+                                           String status, String receiver, String sender) {
         final Session session = HibernateUtil.createSession().openSession();
         final Transaction transaction = session.beginTransaction();
         try {
@@ -176,6 +176,22 @@ public class Package {
             e.printStackTrace();
         } finally {
             HibernateUtil.closeSession(session);
+        }
+    }
+
+    public static void returnPackage (String trackingNumber) {
+        final Session session = HibernateUtil.createSession().openSession();
+        final Transaction transaction = session.beginTransaction();
+        try {
+            int packageid = searchTrackingNumber(session, trackingNumber);
+            Package packageInfo = session.get(Package.class, packageid);
+            packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
+            session.update(packageInfo);
+            transaction.commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            session.close();
         }
     }
 

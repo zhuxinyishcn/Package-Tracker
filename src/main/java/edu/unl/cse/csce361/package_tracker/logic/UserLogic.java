@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+
 public class UserLogic {
 
 	private static logicFacade logic = logicFacade.getInstance();
@@ -12,15 +14,14 @@ public class UserLogic {
 	public static void returnPackage(String trackingNumber) {
 		int current = 0;
 		int sender = 0;
-		// TODO: Using @trackingNumber to get @current @sender
-		// TODO: Using @trackingNumber set @sender as receiver
+		logic.returnPackage(trackingNumber);
 		System.out.println("Your package is currently at " + current + " it will return to you at " + sender);
 	}
 
 	public static void checkPackage(String trackingNumber, String login, boolean isSender, boolean onGoing) {
 		if (trackingNumber != null) {
 			// TODO: Using @trackingNumber find package info
-			System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender", "Receiver",
+			System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender", "Receiver",
 					"Current Location", "Status"));
 		}
 		if (login != null) {
@@ -59,7 +60,7 @@ public class UserLogic {
 	}
 
 	public static void cancelPackage(String trackingNumber) { // Without return services
-		// TODO: Set @trackingNumber to cancelled.
+		logic.cancelPackage(trackingNumber);
 	}
 
 	public static void holdAtWarehouse(String trackingNumber) {
@@ -86,8 +87,7 @@ public class UserLogic {
 	}
 
 	public static void confirmReceive(String trackingNumber) {
-		// TODO:Set @ tracking number to received
+		logic.returnPackage(trackingNumber);
 		System.out.println("You have confirm receive of " + trackingNumber);
-
 	}
 }

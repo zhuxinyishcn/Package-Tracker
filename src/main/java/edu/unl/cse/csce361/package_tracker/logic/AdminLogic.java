@@ -8,7 +8,7 @@ public class AdminLogic {
 	public static void getAllPackage() {
 		System.out.println(String.format("%-20s %-10s %-10s %-20s %-10s", "Tracking Number", "Sender", "Receiver",
 				"Current Location", "Status"));
-		// TODO: Get all package info
+
 	}
 
 	public static void editPackage(String trackingNumber, String currentLocation, String priorityID,
