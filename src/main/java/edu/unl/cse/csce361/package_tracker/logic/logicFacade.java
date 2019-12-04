@@ -49,12 +49,12 @@ public class logicFacade {
 		Printer.printRegisterMenu(count);
 	}
 	
-	public void PrintChangeDestitation(int count) {
-		Printer.PrintChangeDestitation(count);
+	public void PrintChangeDestination(int count) {
+		Printer.PrintChangeDestination(count);
 	}
 	
-	public void changeDestitation(String trackingNumber, String destitationLogin){
-		AdminLogic.changeDestitation(trackingNumber, destitationLogin);
+	public void changeDestination(String trackingNumber, String destntationLogin){
+		AdminLogic.changeDestination(trackingNumber, destntationLogin);
 	}
 
 	public void printIsSender() {
@@ -83,11 +83,52 @@ public class logicFacade {
 	public void getAllPackage() {
 		AdminLogic.getAllPackage();
 	}
+	
 	public void addWarehouse() {
 		ShippingLogic.addWarehouse();
 	}
 
 	public ArrayList<String> getWarehouse() {
 		return ShippingLogic.warehouse;
+	}
+	
+	public void newPackage(String login, String destinationLogin) {
+		UserLogic.newPackage(login, destinationLogin);
+	}
+	
+	public void printSendPackage(int count) {
+		Printer.printSendPackage(count);
+	}
+	
+	public void returnPackage(String trackingNumber) {
+		UserLogic.returnPackage(trackingNumber);
+	}
+	
+	public void checkPackage(String trackingNumber, String login, boolean isSender, boolean onGoing) {
+		UserLogic.checkPackage(trackingNumber, login, isSender, onGoing);
+	}
+	
+	public void printCheckPackage() {
+		Printer.printCheckPackage();
+	}
+	
+	public void printAskTracking() {
+		Printer.printAskTracking();
+	}
+	
+	public void becomeVIP(String userLogin) {
+		UserLogic.becomeVIP(userLogin);
+	}
+	
+	public void cancelPackage(String trackingNumber) {
+		UserLogic.cancelPackage(trackingNumber);
+	}
+	
+	public void holdAtWarehouse(String trackingNumber) {
+		UserLogic.holdAtWarehouse(trackingNumber);
+	}
+	
+	public void estimatePackage(String trackingNumber) {
+		UserLogic.estimatePackage(trackingNumber);
 	}
 }

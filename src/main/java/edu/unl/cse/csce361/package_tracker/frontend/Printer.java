@@ -17,6 +17,10 @@ public class Printer {
 	public static void printAskUserName() {
 		System.out.println("Enter your user name:");
 	}
+	
+	public static void printAskTracking() {
+		System.out.println("Enter is your tracking number:");
+	}
 
 	public static void printAdminMenu() {
 		System.out.println("Welcome, administration options are as follows:");
@@ -37,8 +41,20 @@ public class Printer {
 		System.out.println("6. Cancel package.");
 		System.out.println("7. Hold at Warehouse.");
 		System.out.println("8. Estimate dilivery time.");
+		System.out.println("9. Back to main menu.");
 	}
 
+	public static void printSendPackage(int count) {
+		switch(count) {
+		case 1:
+			System.out.println("What is your user name?");
+			break;
+		case 2:
+			System.out.println("What is your destination?");
+			break;
+		}
+	}
+	
 	public static void printVIPMenu() {
 		System.out.println("Welcome, VIP options are as follows:");
 		System.out.println("1. Send priority package.");
@@ -52,13 +68,13 @@ public class Printer {
 		System.out.println("9. Change destination.");
 	}
 
-	public static void PrintChangeDestitation(int count) {
+	public static void PrintChangeDestination(int count) {
 		switch(count) {
 		case 1:
 			System.out.println("What is your tracking number?");
 			break;
 		case 2:
-			System.out.println("What is your new destitation user name?");
+			System.out.println("What is your new destination user name?");
 			break;
 		}
 	}
@@ -117,6 +133,11 @@ public class Printer {
 		}
 	}
 
+	public static void printCheckPackage() {
+		System.out.println("1. Check by tracking number.");
+		System.out.println("2. Check by user name.");
+		System.out.println("3. Back to user menu.");
+	}
 	
 	public static void printExit() {
 		System.out.println("Thank you for using our program. Terminating");
