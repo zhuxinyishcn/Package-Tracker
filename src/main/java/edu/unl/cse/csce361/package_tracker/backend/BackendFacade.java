@@ -23,13 +23,18 @@ public class BackendFacade extends Observable {
         }
         return instance;
     }
-
+public void changeDestination(String trackingNumber, String destitationLogin){
+      //  Package.changeDestination(String trackingNumber, String destitationLogin);
+    //TODO: may need to change latter for the next sprint
+}
 
     public void addPackageRecord (Sender sender, Receiver receiver,
                                   int currentLocation) {
         Package.insertPackage(sender, receiver, currentLocation);
     }
+    public void setPiorityID(){
 
+    }
     public void deletePakcageRecord (String UUID) {
         Package.deletePakcage(UUID);
     }
@@ -46,11 +51,17 @@ public class BackendFacade extends Observable {
         Package.setPackage(UUID, status);
     }
 
+
+
+//    public String getCurrentLocation(Package p){
+//       return p.getCurrentLocation();
+//    }
+
     public List<Package> retrievePackages () {
         return Package.retrievePackages();
     }
 
-    public int seachPackage (Session session, String trackingNumber) {
+    public int searchPackage (Session session, String trackingNumber) {
         return Package.searchTrackingNumber(session, trackingNumber);
     }
 

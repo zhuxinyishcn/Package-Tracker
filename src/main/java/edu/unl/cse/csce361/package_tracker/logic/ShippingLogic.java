@@ -37,8 +37,7 @@ public class ShippingLogic {
 		warehouse.add(
 				String.format("%-5s %-30s %-50s", "1", "Seward", "Weller Hall, 800 N Columbia Ave, Seward, NE 68434"));
 		warehouse.add(String.format("%-5s %-30s %-50s", "2", "Milford", "923 238th Rd, Milford, NE 68405"));
-		warehouse
-				.add(String.format("%-5s %-30s %-50s", "3", "Lincoln 112st", "790-926 NW 112th St, Lincoln, NE 68528"));
+		warehouse.add(String.format("%-5s %-30s %-50s", "3", "Lincoln 112st", "790-926 NW 112th St, Lincoln, NE 68528"));
 		warehouse.add(String.format("%-5s %-30s %-50s", "4", "Lincoln Hub", "2701 O St, Lincoln, NE 68510"));
 		warehouse.add(String.format("%-5s %-30s %-50s", "5", "O and 84",
 				"Weller Hall, 800 N Columbia Ave, Seward, NE 68434"));

@@ -5,8 +5,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.query.Query;
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.Search;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.*;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -219,10 +223,9 @@ public class Package {
         this.receiver = receiver;
     }
 
-    public int getCurrentLocation () {
-        return currentLocation;
-    }
-
+//    public String getCurrentLocation(){
+//
+//    }
     public void setCurrentLocation (int currentLocation) {
         this.currentLocation = currentLocation;
     }

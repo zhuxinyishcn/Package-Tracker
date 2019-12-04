@@ -91,5 +91,16 @@ public class Sender {
     public void setPackageSet (Set<Package> packageSet) {
         this.packageSet = packageSet;
     }
+
+    @Override
+    public String toString() {
+        return "Sender{" +
+                "id=" + id +
+                ", address=" + address.getCity()+" "+address.getStreet()+" "+address.getZipCode()+
+                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", packageSet=" + packageSet +
+                '}';
+    }
 }
 
