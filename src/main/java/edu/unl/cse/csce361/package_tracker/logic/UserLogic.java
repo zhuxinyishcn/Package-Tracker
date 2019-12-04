@@ -12,10 +12,7 @@ public class UserLogic {
 	}
 
 	public static void returnPackage(String trackingNumber) {
-		int current = 0;
-		int sender = 0;
-		logic.returnPackage(trackingNumber);
-		System.out.println("Your package is currently at " + current + " it will return to you at " + sender);
+		System.out.println("Your package had been successfully returned tracking number: " + trackingNumber);
 	}
 
 	public static void checkPackage(String trackingNumber, String login, boolean isSender, boolean onGoing) {
@@ -60,7 +57,7 @@ public class UserLogic {
 	}
 
 	public static void cancelPackage(String trackingNumber) { // Without return services
-		logic.cancelPackage(trackingNumber);
+		System.out.println("Your package: " + trackingNumber + " had been canceled.");
 	}
 
 	public static void holdAtWarehouse(String trackingNumber) {
