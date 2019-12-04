@@ -108,5 +108,15 @@ public class Sender {
     }
 
 
+    @Override
+    public String toString() {
+        return "Sender{" +
+                "id=" + id +
+                ", address=" + address.getCity()+" "+address.getStreet()+" "+address.getZipCode()+
+                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", packageSet=" + packageSet +
+                '}';
+    }
 }
 

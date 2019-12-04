@@ -5,6 +5,7 @@ import edu.unl.cse.csce361.package_tracker.backend.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.search.FullTextSession;
+import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 
@@ -132,7 +133,23 @@ public class BackendTestSuites {
         }
     }
 
-
+//    @Test
+//    public void TestGetCurrentLocation(){
+//        Session session = null;
+//        FullTextSession fullTextSession = null;
+//        FullTextEntityManager fullTextEntityManager = null;
+//        // currentLocation (address id)
+//        try{
+//            session = HibernateUtil.createSession().openSession();
+//
+//            QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder()
+//                    .forEntity()
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }finally {
+//            HibernateUtil.closeSession(session);
+//        }
+//    }
     @Test
     public void TestEditPackagesInfo () {
         backendFacade.editPackageAllInfo("40ac7974-1978-4e28-9423-6dab8e8f189c", "1",
