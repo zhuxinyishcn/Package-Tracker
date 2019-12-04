@@ -18,7 +18,7 @@ public class Sender {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "SenderID", unique = true, nullable = false, updatable = false)
     private int id;
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "address")
     private Address address;
     @Column(name = "name", nullable = false, length = 100)

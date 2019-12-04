@@ -75,7 +75,7 @@ public class BackendTestSuites {
 
     @Test
     public void TestDeletePackage () {
-        backendFacade.deletePakcageRecord("79d1cc90-ca30-47ee-8f23-5a9d68658730");
+        backendFacade.deletePakcageRecord("8bdf111f-1b84-496b-b806-3a26f721a91b");
     }
 
     @Test
@@ -113,7 +113,7 @@ public class BackendTestSuites {
 
     @Test
     public void TestSearchUpdateStatus () {
-        backendFacade.setPackageArrived("79d1cc90-ca30-47ee-8f23-5a9d68658730");
+        backendFacade.setPackageArrived("40ac7974-1978-4e28-9423-6dab8e8f189c");
     }
 
 
