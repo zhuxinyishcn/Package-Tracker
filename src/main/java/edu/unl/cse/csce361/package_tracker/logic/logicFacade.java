@@ -146,4 +146,8 @@ public class logicFacade {
 	public GoogleGeocode getLatLng(String street, String city, String zipCode) {
 		return GoogleGeocode.getLatLng(street, city, zipCode);
 	}
+
+	public double distance(double lat1, double lon1, double lat2, double lon2) {
+		return CalculateDistance.distance(lat1, lon1, lat2, lon2, "M");
+	}
 }
