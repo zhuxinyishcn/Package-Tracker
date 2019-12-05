@@ -1,7 +1,5 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
-import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
-
 public class UserLogic {
 
 	private static logicFacade logic = logicFacade.getInstance();

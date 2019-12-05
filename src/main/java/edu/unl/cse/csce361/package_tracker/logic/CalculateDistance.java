@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 public class CalculateDistance {
 
 	public static void main(String[] args) {
-		System.out.println(distance(40.817663, -96.700037, 40.830192, -96.667434, "M") + " Miles\n");
-		System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "K") + " Kilometers\n");
-		System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "N") + " Nautical Miles\n");
+		System.out.println(distance(40.817663, -96.700037, 40.830192, -96.667434, "M") + " Miles");
+		System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "K") + " Kilometers");
+		System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "N") + " Nautical Miles");
 	}
 
 	public static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {

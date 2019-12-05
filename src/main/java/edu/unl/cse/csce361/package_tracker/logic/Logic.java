@@ -3,14 +3,12 @@ package edu.unl.cse.csce361.package_tracker.logic;
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 
 public class Logic {
-	private static logicFacade logic = logicFacade.getInstance();
+	private static final logicFacade logic = logicFacade.getInstance();
 
 	public static void editAddress(String userName, String street, String city, String zipCode) {
 		if (userName.length() >= 40) {
 			System.err.println("User name should less than 40 charactor.");
-		}
-		int userNameLength = userName.length();
-		while (userNameLength <= 40) {
+		} else {
 			if (street.length() <= 100 && city.length() <= 50 && zipCode.length() <= 10) {
 				GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
 				String lat = geocode.getLat();
@@ -22,7 +20,6 @@ public class Logic {
 						"Street should less than 100 charactor, city should less than 50 charactor, zip code should less than 10 charactor");
 			}
 		}
-		userNameLength = 41;
 	}
 
 	public static boolean checkVip(String userName) {
