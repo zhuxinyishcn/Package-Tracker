@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -16,9 +17,24 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class GoogleGeocode {
+final class GoogleGeocode {
+	private final String lat;
+	private final String lng;
 
-	public static String apiInfo() {
+	public GoogleGeocode(String lat, String lng) {
+		this.lat = lat;
+		this.lng = lng;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public String getLng() {
+		return lng;
+	}
+
+	private static String getAPIKey() {
 		String apiKey = null;
 		try {
 			Scanner sc = new Scanner(new File("src/main/resources/api.info"));
@@ -31,62 +47,70 @@ public class GoogleGeocode {
 		return apiKey;
 	}
 
-	public static void getGoogleLatLng(String address) {
+	public static GoogleGeocode getLatLng(String street, String city, String zipCode) {
+		street = street.replace(" ", "?");
+		city = city.replace(" ", "?");
+		zipCode = zipCode.replace(" ", "?");
+		String address = street + ",?" + city + ",?" + zipCode;
 		CloseableHttpClient httpclient = HttpClients.createDefault();
+		Logger logger = Logger.getLogger(GoogleGeocode.class);
+		String lat = null;
+		String lng = null;
 		try {
-			
-			// 创建httpget.
-			String api = apiInfo();
+			// create httpget.
+			String apiKey = getAPIKey();
 			String http = "https://maps.google.com/maps/api/geocode/json?address=" + address + "&sensor=false&key="
-					+ api;
+					+ apiKey;
 			HttpGet httpget = new HttpGet(http);
-//			logger.debug("executing request " + httpget.getURI());
-			// 执行get请求.
+			logger.debug("executing request " + httpget.getURI());
+			// Sent GET!!
 			CloseableHttpResponse response = httpclient.execute(httpget);
 
 			try {
-				// 获取响应实体
+				// GET response
 				HttpEntity entity = response.getEntity();
-//				logger.debug("--------------------------------------");
-				// 打印响应状态
-				// System.out.println(response.getStatusLine());
+				logger.debug("--------------------------------------");
+
+				// System.out.println(response.getStatusLine());// Print status
 				if (entity != null) {
-					// 打印响应内容
+					// open json
 					String str = EntityUtils.toString(entity);
 					JSONObject o = (JSONObject) JSONValue.parse(str);
 					JSONArray o2 = (JSONArray) o.get("results");
 					JSONObject o3 = (JSONObject) o2.get(0);
 					JSONObject o4 = (JSONObject) o3.get("geometry");
 					JSONObject o5 = (JSONObject) o4.get("location");
-					System.out.println(o5.get("lat"));
-					System.out.println(o5.get("lng"));
-					// logger.debug("lat====>>>" + o5.get("lat") + ";lng=====>>>" + o5.get("lng"));
+					lat = o5.get("lat").toString();
+					lng = o5.get("lng").toString();
+					logger.debug("lat====>>>" + o5.get("lat") + ";lng=====>>>" + o5.get("lng"));
 				}
-				// logger.debug("------------------------------------");
+				logger.debug("------------------------------------");
 			} finally {
 				response.close();
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			// logger.debug(e.getMessage());
+			logger.debug(e.getMessage());
 		} catch (ParseException e) {
 			e.printStackTrace();
-			// logger.debug(e.getMessage());
+			logger.debug(e.getMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
-			// logger.debug(e.getMessage());
+			logger.debug(e.getMessage());
 		} finally {
-			// 关闭连接,释放资源
+			// close connection
 			try {
 				httpclient.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				// logger.debug(e.getMessage());
+				logger.debug(e.getMessage());
 			}
 		}
+		return new GoogleGeocode(lat, lng);
 	}
 
 	public static void main(String[] args) {
-		getGoogleLatLng("1780?Y?ST?Lincoln?NE?68508");
+		GoogleGeocode geocode = getLatLng("1780 Y ST", "Lincoln", "68588");
+		System.out.println(geocode.getLat() + geocode.getLng());
 	}
 }

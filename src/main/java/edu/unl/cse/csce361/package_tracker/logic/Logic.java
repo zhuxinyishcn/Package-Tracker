@@ -149,5 +149,4 @@ public class Logic {
 		return true;
 	}
 
-
 }
