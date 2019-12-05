@@ -67,18 +67,16 @@ public class logicFacade {
 		Printer.printIsSender();
 	}
 
-	public void editInfo(String isSender, String userName, String name, String street, String city, String zip,
-			String warehouseID) {
-		Logic.editInfo(isSender, userName, name, street, city, zip, warehouseID);
+	public void editInfo(String userName, String street, String city, String zipCode) {
+		Logic.editAddress(userName, street, city, zipCode);
 	}
 
 	public void getAllPackage() {
 		AdminLogic.getAllPackage();
 	}
 
-	public void register(String isSender, String login, String realName, String warehouseID, String street, String city,
-			String zipCode) {
-		Logic.register(isSender, login, realName, warehouseID, street, city, zipCode, BACKEND_FACADE);
+	public void register(String userName, String realName, String street, String city, String zipCode) {
+		Logic.register(userName, realName, street, city, zipCode, BACKEND_FACADE);
 	}
 
 	public void editPackage(String trackingNumber, String currentLocation, String priorityID, String shippingTime,
@@ -143,5 +141,9 @@ public class logicFacade {
 
 	public void estimatePackage(String trackingNumber) {
 		UserLogic.estimatePackage(trackingNumber);
+	}
+
+	public GoogleGeocode getLatLng(String street, String city, String zipCode) {
+		return GoogleGeocode.getLatLng(street, city, zipCode);
 	}
 }
