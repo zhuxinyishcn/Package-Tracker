@@ -1,8 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
-import edu.unl.cse.csce361.package_tracker.backend.Address;
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
-import edu.unl.cse.csce361.package_tracker.backend.Sender;
 
 public class Logic {
 
@@ -133,10 +131,10 @@ public class Logic {
 		}
 		if (legal) {
 			if (isSender.equalsIgnoreCase("Y")) {
-				backendFacade.registerUser(userName, realName, street, city, zipCode);
+				backendFacade.addUser(userName, realName, street, city, zipCode);
 				System.out.println("You have successfully signup as sender, your username is " + userName);
 			} else {
-				backendFacade.registerReceiver(realName, street, city, zipCode);
+				backendFacade.addReceiver(realName, street, city, zipCode);
 				System.out.println("You have successfully signup as receiver, your username is " + userName);
 			}
 		}

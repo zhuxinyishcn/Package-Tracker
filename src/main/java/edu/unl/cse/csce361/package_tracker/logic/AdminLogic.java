@@ -6,7 +6,7 @@ import edu.unl.cse.csce361.package_tracker.backend.Package;
 public class AdminLogic {
 	public static void changeDestitation(String trackingNumber, String destitationLogin) {
 		// TODO: Using @trackingNumber to set @receiver as @destitation
-		BackendFacade.getBackendFacade().changeDestination(trackingNumber, destitationLogin);
+		BackendFacade.getBackendFacade().editDestination(trackingNumber, destitationLogin);
 	}
 
 	public static void changeDestination(String trackingNumber, String destinationLogin) {
@@ -35,7 +35,7 @@ public class AdminLogic {
 			if (currentLocation != null) {
 				if (currentLocation.length() <= 10) {
 					// TODO: Using @trackingNumber to set @currentLocation
-					BackendFacade.getBackendFacade().changeDestination(trackingNumber, currentLocation);
+					BackendFacade.getBackendFacade().editDestination(trackingNumber, currentLocation);
 					System.out.println("You have successfully set Current Location for " + trackingNumber + " to "
 							+ currentLocation + ".");
 				} else {
@@ -93,7 +93,7 @@ public class AdminLogic {
 		// TODO: using @trackingNumber to confirm package
 		boolean success = false;
 		try {
-			BackendFacade.getBackendFacade().setPackageArrived(trackingNumber);
+			BackendFacade.getBackendFacade().editPackageArrived(trackingNumber);
 			return true;
 		} catch (RuntimeException e) {
 			// wait();

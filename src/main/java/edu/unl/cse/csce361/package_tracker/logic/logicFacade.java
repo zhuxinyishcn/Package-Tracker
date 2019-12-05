@@ -96,7 +96,7 @@ public class logicFacade {
 	}
 
 	public void confirmArrived(String trackingNumber) {
-		BACKEND_FACADE.setPackageArrived(trackingNumber);
+		BACKEND_FACADE.editPackageArrived(trackingNumber);
 	}
 
 	public ArrayList<String> getWarehouse() {
@@ -112,7 +112,7 @@ public class logicFacade {
 	}
 
 	public void returnPackage(String trackingNumber) {
-		BACKEND_FACADE.returnPackage(trackingNumber);
+		BACKEND_FACADE.retrievePackage(trackingNumber);
 		UserLogic.returnPackage(trackingNumber);
 	}
 

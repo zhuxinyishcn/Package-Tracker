@@ -113,13 +113,13 @@ public class BackendTestSuites {
 
     @Test
     public void TestSearchUpdateStatus () {
-        backendFacade.setPackageArrived("40ac7974-1978-4e28-9423-6dab8e8f189c");
+        backendFacade.editPackageArrived("40ac7974-1978-4e28-9423-6dab8e8f189c");
     }
 
 
     @Test
     public void searchReceiver () {
-        backendFacade.setPackageStatus("79d1cc90-ca30-47ee-8f23-5a9d68658730", "just Arrived");
+        backendFacade.editPackageStatus("79d1cc90-ca30-47ee-8f23-5a9d68658730", "just Arrived");
     }
 
 

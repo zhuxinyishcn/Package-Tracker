@@ -24,7 +24,7 @@ public class BackendFacade extends Observable {
         return instance;
     }
 
-    public void changeDestination (String trackingNumber, String destitationLogin) {
+    public void editDestination (String trackingNumber, String destitationLogin) {
         //  Package.changeDestination(String trackingNumber, String destitationLogin);
         //TODO: may need to change latter for the next sprint
     }
@@ -34,7 +34,7 @@ public class BackendFacade extends Observable {
         Package.insertPackage(sender, receiver, currentLocation);
     }
 
-    public void setPiorityID () {
+    public void editPiorityID () {
 
     }
 
@@ -46,11 +46,11 @@ public class BackendFacade extends Observable {
         Sender.deleteUser(userId);
     }
 
-    public void setPackageArrived (String UUID) {
+    public void editPackageArrived (String UUID) {
         Package.setPackage(UUID);
     }
 
-    public void setPackageStatus (String UUID, String status) {
+    public void editPackageStatus (String UUID, String status) {
         Package.setPackage(UUID, status);
     }
 
@@ -71,17 +71,17 @@ public class BackendFacade extends Observable {
                 status, receiver, sender);
     }
 
-    public void registerUser (String userName, String realName, String street,
-                              String city, String zipCode) {
+    public void addUser (String userName, String realName, String street,
+                         String city, String zipCode) {
         Sender.insertSender(userName, realName, street, city, zipCode);
     }
 
-    public void registerReceiver (String realName, String street,
-                                  String city, String zipCode) {
+    public void addReceiver (String realName, String street,
+                             String city, String zipCode) {
         Receiver.insertReceive(realName, street, city, zipCode);
     }
 
-    public void returnPackage (String trackingNumber) {
+    public void retrievePackage (String trackingNumber) {
         Package.returnPackage(trackingNumber);
     }
 }
