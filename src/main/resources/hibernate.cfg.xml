@@ -7,7 +7,7 @@
         <property name="connection.username">pzhang</property>
         <property name="connection.password">WelcomeUnl123$</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
-        <property name="connection.pool_size">2</property>
+        <property name="connection.pool_size">10</property>
         <!-- Select our SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <property name="hibernate.search.default.directory_provider">
@@ -16,6 +16,7 @@
         <property name="hibernate.search.default.indexBase">
             /data/index/default
         </property>
+        <property name="hibernate.flushMode">commit</property>
         <!--drop table if exist-->
         <!--        <property name="hibernate.hbm2ddl.auto">create</property>-->
         <property name="hibernate.hbm2ddl.auto">update</property>

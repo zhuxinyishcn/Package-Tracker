@@ -75,7 +75,7 @@ public class BackendTestSuites {
 
     @Test
     public void TestDeletePackage () {
-        backendFacade.deletePakcageRecord("e560889c-ca9b-4bc2-a9c1-d4f3f3d2406d");
+        backendFacade.deletePakcageRecord("`drop `");
     }
 
     @Test
@@ -130,25 +130,12 @@ public class BackendTestSuites {
         for (Package packages : (result)) {
             System.out.println(packages.getTrackingNumber());
         }
+        Sender sender = result.get(0).getSender();
+        for (Package packages : (sender.getPackageSet())) {
+            System.out.println(sender.getUserName()+" "+packages.getTrackingNumber());
+        }
     }
 
-    //    @Test
-//    public void TestGetCurrentLocation(){
-//        Session session = null;
-//        FullTextSession fullTextSession = null;
-//        FullTextEntityManager fullTextEntityManager = null;
-//        // currentLocation (address id)
-//        try{
-//            session = HibernateUtil.createSession().openSession();
-//
-//            QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder()
-//                    .forEntity()
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }finally {
-//            HibernateUtil.closeSession(session);
-//        }
-//    }
     @Test
     public void TestEditPackagesInfo () {
         backendFacade.editPackageAllInfo("40ac7974-1978-4e28-9423-6dab8e8f189c", "1",
@@ -176,16 +163,6 @@ public class BackendTestSuites {
 
     }
 }
-/*
- *  1.login check if exist(String name check if exist)
- *  2. add new users
- *  3. use username find user id
- *  4. cancel package (search uuid call edit packager)
- *  5. give uuid find address status
- *  6. tracking number edit all info
- *  7. give user name find all package belongs to him
- *
- * */
 
 
 //

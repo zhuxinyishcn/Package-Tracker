@@ -112,7 +112,7 @@ public class logicFacade {
 	}
 
 	public void returnPackage(String trackingNumber) {
-		BACKEND_FACADE.retrievePackage(trackingNumber);
+		BACKEND_FACADE.editPackageReceiver(trackingNumber);
 		UserLogic.returnPackage(trackingNumber);
 	}
 

@@ -1,8 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 
-import org.hibernate.search.annotations.Indexed;
-
 import javax.persistence.*;
 
 /**
@@ -10,7 +8,6 @@ import javax.persistence.*;
  * Address class for address sql table
  */
 @Entity
-@Indexed
 @Table(name = "Address", uniqueConstraints = {
         @UniqueConstraint(columnNames = "addressid")})
 public class Address {
@@ -24,6 +21,18 @@ public class Address {
     private String city;
     @Column(name = "zip", nullable = false, length = 10)
     private String zipCode;
+    @Column(name = "latitude", nullable = false, length = 10)
+    private double latitude;
+    @Column(name = "longitude", nullable = false, length = 10)
+    private double longitude;
+
+    public Address (String street, String city, String zipCode, double latitude, double longitude) {
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public Address (String street, String city, String zipCode) {
         this.street = street;
@@ -32,6 +41,22 @@ public class Address {
     }
 
     public Address () {
+    }
+
+    public double getLatitude () {
+        return latitude;
+    }
+
+    public void setLatitude (double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude () {
+        return longitude;
+    }
+
+    public void setLongitude (double longitude) {
+        this.longitude = longitude;
     }
 
     public String getZipCode () {

@@ -2,15 +2,16 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Store;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Indexed
 @Table(name = "Sender", uniqueConstraints = {
         @UniqueConstraint(columnNames = "senderid")})
 public class Sender {
@@ -30,6 +31,8 @@ public class Sender {
     @JoinColumn(name = "PackageSet")
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Package> packageSet = new HashSet<>();
+    @Column(name = "userName", nullable = false, length = 100)
+    private String status;
 
     public Sender (Address address, String name, String userName) {
         this.address = address;
@@ -37,12 +40,18 @@ public class Sender {
         this.userName = userName;
     }
 
+    public String getStatus () {
+        return status;
+    }
+
+    public void setStatus (String status) {
+        this.status = status;
+    }
+
     public Sender () {
     }
 
-    public static void deleteUser (int userId) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
+    public static void deleteUser (Session session, Transaction transaction,int userId) {
         try {
             Sender user = session.load(Sender.class, userId);
             Address address = user.getAddress();
@@ -53,8 +62,20 @@ public class Sender {
         } catch (Throwable e) {
             session.getTransaction().rollback();
             throw e;
-        } finally {
-            HibernateUtil.closeSession(session);
+        }
+    }
+
+    public static void insertSender (Session session, Transaction transaction,String userName, String realName,
+                                     String street,
+                                     String city, String zipCode) {
+        try {
+            Address address = new Address(street, city, zipCode);
+            Sender sender = new Sender(address, realName, userName);
+            session.persist(sender);
+            transaction.commit();
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            throw e;
         }
     }
 
@@ -90,33 +111,18 @@ public class Sender {
         this.packageSet = packageSet;
     }
 
-    public static void insertSender (String userName, String realName, String street,
-                              String city, String zipCode) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
-        try {
-            Address address = new Address(street, city, zipCode);
-            Sender sender = new Sender(address, realName, userName);
-            session.persist(sender);
-            transaction.commit();
-        } catch (Throwable e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            HibernateUtil.closeSession(session);
-        }
-    }
-
-
     @Override
-    public String toString() {
+    public String toString () {
         return "Sender{" +
                 "id=" + id +
-                ", address=" + address.getCity()+" "+address.getStreet()+" "+address.getZipCode()+
+                ", address=" + address.getCity() + " " + address.getStreet() + " " + address.getZipCode() +
                 ", name='" + name + '\'' +
                 ", userName='" + userName + '\'' +
                 ", packageSet=" + packageSet +
                 '}';
     }
 }
-
+/*
+ * 1. load all package
+ *
+ * */

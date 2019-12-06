@@ -33,10 +33,8 @@ public class Receiver {
     public Receiver () {
     }
 
-    public static void insertReceive (String realName, String street,
+    public static void insertReceive (Session session, Transaction transaction,String realName, String street,
                                       String city, String zipCode) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
         try {
             Address address = new Address(street, city, zipCode);
             Receiver receiver = new Receiver(address, realName);
@@ -47,9 +45,7 @@ public class Receiver {
             session.getTransaction().rollback();
             HibernateUtil.closeSession(session);
             throw e;
-        } finally {
-            HibernateUtil.closeSession(session);
-        }
+        } 
     }
 
     public Address getAddress () {
