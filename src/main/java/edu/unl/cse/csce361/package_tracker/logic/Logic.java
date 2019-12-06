@@ -22,15 +22,6 @@ public class Logic {
 		}
 	}
 
-	public static boolean checkVip(String userName) {
-		// TODO: using @login to check user is vip.
-		int vip = 0;
-		if (vip == 1) {
-			return true;
-		} else
-			return false;
-	}
-
 	public static void register(String userName, String realName, String street, String city, String zipCode,
 			BackendFacade backendFacade) {
 		// Using @login to search is there a login exist

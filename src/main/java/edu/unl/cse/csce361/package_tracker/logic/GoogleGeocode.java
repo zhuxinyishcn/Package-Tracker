@@ -42,7 +42,7 @@ final class GoogleGeocode {
 			sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("file didn't found");
+			System.out.println("API key file not found.");
 		}
 		return apiKey;
 	}
@@ -62,10 +62,9 @@ final class GoogleGeocode {
 			String http = "https://maps.google.com/maps/api/geocode/json?address=" + address + "&sensor=false&key="
 					+ apiKey;
 			HttpGet httpget = new HttpGet(http);
-			logger.debug("executing request " + httpget.getURI());
+			logger.debug("HTTP request url: " + httpget.getURI());
 			// Sent GET!!
 			CloseableHttpResponse response = httpclient.execute(httpget);
-
 			try {
 				// GET response
 				HttpEntity entity = response.getEntity();
@@ -82,7 +81,7 @@ final class GoogleGeocode {
 					JSONObject o5 = (JSONObject) o4.get("location");
 					lat = o5.get("lat").toString();
 					lng = o5.get("lng").toString();
-					logger.debug("lat====>>>" + o5.get("lat") + ";lng=====>>>" + o5.get("lng"));
+					logger.debug("lat====<<<" + o5.get("lat") + ">>>lng====<<<" + o5.get("lng")+">>>");
 				}
 				logger.debug("------------------------------------");
 			} finally {
@@ -90,20 +89,20 @@ final class GoogleGeocode {
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			logger.debug(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (ParseException e) {
 			e.printStackTrace();
-			logger.debug(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
-			logger.debug(e.getMessage());
+			logger.error(e.getMessage());
 		} finally {
 			// close connection
 			try {
 				httpclient.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				logger.debug(e.getMessage());
+				logger.error(e.getMessage());
 			}
 		}
 		return new GoogleGeocode(lat, lng);
