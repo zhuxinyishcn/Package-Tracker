@@ -5,94 +5,70 @@ import java.util.Scanner;
 
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
-public class UserInterface {
+public class Menu {
 	private static logicFacade logic = logicFacade.getInstance();
 	private static Scanner scnr = new Scanner(System.in);
+//	private static String userName;
 
-	public static void main(String[] args) {
-		logic.addWarehouse();
-		boolean programOn = true;
-		while (programOn) {
-			String inputMain;
-			logic.printMainMenu();
-			inputMain = scnr.nextLine();
-			switch (inputMain) {
-			case "1": // **ADMIN**
-				adminMenu();
-				break;
-			case "2": // **USER**
-				userMenu();
-				break;
-			case "3": // **VIP**
-				vipMenu();
-				break;
-			case "4": // **REGISTER**
-				register();
-				break;
-			case "5":
-				programOn = false;
-				logic.printExit();
-				scnr.close();
-				break;
-			default:
-				logic.printInvalid();
-			}
-		}
-	}
-
+//	public static String getUserName() {
+//		return userName;
+//	}
+//
+//	public static void setUserName(String userName) {
+//		UserMenu.userName = userName;
+//	}
 	public static void adminMenu() {
 		boolean programOn = true;
 		while(programOn) {
 			String input;
-			String inputData = "";
-			logic.printAdminMenu();
+			String inputTracking;
+			String inputDestination;
+			Printer.printAdminMenu();
 			input = scnr.nextLine();
 			switch (input) {
 			case "1":
 				logic.getAllPackage();
 				break;
 			case "2":
-				ArrayList<String> destination = new ArrayList<String>();
-				for (int i = 1; i <= 2; i++) {
-					logic.PrintChangeDestination(i);
-					inputData = scnr.nextLine();
-					destination.add(inputData);
-				}
-				logic.changeDestination(destination.get(0), destination.get(1));
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				Printer.printDestination();
+				inputDestination = scnr.nextLine();
+				logic.changeDestination(inputTracking, inputDestination);
 				break;
 			case "3":
-				ArrayList<String> editList = new ArrayList<String>();
-				for (int i = 1; i <= 7; i++) {
-					logic.printRegisterMenu(i);
-					inputData = scnr.nextLine();
-					if (i == 1) {
-						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
-							i = 0;
-						} else
-							editList.add(inputData);
-					} else
-						if(inputData.isEmpty()) {
-							inputData = null;
-							editList.add(inputData);
-						}else {
-							editList.add(inputData);
-						}
-				}
-				logic.editInfo(editList.get(0), editList.get(1), editList.get(2), editList.get(3),
-						editList.get(4), editList.get(5), editList.get(6));
+//				ArrayList<String> editList = new ArrayList<String>();
+//				for (int i = 1; i <= 7; i++) {
+//					//logic.printRegisterMenu(i);
+//					inputData = scnr.nextLine();
+//					if (i == 1) {
+//						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
+//							i = 0;
+//						} else
+//							editList.add(inputData);
+//					} else
+//						if(inputData.isEmpty()) {
+//							inputData = null;
+//							editList.add(inputData);
+//						}else {
+//							editList.add(inputData);
+//						}
+//				}
+//				logic.editInfo(editList.get(0), editList.get(1), editList.get(2), editList.get(3),
+//						editList.get(4), editList.get(5), editList.get(6));
 				break;
 			case "4":
-				ArrayList<String> packageList = new ArrayList<String>();
-				for (int i = 1; i <= 7; i++) {
-					logic.printEditPackage(i);
-					inputData = scnr.nextLine();
-					if(inputData.isEmpty()) {
-						inputData = null;
-						packageList.add(inputData);
-					}else {
-						packageList.add(inputData);
-					}
-				}
+//				ArrayList<String> packageList = new ArrayList<String>();
+//				for (int i = 1; i <= 7; i++) {
+//					logic.printEditPackage(i);
+//					inputData = scnr.nextLine();
+//					if(inputData.isEmpty()) {
+//						inputData = null;
+//						packageList.add(inputData);
+//					}else {
+//						packageList.add(inputData);
+//					}
+//				}
 				break;
 			case "5":
 				programOn = false;
@@ -105,13 +81,12 @@ public class UserInterface {
 
 	public static void userMenu() {
 		boolean programOn = true;
+		logic.printAskUserName();
+		userName = scnr.nextLine();
 		while(programOn) {
-			String userName;
 			String input;
 			String inputCheck;
 			String inputData;
-			logic.printAskUserName();
-			userName = scnr.nextLine();
 			logic.printUserMenu();
 			input = scnr.nextLine();
 			switch(input) {
@@ -132,7 +107,7 @@ public class UserInterface {
 			case "3":
 				ArrayList<String> editList = new ArrayList<String>();
 				for (int i = 1; i <= 7; i++) {
-					logic.printRegisterMenu(i);
+					//logic.printRegisterMenu(i);
 					inputData = scnr.nextLine();
 					if (i == 1) {
 						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
@@ -206,7 +181,6 @@ public class UserInterface {
 	public static void vipMenu() {
 		boolean programOn = true;
 		while(programOn) {
-			String userName;
 			String input;
 			String inputCheck;
 			String inputData;
@@ -232,7 +206,7 @@ public class UserInterface {
 			case "3":
 				ArrayList<String> editList = new ArrayList<String>();
 				for (int i = 1; i <= 7; i++) {
-					logic.printRegisterMenu(i);
+					//logic.printRegisterMenu(i);
 					inputData = scnr.nextLine();
 					if (i == 1) {
 						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
@@ -311,22 +285,22 @@ public class UserInterface {
 		}
 	}
 
-	public static void register() {
-		ArrayList<String> registerList = new ArrayList<String>();
-		String inputData;
-		for (int i = 1; i <= 7; i++) {
-			logic.printRegisterMenu(i);
-			inputData = scnr.nextLine();
-			if (i == 1) {
-				if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
-					i = 0;
-				} else
-					registerList.add(inputData);
-			} else
-				registerList.add(inputData);
-		}
-		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
-				registerList.get(4), registerList.get(5), registerList.get(6));
-
-	}
+//	public static void register() {
+//		ArrayList<String> registerList = new ArrayList<String>();
+//		String inputData;
+//		for (int i = 1; i <= 7; i++) {
+//			//logic.printRegisterMenu(i);
+//			inputData = scnr.nextLine();
+//			if (i == 1) {
+//				if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
+//					i = 0;
+//				} else
+//					registerList.add(inputData);
+//			} else
+//				registerList.add(inputData);
+//		}
+//		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
+//				registerList.get(4), registerList.get(5), registerList.get(6));
+//
+//	}
 }
