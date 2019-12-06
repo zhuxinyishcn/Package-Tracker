@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.WarehouseConstructor;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class logicFacade {
 	public void printMainMenu() {
 		Printer.printMainMenu();
 	}
-	
+
 	public boolean checkVip(String login) {
 		return Logic.checkVip(login);
 	}
@@ -75,9 +76,28 @@ public class logicFacade {
 		Logic.register(userName, realName, street, city, zipCode, BACKEND_FACADE);
 	}
 
-	public void editPackage(String trackingNumber, String currentLocation, String priorityID, String shippingTime,
-			String status, String receiver, String sender) {
-		AdminLogic.editPackage(trackingNumber, currentLocation, priorityID, shippingTime, status, receiver, sender);
+	public void editCurrentLocation(String trackingNumber, String currentLocation) {
+		AdminLogic.editCurrentLocation(trackingNumber, currentLocation);
+	}
+
+	public void editPriorityID(String trackingNumber, String priorityID) {
+		AdminLogic.editPriorityID(trackingNumber, priorityID);
+	}
+
+	public void editShippingTime(String trackingNumber, String priorityID) {
+		AdminLogic.editShippingTime(trackingNumber, priorityID);
+	}
+
+	public void editStatus(String trackingNumber, String status) {
+		AdminLogic.editStatus(trackingNumber, status);
+	}
+
+	public void editReceiver(String trackingNumber, String street, String city, String zipCode) {
+		AdminLogic.editReceiver(trackingNumber, street, city, zipCode);
+	}
+
+	public void editSender(String trackingNumber, String sender) {
+		AdminLogic.editSender(trackingNumber, sender);
 	}
 
 	public void printEditPackage(int count) {
@@ -93,7 +113,7 @@ public class logicFacade {
 		BACKEND_FACADE.setPackageArrived(trackingNumber);
 	}
 
-	public ArrayList<String> getWarehouse() {
+	public ArrayList<WarehouseConstructor> getWarehouse() {
 		return ShippingLogic.warehouse;
 	}
 

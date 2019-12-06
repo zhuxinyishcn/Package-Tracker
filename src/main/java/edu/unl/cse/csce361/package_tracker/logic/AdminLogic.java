@@ -120,7 +120,6 @@ public class AdminLogic {
 			BackendFacade.getBackendFacade().setPackageArrived(trackingNumber);
 			return true;
 		} catch (RuntimeException e) {
-			// wait();
 			return false;
 		}
 	}

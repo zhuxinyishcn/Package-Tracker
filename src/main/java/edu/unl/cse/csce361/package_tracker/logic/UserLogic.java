@@ -4,48 +4,32 @@ public class UserLogic {
 
 	private static logicFacade logic = logicFacade.getInstance();
 
+	public static String checkUser(String userName) {
+		String userType = "vip"; //TODO: get usertype as a string @vip, @user, @null
+		return userType;
+	}
+
 	public static void becomeVIP(String userLogin) {
 		// TODO: using @login to set user as vip.
 		System.out.println("You have successfully become a VIP");
 	}
 
 	public static void returnPackage(String trackingNumber) {
+		// TODO: Set desitation to sender address, Set Geocode.
 		System.out.println("Your package had been successfully returned tracking number: " + trackingNumber);
 	}
 
-	public static void checkPackage(String trackingNumber, String login, boolean isSender, boolean onGoing) {
-		if (trackingNumber != null) {
-			// TODO: Using @trackingNumber find package info
-			System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender", "Receiver",
-					"Current Location", "Status"));
-		}
-		if (login != null) {
-			if (isSender) {
-				if (!onGoing) {
-					// TODO: using @login who is a sender to find package info
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-				if (onGoing) {
-					// TODO: using @login who is a sender to find package info which is in transit
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-			}
-			if (!isSender) {
-				if (!onGoing) {
-					// TODO: using @login who is a receiver to find package info
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-				if (onGoing) {
-					// TODO: using @login who is a receiver to find package info which is in
-					// transit
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-			}
-		}
+	public static void checkPackageByTrackingNumber(String trackingNumber) {
+		System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender", "Receiver",
+				"Current Location", "Status"));
+		// TODO: Using @trackingNumber find package info
+	}
+
+	public static void checkPackageByUserName(String trackingNumber, String login) {
+		// TODO: using @login who is a receiver to find package info which is in
+		// transit
+		System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender", "Receiver",
+				"Current Location", "Status"));
 	}
 
 	public static void newPackage(String login, String destinationLogin) {
@@ -55,7 +39,7 @@ public class UserLogic {
 	}
 
 	public static void cancelPackage(String trackingNumber) { // Without return services
-		System.out.println("Your package: " + trackingNumber + " had been canceled.");
+		System.out.println("Your package: " + trackingNumber + " had been canceled. Your package will be destoryed.");
 	}
 
 	public static void holdAtWarehouse(String trackingNumber) {
@@ -64,7 +48,7 @@ public class UserLogic {
 		int warehouseID = 1;
 		System.out.println("Your package will be hold at: ");
 		System.out.println(String.format("%-5s %-30s %-50s", "ID", "Name", "Address"));
-		System.out.println(logic.getWarehouse().get(warehouseID).toString());
+		System.out.println(logic.getWarehouse().get(warehouseID - 1).toString());
 	}
 
 	public static void estimatePackage(String trackingNumber) {
@@ -78,11 +62,12 @@ public class UserLogic {
 
 	public static void arriveNotify(String trackingNumber) {
 		// TODO: How to know package arrived.
-		System.out.println("Your package: " + trackingNumber + " has arrived.");
+		System.out.println("Your package: " + trackingNumber + " has arrived. Please go to login to comfirm received.");
 	}
 
 	public static void confirmReceive(String trackingNumber) {
-		logic.returnPackage(trackingNumber);
+		// TODO: Set status as received.
+		// logic.returnPackage(trackingNumber);
 		System.out.println("You have confirm receive of " + trackingNumber);
 	}
 }
