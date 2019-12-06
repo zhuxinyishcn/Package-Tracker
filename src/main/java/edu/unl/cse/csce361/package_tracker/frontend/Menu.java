@@ -8,19 +8,24 @@ import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 public class Menu {
 	private static logicFacade logic = logicFacade.getInstance();
 	private static Scanner scnr = new Scanner(System.in);
-//	private static String userName;
+	private static String userName = UserInterFace.getUserName();
 
-//	public static String getUserName() {
-//		return userName;
-//	}
-//
-//	public static void setUserName(String userName) {
-//		UserMenu.userName = userName;
-//	}
+	public static String getUserName() {
+		return userName;
+	}
+
+	public static void setUserName(String userName) {
+		Menu.userName = userName;
+	}
+
 	public static void adminMenu() {
 		boolean programOn = true;
 		while(programOn) {
 			String input;
+			String user;
+			String street;
+			String city;
+			String zipCode;
 			String inputTracking;
 			String inputDestination;
 			Printer.printAdminMenu();
@@ -37,25 +42,17 @@ public class Menu {
 				logic.changeDestination(inputTracking, inputDestination);
 				break;
 			case "3":
-//				ArrayList<String> editList = new ArrayList<String>();
-//				for (int i = 1; i <= 7; i++) {
-//					//logic.printRegisterMenu(i);
-//					inputData = scnr.nextLine();
-//					if (i == 1) {
-//						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
-//							i = 0;
-//						} else
-//							editList.add(inputData);
-//					} else
-//						if(inputData.isEmpty()) {
-//							inputData = null;
-//							editList.add(inputData);
-//						}else {
-//							editList.add(inputData);
-//						}
-//				}
-//				logic.editInfo(editList.get(0), editList.get(1), editList.get(2), editList.get(3),
-//						editList.get(4), editList.get(5), editList.get(6));
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				Printer.printAskUserName();
+				user = scnr.nextLine();
+				Printer.printAskStreet();
+				street = scnr.nextLine();
+				Printer.printAskCity();
+				city = scnr.nextLine();
+				Printer.printAskZipCode();
+				zipCode = scnr.nextLine();
+				logic.editInfo(user, street, city, zipCode);
 				break;
 			case "4":
 //				ArrayList<String> packageList = new ArrayList<String>();
@@ -285,22 +282,23 @@ public class Menu {
 		}
 	}
 
-//	public static void register() {
-//		ArrayList<String> registerList = new ArrayList<String>();
-//		String inputData;
-//		for (int i = 1; i <= 7; i++) {
-//			//logic.printRegisterMenu(i);
-//			inputData = scnr.nextLine();
-//			if (i == 1) {
-//				if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
-//					i = 0;
-//				} else
-//					registerList.add(inputData);
-//			} else
-//				registerList.add(inputData);
-//		}
-//		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
-//				registerList.get(4), registerList.get(5), registerList.get(6));
-//
-//	}
+	public static void register() {
+		ArrayList<String> registerList = new ArrayList<String>();
+		String inputData;
+		for (int i = 1; i <= 7; i++) {
+			//logic.printRegisterMenu(i);
+			inputData = scnr.nextLine();
+			if (i == 1) {
+				if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
+					i = 0;
+				} else
+					registerList.add(inputData);
+			} else
+				registerList.add(inputData);
+		}
+		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
+				registerList.get(4), registerList.get(5), registerList.get(6));
+
+	}
+
 }

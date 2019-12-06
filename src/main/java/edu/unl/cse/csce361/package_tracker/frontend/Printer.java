@@ -9,7 +9,8 @@ public class Printer {
 		System.out.println("Welcome, this is main menu:");
 		System.out.println("1. Log in as admin.");
 		System.out.println("2. Log in as user.");
-		System.out.println("3. Exit");
+		System.out.println("3. Register.");
+		System.out.println("4. Exit");
 	}
 
 	public static void printAskUserName() {
@@ -69,6 +70,18 @@ public class Printer {
 		System.out.println("8. Estimate dilivery time.");
 		System.out.println("9. Change destination.");
 		System.out.println("10. Back to main menu.");
+	}
+	
+	public static void printAskStreet() {
+		System.out.println("Enter your street:");
+	}
+	
+	public static void printAskCity() {
+		System.out.println("Enter your city:");
+	}
+	
+	public static void printAskZipCode() {
+		System.out.println("Enyer your Zip code:");
 	}
 
 //	public static void PrintChangeDestination(int count) {
@@ -163,7 +176,6 @@ public class Printer {
 		for (int i = 0; i <= logic.getWarehouse().size()-1; i++) {
 			System.out.println(logic.getWarehouse().get(i).toString());
 		}
-
 	}
 
 }

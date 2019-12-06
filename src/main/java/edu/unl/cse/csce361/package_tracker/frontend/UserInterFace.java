@@ -37,7 +37,10 @@ public class UserInterFace {
 					Menu.userMenu();
 				}
 				break;
-			case "3":
+			case "3": 
+				Menu.register();;
+				break;
+			case "4":
 				programOn = false;
 				Printer.printExit();
 				break;

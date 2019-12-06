@@ -57,21 +57,6 @@ public class AdminLogic {
 		}
 	}
 
-	public static void editShippingTime(String trackingNumber, String shippingTime) {
-		if (trackingNumber.length() <= 40) {
-			System.err.println("Tracking number should less than 40 charactor.");
-		} else {
-			if (shippingTime.length() <= 100) {
-				// Using @trackingNumber to set @shippingTime
-				System.out.println(
-						"You have successfully set shipping time for " + trackingNumber + " to " + shippingTime + ".");
-			} else {
-				System.err.println("Shipping Time should be less than 99 charactor.");
-
-			}
-		}
-	}
-
 	public static void editStatus(String trackingNumber, String status) {
 		if (trackingNumber.length() <= 40) {
 			System.err.println("Tracking number should less than 40 charactor.");
@@ -97,19 +82,6 @@ public class AdminLogic {
 			} else
 				System.err.println(
 						"Street should less than 100 charactor, city should less than 50 charactor, zip code should less than 10 charactor");
-		}
-	}
-
-	public static void editSender(String trackingNumber, String sender) {
-		if (trackingNumber.length() <= 40) {
-			System.err.println("Tracking number should less than 40 charactor.");
-		} else {
-			if (sender.length() <= 11) {
-				// Using @trackingNumber to set @sender
-				System.out.println("You have successfully set sender for " + trackingNumber + " to " + sender + ".");
-			} else {
-				System.err.println("sender should be less than 49 charactor.");
-			}
 		}
 	}
 
