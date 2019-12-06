@@ -22,6 +22,10 @@ public class logicFacade {
 	public void printMainMenu() {
 		Printer.printMainMenu();
 	}
+	
+	public boolean checkVip(String login) {
+		return Logic.checkVip(login);
+	}
 
 	public void printAdminMenu() {
 		Printer.printAdminMenu();
@@ -45,14 +49,6 @@ public class logicFacade {
 
 	public void printVIPMenu() {
 		Printer.printVIPMenu();
-	}
-
-	public void printRegisterMenu(int count) {
-		Printer.printRegisterMenu(count);
-	}
-
-	public void PrintChangeDestination(int count) {
-		Printer.PrintChangeDestination(count);
 	}
 
 	public void changeDestination(String trackingNumber, String destntationLogin) {

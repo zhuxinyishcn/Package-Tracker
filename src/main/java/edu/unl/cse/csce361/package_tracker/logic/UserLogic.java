@@ -35,7 +35,7 @@ public class UserLogic {
 			if (!isSender) {
 				if (!onGoing) {
 					// TODO: using @login who is a receiver to find package info
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
+					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender",
 							"Receiver", "Current Location", "Status"));
 				}
 				if (onGoing) {
