@@ -86,15 +86,17 @@ public class Package {
     }
 
     public static void deletePakcage (Session session, String UUID) {
-         final Transaction transaction = session.beginTransaction();
-        int packageid = searchTrackingNumber(session, UUID);
+        final Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
         try {
-            final Package packages = session.get(Package.class, packageid);
-            session.delete(packages);
+            CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
+            Root e = update.from(Package.class);
+            update.set("status", "Canceled");
+            update.where(builder.equal(e.get("trackingNumber"), UUID));
+            session.createQuery(update).executeUpdate();
             transaction.commit();
-        } catch (Throwable e) {
-            session.getTransaction().rollback();
-            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
