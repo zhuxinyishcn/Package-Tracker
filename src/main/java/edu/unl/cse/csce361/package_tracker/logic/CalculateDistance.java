@@ -2,14 +2,11 @@ package edu.unl.cse.csce361.package_tracker.logic;
 
 import java.math.BigDecimal;
 
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+
 public class CalculateDistance {
 
-	public static void main(String[] args) {
-		//https://google-developers.appspot.com/maps/documentation/utils/geocoder/
-		System.out.println(distance(40.817663, -96.700037, 40.830192, -96.667434, "M") + " Miles"); // city union to east union
-		System.out.println(distance(41.303222, -95.892392, 40.852008,-96.756752, "K") + " Kilometers"); // OMA to LNK
-		System.out.println(distance(39.511154,116.411856, 40.64266,-73.77679, "N") + " Nautical Miles"); //PKX to JFK
-	}
+	private static final logicFacade logic = logicFacade.getInstance();
 
 	public static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
 		if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -20,14 +17,41 @@ public class CalculateDistance {
 					+ Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
 			dist = Math.acos(dist);
 			dist = Math.toDegrees(dist);
-			dist = dist * 60 * 1.1515;//In miles
+			dist = dist * 60 * 1.1515;// In miles
 			if (unit.equals("K")) {// In kilometers
 				dist = dist * 1.609344;
-			} else if (unit.equals("N")) {//In nautical miles
+			} else if (unit.equals("N")) {// In nautical miles
 				dist = dist * 0.8684;
 			}
 			BigDecimal bd = new BigDecimal(dist);
 			return (bd.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		}
+	}
+
+	public static int findClosestWarehouse(double lat, double lon) {
+		double finaldistance = 1000000;
+		int warehouseID = -1;
+		double distance = 0;
+		for (int i = 0; i <= logic.getWarehouse().size() - 1; i++) {
+			distance = logic.CalculateDistance(lat, lon, logic.getWarehouse().get(i).getLatitude(),
+					logic.getWarehouse().get(i).getLongitude());
+			if (finaldistance > distance) {
+				finaldistance = distance;
+				warehouseID = logic.getWarehouse().get(i).getId();
+			}
+		}
+		if (finaldistance > 10.01) {
+			Printer.printLogicErrNotInServiceRange(finaldistance);
+			return -1;
+		}
+		return warehouseID;
+	}
+
+	public static double findPackageDistance(int warehouse1, int warehouse2) {
+		logic.addWarehouse();
+		return distance(logic.getWarehouse().get(warehouse1 - 1).getLatitude(),
+				logic.getWarehouse().get(warehouse1 - 1).getLongitude(),
+				logic.getWarehouse().get(warehouse2 - 1).getLatitude(),
+				logic.getWarehouse().get(warehouse2 - 1).getLongitude(), "M");
 	}
 }

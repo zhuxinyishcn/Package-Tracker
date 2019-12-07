@@ -3,9 +3,9 @@ package edu.unl.cse.csce361.package_tracker.logic;
 import java.util.ArrayList;
 
 import edu.unl.cse.csce361.package_tracker.backend.WarehouseConstructor;
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class ShippingLogic {
-	private static final logicFacade logic = logicFacade.getInstance();
 	public static ArrayList<WarehouseConstructor> warehouse = new ArrayList<WarehouseConstructor>();
 
 	public static void hasNextWareHouse(String trackingNumber) {
@@ -13,8 +13,7 @@ public class ShippingLogic {
 		int destination = -1;
 		// TODO: using @trackingNumber to get current and destination.
 		if (current == destination) {
-			System.out.println("Your package has arrived. Please confirm receive.");
-			AdminLogic.confirmPackage(trackingNumber);
+			Printer.printLogicArrivePackage(trackingNumber);
 		} else {
 			nextWarehouse(trackingNumber, current, destination);
 		}
@@ -30,28 +29,7 @@ public class ShippingLogic {
 			deliverToNext(trackingNumbner, current++);
 		} else if (destination > current) {
 			deliverToNext(trackingNumbner, current--);
-		} else {
-			System.out.println("System Error! Contact customer support. Tracking Number: " + trackingNumbner);
 		}
-	}
-
-	public static int findClosestWarehouse(double lat, double lon) {
-		double finaldistance = 1000000;
-		int warehouseID = -1;
-		double distance = 0;
-		for (int i = 0; i <= warehouse.size() - 1; i++) {
-			distance = logic.distance(lat, lon, warehouse.get(i).getLatitude(), warehouse.get(i).getLongitude());
-			if (finaldistance > distance) {
-				finaldistance = distance;
-				warehouseID = warehouse.get(i).getId();
-			}
-		}
-		if (finaldistance > 10.01) {
-			System.err.println("You are not in services range. You are " + distance
-					+ " miles from the closest warehouse. The maximum distance for dilvery is 10 miles from warehouse.");
-			return -1;
-		}
-		return warehouseID;
 	}
 
 	public static void addWarehouse() {
@@ -87,16 +65,9 @@ public class ShippingLogic {
 		warehouse.add(new WarehouseConstructor(11,
 				String.format("%-5s %-30s %-50s", "11", "Omaha Hub", "3110 Farnam St, Omaha, NE 68131"), 41.258746,
 				-95.958241));
-		warehouse.add(new WarehouseConstructor(12,
-				String.format("%-5s %-30s %-50s", "12", "North Omaha(Missouri River)", "9100 John J Pershing Dr, Omaha, NE 68112, USA"), 41.343043,-95.958519));
+		warehouse
+				.add(new WarehouseConstructor(12, String.format("%-5s %-30s %-50s", "12", "North Omaha(Missouri River)",
+						"9100 John J Pershing Dr, Omaha, NE 68112, USA"), 41.343043, -95.958519));
 	}
 
-	public static void main(String[] args) {
-		addWarehouse();
-		System.out.println(String.format("%-5s %-30s %-50s", "ID", "Name", "Address"));
-		for (int i = 0; i <= warehouse.size() - 1; i++) {
-			System.out.println(warehouse.get(i).toString());
-		}
-		System.out.println(findClosestWarehouse(39.6360698,116.4645214));
-	}
 }

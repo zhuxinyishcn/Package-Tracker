@@ -13,11 +13,14 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-final class GoogleGeocode {
+public class GoogleGeocode {
 	private final String lat;
 	private final String lng;
 
@@ -41,8 +44,7 @@ final class GoogleGeocode {
 			apiKey = sc.nextLine();
 			sc.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			System.out.println("API key file not found.");
+			Printer.printLogicErrAPIKeyMissing();
 		}
 		return apiKey;
 	}
@@ -106,10 +108,5 @@ final class GoogleGeocode {
 			}
 		}
 		return new GoogleGeocode(lat, lng);
-	}
-
-	public static void main(String[] args) {
-		GoogleGeocode geocode = getLatLng("1780 Y ST", "Lincoln", "68588");
-		System.out.println(geocode.getLat() + geocode.getLng());
 	}
 }

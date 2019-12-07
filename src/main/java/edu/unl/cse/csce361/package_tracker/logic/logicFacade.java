@@ -24,10 +24,6 @@ public class logicFacade {
 		Printer.printMainMenu();
 	}
 
-	public boolean checkVip(String login) {
-		return Logic.checkVip(login);
-	}
-
 	public void printAdminMenu() {
 		Printer.printAdminMenu();
 	}
@@ -84,20 +80,12 @@ public class logicFacade {
 		AdminLogic.editPriorityID(trackingNumber, priorityID);
 	}
 
-	public void editShippingTime(String trackingNumber, String priorityID) {
-		AdminLogic.editShippingTime(trackingNumber, priorityID);
-	}
-
 	public void editStatus(String trackingNumber, String status) {
 		AdminLogic.editStatus(trackingNumber, status);
 	}
 
 	public void editReceiver(String trackingNumber, String street, String city, String zipCode) {
 		AdminLogic.editReceiver(trackingNumber, street, city, zipCode);
-	}
-
-	public void editSender(String trackingNumber, String sender) {
-		AdminLogic.editSender(trackingNumber, sender);
 	}
 
 	public void printEditPackage(int count) {
@@ -117,8 +105,8 @@ public class logicFacade {
 		return ShippingLogic.warehouse;
 	}
 
-	public void newPackage(String login, String destinationLogin) {
-		UserLogic.newPackage(login, destinationLogin);
+	public void newPackage(String login, String street, String city, String zipCode) {
+		UserLogic.newPackage(login, street, city, zipCode);
 	}
 
 	public void printSendPackage(int count) {
@@ -130,8 +118,8 @@ public class logicFacade {
 		UserLogic.returnPackage(trackingNumber);
 	}
 
-	public void checkPackage(String trackingNumber, String login, boolean isSender, boolean onGoing) {
-		UserLogic.checkPackage(trackingNumber, login, isSender, onGoing);
+	public void checkPackageByTrackingNumber(String trackingNumber) {
+		UserLogic.checkPackageByTrackingNumber(trackingNumber);
 	}
 
 	public void printCheckPackage() {
@@ -163,7 +151,11 @@ public class logicFacade {
 		return GoogleGeocode.getLatLng(street, city, zipCode);
 	}
 
-	public double distance(double lat1, double lon1, double lat2, double lon2) {
+	public double CalculateDistance(double lat1, double lon1, double lat2, double lon2) {
 		return CalculateDistance.distance(lat1, lon1, lat2, lon2, "M");
+	}
+
+	public int findClosestWarehouse(double lat, double lng) {
+		return CalculateDistance.findClosestWarehouse(lat, lng);
 	}
 }
