@@ -2,7 +2,6 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.List;
 import java.util.Observable;
@@ -10,7 +9,7 @@ import java.util.Observable;
 public class BackendFacade extends Observable {
     private static BackendFacade instance;
     private final Session session = HibernateUtil.createSession().openSession();
-    private final Transaction transaction = session.beginTransaction();
+
 
     private BackendFacade () {
     }
@@ -27,6 +26,10 @@ public class BackendFacade extends Observable {
         return instance;
     }
 
+    public void closeSession () {
+        session.close();
+    }
+
     public void editDestination (String trackingNumber, String destitationLogin) {
         //  Package.changeDestination(String trackingNumber, String destitationLogin);
         //TODO: may need to change latter for the next sprint
@@ -34,7 +37,7 @@ public class BackendFacade extends Observable {
 
     public void addPackageRecord (Sender sender, Receiver receiver,
                                   int currentLocation, double distance) {
-        Package.insertPackage(session, transaction, sender, receiver, currentLocation, distance);
+        Package.insertPackage(session, sender, receiver, currentLocation, distance);
     }
 
     public void editPiorityID () {
@@ -42,28 +45,23 @@ public class BackendFacade extends Observable {
     }
 
     public void deletePakcageRecord (String UUID) {
-        Package.deletePakcage(session, transaction, UUID);
+        Package.deletePakcage(session, UUID);
     }
 
     public void deleteUser (int userId) {
-        Sender.deleteUser(session, transaction, userId);
+        Sender.deleteUser(session, userId);
     }
 
     public void editPackageArrived (String UUID) {
-        Package.setPackage(session, transaction, UUID);
+        Package.setPackage(session, UUID);
     }
 
     public void editPackageStatus (String UUID, String status) {
-        Package.setPackage(session, transaction, UUID, status);
+        Package.setPackage(session, UUID, status);
     }
-
 
     public List<Package> retrievePackages () {
         return Package.retrievePackages(session);
-    }
-
-    public int searchPackage (Session session, String trackingNumber) {
-        return Package.searchTrackingNumber(session, trackingNumber);
     }
 
 //    public void editPackageAllInfo (String trackingNumber, String currentLocation,
@@ -74,17 +72,29 @@ public class BackendFacade extends Observable {
 //                status, receiver, sender);
 //    }
 
+    public int searchPackage (Session session, String trackingNumber) {
+        return Package.searchTrackingNumber(session, trackingNumber);
+    }
+
     public void addUser (String userName, String realName, String street,
                          String city, String zipCode) {
-        Sender.insertSender(session, transaction, userName, realName, street, city, zipCode);
+        Sender.insertSender(session, userName, realName, street, city, zipCode);
     }
 
     public void addReceiver (String realName, String street,
                              String city, String zipCode) {
-        Receiver.insertReceive(session, transaction, realName, street, city, zipCode);
+        Receiver.insertReceiver(session, realName, street, city, zipCode);
     }
 
     public void editPackageReceiver (String trackingNumber) {
-        Package.returnPackage(session, transaction, trackingNumber);
+        Package.returnPackage(session, trackingNumber);
+    }
+
+    public void addWareHouse (String name, Address address) {
+        Warehouse.insertWarehouse(session, name, address);
+    }
+
+    public void retrieveWarehouse () {
+        Warehouse.retrieveWarehouse(session);
     }
 }

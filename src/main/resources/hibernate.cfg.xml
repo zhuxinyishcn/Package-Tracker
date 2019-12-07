@@ -34,6 +34,6 @@
         <mapping class="edu.unl.cse.csce361.package_tracker.backend.Package"/>
         <mapping class="edu.unl.cse.csce361.package_tracker.backend.Sender"/>
         <mapping class="edu.unl.cse.csce361.package_tracker.backend.Receiver"/>
-
+        <mapping class="edu.unl.cse.csce361.package_tracker.backend.Warehouse"/>
     </session-factory>
 </hibernate-configuration>

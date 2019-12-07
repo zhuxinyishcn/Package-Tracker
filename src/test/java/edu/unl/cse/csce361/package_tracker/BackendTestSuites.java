@@ -70,7 +70,7 @@ public class BackendTestSuites {
         Sender sender = new Sender(address, "test", "sxc258");
         Address address2 = new Address("1400 R St2, Lincoln, NE 68588", "Lincoln", "68508");
         Receiver receiver = new Receiver(address2, "dddsx258");
-        backendFacade.addPackageRecord(sender, receiver, 1);
+        backendFacade.addPackageRecord(sender, receiver, 1, Math.random());
     }
 
     @Test
@@ -132,16 +132,16 @@ public class BackendTestSuites {
         }
         Sender sender = result.get(0).getSender();
         for (Package packages : (sender.getPackageSet())) {
-            System.out.println(sender.getUserName()+" "+packages.getTrackingNumber());
+            System.out.println(sender.getUserName() + " " + packages.getTrackingNumber());
         }
     }
 
-    @Test
-    public void TestEditPackagesInfo () {
-        backendFacade.editPackageAllInfo("40ac7974-1978-4e28-9423-6dab8e8f189c", "1",
-                "4", "2233/12/03 12:13:57",
-                "just Test it! again", "system Admin!", "system Admin:)!");
-    }
+//    @Test
+//    public void TestEditPackagesInfo () {
+//        backendFacade.editPackageAllInfo("40ac7974-1978-4e28-9423-6dab8e8f189c", "1",
+//                "4", "2233/12/03 12:13:57",
+//                "just Test it! again", "system Admin!", "system Admin:)!");
+//    }
 
 
     @Test
@@ -162,45 +162,14 @@ public class BackendTestSuites {
         }
 
     }
+
+    @Test
+    public void TestReturnWarehouse () {
+        final Session session = HibernateUtil.createSession().openSession();
+        List<Warehouse> result = session.createQuery("from Warehouse").list();
+        for (Warehouse wasrehouse : result) {
+            System.out.println(wasrehouse.getAddress().getStreet());
+        }
+        session.close();
+    }
 }
-
-
-//
-//    @Test
-//    public void TestSearchWarehouse_Name() {
-//        final Session session = HibernateUtil.createSession().openSession();
-//        FullTextSession session1 = Search.getFullTextSession(session);
-//        FullTextEntityManager fullTextEntityManager;
-//        Transaction tx = null;
-//        String houseName = "Lincoln Hub (O and 27ST)";
-//        try {
-//            fullTextEntityManager = Search.getFullTextSession(session1);
-//            session1.createIndexer(Warehouse.class).startAndWait();
-//            String[] fields = new String[]{"warehouseID","Address","Latitude","Longitude","Name","Address"};
-//            MultiFieldQueryParser parser = new MultiFieldQueryParser(fields, new StandardAnalyzer());
-//            QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder()
-//                    .forEntity(Warehouse.class).get();
-//            org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("Name")
-//                    .matching(houseName).createQuery();
-//            org.hibernate.search.jpa.FullTextQuery jpaQuery =
-//                    fullTextEntityManager.createFullTextQuery(query,Warehouse.class);
-//            List<Warehouse> warehouseList = jpaQuery.getResultList();
-//            System.out.println("NMSL warehouseList size: "+warehouseList.size());
-//            for (Warehouse w:warehouseList) {
-//                System.out.printf("warehouseID:%s\nAddress:%s\nLongtitude:%s\nLatitude:%s\nName:%s\n\n",w.getWarehouseID()
-//                        ,w.getAddress(),w.getLongitude(),w.getLatitude(),w.getName());
-//            }
-//            assertEquals(1,warehouseList.size());
-//            assertEquals(1,warehouseList.get(0).getWarehouseID());
-//            assertEquals("-96.682142",warehouseList.get(0).getLatitude());
-//            assertEquals("50.813314",warehouseList.get(0).getLongitude());
-//            assertEquals(houseName,warehouseList.get(0).getName());
-//            assertEquals(2701,warehouseList.get(0));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//        }
-//
-//        session1.close();
-//    }
-//

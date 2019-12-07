@@ -42,8 +42,8 @@ public class Package {
     @Column(name = "status", nullable = false, length = 50)
     private String status;
     @Column(name = "priorityID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int priorityid;
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "shippingTime", nullable = false, length = 100, updatable = false)
     private String shippingTime;
     @Column(name = "estimateTime", nullable = false, length = 100, updatable = false)
@@ -61,12 +61,15 @@ public class Package {
         this.currentLocation = currentLocation;
         this.status = "Shipping";
         this.shippingTime = date.format(now);
-        this.estimateTime = date.format(now.plusSeconds((long) (distance / 22.352)));
+        //note: we assume our latest drones latest speed is 22.352 m/s
+        final double droneSpeed = 22.352;
+        this.estimateTime = date.format(now.plusSeconds((long) (distance / droneSpeed)));
         this.trackingNumber = UUID.randomUUID().toString();
     }
 
-    public static void insertPackage (Session session, Transaction transaction, Sender sender, Receiver receiver,
+    public static void insertPackage (Session session, Sender sender, Receiver receiver,
                                       int currentLocation, double distance) {
+        final Transaction transaction = session.beginTransaction();
         try {
             Package packageInfo = new Package(sender, receiver, currentLocation, distance);
             receiver.setPackageid(packageInfo);
@@ -82,7 +85,8 @@ public class Package {
         }
     }
 
-    public static void deletePakcage (Session session, Transaction transaction, String UUID) {
+    public static void deletePakcage (Session session, String UUID) {
+         final Transaction transaction = session.beginTransaction();
         int packageid = searchTrackingNumber(session, UUID);
         try {
             final Package packages = session.get(Package.class, packageid);
@@ -94,7 +98,8 @@ public class Package {
         }
     }
 
-    public static void setPackage (Session session, Transaction transaction, String UUID) {
+    public static void setPackage (Session session, String UUID) {
+        final Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         try {
             CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
@@ -108,7 +113,8 @@ public class Package {
         }
     }
 
-    public static void setPackage (Session session, Transaction transaction, String UUID, String status) {
+    public static void setPackage (Session session, String UUID, String status) {
+        final Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         try {
             CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
@@ -123,17 +129,16 @@ public class Package {
     }
 
     public static List<Package> retrievePackages (Session session) {
-        List<Package> result = (List<Package>) session.createQuery("from Package").list();
+        List<Package> result = session.createQuery("from Package").list();
         return result;
     }
 
     public static int searchTrackingNumber (Session session, String trackingNumber) {
-        long start = System.currentTimeMillis();
+
         Query query =
                 session.createSQLQuery("SELECT p.PackageID FROM Packages p WHERE p.trackingNumber like :ids").
                         setParameter("ids", trackingNumber);
         int packageID = (int) query.getSingleResult();
-        System.out.println(System.currentTimeMillis() - start);
         return packageID;
     }
 
@@ -154,12 +159,11 @@ public class Package {
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession(session);
         }
     }
 
-    public static void returnPackage (Session session, Transaction transaction, String trackingNumber) {
+    public static void returnPackage (Session session,  String trackingNumber) {
+        final Transaction transaction = session.beginTransaction();
         try {
             int packageid = searchTrackingNumber(session, trackingNumber);
             Package packageInfo = session.get(Package.class, packageid);

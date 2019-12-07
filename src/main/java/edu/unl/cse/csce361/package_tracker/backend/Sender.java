@@ -31,33 +31,24 @@ public class Sender {
     @JoinColumn(name = "PackageSet")
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Package> packageSet = new HashSet<>();
-    @Column(name = "userName", nullable = false, length = 100)
+    @Column(name = "status", nullable = false, length = 100)
     private String status;
 
     public Sender (Address address, String name, String userName) {
         this.address = address;
         this.name = name;
         this.userName = userName;
-    }
-
-    public String getStatus () {
-        return status;
-    }
-
-    public void setStatus (String status) {
-        this.status = status;
+        this.status = "Active";
     }
 
     public Sender () {
     }
 
-    public static void deleteUser (Session session, Transaction transaction,int userId) {
+    public static void deleteUser (Session session,  int userId) {
+        final Transaction transaction = session.beginTransaction();
         try {
             Sender user = session.load(Sender.class, userId);
-            Address address = user.getAddress();
-            session.delete(address);
-            session.delete(user);
-
+            user.setStatus("History");
             transaction.commit();
         } catch (Throwable e) {
             session.getTransaction().rollback();
@@ -65,9 +56,10 @@ public class Sender {
         }
     }
 
-    public static void insertSender (Session session, Transaction transaction,String userName, String realName,
+    public static void insertSender (Session session, String userName, String realName,
                                      String street,
                                      String city, String zipCode) {
+        final Transaction transaction = session.beginTransaction();
         try {
             Address address = new Address(street, city, zipCode);
             Sender sender = new Sender(address, realName, userName);
@@ -77,6 +69,14 @@ public class Sender {
             session.getTransaction().rollback();
             throw e;
         }
+    }
+
+    public String getStatus () {
+        return status;
+    }
+
+    public void setStatus (String status) {
+        this.status = status;
     }
 
     public Address getAddress () {
@@ -122,7 +122,3 @@ public class Sender {
                 '}';
     }
 }
-/*
- * 1. load all package
- *
- * */
