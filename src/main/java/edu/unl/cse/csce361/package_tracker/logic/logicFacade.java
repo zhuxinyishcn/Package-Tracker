@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.WarehouseConstructor;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 import java.util.ArrayList;
@@ -47,48 +48,40 @@ public class logicFacade {
 		Printer.printVIPMenu();
 	}
 
-	public void printRegisterMenu(int count) {
-		Printer.printRegisterMenu(count);
-	}
-
-	public void PrintChangeDestination(int count) {
-		Printer.PrintChangeDestination(count);
-	}
-
-	public void changeDestination(String trackingNumber, String destntationLogin) {
-		AdminLogic.changeDestination(trackingNumber, destntationLogin);
-	}
-
-	public void changeDestitation(String trackingNumber, String destitationLogin) {
-		AdminLogic.changeDestitation(trackingNumber, destitationLogin);
-	}
-
 	public void printIsSender() {
 		Printer.printIsSender();
 	}
 
-	public void editInfo(String isSender, String userName, String name, String street, String city, String zip,
-			String warehouseID) {
-		Logic.editInfo(isSender, userName, name, street, city, zip, warehouseID);
+	public void editInfo(String userName, String street, String city, String zipCode) {
+		Logic.editAddress(userName, street, city, zipCode);
 	}
 
 	public void getAllPackage() {
 		AdminLogic.getAllPackage();
 	}
 
-	public void register(String isSender, String login, String realName, String warehouseID, String street, String city,
-			String zipCode) {
-		Logic.register(isSender, login, realName, warehouseID, street, city, zipCode, BACKEND_FACADE);
+	public void register(String userName, String realName, String street, String city, String zipCode) {
+		Logic.register(userName, realName, street, city, zipCode, BACKEND_FACADE);
 	}
 
-	public void editPackage(String trackingNumber, String currentLocation, String priorityID, String shippingTime,
-			String status, String receiver, String sender) {
-		AdminLogic.editPackage(trackingNumber, currentLocation, priorityID, shippingTime, status, receiver, sender);
+	public String checkUser(String userName) {
+		return UserLogic.checkUser(userName);
 	}
 
-	public void printEditPackage(int count) {
-		Printer.printEditPackage(count);
-		;
+	public void editCurrentLocation(String trackingNumber, int currentLocation) {
+		AdminLogic.editCurrentLocation(trackingNumber, currentLocation);
+	}
+
+	public void editPriorityID(String trackingNumber, int priorityID) {
+		AdminLogic.editPriorityID(trackingNumber, priorityID);
+	}
+
+	public void editStatus(String trackingNumber, String status) {
+		AdminLogic.editStatus(trackingNumber, status);
+	}
+
+	public void editReceiver(String trackingNumber, String street, String city, String zipCode) {
+		AdminLogic.editReceiver(trackingNumber, street, city, zipCode);
 	}
 
 	public void addWarehouse() {
@@ -99,25 +92,17 @@ public class logicFacade {
 		BACKEND_FACADE.editPackageArrived(trackingNumber);
 	}
 
-	public ArrayList<String> getWarehouse() {
+	public ArrayList<WarehouseConstructor> getWarehouse() {
 		return ShippingLogic.warehouse;
 	}
 
-	public void newPackage(String login, String destinationLogin) {
-		UserLogic.newPackage(login, destinationLogin);
-	}
-
-	public void printSendPackage(int count) {
-		Printer.printSendPackage(count);
+	public void newPackage(String login, String street, String city, String zipCode) {
+		UserLogic.newPackage(login, street, city, zipCode);
 	}
 
 	public void returnPackage(String trackingNumber) {
 		BACKEND_FACADE.editPackageReceiver(trackingNumber);
 		UserLogic.returnPackage(trackingNumber);
-	}
-
-	public void checkPackage(String trackingNumber, String login, boolean isSender, boolean onGoing) {
-		UserLogic.checkPackage(trackingNumber, login, isSender, onGoing);
 	}
 
 	public void printCheckPackage() {
@@ -144,4 +129,25 @@ public class logicFacade {
 	public void estimatePackage(String trackingNumber) {
 		UserLogic.estimatePackage(trackingNumber);
 	}
+
+	public GoogleGeocode getLatLng(String street, String city, String zipCode) {
+		return GoogleGeocode.getLatLng(street, city, zipCode);
+	}
+
+	public double CalculateDistance(double lat1, double lon1, double lat2, double lon2) {
+		return CalculateDistance.distance(lat1, lon1, lat2, lon2, "M");
+	}
+
+	public int findClosestWarehouse(double lat, double lng) {
+		return CalculateDistance.findClosestWarehouse(lat, lng);
+	}
+
+	public void checkPackageByTrackingNumber(String trackingNumber) {
+		UserLogic.checkPackageByTrackingNumber(trackingNumber);
+	}
+
+	public void checkPackageByUserName(String login) {
+		UserLogic.checkPackageByUserName(login);
+	}
+
 }

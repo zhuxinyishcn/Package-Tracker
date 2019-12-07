@@ -25,15 +25,10 @@ public class BackendFacade extends Observable {
         }
         return instance;
     }
-
-    public void closeSession () {
-        session.close();
-    }
-
-    public void editDestination (String trackingNumber, String destitationLogin) {
-        //  Package.changeDestination(String trackingNumber, String destitationLogin);
-        //TODO: may need to change latter for the next sprint
-    }
+public void changeDestination(String trackingNumber, int currentLocation){
+      //  Package.changeDestination(String trackingNumber, String destitationLogin);
+    //TODO: may need to change latter for the next sprint
+}
 
     public void addPackageRecord (Sender sender, Receiver receiver,
                                   int currentLocation, double distance) {

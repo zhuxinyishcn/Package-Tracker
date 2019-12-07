@@ -1,16 +1,17 @@
+
 #   PACKAGE TRACKER
 
 ##  Instructions to build and run the program
 
-In order to connect to the SQL, create a file `database.info` into `src/main/resources`.   
-Type in there three line and change info into the file.  
-
-username: *YourUserName*   
-password: *YourPassWord*  
-url: jdbc:mysql://*YourURL*  
-
-
-
+>Import `/src/main/resources/table.sql` to your MySQL database.
+Rename file `/src/main/resources/hibernate.cfg.xml.sample` to `/src/main/resources/hibernate.cfg.xml`.   
+Change these line using SQL connection authentication:   
+>  5. `<property name="connection.url"> jdbc:mysql://cse.unl.edu/`User Name`?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC`       
+>  7. `<property name="connection.username">`User Name`</property>`    
+>  8. `property name="connection.password">`Password`</property>`    
+    
+>Rename file `/src/main/resources/api.info.sample` to `/src/main/resources/api.info`.   
+> Add API key for Google Cloud Platform with access to `Geocoding API`
 ##  Description
 
 Bohn's Drones is a courier service using small unmanned aerial systems (SUAS)

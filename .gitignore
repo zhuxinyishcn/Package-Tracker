@@ -1,5 +1,7 @@
 # Project-specific
-# none (for now)
+# SQL authentication
+*.info
+*.cfg.xml
 
 # Mac file finder metadata
 .DS_Store
@@ -21,8 +23,6 @@ bin/
 *.iws
 *.ipr
 *.info
-*.cfg.xml
-
 # Eclipse files
 bin/
 .settings/
