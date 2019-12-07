@@ -97,8 +97,8 @@ public class logicFacade {
 		return ShippingLogic.warehouse;
 	}
 
-	public void newPackage(String login, String destinationLogin) {
-		UserLogic.newPackage(login, destinationLogin);
+	public void newPackage(String login, String street, String city, String zipCode) {
+		UserLogic.newPackage(login, street, city, zipCode);
 	}
 
 	public void returnPackage(String trackingNumber) {
@@ -137,6 +137,14 @@ public class logicFacade {
 
 	public double distance(double lat1, double lon1, double lat2, double lon2) {
 		return CalculateDistance.distance(lat1, lon1, lat2, lon2, "M");
+	}
+	
+	public void checkPackageByTrackingNumber(String trackingNumber) {
+		UserLogic.checkPackageByTrackingNumber(trackingNumber);
+	}
+	
+	public void checkPackageByUserName(String login) {
+		UserLogic.checkPackageByUserName(login);
 	}
 	
 }

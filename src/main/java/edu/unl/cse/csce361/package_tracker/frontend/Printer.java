@@ -36,7 +36,7 @@ public class Printer {
 
 	public static void printUserMenu() {
 		System.out.println("Welcome, user options are as follows:");
-		System.out.println("1. Send your package.");
+		System.out.println("1. Send your package.(Destination address)");
 		System.out.println("2. Retuen package.");
 		System.out.println("3. Edit personal data."); //address only
 		System.out.println("4. Check your package.(Tracking# or User Name)");
@@ -64,16 +64,19 @@ public class Printer {
 	
 	public static void printVIPMenu() {
 		System.out.println("Welcome, VIP options are as follows:");
-		System.out.println("1. Send priority package.");
-		System.out.println("2. Retuen package.");
+		System.out.println("1. Send priority package.(Destination address)");
+		System.out.println("2. Return package.");
 		System.out.println("3. Edit personal data.");
 		System.out.println("4. Check your package.(Tracking# or User Name)");
-		System.out.println("5. Upgrade to VIP.");
-		System.out.println("6. Cancel package.");
-		System.out.println("7. Hold at Warehouse.");
-		System.out.println("8. Estimate dilivery time.");
-		System.out.println("9. Change destination.");
-		System.out.println("10. Back to main menu.");
+		System.out.println("5. Cancel package.");
+		System.out.println("6. Hold at Warehouse.");
+		System.out.println("7. Estimate dilivery time.");
+		System.out.println("8. Change destination.");
+		System.out.println("9. Back to main menu.");
+	}
+	
+	public static void printAskRealName() {
+		System.out.println("Enter your real name:");
 	}
 	
 	public static void printAskStreet() {

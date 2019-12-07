@@ -130,89 +130,72 @@ public class Menu {
 		userName = scnr.nextLine();
 		while(programOn) {
 			String input;
+			String street;
+			String city;
+			String zipCode;
+			String inputTracking;
 			String inputCheck;
-			String inputData;
 			logic.printUserMenu();
 			input = scnr.nextLine();
 			switch(input) {
 			case "1":
-				ArrayList<String> sendPackage = new ArrayList<String>();
-				for (int i = 1; i <= 2; i++) {
-					logic.printSendPackage(i);
-					inputData = scnr.nextLine();
-					sendPackage.add(inputData);
-				}
-				logic.newPackage(sendPackage.get(0), sendPackage.get(1));
+				Printer.printAskStreet();
+				street = scnr.nextLine();
+				Printer.printAskCity();
+				city = scnr.nextLine();
+				Printer.printAskZipCode();
+				zipCode = scnr.nextLine();
+				logic.newPackage(userName, street, city, zipCode);
 				break;
 			case "2":
-				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.returnPackage(inputData);
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.returnPackage(inputTracking);
 				break;
 			case "3":
-				ArrayList<String> editList = new ArrayList<String>();
-				for (int i = 1; i <= 7; i++) {
-					//logic.printRegisterMenu(i);
-					inputData = scnr.nextLine();
-					if (i == 1) {
-						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
-							i = 0;
-						} else
-							editList.add(inputData);
-					} else
-						if(inputData.isEmpty()) {
-							inputData = null;
-							editList.add(inputData);
-						}else {
-							editList.add(inputData);
-						}
-				}
-				logic.editInfo(editList.get(0), editList.get(1), editList.get(2), editList.get(3),
-						editList.get(4), editList.get(5), editList.get(6));
+				Printer.printAskStreet();
+				street = scnr.nextLine();
+				Printer.printAskCity();
+				city = scnr.nextLine();
+				Printer.printAskZipCode();
+				zipCode = scnr.nextLine();
+				logic.editInfo(userName, street, city, zipCode);
 				break;
 			case "4":
 				logic.printCheckPackage();
 				inputCheck = scnr.nextLine();
-				boolean checkOn = true;
-				while(checkOn) {
-					switch(inputCheck) {
-					case "1":
-						logic.printAskTracking();
-						inputData = scnr.nextLine();
-						logic.checkPackage(inputData, null, false, false); // need to be fix
-						break;
-					case "2":
-						logic.printAskUserName();
-						inputData = scnr.nextLine();
-						logic.checkPackage(null, inputData, false, false); // need to be fix
-						break;
-					case "3":
-						checkOn = false;
-						break;
-					default:
-						logic.printInvalid();
-					}
+				switch(inputCheck) {
+				case "1":
+					logic.printAskTracking();
+					inputTracking = scnr.nextLine();
+					logic.checkPackageByTrackingNumber(inputTracking);
+					break;
+				case "2":
+					logic.checkPackageByUserName(userName);
+					break;
+				case "3":
+					break;
+				default:
+					logic.printInvalid();
 				}
 				break;
 			case "5":
-				logic.printAskUserName();
-				inputData = scnr.nextLine();
-				logic.becomeVIP(inputData);
+				logic.becomeVIP(userName);
 				break;
 			case "6":
 				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.cancelPackage(inputData);
+				inputTracking = scnr.nextLine();
+				logic.cancelPackage(inputTracking);
 				break;
 			case "7":
 				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.holdAtWarehouse(inputData);
+				inputTracking = scnr.nextLine();
+				logic.holdAtWarehouse(inputTracking);
 				break;
 			case "8":
 				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.estimatePackage(inputData);
+				inputTracking = scnr.nextLine();
+				logic.estimatePackage(inputTracking);
 				break;
 			case "9":
 				programOn = false;
@@ -227,101 +210,82 @@ public class Menu {
 		boolean programOn = true;
 		while(programOn) {
 			String input;
+			String street;
+			String city;
+			String zipCode;
+			String inputTracking;
 			String inputCheck;
-			String inputData;
-			logic.printAskUserName();
-			userName = scnr.nextLine();
 			logic.printVIPMenu();
 			input = scnr.nextLine();
 			switch(input) {
 			case "1":
-				ArrayList<String> sendPackage = new ArrayList<String>();
-				for (int i = 1; i <= 2; i++) {
-					logic.printSendPackage(i);
-					inputData = scnr.nextLine();
-					sendPackage.add(inputData);
-				}
-				logic.newPackage(sendPackage.get(0), sendPackage.get(1));
+				Printer.printAskStreet();
+				street = scnr.nextLine();
+				Printer.printAskCity();
+				city = scnr.nextLine();
+				Printer.printAskZipCode();
+				zipCode = scnr.nextLine();
+				logic.newPackage(userName, street, city, zipCode);
 				break;
 			case "2":
-				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.returnPackage(inputData);
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.returnPackage(inputTracking);
 				break;
 			case "3":
-				ArrayList<String> editList = new ArrayList<String>();
-				for (int i = 1; i <= 7; i++) {
-					//logic.printRegisterMenu(i);
-					inputData = scnr.nextLine();
-					if (i == 1) {
-						if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
-							i = 0;
-						} else
-							editList.add(inputData);
-					} else
-						if(inputData.isEmpty()) {
-							inputData = null;
-							editList.add(inputData);
-						}else {
-							editList.add(inputData);
-						}
-				}
-				logic.editInfo(editList.get(0), editList.get(1), editList.get(2), editList.get(3),
-						editList.get(4), editList.get(5), editList.get(6));
+				Printer.printAskStreet();
+				street = scnr.nextLine();
+				Printer.printAskCity();
+				city = scnr.nextLine();
+				Printer.printAskZipCode();
+				zipCode = scnr.nextLine();
+				logic.editInfo(userName, street, city, zipCode);
 				break;
 			case "4":
 				logic.printCheckPackage();
 				inputCheck = scnr.nextLine();
-				boolean checkOn = true;
-				while(checkOn) {
-					switch(inputCheck) {
-					case "1":
-						logic.printAskTracking();
-						inputData = scnr.nextLine();
-						logic.checkPackage(inputData, null, false, false); // need to be fix
-						break;
-					case "2":
-						logic.printAskUserName();
-						inputData = scnr.nextLine();
-						logic.checkPackage(null, inputData, false, false); // need to be fix
-						break;
-					case "3":
-						checkOn = false;
-						break;
-					default:
-						logic.printInvalid();
-					}
+				switch(inputCheck) {
+				case "1":
+					logic.printAskTracking();
+					inputTracking = scnr.nextLine();
+					logic.checkPackageByTrackingNumber(inputTracking);
+					break;
+				case "2":
+					logic.checkPackageByUserName(userName);
+					break;
+				case "3":
+					break;
+				default:
+					logic.printInvalid();
 				}
 				break;
 			case "5":
-				logic.printAskUserName();
-				inputData = scnr.nextLine();
-				logic.becomeVIP(inputData);
+				logic.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.cancelPackage(inputTracking);
 				break;
 			case "6":
 				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.cancelPackage(inputData);
+				inputTracking = scnr.nextLine();
+				logic.holdAtWarehouse(inputTracking);
 				break;
 			case "7":
 				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.holdAtWarehouse(inputData);
+				inputTracking = scnr.nextLine();
+				logic.estimatePackage(inputTracking);
 				break;
 			case "8":
-				logic.printAskTracking();
-				inputData = scnr.nextLine();
-				logic.estimatePackage(inputData);
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				Printer.printAskStreet();
+				street = scnr.nextLine();
+				Printer.printAskCity();
+				city = scnr.nextLine();
+				Printer.printAskZipCode();
+				zipCode = scnr.nextLine();
+				logic.editReceiver(inputTracking, street, city, zipCode);
 				break;
 			case "9":
-				ArrayList<String> destination = new ArrayList<String>();
-				for (int i = 1; i <= 2; i++) {
-					logic.PrintChangeDestination(i);
-					inputData = scnr.nextLine();
-					destination.add(inputData);
-				}
-				logic.changeDestination(destination.get(0), destination.get(1));
-			case "10":
 				programOn = false;
 				break;
 			default:
@@ -331,22 +295,22 @@ public class Menu {
 	}
 
 	public static void register() {
-		ArrayList<String> registerList = new ArrayList<String>();
-		String inputData;
-		for (int i = 1; i <= 7; i++) {
-			//logic.printRegisterMenu(i);
-			inputData = scnr.nextLine();
-			if (i == 1) {
-				if (inputData.equalsIgnoreCase("Y") == false && inputData.equalsIgnoreCase("N") == false) {
-					i = 0;
-				} else
-					registerList.add(inputData);
-			} else
-				registerList.add(inputData);
-		}
-		logic.register(registerList.get(0), registerList.get(1), registerList.get(2), registerList.get(3),
-				registerList.get(4), registerList.get(5), registerList.get(6));
-
+		String user;
+		String street;
+		String city;
+		String zipCode;
+		String realName;
+		Printer.printAskUserName();
+		user = scnr.nextLine();
+		Printer.printAskRealName();
+		realName = scnr.nextLine();
+		Printer.printAskStreet();
+		street = scnr.nextLine();
+		Printer.printAskCity();
+		city = scnr.nextLine();
+		Printer.printAskZipCode();
+		zipCode = scnr.nextLine();
+		logic.register(user, realName, street, city, zipCode);
 	}
 
 }
