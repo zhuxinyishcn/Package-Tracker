@@ -29,7 +29,7 @@ public class UserLogic {
 		Printer.printLogicPackageByTrackingNumber(info);
 	}
 
-	public static void checkPackageByUserName(String trackingNumber, String login) {
+	public static void checkPackageByUserName(String login) {
 		// TODO: using @login who is a receiver to find package info which is in
 		// transit
 		ArrayList<String> result = new ArrayList<String>();

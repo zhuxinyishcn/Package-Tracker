@@ -31,13 +31,18 @@ public class UserInterFace {
 			case "2": // **USER**
 				Printer.printAskUserName();
 				userName = scnr.nextLine();
-				if(logic.checkVip(userName)) {
+				if(logic.checkUser(userName) == "vip") {
 					Menu.vipMenu();
-				}else {
+				}else if(logic.checkUser(userName) == "user") {
 					Menu.userMenu();
+				}else {
+					Printer.printAskRegister();
 				}
 				break;
-			case "3":
+			case "3": 
+				Menu.register();;
+				break;
+			case "4":
 				programOn = false;
 				Printer.printExit();
 				break;

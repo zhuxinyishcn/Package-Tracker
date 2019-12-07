@@ -23,7 +23,7 @@ public class BackendFacade extends Observable {
         }
         return instance;
     }
-public void changeDestination(String trackingNumber, String destitationLogin){
+public void changeDestination(String trackingNumber, int currentLocation){
       //  Package.changeDestination(String trackingNumber, String destitationLogin);
     //TODO: may need to change latter for the next sprint
 }

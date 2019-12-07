@@ -48,14 +48,6 @@ public class logicFacade {
 		Printer.printVIPMenu();
 	}
 
-	public void changeDestination(String trackingNumber, String destntationLogin) {
-		AdminLogic.changeDestination(trackingNumber, destntationLogin);
-	}
-
-	public void changeDestitation(String trackingNumber, String destitationLogin) {
-		AdminLogic.changeDestitation(trackingNumber, destitationLogin);
-	}
-
 	public void printIsSender() {
 		Printer.printIsSender();
 	}
@@ -72,11 +64,15 @@ public class logicFacade {
 		Logic.register(userName, realName, street, city, zipCode, BACKEND_FACADE);
 	}
 
-	public void editCurrentLocation(String trackingNumber, String currentLocation) {
+	public String checkUser(String userName) {
+		return UserLogic.checkUser(userName);
+	}
+
+	public void editCurrentLocation(String trackingNumber, int currentLocation) {
 		AdminLogic.editCurrentLocation(trackingNumber, currentLocation);
 	}
 
-	public void editPriorityID(String trackingNumber, String priorityID) {
+	public void editPriorityID(String trackingNumber, int priorityID) {
 		AdminLogic.editPriorityID(trackingNumber, priorityID);
 	}
 
@@ -86,11 +82,6 @@ public class logicFacade {
 
 	public void editReceiver(String trackingNumber, String street, String city, String zipCode) {
 		AdminLogic.editReceiver(trackingNumber, street, city, zipCode);
-	}
-
-	public void printEditPackage(int count) {
-		Printer.printEditPackage(count);
-		;
 	}
 
 	public void addWarehouse() {
@@ -109,17 +100,9 @@ public class logicFacade {
 		UserLogic.newPackage(login, street, city, zipCode);
 	}
 
-	public void printSendPackage(int count) {
-		Printer.printSendPackage(count);
-	}
-
 	public void returnPackage(String trackingNumber) {
 		BACKEND_FACADE.returnPackage(trackingNumber);
 		UserLogic.returnPackage(trackingNumber);
-	}
-
-	public void checkPackageByTrackingNumber(String trackingNumber) {
-		UserLogic.checkPackageByTrackingNumber(trackingNumber);
 	}
 
 	public void printCheckPackage() {
@@ -158,4 +141,13 @@ public class logicFacade {
 	public int findClosestWarehouse(double lat, double lng) {
 		return CalculateDistance.findClosestWarehouse(lat, lng);
 	}
+
+	public void checkPackageByTrackingNumber(String trackingNumber) {
+		UserLogic.checkPackageByTrackingNumber(trackingNumber);
+	}
+
+	public void checkPackageByUserName(String login) {
+		UserLogic.checkPackageByUserName(login);
+	}
+
 }
