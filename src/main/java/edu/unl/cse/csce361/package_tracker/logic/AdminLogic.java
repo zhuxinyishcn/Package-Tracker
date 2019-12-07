@@ -6,15 +6,6 @@ import edu.unl.cse.csce361.package_tracker.backend.Package;
 public class AdminLogic {
 	private static final logicFacade logic = logicFacade.getInstance();
 
-	public static void changeDestitation(String trackingNumber, String destitationLogin) {
-		// TODO: Using @trackingNumber to set @receiver as @destitation
-		BackendFacade.getBackendFacade().changeDestination(trackingNumber, destitationLogin);
-	}
-
-	public static void changeDestination(String trackingNumber, String destinationLogin) {
-		// TODO: Using @trackingNumber to set @receiver as @destination
-	}
-
 	public static void getAllPackage() {
 		System.out.println(String.format("%-20s %-10s %-10s %-20s %-10s", "Tracking Number", "Sender", "Receiver",
 				"Current Location", "Status"));
@@ -28,26 +19,26 @@ public class AdminLogic {
 		}
 	}
 
-	public static void editCurrentLocation(String trackingNumber, String currentLocation) {
-		if (trackingNumber.length() <= 40) {
+	public static void editCurrentLocation(String trackingNumber, int currentLocation) {
+		if (trackingNumber.length() >= 40) {
 			System.err.println("Tracking number should less than 40 charactor.");
 		} else {
-			if (currentLocation.length() <= 10) {
+			if (currentLocation <= 12 && currentLocation > 0) {
 				// TODO: Using @trackingNumber to set @currentLocation
 				BackendFacade.getBackendFacade().changeDestination(trackingNumber, currentLocation);
 				System.out.println("You have successfully set Current Location for " + trackingNumber + " to "
 						+ currentLocation + ".");
 			} else {
-				System.err.println("Current Location should be less than 10 charactor.");
+				System.err.println("Warehouse not found.");
 			}
 		}
 	}
 
-	public static void editPriorityID(String trackingNumber, String priorityID) {
-		if (trackingNumber.length() <= 40) {
+	public static void editPriorityID(String trackingNumber, int priorityID) {
+		if (trackingNumber.length() >= 40) {
 			System.err.println("Tracking number should less than 40 charactor.");
 		} else {
-			if (priorityID.length() <= 10) {
+			if (priorityID <= 10 && priorityID >= 0) {
 				// TODO: Using @trackingNumber to set @priorityID
 				System.out.println(
 						"You have successfully set priorityID for " + trackingNumber + " to " + priorityID + ".");
@@ -58,7 +49,7 @@ public class AdminLogic {
 	}
 
 	public static void editStatus(String trackingNumber, String status) {
-		if (trackingNumber.length() <= 40) {
+		if (trackingNumber.length() >= 40) {
 			System.err.println("Tracking number should less than 40 charactor.");
 		} else {
 			if (status.length() <= 50) {
@@ -70,7 +61,7 @@ public class AdminLogic {
 	}
 
 	public static void editReceiver(String trackingNumber, String street, String city, String zipCode) {
-		if (trackingNumber.length() <= 40) {
+		if (trackingNumber.length() >= 40) {
 			System.err.println("Tracking number should less than 40 charactor.");
 		} else {
 			if (street.length() <= 100 && city.length() <= 50 && zipCode.length() <= 10) {

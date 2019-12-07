@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
@@ -21,29 +22,30 @@ public class Menu {
 	public static void adminMenu() {
 		boolean programOn = true;
 		while(programOn) {
-			String input;
+			String userSelect;
 			String user;
 			String street;
 			String city;
 			String zipCode;
 			String inputTracking;
-			String inputDestination;
 			Printer.printAdminMenu();
-			input = scnr.nextLine();
-			switch (input) {
+			userSelect = scnr.nextLine();
+			switch (userSelect) {
 			case "1":
 				logic.getAllPackage();
 				break;
 			case "2":
 				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
-				Printer.printDestination();
-				inputDestination = scnr.nextLine();
-				logic.changeDestination(inputTracking, inputDestination);
+				Printer.printAskStreet();
+				street = scnr.nextLine();
+				Printer.printAskCity();
+				city = scnr.nextLine();
+				Printer.printAskZipCode();
+				zipCode = scnr.nextLine();
+				logic.editReceiver(inputTracking, street, city, zipCode);
 				break;
 			case "3":
-				Printer.printAskTracking();
-				inputTracking = scnr.nextLine();
 				Printer.printAskUserName();
 				user = scnr.nextLine();
 				Printer.printAskStreet();
@@ -55,17 +57,7 @@ public class Menu {
 				logic.editInfo(user, street, city, zipCode);
 				break;
 			case "4":
-//				ArrayList<String> packageList = new ArrayList<String>();
-//				for (int i = 1; i <= 7; i++) {
-//					logic.printEditPackage(i);
-//					inputData = scnr.nextLine();
-//					if(inputData.isEmpty()) {
-//						inputData = null;
-//						packageList.add(inputData);
-//					}else {
-//						packageList.add(inputData);
-//					}
-//				}
+				editPackage();
 				break;
 			case "5":
 				programOn = false;
@@ -73,6 +65,62 @@ public class Menu {
 			default:
 				logic.printInvalid();
 			}
+		}
+	}
+
+	public static void editPackage() {
+		String input1;
+		String street;
+		String city;
+		String zipCode;
+		String inputTracking;
+		String status;
+		int priorityID;
+		int currentLocation;
+		Printer.printAskTracking();
+		inputTracking = scnr.nextLine();
+		Printer.printEditPackage();
+		input1 = scnr.nextLine();
+		switch(input1) {
+		case "1":
+			Printer.printWarehouse();
+			Printer.printAskInput();
+			try {
+				currentLocation = scnr.nextInt();
+				scnr.nextLine();
+				logic.editCurrentLocation(inputTracking, currentLocation);
+			}catch(InputMismatchException e) {
+				Printer.printInvalid();
+			}
+			break;
+		case "2":
+			Printer.printAskInput();
+			try {
+				priorityID = scnr.nextInt();
+				scnr.nextLine();
+				logic.editPriorityID(inputTracking, priorityID);
+			}catch(InputMismatchException e) {
+				Printer.printInvalid();
+			}
+			break;
+		case "3":
+			Printer.printAskInput();
+			status = scnr.nextLine();
+			logic.editStatus(inputTracking, status);
+			break;
+		case "4":
+			Printer.printAskStreet();
+			street = scnr.nextLine();
+			Printer.printAskCity();
+			city = scnr.nextLine();
+			Printer.printAskZipCode();
+			zipCode = scnr.nextLine();
+			logic.editReceiver(inputTracking, street, city, zipCode);
+			break;
+		case "5":
+			break;
+		default:
+			Printer.printInvalid();
 		}
 	}
 

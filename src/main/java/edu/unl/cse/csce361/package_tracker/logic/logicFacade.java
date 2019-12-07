@@ -48,14 +48,6 @@ public class logicFacade {
 		Printer.printVIPMenu();
 	}
 
-	public void changeDestination(String trackingNumber, String destntationLogin) {
-		AdminLogic.changeDestination(trackingNumber, destntationLogin);
-	}
-
-	public void changeDestitation(String trackingNumber, String destitationLogin) {
-		AdminLogic.changeDestitation(trackingNumber, destitationLogin);
-	}
-
 	public void printIsSender() {
 		Printer.printIsSender();
 	}
@@ -72,17 +64,15 @@ public class logicFacade {
 		Logic.register(userName, realName, street, city, zipCode, BACKEND_FACADE);
 	}
 
+	public String checkUser(String userName) {
+		return UserLogic.checkUser(userName);
+	}
 
-//	public void editPackage(String trackingNumber, String currentLocation, String priorityID, String shippingTime,
-//			String status, String receiver, String sender) {
-//		AdminLogic.editPackage(trackingNumber, currentLocation, priorityID, shippingTime, status, receiver, sender);
-//	}
-
-	public void editCurrentLocation(String trackingNumber, String currentLocation) {
+	public void editCurrentLocation(String trackingNumber, int currentLocation) {
 		AdminLogic.editCurrentLocation(trackingNumber, currentLocation);
 	}
 
-	public void editPriorityID(String trackingNumber, String priorityID) {
+	public void editPriorityID(String trackingNumber, int priorityID) {
 		AdminLogic.editPriorityID(trackingNumber, priorityID);
 	}
 
@@ -93,11 +83,6 @@ public class logicFacade {
 
 	public void editReceiver(String trackingNumber, String street, String city, String zipCode) {
 		AdminLogic.editReceiver(trackingNumber, street, city, zipCode);
-	}
-
-	public void printEditPackage(int count) {
-		Printer.printEditPackage(count);
-		;
 	}
 
 	public void addWarehouse() {
@@ -114,10 +99,6 @@ public class logicFacade {
 
 	public void newPackage(String login, String destinationLogin) {
 		UserLogic.newPackage(login, destinationLogin);
-	}
-
-	public void printSendPackage(int count) {
-		Printer.printSendPackage(count);
 	}
 
 	public void returnPackage(String trackingNumber) {
@@ -157,4 +138,5 @@ public class logicFacade {
 	public double distance(double lat1, double lon1, double lat2, double lon2) {
 		return CalculateDistance.distance(lat1, lon1, lat2, lon2, "M");
 	}
+	
 }

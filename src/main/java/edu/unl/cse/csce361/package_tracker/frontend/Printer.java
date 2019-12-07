@@ -21,6 +21,10 @@ public class Printer {
 		System.out.println("Enter your tracking number:");
 	}
 
+	public static void printAskInput() {
+		System.out.println("Please enter:");
+	}
+	
 	public static void printAdminMenu() {
 		System.out.println("Welcome, administration options are as follows:");
 		System.out.println("1. Show all package.");
@@ -43,16 +47,16 @@ public class Printer {
 		System.out.println("9. Back to main menu.");
 	}
 
-	public static void printSendPackage(int count) {
-		switch(count) {
-		case 1:
-			System.out.println("What is your user name?");
-			break;
-		case 2:
-			System.out.println("What is your destination?");
-			break;
-		}
-	}
+//	public static void printSendPackage(int count) {
+//		switch(count) {
+//		case 1:
+//			System.out.println("What is your user name?");
+//			break;
+//		case 2:
+//			System.out.println("What is your destination?");
+//			break;
+//		}
+//	}
 	
 	public static void printDestination() {
 		System.out.println("Enter your destination:");
@@ -82,6 +86,10 @@ public class Printer {
 	
 	public static void printAskZipCode() {
 		System.out.println("Enyer your Zip code:");
+	}
+	
+	public static void printAskRegister() {
+		System.out.println("You should register our system first.");
 	}
 
 //	public static void PrintChangeDestination(int count) {
@@ -122,31 +130,13 @@ public class Printer {
 //		}
 //	}
 	
-	public static void printEditPackage(int count) {
-		switch(count) {
-		case 1:
-			System.out.println("What is your tracking number?");
-			break;
-		case 2:
-			System.out.println("What is new current location?");
-			printWarehouse();
-			break;
-		case 3:
-			System.out.println("What is new priority ID?");
-			break;
-		case 4:
-			System.out.println("What is new shipping time?");
-			break;
-		case 5:
-			System.out.println("What is new status?");
-			break;
-		case 6:
-			System.out.println("What is new receiver?");
-			break;
-		case 7:
-			System.out.println("What is new sender?");
-			break;
-		}
+	public static void printEditPackage() {
+		System.out.println("Please select a data you would like to edit:");
+		System.out.println("1. Edit current location.");
+		System.out.println("2. Edit priority ID.");
+		System.out.println("3. Edit package status.");
+		System.out.println("4. Edit receiver.");
+		System.out.println("5. Back to administration menu.");
 	}
 
 	public static void printCheckPackage() {
