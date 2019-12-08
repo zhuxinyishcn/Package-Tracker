@@ -67,7 +67,7 @@ public class logicFacade {
     }
 
     public void editPriorityID (String trackingNumber, int priorityID) {
-        AdminLogic.editPriorityID(trackingNumber, priorityID);
+        AdminLogic.editPriorityID(trackingNumber);
     }
 
     public void editStatus (String trackingNumber, String status) {

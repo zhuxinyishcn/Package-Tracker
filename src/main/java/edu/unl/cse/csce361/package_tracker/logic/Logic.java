@@ -5,7 +5,7 @@ import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class Logic {
-//    private static final logicFacade logic = logicFacade.getInstance();
+    private static final logicFacade logic = logicFacade.getInstance();
 
     public static void editAddress (String userName, String street, String city, String zipCode) {
         if (userName.length() >= 10) {

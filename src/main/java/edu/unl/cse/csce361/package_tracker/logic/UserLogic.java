@@ -26,6 +26,7 @@ public class UserLogic {
     public static void checkPackageByTrackingNumber (String trackingNumber) {
 
         String info = null;// TODO: Using @trackingNumber find package info
+        info=BACKEND_FACADE.retrievePackages().get(BACKEND_FACADE.searchPackage(trackingNumber)).toString();
         Printer.printLogicPackageByTrackingNumber(info);
     }
 
@@ -55,6 +56,8 @@ public class UserLogic {
         // TODO: Set @trackingNumber to hold.
         // TODO: Get current location to @warehouseID.
         int warehouseID = 1;
+        BACKEND_FACADE.editPackageStatus(trackingNumber,"hold");
+        BACKEND_FACADE.getCurrentLocation(trackingNumber);
         Printer.printLogicHoldWarehouse(warehouseID);
     }
 

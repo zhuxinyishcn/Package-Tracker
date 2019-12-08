@@ -25,18 +25,17 @@ public class AdminLogic {
         }
     }
 
-    public static void editPriorityID(String trackingNumber, int priorityID) {
+    public static void editPriorityID(String trackingNumber) {
         if (trackingNumber.length() >= 40) {
             Printer.printErrInput("Tracking number", "40");
         } else {
-            if (priorityID <= 10 && priorityID >= 0) {
+//            if (priorityID <= 10 && priorityID >= 0) {
                 // TODO: Using @trackingNumber to set @priorityID
                 backend.editPiorityID(trackingNumber);
                 Printer.printLogicRequestSuccess("edit priority ID");
-            } else {
-                Printer.printErrInput("Priority ID", "10");
-
-            }
+//            } else {
+//                Printer.printErrInput("Priority ID", "10");
+//            }
         }
     }
 
@@ -46,6 +45,7 @@ public class AdminLogic {
         } else {
             if (status.length() <= 50) {
                 // Using @trackingNumber to set @status
+                backend.editPackageStatus(trackingNumber,status);
                 Printer.printLogicRequestSuccess("edit status");
             } else {
                 Printer.printErrInput("Status", "50");
@@ -85,6 +85,6 @@ public class AdminLogic {
     }
 
     public static void estimatePackageTime(String trackingNumber){
-        backend.estimatePackageTime(trackingNumber);
+//        backend.estimatePackageTime(trackingNumber);
     }
 }
