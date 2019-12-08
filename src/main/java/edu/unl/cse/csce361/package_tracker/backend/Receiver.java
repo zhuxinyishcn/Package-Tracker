@@ -21,7 +21,6 @@ public class Receiver {
     private Address address;
     @Column(name = "name", nullable = false, length = 100)
     private String name;
-
     @OneToOne(mappedBy = "receiver", fetch = FetchType.LAZY)
     private Package packageid;
 

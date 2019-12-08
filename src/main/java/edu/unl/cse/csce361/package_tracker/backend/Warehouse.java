@@ -35,13 +35,11 @@ public class Warehouse {
             transaction.commit();
         } catch (Throwable e) {
             session.getTransaction().rollback();
-            HibernateUtil.closeSession(session);
             throw e;
         }
     }
 
     public static List<Warehouse> retrieveWarehouse (Session session) {
-        final Transaction transaction = session.beginTransaction();
         return session.createQuery("from Warehouse").list();
     }
 
@@ -61,4 +59,7 @@ public class Warehouse {
         this.address = address;
     }
 
+    public int getWarehouseid () {
+        return warehouseid;
+    }
 }

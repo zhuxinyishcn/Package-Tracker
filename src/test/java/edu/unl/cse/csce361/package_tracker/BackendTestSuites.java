@@ -2,13 +2,18 @@ package edu.unl.cse.csce361.package_tracker;
 
 import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.backend.*;
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class BackendTestSuites {
@@ -75,12 +80,12 @@ public class BackendTestSuites {
 
     @Test
     public void TestDeletePackage () {
-        backendFacade.deletePakcageRecord("`drop `");
+        backendFacade.deletePakcageRecord("3fc3022b-eceb-4469-a324-3c807ed3356a");
     }
 
     @Test
     public void TestDeleteUser () {
-        backendFacade.deleteUser(1);
+        backendFacade.deleteUser(36);
     }
 
     @Test
@@ -125,8 +130,10 @@ public class BackendTestSuites {
 
     @Test
     public void TestReceiveAllData () {
+        long start = System.nanoTime();
         final Session session = HibernateUtil.createSession().openSession();
         List<Package> result = session.createQuery("from Package").list();
+        Printer.printLogicAllPackage(result);
         for (Package packages : (result)) {
             System.out.println(packages.getTrackingNumber());
         }
@@ -134,6 +141,7 @@ public class BackendTestSuites {
         for (Package packages : (sender.getPackageSet())) {
             System.out.println(sender.getUserName() + " " + packages.getTrackingNumber());
         }
+        System.out.println(System.nanoTime() - start + " nanosecond");
     }
 
 //    @Test
@@ -165,11 +173,53 @@ public class BackendTestSuites {
 
     @Test
     public void TestReturnWarehouse () {
-        final Session session = HibernateUtil.createSession().openSession();
-        List<Warehouse> result = session.createQuery("from Warehouse").list();
+        long start = System.nanoTime();
+        List<Warehouse> result = backendFacade.retrieveWarehouse();
         for (Warehouse wasrehouse : result) {
             System.out.println(wasrehouse.getAddress().getStreet());
         }
+        System.out.println((System.nanoTime() - start) / 10000000);
+        System.out.println((System.nanoTime() - start));
+    }
+
+    @Test
+    public void TestSetPriorityNumber () {
+        backendFacade.editPiorityID("3fc3022b-eceb-4469-a324-3c807ed3356a");
+    }
+
+    @Test
+    public void TestLoadAllTable () {
+        long start = System.nanoTime();
+        final Session session = HibernateUtil.createSession().openSession();
+        Map<String, Package> packageMap = new HashMap<>();
+        Map<String, Sender> senderMap = new HashMap<>();
+        ScrollableResults packageid = session.createQuery("from Package").scroll();
+        while (packageid.next()) {
+            Package packageInfo = (Package) packageid.get(0);
+            packageMap.put(packageInfo.getTrackingNumber(), packageInfo);
+            session.evict(packageInfo);
+        }
         session.close();
+        System.out.println((System.nanoTime() - start));
+    }
+
+    @Test
+    public void TestInsertPackageToSender () {
+        final Session session = HibernateUtil.createSession().openSession();
+        List<String> userNameList = session.createQuery("select u.userName from Sender u").list();
+        userNameList.forEach(System.out::println);
+    }
+
+    @Test
+    public void TestCheckUserStatus () {
+        long start = System.nanoTime();
+        System.out.println(backendFacade.searchUserStatus("uno23121312"));
+        System.out.println((System.nanoTime() - start));
+    }
+    @Test
+    public void TestUpgradeVIP () {
+        long start = System.nanoTime();
+        backendFacade.editSenderStatus("sxc258");
+        System.out.println((System.nanoTime() - start));
     }
 }

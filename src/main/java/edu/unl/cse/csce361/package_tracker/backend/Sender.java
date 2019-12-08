@@ -2,12 +2,16 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Store;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,7 +48,7 @@ public class Sender {
     public Sender () {
     }
 
-    public static void deleteUser (Session session,  int userId) {
+    public static void deleteUser (Session session, int userId) {
         final Transaction transaction = session.beginTransaction();
         try {
             Sender user = session.load(Sender.class, userId);
@@ -71,6 +75,44 @@ public class Sender {
         }
     }
 
+    public static void insertPackage (Session session, Sender sender, Package packageInfo) {
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Set<Package> packageSet = sender.getPackageSet();
+            packageSet.add(packageInfo);
+            sender.setPackageSet(packageSet);
+            session.update(sender);
+            transaction.commit();
+        } catch (Throwable e) {
+            session.getTransaction().rollback();
+            throw e;
+        }
+    }
+
+    public static String searchSenderStatus (Session session, String userName) {
+        try {
+            Query query =
+                    session.createSQLQuery("select s.status from Sender s  where s.username = :ids").
+                            setParameter("ids", userName);
+            return (String) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    public static void setSenderStatus (Session session, String userName) {
+        final Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        try {
+            CriteriaUpdate<Sender> update = builder.createCriteriaUpdate(Sender.class);
+            Root e = update.from(Sender.class);
+            update.set("status", "VIP");
+            update.where(builder.equal(e.get("userName"), userName));
+            session.createQuery(update).executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public String getStatus () {
         return status;
     }
@@ -111,14 +153,5 @@ public class Sender {
         this.packageSet = packageSet;
     }
 
-    @Override
-    public String toString () {
-        return "Sender{" +
-                "id=" + id +
-                ", address=" + address.getCity() + " " + address.getStreet() + " " + address.getZipCode() +
-                ", name='" + name + '\'' +
-                ", userName='" + userName + '\'' +
-                ", packageSet=" + packageSet +
-                '}';
-    }
+
 }

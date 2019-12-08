@@ -49,9 +49,9 @@ public class Package {
     @Column(name = "estimateTime", nullable = false, length = 100, updatable = false)
     private String estimateTime;
 
-
     public Package () {
     }
+
 
     public Package (Sender sender, Receiver receiver, int currentLocation, double distance) {
         final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -73,7 +73,7 @@ public class Package {
         try {
             Package packageInfo = new Package(sender, receiver, currentLocation, distance);
             receiver.setPackageid(packageInfo);
-            Set<Package> packages = new HashSet<>();
+            Set<Package> packages = sender.getPackageSet();
             packages.add(packageInfo);
             sender.setPackageSet(packages);
             session.persist(sender);
@@ -86,33 +86,11 @@ public class Package {
     }
 
     public static void deletePakcage (Session session, String UUID) {
-        final Transaction transaction = session.beginTransaction();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        try {
-            CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
-            Root e = update.from(Package.class);
-            update.set("status", "Canceled");
-            update.where(builder.equal(e.get("trackingNumber"), UUID));
-            session.createQuery(update).executeUpdate();
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        setPackage(session, UUID, "Canceled");
     }
 
     public static void setPackage (Session session, String UUID) {
-        final Transaction transaction = session.beginTransaction();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        try {
-            CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
-            Root e = update.from(Package.class);
-            update.set("status", "Arrived");
-            update.where(builder.equal(e.get("trackingNumber"), UUID));
-            session.createQuery(update).executeUpdate();
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        setPackage(session, UUID, "Arrived");
     }
 
     public static void setPackage (Session session, String UUID, String status) {
@@ -131,8 +109,7 @@ public class Package {
     }
 
     public static List<Package> retrievePackages (Session session) {
-        List<Package> result = session.createQuery("from Package").list();
-        return result;
+        return (List<Package>) session.createQuery("from Package").list();
     }
 
     public static int searchTrackingNumber (Session session, String trackingNumber) {
@@ -164,7 +141,7 @@ public class Package {
         }
     }
 
-    public static void returnPackage (Session session,  String trackingNumber) {
+    public static void returnPackage (Session session, String trackingNumber) {
         final Transaction transaction = session.beginTransaction();
         try {
             int packageid = searchTrackingNumber(session, trackingNumber);
@@ -176,6 +153,25 @@ public class Package {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setPriority (Session session, String UUID) {
+        final Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        try {
+            CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
+            Root e = update.from(Package.class);
+            update.set("priorityid", 1);
+            update.where(builder.equal(e.get("trackingNumber"), UUID));
+            session.createQuery(update).executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getId () {
+        return id;
     }
 
     public int getCurrentLocation () {

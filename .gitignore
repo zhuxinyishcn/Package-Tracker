@@ -77,7 +77,6 @@ nb-configuration.xml
 *.xcodeproj/
 xcuserdata/
 .build/
-
 # Maven
 target/
 
@@ -89,4 +88,3 @@ tmp/
 *.swp
 *.gcno
 
-*edu.unl.cse.csce361.package_tracker.backend.Address

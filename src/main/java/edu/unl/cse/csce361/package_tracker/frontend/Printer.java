@@ -202,9 +202,9 @@ public class Printer {
 				"Current Location", "Status"));
 		int i = 0;
 		for (Package p : result) {
-			System.out.printf("Tracking Number:%-20s\nSender:%-10s\n Receiver:%-10s\n %-20s %-10s\n\n",
+			System.out.printf("Tracking Number:%-20s\nSender:%-10s\nReceiver:%-10s\n %-20s %-10s\n\n",
 					p.getTrackingNumber(), p.getSender().getName(), p.getReceiver().getName(),
-					ShippingLogic.warehouse.get(i), p.getStatus());
+					p.getCurrentLocation(), p.getStatus());
 			i++;
 		}
 	}

@@ -68,7 +68,7 @@ public class AdminLogic {
 
 	public static void confirmPackage(String trackingNumber) {
 		// TODO: using @trackingNumber to confirm package
-		BackendFacade.getBackendFacade().setPackageArrived(trackingNumber);
+//		BackendFacade.getBackendFacade().setPackageArrived(trackingNumber);
 		Printer.printLogicRequestSuccess("confirm package received");
 	}
 

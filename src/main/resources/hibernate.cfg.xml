@@ -18,7 +18,7 @@
         </property>
         <property name="hibernate.flushMode">commit</property>
         <!--drop table if exist-->
-        <!--        <property name="hibernate.hbm2ddl.auto">create</property>-->
+<!--                <property name="hibernate.hbm2ddl.auto">create</property>-->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
