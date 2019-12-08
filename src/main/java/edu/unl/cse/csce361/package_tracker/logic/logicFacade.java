@@ -61,14 +61,6 @@ public class logicFacade {
         AdminLogic.getAllPackage();
     }
 
-    public void register (String userName, String realName, String street, String city, String zipCode) {
-        Sender sender =Logic.register(userName, realName, street, city, zipCode);
-        BACKEND_FACADE.addUser(sender);
-    }
-
-    public String checkUser (String userName) {
-        return UserLogic.checkUser(userName);
-    }
 
     public void editCurrentLocation (String trackingNumber, int currentLocation) {
         AdminLogic.editCurrentLocation(trackingNumber, currentLocation);
@@ -86,22 +78,11 @@ public class logicFacade {
         AdminLogic.editReceiver(trackingNumber, street, city, zipCode);
     }
 
-    public void confirmArrived (String trackingNumber) {
-        BACKEND_FACADE.editPackageArrived(trackingNumber);
-    }
-
-    public List<Warehouse> getWarehouse () {
-        return BACKEND_FACADE.retrieveWarehouse();
-    }
 
     public void newPackage (String login, String street, String city, String zipCode) {
         UserLogic.newPackage(login, street, city, zipCode);
     }
 
-    public void returnPackage (String trackingNumber) {
-        BACKEND_FACADE.editPackageReceiver(trackingNumber);
-        UserLogic.returnPackage(trackingNumber);
-    }
 
     public void printCheckPackage () {
         Printer.printCheckPackage();
@@ -111,14 +92,6 @@ public class logicFacade {
         Printer.printAskTracking();
     }
 
-    public void becomeVIP (String userLogin) {
-        UserLogic.becomeVIP(userLogin);
-    }
-
-    public void cancelPackage (String trackingNumber) {
-        BACKEND_FACADE.deletePakcageRecord(trackingNumber);
-        UserLogic.cancelPackage(trackingNumber);
-    }
 
     public void holdAtWarehouse (String trackingNumber) {
         UserLogic.holdAtWarehouse(trackingNumber);
@@ -136,6 +109,10 @@ public class logicFacade {
         return CalculateDistance.distance(lat1, lon1, lat2, lon2, "M");
     }
 
+    public List<Warehouse> getWarehouse () {
+        return BACKEND_FACADE.retrieveWarehouse();
+    }
+
     public int findClosestWarehouse (double lat, double lng) {
         return CalculateDistance.findClosestWarehouse(lat, lng);
     }
@@ -149,10 +126,34 @@ public class logicFacade {
     }
 
     public String checkUserStatus (String userName) {
-        return BACKEND_FACADE.searchUserStatus(userName);
+        return UserLogic.checkUser(userName);
     }
 
-    public void upgradeVIP (String userName) {
-        BACKEND_FACADE.editSenderStatus(userName);
+    public void becomeVIP (String userLogin) {
+        UserLogic.becomeVIP(userLogin);
+
+    }
+
+    public String checkUser (String userName) {
+        return UserLogic.checkUser(userName);
+    }
+
+    public void register (String userName, String realName, String street, String city, String zipCode) {
+        Sender sender = Logic.register(userName, realName, street, city, zipCode);
+        BACKEND_FACADE.addUser(sender);
+    }
+
+    public void confirmArrived (String trackingNumber) {
+        BACKEND_FACADE.editPackageArrived(trackingNumber);
+    }
+
+    public void cancelPackage (String trackingNumber) {
+        BACKEND_FACADE.deletePakcageRecord(trackingNumber);
+        UserLogic.cancelPackage(trackingNumber);
+    }
+
+    public void returnPackage (String trackingNumber) {
+        BACKEND_FACADE.editPackageReceiver(trackingNumber);
+        UserLogic.returnPackage(trackingNumber);
     }
 }

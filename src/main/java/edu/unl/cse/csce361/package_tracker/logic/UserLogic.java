@@ -1,25 +1,25 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 import java.util.ArrayList;
 
 public class UserLogic {
+    private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
 
-    private static logicFacade logic = logicFacade.getInstance();
 
     public static String checkUser (String userName) {
-        String userType = logic.checkUserStatus(userName);
-        return userType;
+        return BACKEND_FACADE.searchUserStatus(userName);
     }
 
     public static void becomeVIP (String userLogin) {
-        logic.upgradeVIP(userLogin);
         Printer.printLogicRequestSuccess("upgrade to VIP");
+        BACKEND_FACADE.editSenderStatus(userLogin);
     }
 
     public static void returnPackage (String trackingNumber) {
-        // TODO: Set desitation to sender address, Set Geocode.
+        BACKEND_FACADE.editPackageReceiver(trackingNumber);
         Printer.printLogicRequestSuccess("return package");
     }
 
@@ -37,10 +37,11 @@ public class UserLogic {
     }
 
     public static void newPackage (String userName, String street, String city, String zipCode) {
-        GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
-        int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(geocode.getLat()),
-                Double.parseDouble(geocode.getLng()));
+//        GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
+////        int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(geocode.getLat()),
+////                Double.parseDouble(geocode.getLng()));
         // TODO: @login and @desinationLogin to create new package.
+        //need
         String trackingNumber = null;
         Printer.printLogicNewPackage(trackingNumber);
     }
