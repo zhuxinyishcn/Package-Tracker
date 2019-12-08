@@ -9,7 +9,7 @@ public class UserLogic {
     private static logicFacade logic = logicFacade.getInstance();
 
     public static String checkUser (String userName) {
-        String userType = logic.checkUser(userName);
+        String userType = logic.checkUserStatus(userName);
         return userType;
     }
 

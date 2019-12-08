@@ -1,6 +1,7 @@
 # Project-specific
 # SQL authentication
 *.info
+hibernate.cfg.xml
 *.cfg.xml
 
 # Mac file finder metadata

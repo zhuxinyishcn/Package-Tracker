@@ -40,7 +40,7 @@ public class BackendFacade extends Observable {
     }
 
 
-//        public void editPackageAllInfo (String trackingNumber, String currentLocation,
+    //        public void editPackageAllInfo (String trackingNumber, String currentLocation,
 //                                    String priorityID, String shippingTime,
 //                                    String status, String receiver, String sender) {
 //        Package.editPackageAllInfo(trackingNumber, currentLocation,
@@ -81,9 +81,8 @@ public class BackendFacade extends Observable {
         return Package.searchTrackingNumber(session, trackingNumber);
     }
 
-    public void addUser (String userName, String realName, String street,
-                         String city, String zipCode) {
-        Sender.insertSender(SESSION, userName, realName, street, city, zipCode);
+    public void addUser (Sender sender) {
+        Sender.insertSender(SESSION, sender);
     }
 
     public void addReceiver (String realName, String street,

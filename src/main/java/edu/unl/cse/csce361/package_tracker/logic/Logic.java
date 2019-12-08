@@ -1,7 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.Address;
-import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class Logic {
@@ -25,10 +25,12 @@ public class Logic {
         }
     }
 
-    public static void register (String userName, String realName, String street, String city, String zipCode,
-                                 BackendFacade backendFacade) {
+    public static Sender register (String userName, String realName, String street,
+                                   String city, String zipCode) {
         // Using @login to search is there a login exist
         boolean legal = true;
+        Double lat = null;
+        Double lng = null;
         if (userName.length() >= 10 || userName.isEmpty()) {
             Printer.printErrInput("User Name", "10");
             legal = false;
@@ -51,11 +53,13 @@ public class Logic {
         }
         if (legal) {
             GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
-            String lat = geocode.getLat();
-            String lng = geocode.getLng();
-            backendFacade.addUser(userName, realName, street, city, zipCode);
+            lat = Double.parseDouble(geocode.getLat());
+            lng = Double.parseDouble(geocode.getLng());
             Printer.printLogicRequestSuccess("sign up an account, your user name is " + userName);
         }
+        Address address = new Address(street,
+                city, zipCode, lat, lng);
+        return new Sender(address, realName, userName);
     }
 
     public static boolean isNumber (String s) {

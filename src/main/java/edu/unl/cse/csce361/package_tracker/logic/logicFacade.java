@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.backend.Warehouse;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
@@ -61,7 +62,8 @@ public class logicFacade {
     }
 
     public void register (String userName, String realName, String street, String city, String zipCode) {
-        Logic.register(userName, realName, street, city, zipCode, BACKEND_FACADE);
+        Sender sender =Logic.register(userName, realName, street, city, zipCode);
+        BACKEND_FACADE.addUser(sender);
     }
 
     public String checkUser (String userName) {

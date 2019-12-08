@@ -60,13 +60,9 @@ public class Sender {
         }
     }
 
-    public static void insertSender (Session session, String userName, String realName,
-                                     String street,
-                                     String city, String zipCode) {
+    public static void insertSender (Session session, Sender sender) {
         final Transaction transaction = session.beginTransaction();
         try {
-            Address address = new Address(street, city, zipCode);
-            Sender sender = new Sender(address, realName, userName);
             session.persist(sender);
             transaction.commit();
         } catch (Throwable e) {

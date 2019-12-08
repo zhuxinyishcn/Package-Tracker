@@ -11,7 +11,6 @@ import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -146,6 +145,7 @@ public class Package {
         try {
             int packageid = searchTrackingNumber(session, trackingNumber);
             Package packageInfo = session.get(Package.class, packageid);
+            packageInfo.getReceiver().setName(packageInfo.getSender().getName());
             packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
             packageInfo.setStatus("Returned");
             session.update(packageInfo);
