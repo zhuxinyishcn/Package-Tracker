@@ -30,8 +30,8 @@ public class BackendFacade extends Observable {
         SESSION.close();
     }
 
-    public void editPiorityID (String UUID) {
-        Package.setPriority(SESSION, UUID);
+    public void editPiorityID (String trackingNumber) {
+        Package.setPriority(SESSION, trackingNumber);
     }
 
     public void changeDestination (String trackingNumber, int currentLocation) {
@@ -77,8 +77,8 @@ public class BackendFacade extends Observable {
     }
 
 
-    public int searchPackage (Session session, String trackingNumber) {
-        return Package.searchTrackingNumber(session, trackingNumber);
+    public int searchPackage ( String trackingNumber) {
+        return Package.searchTrackingNumber(SESSION, trackingNumber);
     }
 
     public void addUser (Sender sender) {
@@ -108,5 +108,9 @@ public class BackendFacade extends Observable {
 
     public void editSenderStatus (String userName) {
         Sender.setSenderStatus(SESSION, userName);
+    }
+
+    public void setPackageArrived(String trackingNumber) {
+        editPackageArrived(trackingNumber);
     }
 }
