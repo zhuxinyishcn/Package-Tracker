@@ -32,9 +32,10 @@ public class UserInterFace {
                     // **USER**
                     Printer.printAskUserName();
                     userName = scnr.nextLine();
-                    if (logic.checkUser(userName) == "vip") {
+                    String status = logic.checkUser(userName);
+                    if (status.equals("VIP")) {
                         Menu.vipMenu();
-                    } else if (logic.checkUser(userName) == "user") {
+                    } else if (status.equals("Active")) {
                         Menu.userMenu();
                     } else {
                         Printer.printAskRegister();

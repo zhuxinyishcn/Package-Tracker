@@ -223,10 +223,4 @@ public class BackendTestSuites {
         System.out.println((System.nanoTime() - start));
     }
 
-    @Test
-    public void TestUpgradeVIP () {
-        long start = System.nanoTime();
-        backendFacade.editSenderStatus("sxc258");
-        System.out.println((System.nanoTime() - start));
-    }
 }
