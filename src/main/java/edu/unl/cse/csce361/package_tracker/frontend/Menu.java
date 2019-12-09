@@ -1,9 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 public class Menu {
@@ -60,6 +58,9 @@ public class Menu {
 				editPackage();
 				break;
 			case "5":
+				//TODO: Fuzzy search
+				break;
+			case "6":
 				programOn = false;
 				break;
 			default:
