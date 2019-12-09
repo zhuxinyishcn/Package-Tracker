@@ -6,7 +6,6 @@ import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
@@ -89,15 +88,14 @@ public class BackendTestSuites {
     }
 
     @Test
-    public void TestSearchSenderName () throws InterruptedException {
+    public void TestSearchTranckingNumber () throws InterruptedException {
         final Session session = HibernateUtil.createSession().openSession();
         FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
         fullTextSession.createIndexer().startAndWait();
         Transaction tx = fullTextSession.beginTransaction();
-
         QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
                 .buildQueryBuilder()
-                .forEntity(Sender.class)
+                .forEntity(Package.class)
                 .get();
         try {
             org.apache.lucene.search.Query query = queryBuilder.phrase().onField("name")
@@ -157,8 +155,8 @@ public class BackendTestSuites {
         final Session session = HibernateUtil.createSession().openSession();
         final Transaction transaction = session.beginTransaction();
         try {
-            int packageid = backendFacade.searchPackage(session, "e560889c-ca9b-4bc2-a9c1-d4f3f3d2406d");
-            Package packageInfo = session.get(Package.class, packageid);
+            Package packageInfo = backendFacade.searchPackage("f5f5837d-eb37-4db6-af22-3a2c13b7a364");
+            System.out.println(packageInfo.getId());
             packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
             session.update(packageInfo);
             transaction.commit();
@@ -216,6 +214,7 @@ public class BackendTestSuites {
         System.out.println(backendFacade.searchUserStatus("uno"));
         System.out.println((System.nanoTime() - start));
     }
+
     @Test
     public void TestUpgradeVIP () {
         long start = System.nanoTime();
@@ -223,4 +222,11 @@ public class BackendTestSuites {
         System.out.println((System.nanoTime() - start));
     }
 
+    @Test
+    public void TestSearchSender () {
+        long start = System.nanoTime();
+        Address address = new Address("1213400 R St", "test", "200102");
+        backendFacade.editSenderAddress("uno",address);
+        System.out.println((System.nanoTime() - start));
+    }
 }

@@ -39,14 +39,11 @@ public class BackendFacade extends Observable {
         //TODO: may need to change latter for the next sprint
     }
 
+    public void addReceiver (String realName, String street,
+                             String city, String zipCode) {
+        Receiver.insertReceiver(SESSION, realName, street, city, zipCode);
+    }
 
-    //        public void editPackageAllInfo (String trackingNumber, String currentLocation,
-//                                    String priorityID, String shippingTime,
-//                                    String status, String receiver, String sender) {
-//        Package.editPackageAllInfo(trackingNumber, currentLocation,
-//                priorityID, shippingTime,
-//                status, receiver, sender);
-//    }
     public void addPackageRecord (Sender sender, Receiver receiver,
                                   int currentLocation, double distance) {
         Package.insertPackage(SESSION, sender, receiver, currentLocation, distance);
@@ -77,18 +74,14 @@ public class BackendFacade extends Observable {
     }
 
 
-    public int searchPackage (Session session, String trackingNumber) {
-        return Package.searchTrackingNumber(session, trackingNumber);
+    public Package searchPackage (String trackingNumber) {
+        return Package.searchTrackingNumber(SESSION, trackingNumber);
     }
 
     public void addUser (Sender sender) {
         Sender.insertSender(SESSION, sender);
     }
 
-    public void addReceiver (String realName, String street,
-                             String city, String zipCode) {
-        Receiver.insertReceiver(SESSION, realName, street, city, zipCode);
-    }
 
     public void editPackageReceiver (String trackingNumber) {
         Package.returnPackage(SESSION, trackingNumber);
@@ -108,5 +101,13 @@ public class BackendFacade extends Observable {
 
     public void editSenderStatus (String userName) {
         Sender.setSenderStatus(SESSION, userName);
+    }
+
+    public Sender searchSender (String userName) {
+        return Sender.searchSender(SESSION, userName);
+    }
+
+    public void editSenderAddress (String userName, Address address) {
+        Sender.updateAddress(SESSION, userName, address);
     }
 }

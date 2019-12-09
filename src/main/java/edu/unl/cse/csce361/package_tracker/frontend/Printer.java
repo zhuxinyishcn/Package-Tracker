@@ -3,8 +3,9 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class Printer {
     private static logicFacade logic = logicFacade.getInstance();
@@ -135,16 +136,14 @@ public class Printer {
                 + destitationLogin);
     }
 
-    public static void printLogicPackageByTrackingNumber (String info) {
-        System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender", "Receiver",
-                "Current Location", "Status"));
-        System.out.println(info);
+    public static void printLogicPackageByTrackingNumber (Package info) {
+        printPacakge(info);
     }
 
-    public static void printLogicPackageByUserName (ArrayList<String> result) {
-        System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender", "Receiver",
-                "Current Location", "Status"));
-        System.out.println(result.toString());
+    public static void printLogicPackageByUserName (Set<Package> result) {
+        for (Package p : result) {
+            printPacakge(p);
+        }
     }
 
     public static void printLogicNewPackage (String trackingNumber) {
@@ -161,8 +160,8 @@ public class Printer {
         System.out.println(logic.getWarehouse().get(holdWarehouseID - 1).toString());
     }
 
-    public static void printLogicEstimateTime (int timeMinutes) {
-        System.out.println("Your estimate deliver time is in " + timeMinutes + " minutes.");
+    public static void printLogicEstimateTime (LocalDateTime timeMinutes) {
+        System.out.println("Your estimate deliver time is in " + timeMinutes.getDayOfWeek() + "  " + timeMinutes);
     }
 
     public static void printLogicArriveNotify (String trackingNumber) {

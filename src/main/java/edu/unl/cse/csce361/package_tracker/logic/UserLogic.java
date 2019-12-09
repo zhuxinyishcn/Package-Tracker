@@ -1,9 +1,13 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.Package;
+import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 public class UserLogic {
     private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
@@ -24,22 +28,20 @@ public class UserLogic {
     }
 
     public static void checkPackageByTrackingNumber (String trackingNumber) {
-
-        String info = null;// TODO: Using @trackingNumber find package info
-        Printer.printLogicPackageByTrackingNumber(info);
+        Package packageInfo = BACKEND_FACADE.searchPackage(trackingNumber);
+        Printer.printLogicPackageByTrackingNumber(packageInfo);
     }
 
     public static void checkPackageByUserName (String login) {
-        // TODO: using @login who is a receiver to find package info which is in
-        // transit
-        ArrayList<String> result = new ArrayList<String>();
-        Printer.printLogicPackageByUserName(result);
+        Sender sender = BACKEND_FACADE.searchSender(login);
+        Set<Package> packages = sender.getPackageSet();
+        Printer.printLogicPackageByUserName(packages);
     }
 
     public static void newPackage (String userName, String street, String city, String zipCode) {
-//        GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
-////        int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(geocode.getLat()),
-////                Double.parseDouble(geocode.getLng()));
+        GoogleGeocode geocode = GoogleGeocode.getLatLng(street, city, zipCode);
+        int desitationWarehouse = CalculateDistance.findClosestWarehouse(Double.parseDouble(geocode.getLat()),
+                Double.parseDouble(geocode.getLng()));
         // TODO: @login and @desinationLogin to create new package.
         //need
         String trackingNumber = null;
@@ -47,7 +49,7 @@ public class UserLogic {
     }
 
     public static void cancelPackage (String trackingNumber) { // Without return services
-        // TODO: Remove package
+        BACKEND_FACADE.deletePakcageRecord(trackingNumber);
         Printer.printLogicCencelPackage(trackingNumber);
     }
 
@@ -59,13 +61,10 @@ public class UserLogic {
     }
 
     public static void estimatePackage (String trackingNumber) {
-        int eachLocationTime = 30; // Each stop 30 minutes
-        int current = 0;
-        int destination = 0;
-        // TODO: Using @trackingNumber to get @current @destination
-        int estimateMinutes = Math.abs(current - destination) * eachLocationTime + 30;// From last warehouse to final
-        // location.
-        Printer.printLogicEstimateTime(estimateMinutes);
+        String time = BACKEND_FACADE.searchPackage(trackingNumber).getEstimateTime();
+        final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.from(date.parse(time));
+        Printer.printLogicEstimateTime(dateTime);
     }
 
     public static void arriveNotify (String trackingNumber) {
@@ -74,8 +73,7 @@ public class UserLogic {
     }
 
     public static void confirmReceive (String trackingNumber) {
-        // TODO: Set status as received.
-        // logic.returnPackage(trackingNumber);
+        BACKEND_FACADE.editPackageArrived(trackingNumber);
         Printer.printLogicRequestSuccess("confirm package" + trackingNumber + "received");
     }
 }

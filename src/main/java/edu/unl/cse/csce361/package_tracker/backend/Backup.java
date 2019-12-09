@@ -88,7 +88,7 @@ public class Backup {
     }
 
     public static void main (String[] args) throws NoSuchAlgorithmException {
-//        initialDataBase();
+        initialDataBase();
         initialWarehous();
     }
 }

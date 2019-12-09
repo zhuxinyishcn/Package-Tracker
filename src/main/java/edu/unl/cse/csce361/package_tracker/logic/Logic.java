@@ -1,11 +1,13 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.Address;
+import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class Logic {
     private static final logicFacade logic = logicFacade.getInstance();
+    private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
 
     public static void editAddress (String userName, String street, String city, String zipCode) {
         if (userName.length() >= 10) {
@@ -17,7 +19,7 @@ public class Logic {
                 String lng = geocode.getLng();
                 Address address = new Address(street, city, zipCode, Double.parseDouble(lat),
                         Double.parseDouble(lng));
-                // TODO: Using @userName who is a sender to change street to @address.
+                BACKEND_FACADE.editSenderAddress(userName, address);
                 Printer.printLogicRequestSuccess("edit address");
             } else {
                 Printer.printLogicErrAddress();
@@ -25,12 +27,12 @@ public class Logic {
         }
     }
 
-    public static Sender register (String userName, String realName, String street,
-                                   String city, String zipCode) {
+    public static void register (String userName, String realName, String street,
+                                 String city, String zipCode) {
         // Using @login to search is there a login exist
         boolean legal = true;
-        Double lat = null;
-        Double lng = null;
+        double lat = 0;
+        double lng = 0;
         if (userName.length() >= 10 || userName.isEmpty()) {
             Printer.printErrInput("User Name", "10");
             legal = false;
@@ -59,7 +61,8 @@ public class Logic {
         }
         Address address = new Address(street,
                 city, zipCode, lat, lng);
-        return new Sender(address, realName, userName);
+        Sender sender = new Sender(address, realName, userName);
+        BACKEND_FACADE.addUser(sender);
     }
 
     public static boolean isNumber (String s) {

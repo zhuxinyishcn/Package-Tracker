@@ -95,6 +95,7 @@ public class Sender {
             return null;
         }
     }
+
     public static void setSenderStatus (Session session, String userName) {
         final Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -109,6 +110,27 @@ public class Sender {
             e.printStackTrace();
         }
     }
+
+    public static Sender searchSender (Session session, String userName) {
+        Query query =
+                session.createSQLQuery("select s.SenderID from Sender s  where s.username = :ids").
+                        setParameter("ids", userName);
+        int senderid = (int) query.getSingleResult();
+        return session.get(Sender.class, senderid);
+    }
+
+    public static void updateAddress (Session session, String userName, Address address) {
+        final Transaction transaction = session.beginTransaction();
+        try {
+            Sender sender = searchSender(session, userName);
+            sender.setAddress(address);
+            session.update(sender);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public String getStatus () {
         return status;
     }

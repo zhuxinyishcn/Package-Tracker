@@ -111,13 +111,13 @@ public class Package {
         return (List<Package>) session.createQuery("from Package").list();
     }
 
-    public static int searchTrackingNumber (Session session, String trackingNumber) {
+    public static Package searchTrackingNumber (Session session, String trackingNumber) {
 
         Query query =
                 session.createSQLQuery("SELECT p.PackageID FROM Packages p WHERE p.trackingNumber like :ids").
                         setParameter("ids", trackingNumber);
-        int packageID = (int) query.getSingleResult();
-        return packageID;
+        int packageid = (int) query.getSingleResult();
+        return session.get(Package.class, packageid);
     }
 
     public static void editPackageAllInfo (Session session, Transaction transaction, String trackingNumber,
@@ -125,8 +125,7 @@ public class Package {
                                            String priorityID, String shippingTime,
                                            String status, String receiver, String sender) {
         try {
-            int packageid = searchTrackingNumber(session, trackingNumber);
-            Package packageInfo = session.get(Package.class, packageid);
+            Package packageInfo = searchTrackingNumber(session, trackingNumber);
             packageInfo.setCurrentLocation(Integer.parseInt(currentLocation));
             packageInfo.setPriorityid(Integer.parseInt(priorityID));
             packageInfo.setStatus(status);
@@ -143,8 +142,7 @@ public class Package {
     public static void returnPackage (Session session, String trackingNumber) {
         final Transaction transaction = session.beginTransaction();
         try {
-            int packageid = searchTrackingNumber(session, trackingNumber);
-            Package packageInfo = session.get(Package.class, packageid);
+            Package packageInfo = searchTrackingNumber(session, trackingNumber);
             packageInfo.getReceiver().setName(packageInfo.getSender().getName());
             packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
             packageInfo.setStatus("Returned");
