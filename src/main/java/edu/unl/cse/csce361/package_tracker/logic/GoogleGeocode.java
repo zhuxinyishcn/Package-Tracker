@@ -89,13 +89,7 @@ public class GoogleGeocode {
 			} finally {
 				response.close();
 			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
-		} catch (ParseException e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
-		} catch (IOException e) {
+		} catch (ParseException | IOException e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
 		} finally {

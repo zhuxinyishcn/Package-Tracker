@@ -1,0 +1,1079 @@
+2019-12-06 22:44:39  [ main:0 ] - [ DEBUG ]  Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2019-12-06 22:44:39  [ main:15 ] - [ DEBUG ]  Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+2019-12-06 22:44:39  [ main:18 ] - [ DEBUG ]  Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+2019-12-06 22:44:39  [ main:26 ] - [ DEBUG ]  Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+2019-12-06 22:44:39  [ main:49 ] - [ DEBUG ]  Adding Integrator [org.hibernate.search.hcore.impl.HibernateSearchIntegrator].
+2019-12-06 22:44:39  [ main:195 ] - [ INFO ]  HHH000412: Hibernate Core {5.4.9.Final}
+2019-12-06 22:44:39  [ main:198 ] - [ DEBUG ]  HHH000206: hibernate.properties not found
+2019-12-06 22:44:39  [ main:456 ] - [ DEBUG ]  cfg.xml document did not define namespaces; wrapping in custom event reader to introduce namespace information
+2019-12-06 22:44:39  [ main:907 ] - [ DEBUG ]  Building session factory using internal StandardServiceRegistryBuilder
+2019-12-06 22:44:39  [ main:920 ] - [ DEBUG ]  Overriding existing service binding [org.hibernate.secure.spi.JaccService]
+2019-12-06 22:44:39  [ main:920 ] - [ DEBUG ]  Overriding existing service binding [org.hibernate.search.hcore.impl.SearchFactoryReference]
+2019-12-06 22:44:39  [ main:920 ] - [ DEBUG ]  Building session factory using provided StandardServiceRegistry
+2019-12-06 22:44:39  [ main:940 ] - [ DEBUG ]  Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+2019-12-06 22:44:39  [ main:941 ] - [ DEBUG ]  Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
+2019-12-06 22:44:39  [ main:986 ] - [ INFO ]  HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-12-06 22:44:40  [ main:1261 ] - [ DEBUG ]  Adding type registration boolean -> org.hibernate.type.BooleanType@2a7f1f10
+2019-12-06 22:44:40  [ main:1261 ] - [ DEBUG ]  Adding type registration boolean -> org.hibernate.type.BooleanType@2a7f1f10
+2019-12-06 22:44:40  [ main:1262 ] - [ DEBUG ]  Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@2a7f1f10
+2019-12-06 22:44:40  [ main:1262 ] - [ DEBUG ]  Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@740cae06
+2019-12-06 22:44:40  [ main:1263 ] - [ DEBUG ]  Adding type registration true_false -> org.hibernate.type.TrueFalseType@644baf4a
+2019-12-06 22:44:40  [ main:1263 ] - [ DEBUG ]  Adding type registration yes_no -> org.hibernate.type.YesNoType@54c5a2ff
+2019-12-06 22:44:40  [ main:1264 ] - [ DEBUG ]  Adding type registration byte -> org.hibernate.type.ByteType@6e6f2380
+2019-12-06 22:44:40  [ main:1264 ] - [ DEBUG ]  Adding type registration byte -> org.hibernate.type.ByteType@6e6f2380
+2019-12-06 22:44:40  [ main:1264 ] - [ DEBUG ]  Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@6e6f2380
+2019-12-06 22:44:40  [ main:1265 ] - [ DEBUG ]  Adding type registration character -> org.hibernate.type.CharacterType@1530c739
+2019-12-06 22:44:40  [ main:1265 ] - [ DEBUG ]  Adding type registration char -> org.hibernate.type.CharacterType@1530c739
+2019-12-06 22:44:40  [ main:1265 ] - [ DEBUG ]  Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@1530c739
+2019-12-06 22:44:40  [ main:1267 ] - [ DEBUG ]  Adding type registration short -> org.hibernate.type.ShortType@15bb5034
+2019-12-06 22:44:40  [ main:1267 ] - [ DEBUG ]  Adding type registration short -> org.hibernate.type.ShortType@15bb5034
+2019-12-06 22:44:40  [ main:1267 ] - [ DEBUG ]  Adding type registration java.lang.Short -> org.hibernate.type.ShortType@15bb5034
+2019-12-06 22:44:40  [ main:1268 ] - [ DEBUG ]  Adding type registration integer -> org.hibernate.type.IntegerType@2cf3d63b
+2019-12-06 22:44:40  [ main:1268 ] - [ DEBUG ]  Adding type registration int -> org.hibernate.type.IntegerType@2cf3d63b
+2019-12-06 22:44:40  [ main:1268 ] - [ DEBUG ]  Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@2cf3d63b
+2019-12-06 22:44:40  [ main:1270 ] - [ DEBUG ]  Adding type registration long -> org.hibernate.type.LongType@74ea2410
+2019-12-06 22:44:40  [ main:1270 ] - [ DEBUG ]  Adding type registration long -> org.hibernate.type.LongType@74ea2410
+2019-12-06 22:44:40  [ main:1270 ] - [ DEBUG ]  Adding type registration java.lang.Long -> org.hibernate.type.LongType@74ea2410
+2019-12-06 22:44:40  [ main:1271 ] - [ DEBUG ]  Adding type registration float -> org.hibernate.type.FloatType@248e319b
+2019-12-06 22:44:40  [ main:1271 ] - [ DEBUG ]  Adding type registration float -> org.hibernate.type.FloatType@248e319b
+2019-12-06 22:44:40  [ main:1271 ] - [ DEBUG ]  Adding type registration java.lang.Float -> org.hibernate.type.FloatType@248e319b
+2019-12-06 22:44:40  [ main:1273 ] - [ DEBUG ]  Adding type registration double -> org.hibernate.type.DoubleType@543295b0
+2019-12-06 22:44:40  [ main:1273 ] - [ DEBUG ]  Adding type registration double -> org.hibernate.type.DoubleType@543295b0
+2019-12-06 22:44:40  [ main:1273 ] - [ DEBUG ]  Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@543295b0
+2019-12-06 22:44:40  [ main:1274 ] - [ DEBUG ]  Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@3b0fe47a
+2019-12-06 22:44:40  [ main:1274 ] - [ DEBUG ]  Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@3b0fe47a
+2019-12-06 22:44:40  [ main:1275 ] - [ DEBUG ]  Adding type registration big_integer -> org.hibernate.type.BigIntegerType@2034b64c
+2019-12-06 22:44:40  [ main:1275 ] - [ DEBUG ]  Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@2034b64c
+2019-12-06 22:44:40  [ main:1276 ] - [ DEBUG ]  Adding type registration string -> org.hibernate.type.StringType@1cf6d1be
+2019-12-06 22:44:40  [ main:1276 ] - [ DEBUG ]  Adding type registration java.lang.String -> org.hibernate.type.StringType@1cf6d1be
+2019-12-06 22:44:40  [ main:1277 ] - [ DEBUG ]  Adding type registration nstring -> org.hibernate.type.StringNVarcharType@795509d9
+2019-12-06 22:44:40  [ main:1278 ] - [ DEBUG ]  Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@6bbe85a8
+2019-12-06 22:44:40  [ main:1279 ] - [ DEBUG ]  Adding type registration url -> org.hibernate.type.UrlType@53fb3dab
+2019-12-06 22:44:40  [ main:1279 ] - [ DEBUG ]  Adding type registration java.net.URL -> org.hibernate.type.UrlType@53fb3dab
+2019-12-06 22:44:40  [ main:1280 ] - [ DEBUG ]  Adding type registration Duration -> org.hibernate.type.DurationType@742ff096
+2019-12-06 22:44:40  [ main:1280 ] - [ DEBUG ]  Adding type registration java.time.Duration -> org.hibernate.type.DurationType@742ff096
+2019-12-06 22:44:40  [ main:1299 ] - [ DEBUG ]  Adding type registration Instant -> org.hibernate.type.InstantType@68c9133c
+2019-12-06 22:44:40  [ main:1299 ] - [ DEBUG ]  Adding type registration java.time.Instant -> org.hibernate.type.InstantType@68c9133c
+2019-12-06 22:44:40  [ main:1301 ] - [ DEBUG ]  Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@5b218417
+2019-12-06 22:44:40  [ main:1301 ] - [ DEBUG ]  Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@5b218417
+2019-12-06 22:44:40  [ main:1302 ] - [ DEBUG ]  Adding type registration LocalDate -> org.hibernate.type.LocalDateType@273444fe
+2019-12-06 22:44:40  [ main:1302 ] - [ DEBUG ]  Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@273444fe
+2019-12-06 22:44:40  [ main:1304 ] - [ DEBUG ]  Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@48bb62
+2019-12-06 22:44:40  [ main:1304 ] - [ DEBUG ]  Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@48bb62
+2019-12-06 22:44:40  [ main:1306 ] - [ DEBUG ]  Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@6fa51cd4
+2019-12-06 22:44:40  [ main:1306 ] - [ DEBUG ]  Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@6fa51cd4
+2019-12-06 22:44:40  [ main:1308 ] - [ DEBUG ]  Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@cecf639
+2019-12-06 22:44:40  [ main:1308 ] - [ DEBUG ]  Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@cecf639
+2019-12-06 22:44:40  [ main:1311 ] - [ DEBUG ]  Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@451001e5
+2019-12-06 22:44:40  [ main:1311 ] - [ DEBUG ]  Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@451001e5
+2019-12-06 22:44:40  [ main:1313 ] - [ DEBUG ]  Adding type registration date -> org.hibernate.type.DateType@70ed52de
+2019-12-06 22:44:40  [ main:1316 ] - [ DEBUG ]  Adding type registration java.sql.Date -> org.hibernate.type.DateType@70ed52de
+2019-12-06 22:44:40  [ main:1317 ] - [ DEBUG ]  Adding type registration time -> org.hibernate.type.TimeType@7c37508a
+2019-12-06 22:44:40  [ main:1317 ] - [ DEBUG ]  Adding type registration java.sql.Time -> org.hibernate.type.TimeType@7c37508a
+2019-12-06 22:44:40  [ main:1319 ] - [ DEBUG ]  Adding type registration timestamp -> org.hibernate.type.TimestampType@4a003cbe
+2019-12-06 22:44:40  [ main:1319 ] - [ DEBUG ]  Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@4a003cbe
+2019-12-06 22:44:40  [ main:1319 ] - [ DEBUG ]  Adding type registration java.util.Date -> org.hibernate.type.TimestampType@4a003cbe
+2019-12-06 22:44:40  [ main:1320 ] - [ DEBUG ]  Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@2b30a42c
+2019-12-06 22:44:40  [ main:1321 ] - [ DEBUG ]  Adding type registration calendar -> org.hibernate.type.CalendarType@792b749c
+2019-12-06 22:44:40  [ main:1321 ] - [ DEBUG ]  Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@792b749c
+2019-12-06 22:44:40  [ main:1321 ] - [ DEBUG ]  Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@792b749c
+2019-12-06 22:44:40  [ main:1322 ] - [ DEBUG ]  Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@73eb439a
+2019-12-06 22:44:40  [ main:1323 ] - [ DEBUG ]  Adding type registration locale -> org.hibernate.type.LocaleType@7ae0a9ec
+2019-12-06 22:44:40  [ main:1323 ] - [ DEBUG ]  Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@7ae0a9ec
+2019-12-06 22:44:40  [ main:1324 ] - [ DEBUG ]  Adding type registration currency -> org.hibernate.type.CurrencyType@548a24a
+2019-12-06 22:44:40  [ main:1324 ] - [ DEBUG ]  Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@548a24a
+2019-12-06 22:44:40  [ main:1325 ] - [ DEBUG ]  Adding type registration timezone -> org.hibernate.type.TimeZoneType@533bda92
+2019-12-06 22:44:40  [ main:1325 ] - [ DEBUG ]  Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@533bda92
+2019-12-06 22:44:40  [ main:1326 ] - [ DEBUG ]  Adding type registration class -> org.hibernate.type.ClassType@45d84a20
+2019-12-06 22:44:40  [ main:1326 ] - [ DEBUG ]  Adding type registration java.lang.Class -> org.hibernate.type.ClassType@45d84a20
+2019-12-06 22:44:40  [ main:1327 ] - [ DEBUG ]  Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@c430e6c
+2019-12-06 22:44:40  [ main:1327 ] - [ DEBUG ]  Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@c430e6c
+2019-12-06 22:44:40  [ main:1327 ] - [ DEBUG ]  Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@72bc6553
+2019-12-06 22:44:40  [ main:1328 ] - [ DEBUG ]  Adding type registration binary -> org.hibernate.type.BinaryType@6c4906d3
+2019-12-06 22:44:40  [ main:1328 ] - [ DEBUG ]  Adding type registration byte[] -> org.hibernate.type.BinaryType@6c4906d3
+2019-12-06 22:44:40  [ main:1328 ] - [ DEBUG ]  Adding type registration [B -> org.hibernate.type.BinaryType@6c4906d3
+2019-12-06 22:44:40  [ main:1329 ] - [ DEBUG ]  Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@4d1bf319
+2019-12-06 22:44:40  [ main:1329 ] - [ DEBUG ]  Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@4d1bf319
+2019-12-06 22:44:40  [ main:1330 ] - [ DEBUG ]  Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@4d1bf319
+2019-12-06 22:44:40  [ main:1330 ] - [ DEBUG ]  Adding type registration row_version -> org.hibernate.type.RowVersionType@4007f65e
+2019-12-06 22:44:40  [ main:1331 ] - [ DEBUG ]  Adding type registration image -> org.hibernate.type.ImageType@5965d37
+2019-12-06 22:44:40  [ main:1332 ] - [ DEBUG ]  Adding type registration characters -> org.hibernate.type.CharArrayType@710636b0
+2019-12-06 22:44:40  [ main:1332 ] - [ DEBUG ]  Adding type registration char[] -> org.hibernate.type.CharArrayType@710636b0
+2019-12-06 22:44:40  [ main:1332 ] - [ DEBUG ]  Adding type registration [C -> org.hibernate.type.CharArrayType@710636b0
+2019-12-06 22:44:40  [ main:1333 ] - [ DEBUG ]  Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@740fb309
+2019-12-06 22:44:40  [ main:1333 ] - [ DEBUG ]  Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@740fb309
+2019-12-06 22:44:40  [ main:1333 ] - [ DEBUG ]  Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@740fb309
+2019-12-06 22:44:40  [ main:1333 ] - [ DEBUG ]  Adding type registration text -> org.hibernate.type.TextType@239a307b
+2019-12-06 22:44:40  [ main:1334 ] - [ DEBUG ]  Adding type registration ntext -> org.hibernate.type.NTextType@2de56eb2
+2019-12-06 22:44:40  [ main:1335 ] - [ DEBUG ]  Adding type registration blob -> org.hibernate.type.BlobType@15a34df2
+2019-12-06 22:44:40  [ main:1335 ] - [ DEBUG ]  Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@15a34df2
+2019-12-06 22:44:40  [ main:1336 ] - [ DEBUG ]  Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@4722ef0c
+2019-12-06 22:44:40  [ main:1337 ] - [ DEBUG ]  Adding type registration clob -> org.hibernate.type.ClobType@26abb146
+2019-12-06 22:44:40  [ main:1337 ] - [ DEBUG ]  Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@26abb146
+2019-12-06 22:44:40  [ main:1339 ] - [ DEBUG ]  Adding type registration nclob -> org.hibernate.type.NClobType@5c7933ad
+2019-12-06 22:44:40  [ main:1339 ] - [ DEBUG ]  Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@5c7933ad
+2019-12-06 22:44:40  [ main:1339 ] - [ DEBUG ]  Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@4b8d604b
+2019-12-06 22:44:40  [ main:1340 ] - [ DEBUG ]  Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@d554c5f
+2019-12-06 22:44:40  [ main:1341 ] - [ DEBUG ]  Adding type registration serializable -> org.hibernate.type.SerializableType@6a8658ff
+2019-12-06 22:44:40  [ main:1345 ] - [ DEBUG ]  Adding type registration object -> org.hibernate.type.ObjectType@60f00693
+2019-12-06 22:44:40  [ main:1345 ] - [ DEBUG ]  Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@60f00693
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@1a4927d6
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@7a6d7e92
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@aba625
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@97e93f1
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@5a5a729f
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@4b520ea8
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@16150369
+2019-12-06 22:44:40  [ main:1346 ] - [ DEBUG ]  Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@6b09fb41
+2019-12-06 22:44:40  [ main:1379 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
+2019-12-06 22:44:40  [ main:1380 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [guid] -> [org.hibernate.id.GUIDGenerator]
+2019-12-06 22:44:40  [ main:1381 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [uuid] -> [org.hibernate.id.UUIDHexGenerator]
+2019-12-06 22:44:40  [ main:1381 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [uuid.hex] -> [org.hibernate.id.UUIDHexGenerator]
+2019-12-06 22:44:40  [ main:1381 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [assigned] -> [org.hibernate.id.Assigned]
+2019-12-06 22:44:40  [ main:1383 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [identity] -> [org.hibernate.id.IdentityGenerator]
+2019-12-06 22:44:40  [ main:1383 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [select] -> [org.hibernate.id.SelectGenerator]
+2019-12-06 22:44:40  [ main:1385 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+2019-12-06 22:44:40  [ main:1386 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [seqhilo] -> [org.hibernate.id.SequenceHiLoGenerator]
+2019-12-06 22:44:40  [ main:1386 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [increment] -> [org.hibernate.id.IncrementGenerator]
+2019-12-06 22:44:40  [ main:1387 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [foreign] -> [org.hibernate.id.ForeignGenerator]
+2019-12-06 22:44:40  [ main:1387 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [sequence-identity] -> [org.hibernate.id.SequenceIdentityGenerator]
+2019-12-06 22:44:40  [ main:1388 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [enhanced-sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+2019-12-06 22:44:40  [ main:1389 ] - [ DEBUG ]  Registering IdentifierGenerator strategy [enhanced-table] -> [org.hibernate.id.enhanced.TableGenerator]
+2019-12-06 22:44:40  [ main:1394 ] - [ WARN ]  HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2019-12-06 22:44:40  [ main:1403 ] - [ INFO ]  HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://cse.unl.edu/pzhang?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+2019-12-06 22:44:40  [ main:1404 ] - [ INFO ]  HHH10001001: Connection properties: {user=pzhang, password=WelcomeUnl123$}
+2019-12-06 22:44:40  [ main:1404 ] - [ INFO ]  HHH10001003: Autocommit mode: false
+2019-12-06 22:44:40  [ main:1407 ] - [ DEBUG ]  Initializing Connection pool with 1 Connections
+2019-12-06 22:44:40  [ main:1407 ] - [ INFO ]  HHH000115: Hibernate connection pool size: 10 (min=1)
+2019-12-06 22:44:41  [ main:2024 ] - [ DEBUG ]  Database ->
+       name : MySQL
+    version : 5.5.5-10.0.35-MariaDB
+      major : 5
+      minor : 5
+2019-12-06 22:44:41  [ main:2025 ] - [ DEBUG ]  Driver ->
+       name : MySQL Connector/J
+    version : mysql-connector-java-8.0.18 (Revision: fef2894d751d47223192b706977b4a5bc41e6be4)
+      major : 8
+      minor : 0
+2019-12-06 22:44:41  [ main:2025 ] - [ DEBUG ]  JDBC version : 4.2
+2019-12-06 22:44:41  [ main:2065 ] - [ INFO ]  HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2019-12-06 22:44:41  [ main:2102 ] - [ DEBUG ]  JDBC driver metadata reported database stores quoted identifiers in more than one case
+2019-12-06 22:44:41  [ main:2108 ] - [ DEBUG ]  IdentifierCaseStrategy for both quoted and unquoted identifiers was set to the same strategy [MIXED]; that will likely lead to problems in schema update and validation if using quoted identifiers
+2019-12-06 22:44:41  [ main:2192 ] - [ DEBUG ]  Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
+2019-12-06 22:44:41  [ main:2196 ] - [ DEBUG ]  Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@69653e16] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@758705fa]
+2019-12-06 22:44:41  [ main:2264 ] - [ DEBUG ]  Binding entity from annotated class: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2292 ] - [ DEBUG ]  Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2019-12-06 22:44:41  [ main:2299 ] - [ DEBUG ]  Import with entity name Address
+2019-12-06 22:44:41  [ main:2302 ] - [ DEBUG ]  Bind entity edu.unl.cse.csce361.package_tracker.backend.Address on table Address
+2019-12-06 22:44:41  [ main:2324 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Address), mappingColumn=addressid, insertable=true, updatable=false, unique=true}
+2019-12-06 22:44:41  [ main:2328 ] - [ DEBUG ]  MetadataSourceProcessor property addressId with lazy=false
+2019-12-06 22:44:41  [ main:2330 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Address:addressId]
+2019-12-06 22:44:41  [ main:2333 ] - [ DEBUG ]  building SimpleValue for addressId
+2019-12-06 22:44:41  [ main:2335 ] - [ DEBUG ]  Building property addressId
+2019-12-06 22:44:41  [ main:2338 ] - [ DEBUG ]  #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(addressid)]), addressId, org.hibernate.id.enhanced.SequenceStyleGenerator, , ...)
+2019-12-06 22:44:41  [ main:2338 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Address), mappingColumn=City, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2338 ] - [ DEBUG ]  MetadataSourceProcessor property city with lazy=false
+2019-12-06 22:44:41  [ main:2338 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Address:city]
+2019-12-06 22:44:41  [ main:2338 ] - [ DEBUG ]  building SimpleValue for city
+2019-12-06 22:44:41  [ main:2338 ] - [ DEBUG ]  Building property city
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Address), mappingColumn=latitude, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  MetadataSourceProcessor property latitude with lazy=false
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Address:latitude]
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  building SimpleValue for latitude
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  Building property latitude
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Address), mappingColumn=longitude, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  MetadataSourceProcessor property longitude with lazy=false
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Address:longitude]
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  building SimpleValue for longitude
+2019-12-06 22:44:41  [ main:2339 ] - [ DEBUG ]  Building property longitude
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Address), mappingColumn=Street, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  MetadataSourceProcessor property street with lazy=false
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Address:street]
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  building SimpleValue for street
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  Building property street
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Address), mappingColumn=zip, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  MetadataSourceProcessor property zipCode with lazy=false
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Address:zipCode]
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  building SimpleValue for zipCode
+2019-12-06 22:44:41  [ main:2340 ] - [ DEBUG ]  Building property zipCode
+2019-12-06 22:44:41  [ main:2343 ] - [ DEBUG ]  Binding entity from annotated class: edu.unl.cse.csce361.package_tracker.backend.Package
+2019-12-06 22:44:41  [ main:2343 ] - [ DEBUG ]  Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2019-12-06 22:44:41  [ main:2344 ] - [ DEBUG ]  Import with entity name Package
+2019-12-06 22:44:41  [ main:2344 ] - [ DEBUG ]  Bind entity edu.unl.cse.csce361.package_tracker.backend.Package on table Packages
+2019-12-06 22:44:41  [ main:2352 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=PackageID, insertable=true, updatable=false, unique=true}
+2019-12-06 22:44:41  [ main:2352 ] - [ DEBUG ]  MetadataSourceProcessor property id with lazy=false
+2019-12-06 22:44:41  [ main:2352 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Package:id]
+2019-12-06 22:44:41  [ main:2352 ] - [ DEBUG ]  building SimpleValue for id
+2019-12-06 22:44:41  [ main:2352 ] - [ DEBUG ]  Building property id
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(PackageID)]), id, org.hibernate.id.enhanced.SequenceStyleGenerator, , ...)
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=currentLocation, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  MetadataSourceProcessor property currentLocation with lazy=false
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Package:currentLocation]
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  building SimpleValue for currentLocation
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  Building property currentLocation
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=estimateTime, insertable=true, updatable=false, unique=false}
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  MetadataSourceProcessor property estimateTime with lazy=false
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Package:estimateTime]
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  building SimpleValue for estimateTime
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  Building property estimateTime
+2019-12-06 22:44:41  [ main:2353 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=priorityID, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2354 ] - [ DEBUG ]  MetadataSourceProcessor property priorityid with lazy=false
+2019-12-06 22:44:41  [ main:2354 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Package:priorityid]
+2019-12-06 22:44:41  [ main:2354 ] - [ DEBUG ]  building SimpleValue for priorityid
+2019-12-06 22:44:41  [ main:2354 ] - [ DEBUG ]  Building property priorityid
+2019-12-06 22:44:41  [ main:2355 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='receiver', referencedColumn='', mappedBy=''}
+2019-12-06 22:44:41  [ main:2358 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=receiver, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2362 ] - [ DEBUG ]  Building property receiver
+2019-12-06 22:44:41  [ main:2362 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='sender', referencedColumn='', mappedBy=''}
+2019-12-06 22:44:41  [ main:2362 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=sender, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Building property sender
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=shippingTime, insertable=true, updatable=false, unique=false}
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  MetadataSourceProcessor property shippingTime with lazy=false
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Package:shippingTime]
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  building SimpleValue for shippingTime
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Building property shippingTime
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=status, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  MetadataSourceProcessor property status with lazy=false
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Package:status]
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  building SimpleValue for status
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Building property status
+2019-12-06 22:44:41  [ main:2363 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Packages), mappingColumn=trackingNumber, insertable=true, updatable=false, unique=true}
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  MetadataSourceProcessor property trackingNumber with lazy=false
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Package:trackingNumber]
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  building SimpleValue for trackingNumber
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  Building property trackingNumber
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  Binding entity from annotated class: edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  Import with entity name Sender
+2019-12-06 22:44:41  [ main:2364 ] - [ DEBUG ]  Bind entity edu.unl.cse.csce361.package_tracker.backend.Sender on table Sender
+2019-12-06 22:44:41  [ main:2375 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=SenderID, insertable=true, updatable=false, unique=true}
+2019-12-06 22:44:41  [ main:2375 ] - [ DEBUG ]  MetadataSourceProcessor property id with lazy=false
+2019-12-06 22:44:41  [ main:2375 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Sender:id]
+2019-12-06 22:44:41  [ main:2375 ] - [ DEBUG ]  building SimpleValue for id
+2019-12-06 22:44:41  [ main:2375 ] - [ DEBUG ]  Building property id
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(SenderID)]), id, org.hibernate.id.enhanced.SequenceStyleGenerator, , ...)
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='address', referencedColumn='', mappedBy=''}
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=address, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  Building property address
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=name, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  MetadataSourceProcessor property name with lazy=false
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Sender:name]
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  building SimpleValue for name
+2019-12-06 22:44:41  [ main:2376 ] - [ DEBUG ]  Building property name
+2019-12-06 22:44:41  [ main:2377 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='PackageSet', referencedColumn='', mappedBy=''}
+2019-12-06 22:44:41  [ main:2378 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=packageSet, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2379 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=null, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2388 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=element, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2388 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=packageSet_KEY, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2389 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='packageSet_KEY', referencedColumn='null', mappedBy='null'}
+2019-12-06 22:44:41  [ main:2389 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy=''}
+2019-12-06 22:44:41  [ main:2389 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy=''}
+2019-12-06 22:44:41  [ main:2390 ] - [ DEBUG ]  Collection role: edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet
+2019-12-06 22:44:41  [ main:2392 ] - [ DEBUG ]  Building property packageSet
+2019-12-06 22:44:41  [ main:2392 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=status, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  MetadataSourceProcessor property status with lazy=false
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Sender:status]
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  building SimpleValue for status
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Building property status
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Sender), mappingColumn=userName, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  MetadataSourceProcessor property userName with lazy=false
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Sender:userName]
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  building SimpleValue for userName
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Building property userName
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Binding entity from annotated class: edu.unl.cse.csce361.package_tracker.backend.Receiver
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Import with entity name Receiver
+2019-12-06 22:44:41  [ main:2393 ] - [ DEBUG ]  Bind entity edu.unl.cse.csce361.package_tracker.backend.Receiver on table Receiver
+2019-12-06 22:44:41  [ main:2394 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Receiver), mappingColumn=receiverid, insertable=true, updatable=false, unique=true}
+2019-12-06 22:44:41  [ main:2394 ] - [ DEBUG ]  MetadataSourceProcessor property id with lazy=false
+2019-12-06 22:44:41  [ main:2394 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Receiver:id]
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  building SimpleValue for id
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Building property id
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(receiverid)]), id, org.hibernate.id.enhanced.SequenceStyleGenerator, , ...)
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='address', referencedColumn='', mappedBy=''}
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Receiver), mappingColumn=address, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Building property address
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Receiver), mappingColumn=name, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  MetadataSourceProcessor property name with lazy=false
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Receiver:name]
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  building SimpleValue for name
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Building property name
+2019-12-06 22:44:41  [ main:2395 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='receiver'}
+2019-12-06 22:44:41  [ main:2396 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Receiver), mappingColumn=packageid, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2397 ] - [ DEBUG ]  Binding entity from annotated class: edu.unl.cse.csce361.package_tracker.backend.Warehouse
+2019-12-06 22:44:41  [ main:2397 ] - [ DEBUG ]  Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+2019-12-06 22:44:41  [ main:2397 ] - [ DEBUG ]  Import with entity name Warehouse
+2019-12-06 22:44:41  [ main:2397 ] - [ DEBUG ]  Bind entity edu.unl.cse.csce361.package_tracker.backend.Warehouse on table Warehouse
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Warehouse), mappingColumn=warehouseID, insertable=true, updatable=false, unique=true}
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  MetadataSourceProcessor property warehouseid with lazy=false
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Warehouse:warehouseid]
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  building SimpleValue for warehouseid
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  Building property warehouseid
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(warehouseID)]), warehouseid, org.hibernate.id.enhanced.SequenceStyleGenerator, , ...)
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  Binding column: Ejb3JoinColumn{logicalColumnName='address', referencedColumn='', mappedBy=''}
+2019-12-06 22:44:41  [ main:2398 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Warehouse), mappingColumn=address, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2399 ] - [ DEBUG ]  Building property address
+2019-12-06 22:44:41  [ main:2399 ] - [ DEBUG ]  Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Warehouse), mappingColumn=Name, insertable=true, updatable=true, unique=false}
+2019-12-06 22:44:41  [ main:2399 ] - [ DEBUG ]  MetadataSourceProcessor property name with lazy=false
+2019-12-06 22:44:41  [ main:2399 ] - [ DEBUG ]  Attempting to locate auto-apply AttributeConverter for property [edu.unl.cse.csce361.package_tracker.backend.Warehouse:name]
+2019-12-06 22:44:41  [ main:2399 ] - [ DEBUG ]  building SimpleValue for name
+2019-12-06 22:44:41  [ main:2399 ] - [ DEBUG ]  Building property name
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for addressId
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for city
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for latitude
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for longitude
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for street
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for zipCode
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for id
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for currentLocation
+2019-12-06 22:44:41  [ main:2400 ] - [ DEBUG ]  Starting fillSimpleValue for estimateTime
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for priorityid
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for shippingTime
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for status
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for trackingNumber
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for id
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for name
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for status
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for userName
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for id
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for name
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for warehouseid
+2019-12-06 22:44:41  [ main:2401 ] - [ DEBUG ]  Starting fillSimpleValue for name
+2019-12-06 22:44:41  [ main:2405 ] - [ DEBUG ]  Forcing column [addressid] to be non-null as it is part of the primary key for table [address]
+2019-12-06 22:44:41  [ main:2405 ] - [ DEBUG ]  Forcing column [packageid] to be non-null as it is part of the primary key for table [packages]
+2019-12-06 22:44:41  [ main:2405 ] - [ DEBUG ]  Forcing column [senderid] to be non-null as it is part of the primary key for table [sender]
+2019-12-06 22:44:41  [ main:2405 ] - [ DEBUG ]  Forcing column [receiverid] to be non-null as it is part of the primary key for table [receiver]
+2019-12-06 22:44:41  [ main:2405 ] - [ DEBUG ]  Forcing column [warehouseid] to be non-null as it is part of the primary key for table [warehouse]
+2019-12-06 22:44:41  [ main:2405 ] - [ DEBUG ]  Second pass for collection: edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet
+2019-12-06 22:44:41  [ main:2405 ] - [ DEBUG ]  Binding a OneToMany: edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet through a foreign key
+2019-12-06 22:44:41  [ main:2406 ] - [ DEBUG ]  Mapping collection: edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet -> Packages
+2019-12-06 22:44:41  [ main:2407 ] - [ DEBUG ]  Mapped collection key: PackageSet, one-to-many: edu.unl.cse.csce361.package_tracker.backend.Package
+2019-12-06 22:44:41  [ main:2408 ] - [ DEBUG ]  Building property packageid
+2019-12-06 22:44:41  [ main:2409 ] - [ DEBUG ]  Processing association property references
+2019-12-06 22:44:41  [ main:2409 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Receiver
+2019-12-06 22:44:41  [ main:2411 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:41  [ main:2412 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:41  [ main:2412 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2412 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2412 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2419 ] - [ DEBUG ]  Processing association property references
+2019-12-06 22:44:41  [ main:2419 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Receiver
+2019-12-06 22:44:41  [ main:2419 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:41  [ main:2419 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:41  [ main:2419 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2419 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2419 ] - [ DEBUG ]  Resolving reference to class: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2457 ] - [ DEBUG ]  Building session factory
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  SessionFactory name : null
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Automatic flush during beforeCompletion(): enabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Automatic session close at end of transaction: disabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Statistics: disabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Deleted entity synthetic identifier rollback: disabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Default entity-mode: pojo
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Allow initialization of lazy state outside session : disabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Using BatchFetchStyle : LEGACY
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Default batch fetch size: -1
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Maximum outer join fetch depth: 2
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Default null ordering: NONE
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Order SQL updates by primary key: disabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  Order SQL inserts for batching: disabled
+2019-12-06 22:44:41  [ main:2458 ] - [ DEBUG ]  multi-tenancy strategy : NONE
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JTA Track by Thread: enabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Query language substitutions: {}
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Named query checking : enabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Second-level cache: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Second-level query cache: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Second-level query cache factory: null
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Second-level cache region prefix: null
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Optimize second-level cache for minimal puts: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Structured second-level cache entries: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Second-level cache direct-reference entries: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Automatic eviction of collection cache: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JDBC batch size: 15
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JDBC batch updates for versioned data: enabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Scrollable result sets: enabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Wrap result sets: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JDBC3 getGeneratedKeys(): enabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JDBC result set fetch size: null
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Connection release mode: AFTER_TRANSACTION
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  Generate SQL with comments: disabled
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JPA compliance - query : 
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JPA compliance - closed-handling : 
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JPA compliance - lists : 
+2019-12-06 22:44:41  [ main:2459 ] - [ DEBUG ]  JPA compliance - transactions : 
+2019-12-06 22:44:41  [ main:2550 ] - [ DEBUG ]  Session factory constructed with filter configurations : {}
+2019-12-06 22:44:41  [ main:2550 ] - [ DEBUG ]  Instantiating session factory with properties: {sun.desktop=windows, awt.toolkit=sun.awt.windows.WToolkit, dialect=org.hibernate.dialect.MySQL8Dialect, file.encoding.pkg=sun.io, java.specification.version=1.8, hibernate.dbcp.maxIdle=10, sun.cpu.isalist=amd64, sun.jnu.encoding=GBK, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, java.class.path=D:\programmingLanguage\otherLanguage\Java-projects\IntelliJ IDEA Community Edition 2019.2.3\lib\idea_rt.jar;D:\programmingLanguage\otherLanguage\Java-projects\IntelliJ IDEA Community Edition 2019.2.3\plugins\junit\lib\junit-rt.jar;D:\programmingLanguage\otherLanguage\Java-projects\IntelliJ IDEA Community Edition 2019.2.3\plugins\junit\lib\junit5-rt.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\rt.jar;D:\programmingLanguage\otherLanguage\Java-projects\Projects\package-tracker-1\target\test-classes;D:\programmingLanguage\otherLanguage\Java-projects\Projects\package-tracker-1\target\classes;C:\Users\Xinyi\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Xinyi\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Xinyi\.m2\repository\org\hibernate\hibernate-entitymanager\5.4.9.Final\hibernate-entitymanager-5.4.9.Final.jar;C:\Users\Xinyi\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\Xinyi\.m2\repository\org\hibernate\hibernate-core\5.4.9.Final\hibernate-core-5.4.9.Final.jar;C:\Users\Xinyi\.m2\repository\org\javassist\javassist\3.24.0-GA\javassist-3.24.0-GA.jar;C:\Users\Xinyi\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\Xinyi\.m2\repository\org\jboss\jandex\2.1.1.Final\jandex-2.1.1.Final.jar;C:\Users\Xinyi\.m2\repository\com\fasterxml\classmate\1.5.1\classmate-1.5.1.jar;C:\Users\Xinyi\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\Xinyi\.m2\repository\javax\xml\bind\jaxb-api\2.3.1\jaxb-api-2.3.1.jar;C:\Users\Xinyi\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.1\jaxb-runtime-2.3.1.jar;C:\Users\Xinyi\.m2\repository\org\glassfish\jaxb\txw2\2.3.1\txw2-2.3.1.jar;C:\Users\Xinyi\.m2\repository\com\sun\istack\istack-commons-runtime\3.0.7\istack-commons-runtime-3.0.7.jar;C:\Users\Xinyi\.m2\repository\org\jvnet\staxex\stax-ex\1.8\stax-ex-1.8.jar;C:\Users\Xinyi\.m2\repository\com\sun\xml\fastinfoset\FastInfoset\1.2.15\FastInfoset-1.2.15.jar;C:\Users\Xinyi\.m2\repository\org\dom4j\dom4j\2.1.1\dom4j-2.1.1.jar;C:\Users\Xinyi\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.1.0.Final\hibernate-commons-annotations-5.1.0.Final.jar;C:\Users\Xinyi\.m2\repository\javax\persistence\javax.persistence-api\2.2\javax.persistence-api-2.2.jar;C:\Users\Xinyi\.m2\repository\net\bytebuddy\byte-buddy\1.10.2\byte-buddy-1.10.2.jar;C:\Users\Xinyi\.m2\repository\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.1.1.Final\jboss-transaction-api_1.2_spec-1.1.1.Final.jar;C:\Users\Xinyi\.m2\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar;C:\Users\Xinyi\.m2\repository\com\google\protobuf\protobuf-java\3.6.1\protobuf-java-3.6.1.jar;C:\Users\Xinyi\.m2\repository\org\hibernate\hibernate-search-orm\5.11.4.Final\hibernate-search-orm-5.11.4.Final.jar;C:\Users\Xinyi\.m2\repository\org\hibernate\hibernate-search-engine\5.11.4.Final\hibernate-search-engine-5.11.4.Final.jar;C:\Users\Xinyi\.m2\repository\org\apache\lucene\lucene-core\5.5.5\lucene-core-5.5.5.jar;C:\Users\Xinyi\.m2\repository\org\apache\lucene\lucene-misc\5.5.5\lucene-misc-5.5.5.jar;C:\Users\Xinyi\.m2\repository\org\apache\lucene\lucene-analyzers-common\5.5.5\lucene-analyzers-common-5.5.5.jar;C:\Users\Xinyi\.m2\repository\org\apache\lucene\lucene-facet\5.5.5\lucene-facet-5.5.5.jar;C:\Users\Xinyi\.m2\repository\org\apache\lucene\lucene-queries\5.5.5\lucene-queries-5.5.5.jar;C:\Users\Xinyi\.m2\repository\org\apache\lucene\lucene-queryparser\5.5.5\lucene-queryparser-5.5.5.jar;C:\Users\Xinyi\.m2\repository\org\jboss\logging\jboss-logging-processor\2.1.0.Final\jboss-logging-processor-2.1.0.Final.jar;C:\Users\Xinyi\.m2\repository\org\jboss\logging\jboss-logging-annotations\2.1.0.Final\jboss-logging-annotations-2.1.0.Final.jar;C:\Users\Xinyi\.m2\repository\org\jboss\jdeparser\jdeparser\2.0.2.Final\jdeparser-2.0.2.Final.jar;C:\Users\Xinyi\.m2\repository\org\apache\httpcomponents\httpclient\4.5.10\httpclient-4.5.10.jar;C:\Users\Xinyi\.m2\repository\org\apache\httpcomponents\httpcore\4.4.12\httpcore-4.4.12.jar;C:\Users\Xinyi\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\Xinyi\.m2\repository\commons-codec\commons-codec\1.11\commons-codec-1.11.jar;C:\Users\Xinyi\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\Xinyi\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;D:\programmingLanguage\otherLanguage\Java-projects\IntelliJ IDEA Community Edition 2019.2.3\lib\idea_rt.jar, java.vm.vendor=Oracle Corporation, sun.arch.data.model=64, idea.test.cyclic.buffer.size=1048576, user.variant=, java.vendor.url=http://java.oracle.com/, user.timezone=GMT-06:00, os.name=Windows 10, java.vm.specification.version=1.8, hibernate.dbcp.maxWaitMillis=-1, current_session_context_class=thread, sun.java.launcher=SUN_STANDARD, hibernate.search.default.indexBase=/data/index/default, user.country=US, sun.boot.library.path=C:\Program Files\Java\jdk1.8.0_211\jre\bin, sun.java.command=com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 -junit4 edu.unl.cse.csce361.package_tracker.BackendTestSuites,TestReturnWarehouse, sun.cpu.endian=little, user.home=C:\Users\Xinyi, user.language=en, java.specification.vendor=Oracle Corporation, java.home=C:\Program Files\Java\jdk1.8.0_211\jre, file.separator=\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, sun.boot.class.path=C:\Program Files\Java\jdk1.8.0_211\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_211\jre\classes, hibernate.hbm2ddl.auto=update, user.script=, connection.password=WelcomeUnl123$, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, java.runtime.version=1.8.0_211-b12, user.name=Xinyi, path.separator=;, hibernate.dbcp.minIdle=5, hibernate.connection.username=****, os.version=10.0, java.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_211\jre\lib\endorsed, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.connection.url=jdbc:mysql://cse.unl.edu/pzhang?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC, connection.pool_size=10, file.encoding=UTF-8, hibernate.search.default.directory_provider=filesystem, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, hibernate.show_sql=true, hibernate.dbcp.initialSize=5, hibernate.dbcp.maxTotal=20, hibernate.current_session_context_class=thread, show_sql=true, hibernate.flushMode=commit, hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, java.io.tmpdir=C:\Users\Xinyi\AppData\Local\Temp\, java.version=1.8.0_211, user.dir=D:\programmingLanguage\otherLanguage\Java-projects\Projects\package-tracker-1, os.arch=amd64, connection.username=pzhang, java.vm.specification.name=Java Virtual Machine Specification, hibernate.connection.password=****, java.awt.printerjob=sun.awt.windows.WPrinterJob, sun.os.patch.level=, connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@64f857e7, java.library.path=C:\Program Files\Java\jdk1.8.0_211\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\AdoptOpenJDK\jdk-11.0.3.7-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\dotnet\;C:\WINDOWS\System32\OpenSSH\;D:\编程软件\bin;D:\;程软件\;D:\github\Git\cmd;D:\mathlab\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;D:\C setup\LLVM\bin;D:\nodeJS\;D:\_temp_matlab_R2019a_win64\sys\java\jre\win64\jre\bin;D:\vsCode\Microsoft VS Code\bin;C:\Users\Xinyi\AppData\Local\GitHubDesktop\bin;D:\nodeJS\node_modules;D:\Clion\CLion 2019.2.1\bin;C:\Users\Xinyi\AppData\Local\atom\bin;C:\Users\Xinyi\AppData\Local\Microsoft\WindowsApps;;D:\programmingLanguage\otherLanguage\Java-projects\IntelliJ IDEA Community Edition 2019.2.3\bin;;., java.vendor=Oracle Corporation, java.vm.info=mixed mode, java.vm.version=25.211-b12, hibernate.bytecode.use_reflection_optimizer=false, sun.io.unicode.encoding=UnicodeLittle, java.ext.dirs=C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, hibernate.connection.pool_size=10, connection.url=jdbc:mysql://cse.unl.edu/pzhang?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC, java.class.version=52.0}
+2019-12-06 22:44:41  [ main:2567 ] - [ DEBUG ]  Skipping JACC integration as it was not enabled
+2019-12-06 22:44:41  [ main:2593 ] - [ INFO ]  HSEARCH000034: Hibernate Search 5.11.4.Final
+2019-12-06 22:44:41  [ main:2602 ] - [ DEBUG ]  Instantiated session factory
+2019-12-06 22:44:41  [ main:2602 ] - [ DEBUG ]  Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@69653e16] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@7d373bcf]
+2019-12-06 22:44:41  [ main:2671 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Receiver] is safe
+2019-12-06 22:44:41  [ main:2671 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Receiver
+2019-12-06 22:44:41  [ main:2695 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Receiver] is safe
+2019-12-06 22:44:41  [ main:2695 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Receiver
+2019-12-06 22:44:41  [ main:2985 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Address] is safe
+2019-12-06 22:44:41  [ main:2985 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:41  [ main:2986 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Address] is safe
+2019-12-06 22:44:41  [ main:2986 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:42  [ main:3016 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Warehouse] is safe
+2019-12-06 22:44:42  [ main:3016 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Warehouse
+2019-12-06 22:44:42  [ main:3017 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Warehouse] is safe
+2019-12-06 22:44:42  [ main:3017 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Warehouse
+2019-12-06 22:44:42  [ main:3028 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Sender] is safe
+2019-12-06 22:44:42  [ main:3028 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:42  [ main:3028 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Sender] is safe
+2019-12-06 22:44:42  [ main:3028 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:42  [ main:3046 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Package] is safe
+2019-12-06 22:44:42  [ main:3046 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Package
+2019-12-06 22:44:42  [ main:3046 ] - [ DEBUG ]  Not known whether passed class name [edu.unl.cse.csce361.package_tracker.backend.Package] is safe
+2019-12-06 22:44:42  [ main:3046 ] - [ DEBUG ]  No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : edu.unl.cse.csce361.package_tracker.backend.Package
+2019-12-06 22:44:42  [ main:3073 ] - [ DEBUG ]  Static SQL for collection: edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet
+2019-12-06 22:44:42  [ main:3073 ] - [ DEBUG ]   Row insert: update Packages set PackageSet=? where PackageID=?
+2019-12-06 22:44:42  [ main:3073 ] - [ DEBUG ]   Row update: update Packages set  where PackageID=?
+2019-12-06 22:44:42  [ main:3074 ] - [ DEBUG ]   Row delete: update Packages set PackageSet=null where PackageSet=? and PackageID=?
+2019-12-06 22:44:42  [ main:3074 ] - [ DEBUG ]   One-shot delete: update Packages set PackageSet=null where PackageSet=?
+2019-12-06 22:44:42  [ main:3078 ] - [ DEBUG ]  Static SQL for entity: edu.unl.cse.csce361.package_tracker.backend.Receiver
+2019-12-06 22:44:42  [ main:3078 ] - [ DEBUG ]   Version select: select receiverid from Receiver where receiverid =?
+2019-12-06 22:44:42  [ main:3078 ] - [ DEBUG ]   Snapshot select: select receiver_.receiverid, receiver_.address as address3_2_, receiver_.name as name2_2_ from Receiver receiver_ where receiver_.receiverid=?
+2019-12-06 22:44:42  [ main:3079 ] - [ DEBUG ]   Insert 0: insert into Receiver (address, name, receiverid) values (?, ?, ?)
+2019-12-06 22:44:42  [ main:3079 ] - [ DEBUG ]   Update 0: update Receiver set address=?, name=? where receiverid=?
+2019-12-06 22:44:42  [ main:3079 ] - [ DEBUG ]   Delete 0: delete from Receiver where receiverid=?
+2019-12-06 22:44:42  [ main:3110 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@566d0c69]
+2019-12-06 22:44:42  [ main:3111 ] - [ DEBUG ]  Visiting attribute path : address
+2019-12-06 22:44:42  [ main:3115 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@70abf9b0]
+2019-12-06 22:44:42  [ main:3116 ] - [ DEBUG ]  Visiting attribute path : name
+2019-12-06 22:44:42  [ main:3116 ] - [ DEBUG ]  Visiting attribute path : packageid
+2019-12-06 22:44:42  [ main:3116 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@325bb9a6]
+2019-12-06 22:44:42  [ main:3116 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3133 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3137 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Receiver)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Receiver, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Receiver)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Receiver.address)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Package, querySpaceUid=<gen:2>, path=edu.unl.cse.csce361.package_tracker.backend.Receiver.packageid)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Receiver)
+          - SQL table alias mapping - receiver0_
+          - alias suffix - 0_
+          - suffixed key columns - {receiver1_2_0_}
+
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Receiver [NONE]: select receiver0_.receiverid as receiver1_2_0_, receiver0_.address as address3_2_0_, receiver0_.name as name2_2_0_ from Receiver receiver0_ where receiver0_.receiverid=?
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@c81fd12]
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Visiting attribute path : address
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5754de72]
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Visiting attribute path : name
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Visiting attribute path : packageid
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@31ee96f4]
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3140 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3141 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Receiver)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Receiver, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Receiver)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Receiver.address)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Package, querySpaceUid=<gen:2>, path=edu.unl.cse.csce361.package_tracker.backend.Receiver.packageid)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Receiver)
+          - SQL table alias mapping - receiver0_
+          - alias suffix - 0_
+          - suffixed key columns - {receiver1_2_0_}
+
+2019-12-06 22:44:42  [ main:3141 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Receiver [READ]: select receiver0_.receiverid as receiver1_2_0_, receiver0_.address as address3_2_0_, receiver0_.name as name2_2_0_ from Receiver receiver0_ where receiver0_.receiverid=?
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Static select for action ACTION_MERGE on entity edu.unl.cse.csce361.package_tracker.backend.Receiver: select receiver0_.receiverid as receiver1_2_1_, receiver0_.address as address3_2_1_, receiver0_.name as name2_2_1_, address1_.addressid as addressi1_0_0_, address1_.City as City2_0_0_, address1_.latitude as latitude3_0_0_, address1_.longitude as longitud4_0_0_, address1_.Street as Street5_0_0_, address1_.zip as zip6_0_0_ from Receiver receiver0_ left outer join Address address1_ on receiver0_.address=address1_.addressid where receiver0_.receiverid=?
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Static select for action ACTION_REFRESH on entity edu.unl.cse.csce361.package_tracker.backend.Receiver: select receiver0_.receiverid as receiver1_2_1_, receiver0_.address as address3_2_1_, receiver0_.name as name2_2_1_, address1_.addressid as addressi1_0_0_, address1_.City as City2_0_0_, address1_.latitude as latitude3_0_0_, address1_.longitude as longitud4_0_0_, address1_.Street as Street5_0_0_, address1_.zip as zip6_0_0_ from Receiver receiver0_ left outer join Address address1_ on receiver0_.address=address1_.addressid where receiver0_.receiverid=?
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Static SQL for entity: edu.unl.cse.csce361.package_tracker.backend.Address
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]   Version select: select addressid from Address where addressid =?
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]   Snapshot select: select address_.addressid, address_.City as City2_0_, address_.latitude as latitude3_0_, address_.longitude as longitud4_0_, address_.Street as Street5_0_, address_.zip as zip6_0_ from Address address_ where address_.addressid=?
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]   Insert 0: insert into Address (City, latitude, longitude, Street, zip, addressid) values (?, ?, ?, ?, ?, ?)
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]   Update 0: update Address set City=?, latitude=?, longitude=?, Street=?, zip=? where addressid=?
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]   Delete 0: delete from Address where addressid=?
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2788d0fe]
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Visiting attribute path : city
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Visiting attribute path : latitude
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Visiting attribute path : longitude
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Visiting attribute path : street
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Visiting attribute path : zipCode
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3157 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Address)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Address)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Address)
+          - SQL table alias mapping - address0_
+          - alias suffix - 0_
+          - suffixed key columns - {addressi1_0_0_}
+
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Address [NONE]: select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@54f66455]
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Visiting attribute path : city
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Visiting attribute path : latitude
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Visiting attribute path : longitude
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Visiting attribute path : street
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Visiting attribute path : zipCode
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Address)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Address)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Address)
+          - SQL table alias mapping - address0_
+          - alias suffix - 0_
+          - suffixed key columns - {addressi1_0_0_}
+
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Address [READ]: select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Static select for action ACTION_MERGE on entity edu.unl.cse.csce361.package_tracker.backend.Address: select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:42  [ main:3158 ] - [ DEBUG ]  Static select for action ACTION_REFRESH on entity edu.unl.cse.csce361.package_tracker.backend.Address: select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Static SQL for entity: edu.unl.cse.csce361.package_tracker.backend.Warehouse
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]   Version select: select warehouseID from Warehouse where warehouseID =?
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]   Snapshot select: select warehouse_.warehouseID, warehouse_.address as address3_4_, warehouse_.Name as Name2_4_ from Warehouse warehouse_ where warehouse_.warehouseID=?
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]   Insert 0: insert into Warehouse (address, Name, warehouseID) values (?, ?, ?)
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]   Update 0: update Warehouse set address=?, Name=? where warehouseID=?
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]   Delete 0: delete from Warehouse where warehouseID=?
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4c03a37]
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Visiting attribute path : address
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@49a71302]
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Visiting attribute path : name
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Warehouse)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Warehouse, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Warehouse)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Warehouse.address)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Warehouse)
+          - SQL table alias mapping - warehouse0_
+          - alias suffix - 0_
+          - suffixed key columns - {warehous1_4_0_}
+
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Warehouse [NONE]: select warehouse0_.warehouseID as warehous1_4_0_, warehouse0_.address as address3_4_0_, warehouse0_.Name as Name2_4_0_ from Warehouse warehouse0_ where warehouse0_.warehouseID=?
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5cd61783]
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Visiting attribute path : address
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@57aa341b]
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Visiting attribute path : name
+2019-12-06 22:44:42  [ main:3159 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Warehouse)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Warehouse, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Warehouse)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Warehouse.address)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Warehouse)
+          - SQL table alias mapping - warehouse0_
+          - alias suffix - 0_
+          - suffixed key columns - {warehous1_4_0_}
+
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Warehouse [READ]: select warehouse0_.warehouseID as warehous1_4_0_, warehouse0_.address as address3_4_0_, warehouse0_.Name as Name2_4_0_ from Warehouse warehouse0_ where warehouse0_.warehouseID=?
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]  Static select for action ACTION_MERGE on entity edu.unl.cse.csce361.package_tracker.backend.Warehouse: select warehouse0_.warehouseID as warehous1_4_1_, warehouse0_.address as address3_4_1_, warehouse0_.Name as Name2_4_1_, address1_.addressid as addressi1_0_0_, address1_.City as City2_0_0_, address1_.latitude as latitude3_0_0_, address1_.longitude as longitud4_0_0_, address1_.Street as Street5_0_0_, address1_.zip as zip6_0_0_ from Warehouse warehouse0_ left outer join Address address1_ on warehouse0_.address=address1_.addressid where warehouse0_.warehouseID=?
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]  Static select for action ACTION_REFRESH on entity edu.unl.cse.csce361.package_tracker.backend.Warehouse: select warehouse0_.warehouseID as warehous1_4_1_, warehouse0_.address as address3_4_1_, warehouse0_.Name as Name2_4_1_, address1_.addressid as addressi1_0_0_, address1_.City as City2_0_0_, address1_.latitude as latitude3_0_0_, address1_.longitude as longitud4_0_0_, address1_.Street as Street5_0_0_, address1_.zip as zip6_0_0_ from Warehouse warehouse0_ left outer join Address address1_ on warehouse0_.address=address1_.addressid where warehouse0_.warehouseID=?
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]  Static SQL for entity: edu.unl.cse.csce361.package_tracker.backend.Sender
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]   Version select: select SenderID from Sender where SenderID =?
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]   Snapshot select: select sender_.SenderID, sender_.address as address5_3_, sender_.name as name2_3_, sender_.status as status3_3_, sender_.userName as userName4_3_ from Sender sender_ where sender_.SenderID=?
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]   Insert 0: insert into Sender (address, name, status, userName, SenderID) values (?, ?, ?, ?, ?)
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]   Update 0: update Sender set address=?, name=?, status=?, userName=? where SenderID=?
+2019-12-06 22:44:42  [ main:3160 ] - [ DEBUG ]   Delete 0: delete from Sender where SenderID=?
+2019-12-06 22:44:42  [ main:3161 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@26e412ef]
+2019-12-06 22:44:42  [ main:3161 ] - [ DEBUG ]  Visiting attribute path : address
+2019-12-06 22:44:42  [ main:3161 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7103ab0]
+2019-12-06 22:44:42  [ main:3161 ] - [ DEBUG ]  Visiting attribute path : name
+2019-12-06 22:44:42  [ main:3161 ] - [ DEBUG ]  Visiting attribute path : packageSet
+2019-12-06 22:44:42  [ main:3162 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@5e4fa1da]
+2019-12-06 22:44:42  [ main:3164 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@9d200de]
+2019-12-06 22:44:42  [ main:3164 ] - [ DEBUG ]  Visiting attribute path : status
+2019-12-06 22:44:42  [ main:3164 ] - [ DEBUG ]  Visiting attribute path : userName
+2019-12-06 22:44:42  [ main:3164 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Sender)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Sender, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Sender)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Sender.address)
+          - CollectionAttributeFetchImpl(collection=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet, querySpaceUid=<gen:2>, path=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet)
+             - (collection element) CollectionFetchableElementEntityGraph(entity=edu.unl.cse.csce361.package_tracker.backend.Package, querySpaceUid=<gen:3>, path=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet.<elements>)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Sender)
+          - SQL table alias mapping - sender0_
+          - alias suffix - 0_
+          - suffixed key columns - {SenderID1_3_0_}
+
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Sender [NONE]: select sender0_.SenderID as SenderID1_3_0_, sender0_.address as address5_3_0_, sender0_.name as name2_3_0_, sender0_.status as status3_3_0_, sender0_.userName as userName4_3_0_ from Sender sender0_ where sender0_.SenderID=?
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@15fdd1f2]
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Visiting attribute path : address
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7573e12f]
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Visiting attribute path : name
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Visiting attribute path : packageSet
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@51b1a8f6]
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2a389173]
+2019-12-06 22:44:42  [ main:3165 ] - [ DEBUG ]  Visiting attribute path : status
+2019-12-06 22:44:42  [ main:3166 ] - [ DEBUG ]  Visiting attribute path : userName
+2019-12-06 22:44:42  [ main:3166 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3166 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3166 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Sender)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Sender, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Sender)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Address, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Sender.address)
+          - CollectionAttributeFetchImpl(collection=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet, querySpaceUid=<gen:2>, path=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet)
+             - (collection element) CollectionFetchableElementEntityGraph(entity=edu.unl.cse.csce361.package_tracker.backend.Package, querySpaceUid=<gen:3>, path=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet.<elements>)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Sender)
+          - SQL table alias mapping - sender0_
+          - alias suffix - 0_
+          - suffixed key columns - {SenderID1_3_0_}
+
+2019-12-06 22:44:42  [ main:3166 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Sender [READ]: select sender0_.SenderID as SenderID1_3_0_, sender0_.address as address5_3_0_, sender0_.name as name2_3_0_, sender0_.status as status3_3_0_, sender0_.userName as userName4_3_0_ from Sender sender0_ where sender0_.SenderID=?
+2019-12-06 22:44:42  [ main:3166 ] - [ DEBUG ]  Static select for action ACTION_MERGE on entity edu.unl.cse.csce361.package_tracker.backend.Sender: select sender0_.SenderID as SenderID1_3_1_, sender0_.address as address5_3_1_, sender0_.name as name2_3_1_, sender0_.status as status3_3_1_, sender0_.userName as userName4_3_1_, address1_.addressid as addressi1_0_0_, address1_.City as City2_0_0_, address1_.latitude as latitude3_0_0_, address1_.longitude as longitud4_0_0_, address1_.Street as Street5_0_0_, address1_.zip as zip6_0_0_ from Sender sender0_ left outer join Address address1_ on sender0_.address=address1_.addressid where sender0_.SenderID=?
+2019-12-06 22:44:42  [ main:3166 ] - [ DEBUG ]  Static select for action ACTION_REFRESH on entity edu.unl.cse.csce361.package_tracker.backend.Sender: select sender0_.SenderID as SenderID1_3_1_, sender0_.address as address5_3_1_, sender0_.name as name2_3_1_, sender0_.status as status3_3_1_, sender0_.userName as userName4_3_1_, address1_.addressid as addressi1_0_0_, address1_.City as City2_0_0_, address1_.latitude as latitude3_0_0_, address1_.longitude as longitud4_0_0_, address1_.Street as Street5_0_0_, address1_.zip as zip6_0_0_ from Sender sender0_ left outer join Address address1_ on sender0_.address=address1_.addressid where sender0_.SenderID=?
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Static SQL for entity: edu.unl.cse.csce361.package_tracker.backend.Package
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]   Version select: select PackageID from Packages where PackageID =?
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]   Snapshot select: select package_.PackageID, package_.currentLocation as currentL2_1_, package_.priorityID as priority4_1_, package_.receiver as receiver8_1_, package_.sender as sender9_1_, package_.status as status6_1_ from Packages package_ where package_.PackageID=?
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]   Insert 0: insert into Packages (currentLocation, estimateTime, priorityID, receiver, sender, shippingTime, status, trackingNumber, PackageID) values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]   Update 0: update Packages set currentLocation=?, priorityID=?, receiver=?, sender=?, status=? where PackageID=?
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]   Delete 0: delete from Packages where PackageID=?
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@213860b8]
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : currentLocation
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : estimateTime
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : priorityid
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : receiver
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@178270b2]
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : sender
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@795fd838]
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : shippingTime
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : status
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Visiting attribute path : trackingNumber
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3167 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Package)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Package, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Package)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Receiver, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Package.receiver)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Sender, querySpaceUid=<gen:2>, path=edu.unl.cse.csce361.package_tracker.backend.Package.sender)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Package)
+          - SQL table alias mapping - package0_
+          - alias suffix - 0_
+          - suffixed key columns - {PackageI1_1_0_}
+
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Package [NONE]: select package0_.PackageID as PackageI1_1_0_, package0_.currentLocation as currentL2_1_0_, package0_.estimateTime as estimate3_1_0_, package0_.priorityID as priority4_1_0_, package0_.receiver as receiver8_1_0_, package0_.sender as sender9_1_0_, package0_.shippingTime as shipping5_1_0_, package0_.status as status6_1_0_, package0_.trackingNumber as tracking7_1_0_ from Packages package0_ where package0_.PackageID=?
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1b005a0b]
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : currentLocation
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : estimateTime
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : priorityid
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : receiver
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@109d724c]
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : sender
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1704f67f]
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : shippingTime
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : status
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Visiting attribute path : trackingNumber
+2019-12-06 22:44:42  [ main:3168 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3169 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3169 ] - [ DEBUG ]  LoadPlan(entity=edu.unl.cse.csce361.package_tracker.backend.Package)
+    - Returns
+       - EntityReturnImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Package, querySpaceUid=<gen:0>, path=edu.unl.cse.csce361.package_tracker.backend.Package)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Receiver, querySpaceUid=<gen:1>, path=edu.unl.cse.csce361.package_tracker.backend.Package.receiver)
+          - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Sender, querySpaceUid=<gen:2>, path=edu.unl.cse.csce361.package_tracker.backend.Package.sender)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=edu.unl.cse.csce361.package_tracker.backend.Package)
+          - SQL table alias mapping - package0_
+          - alias suffix - 0_
+          - suffixed key columns - {PackageI1_1_0_}
+
+2019-12-06 22:44:42  [ main:3169 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Package [READ]: select package0_.PackageID as PackageI1_1_0_, package0_.currentLocation as currentL2_1_0_, package0_.estimateTime as estimate3_1_0_, package0_.priorityID as priority4_1_0_, package0_.receiver as receiver8_1_0_, package0_.sender as sender9_1_0_, package0_.shippingTime as shipping5_1_0_, package0_.status as status6_1_0_, package0_.trackingNumber as tracking7_1_0_ from Packages package0_ where package0_.PackageID=?
+2019-12-06 22:44:42  [ main:3170 ] - [ DEBUG ]  Static select for action ACTION_MERGE on entity edu.unl.cse.csce361.package_tracker.backend.Package: select package0_.PackageID as PackageI1_1_2_, package0_.currentLocation as currentL2_1_2_, package0_.estimateTime as estimate3_1_2_, package0_.priorityID as priority4_1_2_, package0_.receiver as receiver8_1_2_, package0_.sender as sender9_1_2_, package0_.shippingTime as shipping5_1_2_, package0_.status as status6_1_2_, package0_.trackingNumber as tracking7_1_2_, receiver1_.receiverid as receiver1_2_0_, receiver1_.address as address3_2_0_, receiver1_.name as name2_2_0_, address2_.addressid as addressi1_0_1_, address2_.City as City2_0_1_, address2_.latitude as latitude3_0_1_, address2_.longitude as longitud4_0_1_, address2_.Street as Street5_0_1_, address2_.zip as zip6_0_1_ from Packages package0_ inner join Receiver receiver1_ on package0_.receiver=receiver1_.receiverid left outer join Address address2_ on receiver1_.address=address2_.addressid where package0_.PackageID=?
+2019-12-06 22:44:42  [ main:3170 ] - [ DEBUG ]  Static select for action ACTION_REFRESH on entity edu.unl.cse.csce361.package_tracker.backend.Package: select package0_.PackageID as PackageI1_1_2_, package0_.currentLocation as currentL2_1_2_, package0_.estimateTime as estimate3_1_2_, package0_.priorityID as priority4_1_2_, package0_.receiver as receiver8_1_2_, package0_.sender as sender9_1_2_, package0_.shippingTime as shipping5_1_2_, package0_.status as status6_1_2_, package0_.trackingNumber as tracking7_1_2_, receiver1_.receiverid as receiver1_2_0_, receiver1_.address as address3_2_0_, receiver1_.name as name2_2_0_, address2_.addressid as addressi1_0_1_, address2_.City as City2_0_1_, address2_.latitude as latitude3_0_1_, address2_.longitude as longitud4_0_1_, address2_.Street as Street5_0_1_, address2_.zip as zip6_0_1_ from Packages package0_ inner join Receiver receiver1_ on package0_.receiver=receiver1_.receiverid left outer join Address address2_ on receiver1_.address=address2_.addressid where package0_.PackageID=?
+2019-12-06 22:44:42  [ main:3173 ] - [ DEBUG ]  Static select for entity edu.unl.cse.csce361.package_tracker.backend.Package [NONE]: select package0_.PackageID as PackageI1_1_0_, package0_.currentLocation as currentL2_1_0_, package0_.estimateTime as estimate3_1_0_, package0_.priorityID as priority4_1_0_, package0_.receiver as receiver8_1_0_, package0_.sender as sender9_1_0_, package0_.shippingTime as shipping5_1_0_, package0_.status as status6_1_0_, package0_.trackingNumber as tracking7_1_0_ from Packages package0_ where package0_.receiver=?
+2019-12-06 22:44:42  [ main:3177 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@5a6482a9]
+2019-12-06 22:44:42  [ main:3177 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7f9ab969]
+2019-12-06 22:44:42  [ main:3179 ] - [ DEBUG ]  Visiting attribute path : currentLocation
+2019-12-06 22:44:42  [ main:3179 ] - [ DEBUG ]  Visiting attribute path : estimateTime
+2019-12-06 22:44:42  [ main:3179 ] - [ DEBUG ]  Visiting attribute path : priorityid
+2019-12-06 22:44:42  [ main:3179 ] - [ DEBUG ]  Visiting attribute path : receiver
+2019-12-06 22:44:42  [ main:3180 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@b967222]
+2019-12-06 22:44:42  [ main:3180 ] - [ DEBUG ]  Visiting attribute path : sender
+2019-12-06 22:44:42  [ main:3180 ] - [ DEBUG ]  Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3b0ee03a]
+2019-12-06 22:44:42  [ main:3180 ] - [ DEBUG ]  Visiting attribute path : shippingTime
+2019-12-06 22:44:42  [ main:3180 ] - [ DEBUG ]  Visiting attribute path : status
+2019-12-06 22:44:42  [ main:3180 ] - [ DEBUG ]  Visiting attribute path : trackingNumber
+2019-12-06 22:44:42  [ main:3180 ] - [ DEBUG ]  Building LoadPlan...
+2019-12-06 22:44:42  [ main:3184 ] - [ DEBUG ]  processing queryspace <gen:0>
+2019-12-06 22:44:42  [ main:3184 ] - [ DEBUG ]  LoadPlan(collection=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet)
+    - Returns
+       - CollectionReturnImpl(collection=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet, querySpaceUid=<gen:0>, path=[edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=edu.unl.cse.csce361.package_tracker.backend.Package, querySpaceUid=<gen:1>, path=[edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet].<elements>)
+             - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Receiver, querySpaceUid=<gen:2>, path=[edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet].<elements>.receiver)
+             - EntityAttributeFetchImpl(entity=edu.unl.cse.csce361.package_tracker.backend.Sender, querySpaceUid=<gen:3>, path=[edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet].<elements>.sender)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet)
+          - SQL table alias mapping - packageset0_
+          - alias suffix - 0_
+          - suffixed key columns - {Package10_1_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - PackageI1_1_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=edu.unl.cse.csce361.package_tracker.backend.Package)
+                - SQL table alias mapping - packageset0_
+                - alias suffix - 1_
+                - suffixed key columns - {PackageI1_1_1_}
+
+2019-12-06 22:44:42  [ main:3185 ] - [ DEBUG ]  Static select for collection edu.unl.cse.csce361.package_tracker.backend.Sender.packageSet: select packageset0_.PackageSet as Package10_1_0_, packageset0_.PackageID as PackageI1_1_0_, packageset0_.PackageID as PackageI1_1_1_, packageset0_.currentLocation as currentL2_1_1_, packageset0_.estimateTime as estimate3_1_1_, packageset0_.priorityID as priority4_1_1_, packageset0_.receiver as receiver8_1_1_, packageset0_.sender as sender9_1_1_, packageset0_.shippingTime as shipping5_1_1_, packageset0_.status as status6_1_1_, packageset0_.trackingNumber as tracking7_1_1_ from Packages packageset0_ where packageset0_.PackageSet=?
+2019-12-06 22:44:42  [ main:3296 ] - [ INFO ]  HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@971e903] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2019-12-06 22:44:42  [ main:3728 ] - [ DEBUG ]  No alter strings for table : Address
+2019-12-06 22:44:42  [ main:3728 ] - [ DEBUG ]  No alter strings for table : hibernate_sequence
+2019-12-06 22:44:42  [ main:3728 ] - [ DEBUG ]  No alter strings for table : Packages
+2019-12-06 22:44:42  [ main:3728 ] - [ DEBUG ]  No alter strings for table : Receiver
+2019-12-06 22:44:42  [ main:3728 ] - [ DEBUG ]  No alter strings for table : Sender
+2019-12-06 22:44:42  [ main:3728 ] - [ DEBUG ]  No alter strings for table : Warehouse
+2019-12-06 22:44:43  [ main:4443 ] - [ DEBUG ]  Checking 0 named HQL queries
+2019-12-06 22:44:43  [ main:4443 ] - [ DEBUG ]  Checking 0 named SQL queries
+2019-12-06 22:44:43  [ main:4629 ] - [ DEBUG ]  Unable to locate Class [edu.unl.cse.csce361.package_tracker.backend.package-info] using TCCL, falling back to HCANN ClassLoader
+2019-12-06 22:44:43  [ main:4629 ] - [ DEBUG ]  package-info not found for package 'edu.unl.cse.csce361.package_tracker.backend'
+2019-12-06 22:44:43  [ main:4636 ] - [ DEBUG ]  Found JPA id and using it as document id
+2019-12-06 22:44:43  [ main:4672 ] - [ DEBUG ]  Hibernate Search event listeners deactivated
+2019-12-06 22:44:43  [ main:4674 ] - [ DEBUG ]  Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@53a5e217
+2019-12-06 22:44:43  [ main:4674 ] - [ DEBUG ]  Registering SessionFactory: 0ce9480c-2a6c-45bd-b352-577f13861f6d (<unnamed>)
+2019-12-06 22:44:43  [ main:4674 ] - [ DEBUG ]  Not binding SessionFactory to JNDI, no JNDI name configured
+2019-12-06 22:44:43  [ main:4739 ] - [ DEBUG ]  Statistics initialized [enabled=false]
+2019-12-06 22:44:43  [ main:4746 ] - [ DEBUG ]  On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2019-12-06 22:44:43  [ main:4746 ] - [ DEBUG ]  begin
+2019-12-06 22:44:43  [ main:4943 ] - [ DEBUG ]  QueryTranslatorFactory: org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@2650f79
+2019-12-06 22:44:43  [ main:4997 ] - [ DEBUG ]  parse() - HQL: from edu.unl.cse.csce361.package_tracker.backend.Warehouse
+2019-12-06 22:44:44  [ main:5004 ] - [ DEBUG ]  throwQueryException() : no errors
+2019-12-06 22:44:44  [ main:5012 ] - [ DEBUG ]  --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    \-[SELECT_FROM] Node: 'SELECT_FROM'
+       \-[FROM] Node: 'from'
+          \-[RANGE] Node: 'RANGE'
+             \-[DOT] Node: '.'
+                +-[DOT] Node: '.'
+                |  +-[DOT] Node: '.'
+                |  |  +-[DOT] Node: '.'
+                |  |  |  +-[DOT] Node: '.'
+                |  |  |  |  +-[DOT] Node: '.'
+                |  |  |  |  |  +-[IDENT] Node: 'edu'
+                |  |  |  |  |  \-[IDENT] Node: 'unl'
+                |  |  |  |  \-[IDENT] Node: 'cse'
+                |  |  |  \-[IDENT] Node: 'csce361'
+                |  |  \-[IDENT] Node: 'package_tracker'
+                |  \-[IDENT] Node: 'backend'
+                \-[IDENT] Node: 'Warehouse'
+
+2019-12-06 22:44:44  [ main:5038 ] - [ DEBUG ]  select << begin [level=1, statement=select]
+2019-12-06 22:44:44  [ main:5055 ] - [ DEBUG ]  FromClause{level=1} : edu.unl.cse.csce361.package_tracker.backend.Warehouse (<no alias>) -> warehouse0_
+2019-12-06 22:44:44  [ main:5055 ] - [ DEBUG ]  select : finishing up [level=1, statement=select]
+2019-12-06 22:44:44  [ main:5055 ] - [ DEBUG ]  processQuery() :  ( SELECT ( FromClause{level=1} Warehouse warehouse0_ ) )
+2019-12-06 22:44:44  [ main:5062 ] - [ DEBUG ]  Derived SELECT clause created.
+2019-12-06 22:44:44  [ main:5066 ] - [ DEBUG ]  Tables referenced from query nodes:
+ \-QueryNode
+    +-SelectClause
+    | referencedTables(entity Warehouse): [Warehouse]
+    |  +-SelectExpressionImpl
+    |  | persister: SingleTableEntityPersister(edu.unl.cse.csce361.package_tracker.backend.Warehouse)
+    |  | referencedTables: null
+    |  \-SqlFragment
+    \-FromClause
+       \-FromElement
+
+2019-12-06 22:44:44  [ main:5071 ] - [ DEBUG ]  Using FROM fragment [Warehouse warehouse0_]
+2019-12-06 22:44:44  [ main:5071 ] - [ DEBUG ]  select >> end [level=1, statement=select]
+2019-12-06 22:44:44  [ main:5071 ] - [ DEBUG ]  --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (Warehouse)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'warehouse0_.warehouseID as warehous1_4_' {FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=Warehouse,tableAlias=warehouse0_,origin=null,columns={,className=edu.unl.cse.csce361.package_tracker.backend.Warehouse}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'warehouse0_.address as address3_4_, warehouse0_.Name as Name2_4_'
+    \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[], fromElementByTableAlias=[warehouse0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+       \-[FROM_FRAGMENT] FromElement: 'Warehouse warehouse0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=Warehouse,tableAlias=warehouse0_,origin=null,columns={,className=edu.unl.cse.csce361.package_tracker.backend.Warehouse}}
+
+2019-12-06 22:44:44  [ main:5071 ] - [ DEBUG ]  throwQueryException() : no errors
+2019-12-06 22:44:44  [ main:5079 ] - [ DEBUG ]  HQL: from edu.unl.cse.csce361.package_tracker.backend.Warehouse
+2019-12-06 22:44:44  [ main:5079 ] - [ DEBUG ]  SQL: select warehouse0_.warehouseID as warehous1_4_, warehouse0_.address as address3_4_, warehouse0_.Name as Name2_4_ from Warehouse warehouse0_
+2019-12-06 22:44:44  [ main:5079 ] - [ DEBUG ]  throwQueryException() : no errors
+2019-12-06 22:44:44  [ main:5095 ] - [ DEBUG ]  select warehouse0_.warehouseID as warehous1_4_, warehouse0_.address as address3_4_, warehouse0_.Name as Name2_4_ from Warehouse warehouse0_
+2019-12-06 22:44:44  [ main:5136 ] - [ DEBUG ]  Result set row: 0
+2019-12-06 22:44:44  [ main:5140 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#1]
+2019-12-06 22:44:44  [ main:5149 ] - [ DEBUG ]  Result set row: 1
+2019-12-06 22:44:44  [ main:5149 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#3]
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result set row: 2
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#5]
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result set row: 3
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#7]
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result set row: 4
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#9]
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result set row: 5
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#11]
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result set row: 6
+2019-12-06 22:44:44  [ main:5150 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#13]
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result set row: 7
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#15]
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result set row: 8
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#17]
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result set row: 9
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#19]
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result set row: 10
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#21]
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result set row: 11
+2019-12-06 22:44:44  [ main:5151 ] - [ DEBUG ]  Result row: EntityKey[edu.unl.cse.csce361.package_tracker.backend.Warehouse#23]
+2019-12-06 22:44:44  [ main:5154 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#1]
+2019-12-06 22:44:44  [ main:5155 ] - [ DEBUG ]  Processing attribute `address` : value = 2
+2019-12-06 22:44:44  [ main:5156 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5174 ] - [ DEBUG ]  Processing attribute `name` : value = Seward Center
+2019-12-06 22:44:44  [ main:5174 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5176 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#1]
+2019-12-06 22:44:44  [ main:5176 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#3]
+2019-12-06 22:44:44  [ main:5176 ] - [ DEBUG ]  Processing attribute `address` : value = 4
+2019-12-06 22:44:44  [ main:5176 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Processing attribute `name` : value = Milford Center
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#3]
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#5]
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Processing attribute `address` : value = 6
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Processing attribute `name` : value = Lincoln 112st
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#5]
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#7]
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Processing attribute `address` : value = 8
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Processing attribute `name` : value = Lincoln Hub
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#7]
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#9]
+2019-12-06 22:44:44  [ main:5177 ] - [ DEBUG ]  Processing attribute `address` : value = 10
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Processing attribute `name` : value = O and 84
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#9]
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#11]
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Processing attribute `address` : value = 12
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Processing attribute `name` : value = O and Nebraska
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#11]
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#13]
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Processing attribute `address` : value = 14
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Processing attribute `name` : value = I80 and 154 st
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5178 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#13]
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#15]
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Processing attribute `address` : value = 16
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Processing attribute `name` : value = I80 and 250 st
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#15]
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#17]
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Processing attribute `address` : value = 18
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Processing attribute `name` : value = I80 and Nebraska Crossing
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#17]
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#19]
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Processing attribute `address` : value = 20
+2019-12-06 22:44:44  [ main:5179 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Processing attribute `name` : value = I80 and 118th St
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#19]
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#21]
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Processing attribute `address` : value = 22
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Processing attribute `name` : value = Omaha Hub
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#21]
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Warehouse#23]
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Processing attribute `address` : value = 24
+2019-12-06 22:44:44  [ main:5180 ] - [ DEBUG ]  Attribute (`address`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5181 ] - [ DEBUG ]  Processing attribute `name` : value = North Omaha(Missouri River)
+2019-12-06 22:44:44  [ main:5181 ] - [ DEBUG ]  Attribute (`name`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5181 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Warehouse#23]
+2019-12-06 22:44:44  [ main:5191 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#2]
+2019-12-06 22:44:44  [ main:5196 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5248 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#2]
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Processing attribute `city` : value = Seward
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.914026
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Processing attribute `longitude` : value = -97.087167
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Processing attribute `street` : value = 800 N Columbia Ave
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68434
+2019-12-06 22:44:44  [ main:5250 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5252 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#2]
+2019-12-06 22:44:44  [ main:5252 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#2
+2019-12-06 22:44:44  [ main:5252 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#4]
+2019-12-06 22:44:44  [ main:5252 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5275 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#4]
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Processing attribute `city` : value = Milford
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.817575
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Processing attribute `longitude` : value = -97.045202
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Processing attribute `street` : value = 923 238th Rd
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68405
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#4]
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#4
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#6]
+2019-12-06 22:44:44  [ main:5276 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#6]
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Processing attribute `city` : value = Lincoln
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.819617
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.872919
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Processing attribute `street` : value = 790-926 NW 112th St
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68528
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#6]
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#6
+2019-12-06 22:44:44  [ main:5303 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#8]
+2019-12-06 22:44:44  [ main:5304 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#8]
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  Processing attribute `city` : value = Lincoln
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.813314
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.682142
+2019-12-06 22:44:44  [ main:5327 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  Processing attribute `street` : value = 2701 O St
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68510
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#8]
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#8
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#10]
+2019-12-06 22:44:44  [ main:5328 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#10]
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Processing attribute `city` : value = Lincoln
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.81386
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.605443
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Processing attribute `street` : value = 100 N 84th St
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68505
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#10]
+2019-12-06 22:44:44  [ main:5352 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#10
+2019-12-06 22:44:44  [ main:5353 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#12]
+2019-12-06 22:44:44  [ main:5353 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#12]
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Processing attribute `city` : value = Lincoln
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.735401
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.603936
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Processing attribute `street` : value = 8525 Andermatt Drive
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68526
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5379 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#12]
+2019-12-06 22:44:44  [ main:5380 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#12
+2019-12-06 22:44:44  [ main:5380 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#14]
+2019-12-06 22:44:44  [ main:5380 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5403 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#14]
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Processing attribute `city` : value = Waverly
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.907863
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.523535
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Processing attribute `street` : value = 14541 Castlewood St
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68462
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5404 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#14]
+2019-12-06 22:44:44  [ main:5405 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#14
+2019-12-06 22:44:44  [ main:5405 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#16]
+2019-12-06 22:44:44  [ main:5405 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5428 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#16]
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Processing attribute `city` : value = Greenwood
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Processing attribute `latitude` : value = 40.988276
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.369594
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Processing attribute `street` : value = 14599 250th St
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68366
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#16]
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#16
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#18]
+2019-12-06 22:44:44  [ main:5429 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#18]
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Processing attribute `city` : value = Gretna
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Processing attribute `latitude` : value = 41.098705
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.250167
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Processing attribute `street` : value = 21209 Nebraska Crossing Dr
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5459 ] - [ DEBUG ]  Processing attribute `zipCode` : value =  68028
+2019-12-06 22:44:44  [ main:5460 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5460 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#18]
+2019-12-06 22:44:44  [ main:5460 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#18
+2019-12-06 22:44:44  [ main:5460 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#20]
+2019-12-06 22:44:44  [ main:5460 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5483 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#20]
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Processing attribute `city` : value = Omaha
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Processing attribute `latitude` : value = 41.196003
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Processing attribute `longitude` : value = -96.093617
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Processing attribute `street` : value = 6271 S 118th St
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68137
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#20]
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#20
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#22]
+2019-12-06 22:44:44  [ main:5484 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#22]
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Processing attribute `city` : value = Omaha
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Processing attribute `latitude` : value = 41.258746
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Processing attribute `longitude` : value = -95.958241
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Processing attribute `street` : value = 3110 Farnam St
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Processing attribute `zipCode` : value =  68131
+2019-12-06 22:44:44  [ main:5507 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5508 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#22]
+2019-12-06 22:44:44  [ main:5508 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#22
+2019-12-06 22:44:44  [ main:5508 ] - [ DEBUG ]  Initializing proxy: [edu.unl.cse.csce361.package_tracker.backend.Address#24]
+2019-12-06 22:44:44  [ main:5508 ] - [ DEBUG ]  select address0_.addressid as addressi1_0_0_, address0_.City as City2_0_0_, address0_.latitude as latitude3_0_0_, address0_.longitude as longitud4_0_0_, address0_.Street as Street5_0_0_, address0_.zip as zip6_0_0_ from Address address0_ where address0_.addressid=?
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Resolving attributes for [edu.unl.cse.csce361.package_tracker.backend.Address#24]
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Processing attribute `city` : value = Omaha
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Attribute (`city`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Processing attribute `latitude` : value = 41.343043
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Attribute (`latitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Processing attribute `longitude` : value = -95.958519
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Attribute (`longitude`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Processing attribute `street` : value = 9100 John J Pershing Dr
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Attribute (`street`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Processing attribute `zipCode` : value = 68112
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Attribute (`zipCode`)  - enhanced for lazy-loading? - false
+2019-12-06 22:44:44  [ main:5531 ] - [ DEBUG ]  Done materializing entity [edu.unl.cse.csce361.package_tracker.backend.Address#24]
+2019-12-06 22:44:44  [ main:5532 ] - [ DEBUG ]  Done entity load : edu.unl.cse.csce361.package_tracker.backend.Address#24

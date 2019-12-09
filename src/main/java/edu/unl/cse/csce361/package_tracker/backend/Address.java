@@ -1,8 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
 
-import org.hibernate.search.annotations.Indexed;
-
 import javax.persistence.*;
 
 /**
@@ -10,7 +8,6 @@ import javax.persistence.*;
  * Address class for address sql table
  */
 @Entity
-@Indexed
 @Table(name = "Address", uniqueConstraints = {
         @UniqueConstraint(columnNames = "addressid")})
 public class Address {
@@ -24,47 +21,80 @@ public class Address {
     private String city;
     @Column(name = "zip", nullable = false, length = 10)
     private String zipCode;
+    @Column(name = "latitude", nullable = false, length = 10)
+    private double latitude;
+    @Column(name = "longitude", nullable = false, length = 10)
+    private double longitude;
 
-    public Address (String street, String city, String zipCode) {
+    public Address(String street, String city, String zipCode, double latitude, double longitude) {
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Address(String street, String city, String zipCode) {
         this.street = street;
         this.city = city;
         this.zipCode = zipCode;
     }
 
-    public Address () {
+    public Address() {
     }
 
-    public String getZipCode () {
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode (String zipcode) {
+    public void setZipCode(String zipcode) {
         this.zipCode = zipcode;
     }
 
-    public int getAddressId () {
+    public int getAddressId() {
         return addressId;
     }
 
-    public void setAddressId (int addressId) {
+    public void setAddressId(int addressId) {
         this.addressId = addressId;
     }
 
-    public String getStreet () {
+    public String getStreet() {
         return street;
     }
 
-    public void setStreet (String street) {
+    public void setStreet(String street) {
         this.street = street;
     }
 
-    public String getCity () {
+    public String getCity() {
         return city;
     }
 
-    public void setCity (String city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-
+    @Override
+    public String toString() {
+        return "street " + street +
+                ", city " + city +
+                ", zipCode " + zipCode;
+    }
 }

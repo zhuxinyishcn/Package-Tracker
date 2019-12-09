@@ -21,7 +21,6 @@ public class Receiver {
     private Address address;
     @Column(name = "name", nullable = false, length = 100)
     private String name;
-
     @OneToOne(mappedBy = "receiver", fetch = FetchType.LAZY)
     private Package packageid;
 
@@ -33,22 +32,17 @@ public class Receiver {
     public Receiver () {
     }
 
-    public static void insertReceive (String realName, String street,
-                                      String city, String zipCode) {
-        final Session session = HibernateUtil.createSession().openSession();
+    public static void insertReceiver (Session session, String realName, String street,
+                                       String city, String zipCode) {
         final Transaction transaction = session.beginTransaction();
         try {
             Address address = new Address(street, city, zipCode);
             Receiver receiver = new Receiver(address, realName);
             session.persist(receiver);
             transaction.commit();
-            HibernateUtil.closeSession(session);
         } catch (Throwable e) {
             session.getTransaction().rollback();
-            HibernateUtil.closeSession(session);
             throw e;
-        } finally {
-            HibernateUtil.closeSession(session);
         }
     }
 
@@ -68,9 +62,6 @@ public class Receiver {
         this.name = name;
     }
 
-    public Package getPackageid () {
-        return packageid;
-    }
 
     public void setPackageid (Package packageid) {
         this.packageid = packageid;

@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Observable;
 
 public class BackendFacade extends Observable {
+    private static final Session SESSION = HibernateUtil.createSession().openSession();
     private static BackendFacade instance;
+    private static List<Warehouse> warehouses = Warehouse.retrieveWarehouse(SESSION);
 
     private BackendFacade () {
     }
@@ -23,67 +25,83 @@ public class BackendFacade extends Observable {
         }
         return instance;
     }
-public void changeDestination(String trackingNumber, int currentLocation){
-      //  Package.changeDestination(String trackingNumber, String destitationLogin);
-    //TODO: may need to change latter for the next sprint
-}
+
+    public void closeConnection () {
+        SESSION.close();
+    }
+
+    public void editPiorityID (String trackingNumber) {
+        Package.setPriority(SESSION, trackingNumber);
+    }
+
+    public void editCurrentlocation (String trackingNumber, int currentLocation) {
+        Package.setCurrentLocation(SESSION, trackingNumber, currentLocation);
+    }
 
     public void addPackageRecord (Sender sender, Receiver receiver,
-                                  int currentLocation) {
-        Package.insertPackage(sender, receiver, currentLocation);
+                                  int currentLocation, double distance) {
+        Package.insertPackage(SESSION, sender, receiver, currentLocation, distance);
     }
-    public void setPiorityID(){
 
+    public void addPackageRecordToSender (Sender sender, Package packageInfo) {
+        Sender.insertPackage(SESSION, sender, packageInfo);
     }
+
     public void deletePakcageRecord (String UUID) {
-        Package.deletePakcage(UUID);
+        Package.deletePakcage(SESSION, UUID);
     }
 
     public void deleteUser (int userId) {
-        Sender.deleteUser(userId);
+        Sender.deleteUser(SESSION, userId);
     }
 
-    public void setPackageArrived (String UUID) {
-        Package.setPackage(UUID);
+    public void editPackageArrived (String UUID) {
+        Package.setPackage(SESSION, UUID);
     }
 
-    public void setPackageStatus (String UUID, String status) {
-        Package.setPackage(UUID, status);
+    public void editPackageStatus (String UUID, String status) {
+        Package.setPackage(SESSION, UUID, status);
     }
-
-
-
-//    public String getCurrentLocation(Package p){
-//       return p.getCurrentLocation();
-//    }
 
     public List<Package> retrievePackages () {
-        return Package.retrievePackages();
+        return Package.retrievePackages(SESSION);
     }
 
-    public int searchPackage (Session session, String trackingNumber) {
-        return Package.searchTrackingNumber(session, trackingNumber);
+
+    public Package searchPackage (String trackingNumber) {
+        return Package.searchTrackingNumber(SESSION, trackingNumber);
     }
 
-    public void editPackageAllInfo (String trackingNumber, String currentLocation,
-                                    String priorityID, String shippingTime,
-                                    String status, String receiver, String sender) {
-        Package.editPackageAllInfo(trackingNumber, currentLocation,
-                priorityID, shippingTime,
-                status, receiver, sender);
+    public void addUser (Sender sender) {
+        Sender.insertSender(SESSION, sender);
     }
 
-    public void registerUser (String userName, String realName, String street,
-                              String city, String zipCode) {
-        Sender.insertSender(userName, realName, street, city, zipCode);
+
+    public void editPackageReceiver (String trackingNumber) {
+        Package.returnPackage(SESSION, trackingNumber);
     }
 
-    public void registerReceiver (String realName, String street,
-                                  String city, String zipCode) {
-        Receiver.insertReceive(realName, street, city, zipCode);
+    public void addWareHouse (String name, Address address) {
+        Warehouse.insertWarehouse(SESSION, name, address);
     }
 
-    public void returnPackage (String trackingNumber) {
-        Package.returnPackage(trackingNumber);
+    public List<Warehouse> retrieveWarehouse () {
+        return warehouses;
+    }
+
+    public String searchUserStatus (String userName) {
+        return Sender.searchSenderStatus(SESSION, userName);
+    }
+
+    public void editSenderStatus (String userName) {
+        Sender.setSenderStatus(SESSION, userName);
+    }
+
+    public Sender searchSender (String userName) {
+        return Sender.searchSender(SESSION, userName);
+    }
+
+    public void editSenderAddress (String userName, Address address) {
+        Sender.updateAddress(SESSION, userName, address);
     }
 }
