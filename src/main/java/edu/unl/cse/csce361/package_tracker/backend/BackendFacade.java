@@ -30,18 +30,12 @@ public class BackendFacade extends Observable {
         SESSION.close();
     }
 
-    public void editPiorityID (String UUID) {
-        Package.setPriority(SESSION, UUID);
+    public void editPiorityID (String trackingNumber) {
+        Package.setPriority(SESSION, trackingNumber);
     }
 
-    public void changeDestination (String trackingNumber, int currentLocation) {
-        //  Package.changeDestination(String trackingNumber, String destitationLogin);
-        //TODO: may need to change latter for the next sprint
-    }
-
-    public void addReceiver (String realName, String street,
-                             String city, String zipCode) {
-        Receiver.insertReceiver(SESSION, realName, street, city, zipCode);
+    public void editCurrentlocation (String trackingNumber, int currentLocation) {
+        Package.setCurrentLocation(SESSION, trackingNumber, currentLocation);
     }
 
     public void addPackageRecord (Sender sender, Receiver receiver,

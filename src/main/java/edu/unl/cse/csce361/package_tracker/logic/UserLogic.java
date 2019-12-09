@@ -43,7 +43,7 @@ public class UserLogic {
         int desitationWarehouse = CalculateDistance.findClosestWarehouse(Double.parseDouble(geocode.getLat()),
                 Double.parseDouble(geocode.getLng()));
         // TODO: @login and @desinationLogin to create new package.
-        //need
+        //need the disatnce
         String trackingNumber = null;
         Printer.printLogicNewPackage(trackingNumber);
     }
@@ -57,6 +57,8 @@ public class UserLogic {
         // TODO: Set @trackingNumber to hold.
         // TODO: Get current location to @warehouseID.
         int warehouseID = 1;
+        BACKEND_FACADE.editPackageStatus(trackingNumber,"Hold");
+        //BACKEND_FACADE.getCurrentLocation(trackingNumber);
         Printer.printLogicHoldWarehouse(warehouseID);
     }
 

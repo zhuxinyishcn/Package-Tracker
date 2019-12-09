@@ -167,7 +167,20 @@ public class Package {
             e.printStackTrace();
         }
     }
-
+    public static void setCurrentLocation (Session session, String UUID,int currentLocation) {
+        final Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        try {
+            CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
+            Root e = update.from(Package.class);
+            update.set("currentLocation", currentLocation);
+            update.where(builder.equal(e.get("trackingNumber"), UUID));
+            session.createQuery(update).executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public int getId () {
         return id;
     }

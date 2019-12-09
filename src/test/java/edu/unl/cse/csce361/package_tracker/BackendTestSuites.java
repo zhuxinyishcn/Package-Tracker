@@ -10,9 +10,10 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 
-import java.util.HashMap;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 
 
 public class BackendTestSuites {
@@ -187,17 +188,35 @@ public class BackendTestSuites {
 
     @Test
     public void TestLoadAllTable () {
+        final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.from(date.parse("2019/12/08 21:59:55"));
+
+        final LocalDateTime now = LocalDateTime.now();
+        System.out.println((Duration.between(dateTime, now).toMillis() / 1000));
         long start = System.nanoTime();
         final Session session = HibernateUtil.createSession().openSession();
-        Map<String, Package> packageMap = new HashMap<>();
-        Map<String, Sender> senderMap = new HashMap<>();
+        final Transaction transaction = session.beginTransaction();
         ScrollableResults packageid = session.createQuery("from Package").scroll();
         while (packageid.next()) {
             Package packageInfo = (Package) packageid.get(0);
-            packageMap.put(packageInfo.getTrackingNumber(), packageInfo);
-            session.evict(packageInfo);
+            LocalDateTime estimateTime = LocalDateTime.from(date.parse(packageInfo.getEstimateTime()));
+            if (packageInfo.getStatus().equals("Shipping")) {
+                if (now.isAfter(estimateTime)) {
+                    packageInfo.setStatus("Arrived");
+                } else {
+                    LocalDateTime startTime = LocalDateTime.from(date.parse(packageInfo.getShippingTime()));
+                    long second = (Duration.between(startTime, now).toMillis() / 1000);
+                    int numberOfWarehouse = (int) ((second * 22.352) / 16093.44);
+                    int k = packageInfo.getCurrentLocation() + numberOfWarehouse;
+                    packageInfo.setCurrentLocation(packageInfo.getCurrentLocation() + numberOfWarehouse);
+                }
+            }
+            session.update(packageInfo);
+
         }
+        transaction.commit();
         session.close();
+
         System.out.println((System.nanoTime() - start));
     }
 
@@ -226,7 +245,20 @@ public class BackendTestSuites {
     public void TestSearchSender () {
         long start = System.nanoTime();
         Address address = new Address("1213400 R St", "test", "200102");
-        backendFacade.editSenderAddress("uno",address);
+        Receiver receiver = new Receiver(address, "dddsx258");
+        Sender sender = backendFacade.searchSender("golf for ever");
+        System.out.println(sender.getPackageSet().size());
+        for (Package packageinfo : sender.getPackageSet()) {
+            System.out.println(packageinfo.getTrackingNumber());
+        }
+        System.out.println((System.nanoTime() - start));
+    }
+
+
+    @Test
+    public void TestEditLocation () {
+        long start = System.nanoTime();
+        backendFacade.editCurrentlocation("f5f5837d-eb37-4db6-af22-3a2c13b7a364", 12);
         System.out.println((System.nanoTime() - start));
     }
 }
