@@ -203,6 +203,6 @@ public class Printer {
     public static void printPacakge (Package p) {
         System.out.printf("Tracking Number:%-20s\nSender:%-10s\nReceiver:%-10s\nCurrent Location:%-20s\nStatus:%-10s\nstart Location:%-10s\nend Location:%10s\nestimated time:%s\n\n",
                 p.getTrackingNumber(), p.getSender().getName(), p.getReceiver().getName(),
-                logic.getWarehouse().get(p.getCurrentLocation()).getName(), p.getStatus(), p.getSender().getAddress(), p.getReceiver().getAddress(), p.getEstimateTime());
+                logic.getWarehouse().get(p.getCurrentLocation()-1).getName(), p.getStatus(), p.getSender().getAddress(), p.getReceiver().getAddress(), p.getEstimateTime());
     }
 }

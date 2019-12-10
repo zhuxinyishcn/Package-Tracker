@@ -28,11 +28,11 @@ public class AdminLogic {
         if (trackingNumber.length() >= 40) {
             Printer.printErrInput("Tracking number", "40");
         } else {
-            if (priorityID <= 10 && priorityID >= 0) {
+            if (priorityID <= 99 && priorityID >= 0) {
                 backend.editPiorityID(trackingNumber);
                 Printer.printLogicRequestSuccess("edit priority ID");
             } else {
-                Printer.printErrInput("Priority ID", "10");
+                Printer.printErrInput("Priority ID", "2");
             }
         }
     }
