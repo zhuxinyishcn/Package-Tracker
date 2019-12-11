@@ -33,6 +33,7 @@ public class UserInterFace {
                     Printer.printAskUserName();
                     userName = scnr.nextLine();
                     String status = logic.checkUser(userName);
+                    logic.searchSender(userName);
                     if ("VIP".equals(status)) {
                         Menu.vipMenu();
                     } else if ("Active".equals(status)) {
@@ -43,7 +44,6 @@ public class UserInterFace {
                     break;
                 case "3":
                     Menu.register();
-                    ;
                     break;
                 case "4":
                     programOn = false;
