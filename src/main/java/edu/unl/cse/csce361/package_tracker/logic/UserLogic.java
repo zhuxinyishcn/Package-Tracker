@@ -10,11 +10,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 public class UserLogic {
+
 	private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
-	private final static logicFacade logic = logicFacade.getInstance();
 
 	public static String checkUser(String userName) {
-
 		return BACKEND_FACADE.searchUserStatus(userName);
 	}
 
@@ -40,16 +39,10 @@ public class UserLogic {
 	}
 
 	public static void newPackage(String userName, String street, String city, String zipCode) {
-		GoogleGeocode desitationGeocode = GoogleGeocode.getLatLng(street, city, zipCode);
-		Sender user = BACKEND_FACADE.searchSender(userName);
-
-		int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(desitationGeocode.getLat()),
-				Double.parseDouble(desitationGeocode.getLng()));
-		int senderWarehouse = logic.findClosestWarehouse(user.getAddress().getLatitude(),
-				user.getAddress().getLongitude());
-		double travelDistance = logic.CalculateDistance(Double.parseDouble(desitationGeocode.getLat()),
-				Double.parseDouble(desitationGeocode.getLng()), user.getAddress().getLatitude(),
-				user.getAddress().getLongitude());
+		GoogleGeocode geocode = GoogleGeocode.getLatLng(street, city, zipCode);
+		int desitationWarehouse = CalculateDistance.findClosestWarehouse(Double.parseDouble(geocode.getLat()),
+				Double.parseDouble(geocode.getLng()));
+		Sender sender = BACKEND_FACADE.searchSender(userName);
 
 		// TODO: @login and @desinationLogin to create new package.
 		// need the disatnce
@@ -63,11 +56,8 @@ public class UserLogic {
 	}
 
 	public static void holdAtWarehouse(String trackingNumber) {
-		// TODO: Set @trackingNumber to hold.
-		// TODO: Get current location to @warehouseID.
-		int warehouseID = 1;
 		BACKEND_FACADE.editPackageStatus(trackingNumber, "Hold");
-		// BACKEND_FACADE.getCurrentLocation(trackingNumber);
+		int warehouseID = BACKEND_FACADE.searchPackage(trackingNumber).getCurrentLocation();
 		Printer.printLogicHoldWarehouse(warehouseID);
 	}
 

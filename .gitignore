@@ -8,6 +8,7 @@ hibernate.cfg.xml
 #Log4J Log
 geocodeDebugLog.info.*
 geocodeErrorLog.info.*
+*.log
 
 # Mac file finder metadata
 .DS_Store

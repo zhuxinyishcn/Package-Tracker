@@ -23,10 +23,13 @@ public class Receiver {
     private String name;
     @OneToOne(mappedBy = "receiver", fetch = FetchType.LAZY)
     private Package packageid;
+    @Column(name = "destination", nullable = false, length = 100)
+    private int destination;
 
-    public Receiver (Address address, String name) {
+    public Receiver (Address address, String name, int destination) {
         this.address = address;
         this.name = name;
+        this.destination = destination;
     }
 
     public Receiver () {
@@ -37,13 +40,29 @@ public class Receiver {
         final Transaction transaction = session.beginTransaction();
         try {
             Address address = new Address(street, city, zipCode);
-            Receiver receiver = new Receiver(address, realName);
+            Receiver receiver = new Receiver(address, realName, 0);
             session.persist(receiver);
             transaction.commit();
         } catch (Throwable e) {
             session.getTransaction().rollback();
             throw e;
         }
+    }
+
+    public Package getPackageid () {
+        return packageid;
+    }
+
+    public void setPackageid (Package packageid) {
+        this.packageid = packageid;
+    }
+
+    public int getDestination () {
+        return destination;
+    }
+
+    public void setDestination (int destination) {
+        this.destination = destination;
     }
 
     public Address getAddress () {
@@ -60,10 +79,5 @@ public class Receiver {
 
     public void setName (String name) {
         this.name = name;
-    }
-
-
-    public void setPackageid (Package packageid) {
-        this.packageid = packageid;
     }
 }

@@ -110,6 +110,6 @@ public class GoogleGeocode {
 			// create GoogleGeocode object
 			return new GoogleGeocode(lat, lng);
 		}
-			return new GoogleGeocode("0", "0");
+		return new GoogleGeocode("0", "0");
 	}
 }

@@ -1,10 +1,9 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
+import java.util.*;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
-public class Menu {
+public class Menu implements Observer {
 	private static logicFacade logic = logicFacade.getInstance();
 	private static Scanner scnr = new Scanner(System.in);
 	private static String userName = UserInterFace.getUserName();
@@ -321,6 +320,11 @@ public class Menu {
 		Printer.printAskZipCode();
 		zipCode = scnr.nextLine();
 		logic.register(user, realName, street, city, zipCode);
+		
 	}
 
+	@Override
+	public void update (Observable o, Object arg) {
+
+	}
 }

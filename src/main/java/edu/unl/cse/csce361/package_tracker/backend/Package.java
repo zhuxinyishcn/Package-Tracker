@@ -4,6 +4,8 @@ package edu.unl.cse.csce361.package_tracker.backend;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,6 +22,7 @@ import java.util.UUID;
  * @author davidgao
  */
 @Entity
+@Indexed
 @Table(name = "Packages", uniqueConstraints = {
         @UniqueConstraint(columnNames = "packageid"),
         @UniqueConstraint(columnNames = "trackingNumber")})
@@ -28,6 +31,7 @@ public class Package {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "PackageID", unique = true, nullable = false, updatable = false)
     private int id;
+    @Field(name = "trackingNumber", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     @Column(name = "trackingNumber", unique = true, length = 40, updatable = false)
     private String trackingNumber;
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
@@ -47,10 +51,11 @@ public class Package {
     private String shippingTime;
     @Column(name = "estimateTime", nullable = false, length = 100, updatable = false)
     private String estimateTime;
+    @Column(name = "routeStatus", nullable = false, length = 100, updatable = false)
+    private String route;
 
     public Package () {
     }
-
 
     public Package (Sender sender, Receiver receiver, int currentLocation, double distance) {
         final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -58,12 +63,13 @@ public class Package {
         this.sender = sender;
         this.receiver = receiver;
         this.currentLocation = currentLocation;
-        this.status = "Shipping";
+        this.status = "Despatching";
         this.shippingTime = date.format(now);
         //note: we assume our latest drones latest speed is 22.352 m/s
         final double droneSpeed = 22.352;
         this.estimateTime = date.format(now.plusSeconds((long) (distance / droneSpeed)));
         this.trackingNumber = UUID.randomUUID().toString();
+        this.route = "from " + currentLocation + " warehouse to " + receiver.getDestination() + " warehouse";
     }
 
     public static void insertPackage (Session session, Sender sender, Receiver receiver,
@@ -89,7 +95,7 @@ public class Package {
     }
 
     public static void setPackage (Session session, String UUID) {
-        setPackage(session, UUID, "Arrived");
+        setPackage(session, UUID, "Delivered");
     }
 
     public static void setPackage (Session session, String UUID, String status) {
@@ -167,7 +173,8 @@ public class Package {
             e.printStackTrace();
         }
     }
-    public static void setCurrentLocation (Session session, String UUID,int currentLocation) {
+
+    public static void setCurrentLocation (Session session, String UUID, int currentLocation) {
         final Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         try {
@@ -181,6 +188,15 @@ public class Package {
             e.printStackTrace();
         }
     }
+
+    public String getRoute () {
+        return route;
+    }
+
+    public void setRoute (String route) {
+        this.route = route;
+    }
+
     public int getId () {
         return id;
     }

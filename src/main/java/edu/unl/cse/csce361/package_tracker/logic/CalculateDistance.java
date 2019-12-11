@@ -61,4 +61,5 @@ public class CalculateDistance {
 				logic.getWarehouse().get(warehouse2 - 1).getAddress().getLatitude(),
 				logic.getWarehouse().get(warehouse2 - 1).getAddress().getLongitude(), "M");
 	}
+
 }

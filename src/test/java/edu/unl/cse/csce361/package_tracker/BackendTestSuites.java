@@ -58,7 +58,7 @@ public class BackendTestSuites {
         final Transaction transaction = session.beginTransaction();
         try {
             Address address = new Address("140024 R St, Lincoln", "Lincoln", "68508");
-            Receiver receiver = new Receiver(address, "test123");
+            Receiver receiver = new Receiver(address, "test123", (int) Math.abs(Math.random()% 8));
             session.persist(receiver);
             transaction.commit();
             HibernateUtil.closeSession(session);
@@ -74,7 +74,7 @@ public class BackendTestSuites {
         Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
         Sender sender = new Sender(address, "test", "sxc258");
         Address address2 = new Address("1400 R St2, Lincoln, NE 68588", "Lincoln", "68508");
-        Receiver receiver = new Receiver(address2, "dddsx258");
+        Receiver receiver = new Receiver(address2, "dddsx258", (int) Math.abs(Math.random() % 8));
         backendFacade.addPackageRecord(sender, receiver, 1, Math.random());
     }
 
@@ -90,29 +90,36 @@ public class BackendTestSuites {
 
     @Test
     public void TestSearchTranckingNumber () throws InterruptedException {
+        long start = System.nanoTime();
         final Session session = HibernateUtil.createSession().openSession();
         FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
-        fullTextSession.createIndexer().startAndWait();
+        //fullTextSession.createIndexer().startAndWait();
         Transaction tx = fullTextSession.beginTransaction();
         QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
                 .buildQueryBuilder()
                 .forEntity(Package.class)
                 .get();
         try {
-            org.apache.lucene.search.Query query = queryBuilder.phrase().onField("name")
-                    .sentence("millard airport-east").createQuery();
+            org.apache.lucene.search.Query query = queryBuilder.phrase().onField("trackingNumber")
+                    .sentence("7918f73b-bc43-448d-9652-f00f67355ac8").createQuery();
             org.hibernate.query.Query hibQuery =
-                    fullTextSession.createFullTextQuery(query, Sender.class);
-            List<Sender> warehouseList = hibQuery.list();
-            warehouseList.forEach(key -> {
-                System.out.println("Iterator Value::" + key.getName());
-            });
+                    fullTextSession.createFullTextQuery(query, Package.class);
+            Package warehouseList = (Package) hibQuery.getSingleResult();
+            System.out.println(warehouseList.getEstimateTime());
             tx.commit();
             session.close();
+            System.out.println((System.nanoTime() - start) + " nanosecond");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void TestSearchPackage () {
+        long start = System.nanoTime();
+        backendFacade.searchPackage("7918f73b-bc43-448d-9652-f00f67355ac8");
+        System.out.println(System.nanoTime() - start + " nanosecond");
     }
 
     @Test
@@ -142,13 +149,6 @@ public class BackendTestSuites {
         }
         System.out.println(System.nanoTime() - start + " nanosecond");
     }
-
-//    @Test
-//    public void TestEditPackagesInfo () {
-//        backendFacade.editPackageAllInfo("40ac7974-1978-4e28-9423-6dab8e8f189c", "1",
-//                "4", "2233/12/03 12:13:57",
-//                "just Test it! again", "system Admin!", "system Admin:)!");
-//    }
 
 
     @Test
@@ -188,35 +188,29 @@ public class BackendTestSuites {
 
     @Test
     public void TestLoadAllTable () {
-        final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime dateTime = LocalDateTime.from(date.parse("2019/12/08 21:59:55"));
-
-        final LocalDateTime now = LocalDateTime.now();
-        System.out.println((Duration.between(dateTime, now).toMillis() / 1000));
         long start = System.nanoTime();
+        final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        final LocalDateTime now = LocalDateTime.now();
         final Session session = HibernateUtil.createSession().openSession();
         final Transaction transaction = session.beginTransaction();
         ScrollableResults packageid = session.createQuery("from Package").scroll();
         while (packageid.next()) {
             Package packageInfo = (Package) packageid.get(0);
             LocalDateTime estimateTime = LocalDateTime.from(date.parse(packageInfo.getEstimateTime()));
-            if (packageInfo.getStatus().equals("Shipping")) {
+            if (packageInfo.getStatus().equals("Despatching")) {
                 if (now.isAfter(estimateTime)) {
                     packageInfo.setStatus("Arrived");
                 } else {
                     LocalDateTime startTime = LocalDateTime.from(date.parse(packageInfo.getShippingTime()));
                     long second = (Duration.between(startTime, now).toMillis() / 1000);
                     int numberOfWarehouse = (int) ((second * 22.352) / 16093.44);
-                    int k = packageInfo.getCurrentLocation() + numberOfWarehouse;
                     packageInfo.setCurrentLocation(packageInfo.getCurrentLocation() + numberOfWarehouse);
                 }
             }
             session.update(packageInfo);
-
         }
         transaction.commit();
         session.close();
-
         System.out.println((System.nanoTime() - start));
     }
 
@@ -245,7 +239,7 @@ public class BackendTestSuites {
     public void TestSearchSender () {
         long start = System.nanoTime();
         Address address = new Address("1213400 R St", "test", "200102");
-        Receiver receiver = new Receiver(address, "dddsx258");
+        Receiver receiver = new Receiver(address, "dddsx258", (int) Math.abs(Math.random()% 8));
         Sender sender = backendFacade.searchSender("golf for ever");
         System.out.println(sender.getPackageSet().size());
         for (Package packageinfo : sender.getPackageSet()) {
@@ -258,7 +252,7 @@ public class BackendTestSuites {
     @Test
     public void TestEditLocation () {
         long start = System.nanoTime();
-        backendFacade.editCurrentlocation("f5f5837d-eb37-4db6-af22-3a2c13b7a364", 12);
+        backendFacade.editCurrentlocation("7918f73b-bc43-448d-9652-f00f67355ac8", 11);
         System.out.println((System.nanoTime() - start));
     }
 }
