@@ -76,16 +76,20 @@ public class GoogleGeocode {
 					logger.debug("--------------------------------------");
 
 					if (entity != null) {
-						// open json
-						String str = EntityUtils.toString(entity);
-						JSONObject o = (JSONObject) JSONValue.parse(str);
-						JSONArray o2 = (JSONArray) o.get("results");
-						JSONObject o3 = (JSONObject) o2.get(0);
-						JSONObject o4 = (JSONObject) o3.get("geometry");
-						JSONObject o5 = (JSONObject) o4.get("location");
-						lat = o5.get("lat").toString();
-						lng = o5.get("lng").toString();
-						logger.debug("lat====<<<" + o5.get("lat") + ">>>lng====<<<" + o5.get("lng") + ">>>");
+						try {
+							// open json
+							String str = EntityUtils.toString(entity);
+							JSONObject o = (JSONObject) JSONValue.parse(str);
+							JSONArray o2 = (JSONArray) o.get("results");
+							JSONObject o3 = (JSONObject) o2.get(0);
+							JSONObject o4 = (JSONObject) o3.get("geometry");
+							JSONObject o5 = (JSONObject) o4.get("location");
+							lat = o5.get("lat").toString();
+							lng = o5.get("lng").toString();
+							logger.debug("lat====<<<" + o5.get("lat") + ">>>lng====<<<" + o5.get("lng") + ">>>");
+						} catch (IndexOutOfBoundsException e) {
+							return new GoogleGeocode("0", "0");
+						}
 					}
 					logger.debug("------------------------------------");
 				} finally {
@@ -105,8 +109,7 @@ public class GoogleGeocode {
 			}
 			// create GoogleGeocode object
 			return new GoogleGeocode(lat, lng);
-		} else {
-			return new GoogleGeocode("0", "0");
 		}
+			return new GoogleGeocode("0", "0");
 	}
 }

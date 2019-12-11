@@ -34,10 +34,12 @@ public class Logic {
 		boolean legal = true;
 		double lat = 0;
 		double lng = 0;
+		String status = logic.checkUser(userName);
 		if (userName.length() >= 10 || userName.isEmpty()) {// @userName should less than 10 character.
 			Printer.printErrInput("User Name", "10");
 			legal = false;
-		} else if (!logic.checkUser(userName).equalsIgnoreCase("null")) {
+
+		} else if ("VIP".equals(status) || "Active".equals(status)) {
 			Printer.printLogicUserFound(userName);
 			legal = false;
 		}
@@ -52,7 +54,7 @@ public class Logic {
 			Printer.printLogicErrAddress();
 			legal = false;
 		}
-		if (city.length() >= 50 || city.isEmpty()) { 
+		if (city.length() >= 50 || city.isEmpty()) {
 			Printer.printLogicErrAddress();
 			legal = false;
 		}
@@ -60,10 +62,14 @@ public class Logic {
 			Printer.printLogicErrAddress();
 			legal = false;
 		}
-		if (legal) { //If meet the requirement check Geocode, and check address valid.
+		if (legal) { // If meet the requirement check Geocode, and check address valid.
 			GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
 			lat = Double.parseDouble(geocode.getLat());
 			lng = Double.parseDouble(geocode.getLng());
+			if (lat == 0 && lng == 0) {
+				Printer.printLogicAddressNotFound();
+				legal = false;
+			}
 		}
 		if (legal) {// If everything meet the requirement, sign up the account
 

@@ -203,6 +203,9 @@ public class Printer {
 	public static void printLogicUserFound(String userName) {
 		System.out.println("User Name: " + userName + " already been used, please try the another one");
 	}
+	public static void printLogicAddressNotFound() {
+		System.err.println("Your address can not be resolved, Please type in your actual address.");
+	}
 
 	public static void printPacakge(Package p) {
 		System.out.printf(
