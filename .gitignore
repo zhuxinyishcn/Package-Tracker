@@ -1,8 +1,13 @@
 # Project-specific
+
 # SQL authentication
 *.info
 hibernate.cfg.xml
 *.cfg.xml
+
+#Log4J Log
+geocodeDebugLog.info.*
+geocodeErrorLog.info.*
 
 # Mac file finder metadata
 .DS_Store
