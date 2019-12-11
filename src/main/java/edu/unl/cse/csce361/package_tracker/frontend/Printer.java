@@ -1,10 +1,10 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
 
+import java.util.List;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 public class Printer {
@@ -33,23 +33,26 @@ public class Printer {
 	public static void printAdminMenu() {
 		System.out.println("Welcome, administration options are as follows:");
 		System.out.println("1. Show all package.");
-		System.out.println("2. Change destination.");
-		System.out.println("3. Edit user data.");
-		System.out.println("4. Edit package.");
-		System.out.println("5. Back to main menu.");
+		System.out.println("2. Confirm package.");
+		System.out.println("3. Change destination.");
+		System.out.println("4. Edit user data.");
+		System.out.println("5. Edit package.");
+		System.out.println("6. Fuzzy search by tracking number.");
+		System.out.println("7. Back to main menu.");
 	}
 
 	public static void printUserMenu() {
 		System.out.println("Welcome, user options are as follows:");
 		System.out.println("1. Send your package.(Destination address)");
-		System.out.println("2. Retuen package.");
-		System.out.println("3. Edit personal data."); // address only
-		System.out.println("4. Check your package.(Tracking# or User Name)");
-		System.out.println("5. Upgrade to VIP.");
-		System.out.println("6. Cancel package.");
-		System.out.println("7. Hold at Warehouse.");
-		System.out.println("8. Estimate dilivery time.");
-		System.out.println("9. Back to main menu.");
+		System.out.println("2. Confirm package.");
+		System.out.println("3. Retuen package.");
+		System.out.println("4. Edit personal data."); // address only
+		System.out.println("5. Check your package.");
+		System.out.println("6. Upgrade to VIP.");
+		System.out.println("7. Cancel package.");
+		System.out.println("8. Hold at Warehouse.");
+		System.out.println("9. Estimate dilivery time.");
+		System.out.println("10. Back to main menu.");
 	}
 
 	public static void printDestination() {
@@ -59,14 +62,15 @@ public class Printer {
 	public static void printVIPMenu() {
 		System.out.println("Welcome, VIP options are as follows:");
 		System.out.println("1. Send priority package.(Destination address)");
-		System.out.println("2. Return package.");
-		System.out.println("3. Edit personal data.");
-		System.out.println("4. Check your package.(Tracking# or User Name)");
-		System.out.println("5. Cancel package.");
-		System.out.println("6. Hold at Warehouse.");
-		System.out.println("7. Estimate dilivery time.");
-		System.out.println("8. Change destination.");
-		System.out.println("9. Back to main menu.");
+		System.out.println("2. Confirm package.");
+		System.out.println("3. Return package.");
+		System.out.println("4. Edit personal data.");
+		System.out.println("5. Check your package.");
+		System.out.println("6. Cancel package.");
+		System.out.println("7. Hold at Warehouse.");
+		System.out.println("8. Estimate dilivery time.");
+		System.out.println("9. Change destination.");
+		System.out.println("10. Back to main menu.");
 	}
 
 	public static void printAskRealName() {

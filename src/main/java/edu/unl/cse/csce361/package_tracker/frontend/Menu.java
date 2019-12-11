@@ -1,9 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 public class Menu {
@@ -35,6 +33,9 @@ public class Menu {
 				logic.getAllPackage();
 				break;
 			case "2":
+				//TODO: Confirm package
+				break;
+			case "3":
 				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				Printer.printAskStreet();
@@ -45,7 +46,7 @@ public class Menu {
 				zipCode = scnr.nextLine();
 				logic.editReceiver(inputTracking, street, city, zipCode);
 				break;
-			case "3":
+			case "4":
 				Printer.printAskUserName();
 				user = scnr.nextLine();
 				Printer.printAskStreet();
@@ -56,10 +57,13 @@ public class Menu {
 				zipCode = scnr.nextLine();
 				logic.editInfo(user, street, city, zipCode);
 				break;
-			case "4":
+			case "5":
 				editPackage();
 				break;
-			case "5":
+			case "6":
+				//TODO: Fuzzy search
+				break;
+			case "7":
 				programOn = false;
 				break;
 			default:
@@ -148,11 +152,14 @@ public class Menu {
 				logic.newPackage(userName, street, city, zipCode);
 				break;
 			case "2":
+				//TODO: Confirm package
+				break;
+			case "3":
 				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.returnPackage(inputTracking);
 				break;
-			case "3":
+			case "4":
 				Printer.printAskStreet();
 				street = scnr.nextLine();
 				Printer.printAskCity();
@@ -161,7 +168,7 @@ public class Menu {
 				zipCode = scnr.nextLine();
 				logic.editInfo(userName, street, city, zipCode);
 				break;
-			case "4":
+			case "5":
 				logic.printCheckPackage();
 				inputCheck = scnr.nextLine();
 				switch(inputCheck) {
@@ -179,25 +186,25 @@ public class Menu {
 					logic.printInvalid();
 				}
 				break;
-			case "5":
-				logic.becomeVIP(userName);
-				break;
 			case "6":
-				logic.printAskTracking();
-				inputTracking = scnr.nextLine();
-				logic.cancelPackage(inputTracking);
+				logic.becomeVIP(userName);
 				break;
 			case "7":
 				logic.printAskTracking();
 				inputTracking = scnr.nextLine();
-				logic.holdAtWarehouse(inputTracking);
+				logic.cancelPackage(inputTracking);
 				break;
 			case "8":
 				logic.printAskTracking();
 				inputTracking = scnr.nextLine();
-				logic.estimatePackage(inputTracking);
+				logic.holdAtWarehouse(inputTracking);
 				break;
 			case "9":
+				logic.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.estimatePackage(inputTracking);
+				break;
+			case "10":
 				programOn = false;
 				break;
 			default:
@@ -228,11 +235,14 @@ public class Menu {
 				logic.newPackage(userName, street, city, zipCode);
 				break;
 			case "2":
+				//TODO: Confirm package
+				break;
+			case "3":
 				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.returnPackage(inputTracking);
 				break;
-			case "3":
+			case "4":
 				Printer.printAskStreet();
 				street = scnr.nextLine();
 				Printer.printAskCity();
@@ -241,7 +251,7 @@ public class Menu {
 				zipCode = scnr.nextLine();
 				logic.editInfo(userName, street, city, zipCode);
 				break;
-			case "4":
+			case "5":
 				logic.printCheckPackage();
 				inputCheck = scnr.nextLine();
 				switch(inputCheck) {
@@ -259,22 +269,22 @@ public class Menu {
 					logic.printInvalid();
 				}
 				break;
-			case "5":
+			case "6":
 				logic.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.cancelPackage(inputTracking);
 				break;
-			case "6":
+			case "7":
 				logic.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.holdAtWarehouse(inputTracking);
 				break;
-			case "7":
+			case "8":
 				logic.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.estimatePackage(inputTracking);
 				break;
-			case "8":
+			case "9":
 				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				Printer.printAskStreet();
@@ -285,7 +295,7 @@ public class Menu {
 				zipCode = scnr.nextLine();
 				logic.editReceiver(inputTracking, street, city, zipCode);
 				break;
-			case "9":
+			case "10":
 				programOn = false;
 				break;
 			default:
