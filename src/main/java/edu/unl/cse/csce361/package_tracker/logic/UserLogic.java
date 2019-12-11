@@ -42,6 +42,8 @@ public class UserLogic {
         GoogleGeocode geocode = GoogleGeocode.getLatLng(street, city, zipCode);
         int desitationWarehouse = CalculateDistance.findClosestWarehouse(Double.parseDouble(geocode.getLat()),
                 Double.parseDouble(geocode.getLng()));
+        Sender sender = BACKEND_FACADE.searchSender(userName);
+
         // TODO: @login and @desinationLogin to create new package.
         //need the disatnce
         String trackingNumber = null;
@@ -54,11 +56,8 @@ public class UserLogic {
     }
 
     public static void holdAtWarehouse (String trackingNumber) {
-        // TODO: Set @trackingNumber to hold.
-        // TODO: Get current location to @warehouseID.
-        int warehouseID = 1;
-        BACKEND_FACADE.editPackageStatus(trackingNumber,"Hold");
-        //BACKEND_FACADE.getCurrentLocation(trackingNumber);
+        BACKEND_FACADE.editPackageStatus(trackingNumber, "Hold");
+        int warehouseID = BACKEND_FACADE.searchPackage(trackingNumber).getCurrentLocation();
         Printer.printLogicHoldWarehouse(warehouseID);
     }
 
@@ -79,3 +78,5 @@ public class UserLogic {
         Printer.printLogicRequestSuccess("confirm package" + trackingNumber + "received");
     }
 }
+
+

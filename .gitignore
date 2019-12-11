@@ -3,7 +3,7 @@
 *.info
 hibernate.cfg.xml
 *.cfg.xml
-
+*log
 # Mac file finder metadata
 .DS_Store
 # MS Office temporary file

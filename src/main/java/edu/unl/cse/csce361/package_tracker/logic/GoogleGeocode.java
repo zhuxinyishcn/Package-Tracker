@@ -55,7 +55,7 @@ public class GoogleGeocode {
 		zipCode = zipCode.replace(" ", "?");
 		String address = street + ",?" + city + ",?" + zipCode;
 		CloseableHttpClient httpclient = HttpClients.createDefault();
-		Logger logger = Logger.getLogger(GoogleGeocode.class);
+//		Logger logger = Logger.getLogger(GoogleGeocode.class);
 		String lat = null;
 		String lng = null;
 		try {
@@ -64,13 +64,13 @@ public class GoogleGeocode {
 			String http = "https://maps.google.com/maps/api/geocode/json?address=" + address + "&sensor=false&key="
 					+ apiKey;
 			HttpGet httpget = new HttpGet(http);
-			logger.debug("HTTP request url: " + httpget.getURI());
+//			logger.debug("HTTP request url: " + httpget.getURI());
 			// Sent GET!!
 			CloseableHttpResponse response = httpclient.execute(httpget);
 			try {
 				// GET response
 				HttpEntity entity = response.getEntity();
-				logger.debug("--------------------------------------");
+//				logger.debug("--------------------------------------");
 
 				// System.out.println(response.getStatusLine());// Print status
 				if (entity != null) {
@@ -83,22 +83,22 @@ public class GoogleGeocode {
 					JSONObject o5 = (JSONObject) o4.get("location");
 					lat = o5.get("lat").toString();
 					lng = o5.get("lng").toString();
-					logger.debug("lat====<<<" + o5.get("lat") + ">>>lng====<<<" + o5.get("lng")+">>>");
+//					logger.debug("lat====<<<" + o5.get("lat") + ">>>lng====<<<" + o5.get("lng")+">>>");
 				}
-				logger.debug("------------------------------------");
+//				logger.debug("------------------------------------");
 			} finally {
 				response.close();
 			}
 		} catch (ParseException | IOException e) {
 			e.printStackTrace();
-			logger.error(e.getMessage());
+//			logger.error(e.getMessage());
 		} finally {
 			// close connection
 			try {
 				httpclient.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				logger.error(e.getMessage());
+//				logger.error(e.getMessage());
 			}
 		}
 		return new GoogleGeocode(lat, lng);

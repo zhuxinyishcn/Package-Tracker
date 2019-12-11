@@ -53,4 +53,13 @@ public class CalculateDistance {
                 logic.getWarehouse().get(warehouse2 - 1).getAddress().getLatitude(),
                 logic.getWarehouse().get(warehouse2 - 1).getAddress().getLongitude(), "M");
     }
+
+    public static void main(String[] args) {
+        System.out.println(String.format("%-5s %-30s %-50s", "ID", "Name", "Address"));
+        for (int i = 0; i <= logicFacade.getInstance().getWarehouse().size() - 1; i++) {
+            System.out.println(logicFacade.getInstance().getWarehouse().get(i).toString());
+        }
+        System.out.println(findClosestWarehouse(40.817663,-96.700037));
+    }
+
 }
