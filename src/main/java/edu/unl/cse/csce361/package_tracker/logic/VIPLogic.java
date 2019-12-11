@@ -4,6 +4,7 @@ import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class VIPLogic {
 	public static void changeDestitation(String trackingNumber, String destitationLogin) {
+		// Allow user to change destination after shipping
 		// TODO: Using @trackingNumber to set @receiver as @destitation
 		Printer.printlogicChangeDestitation(trackingNumber, destitationLogin);
 	}

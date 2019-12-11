@@ -14,6 +14,7 @@ public class UserLogic {
 	private final static logicFacade logic = logicFacade.getInstance();
 
 	public static String checkUser(String userName) {
+
 		return BACKEND_FACADE.searchUserStatus(userName);
 	}
 
@@ -41,7 +42,7 @@ public class UserLogic {
 	public static void newPackage(String userName, String street, String city, String zipCode) {
 		GoogleGeocode desitationGeocode = GoogleGeocode.getLatLng(street, city, zipCode);
 		Sender user = BACKEND_FACADE.searchSender(userName);
-		
+
 		int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(desitationGeocode.getLat()),
 				Double.parseDouble(desitationGeocode.getLng()));
 		int senderWarehouse = logic.findClosestWarehouse(user.getAddress().getLatitude(),
