@@ -30,6 +30,11 @@ public class Printer {
 		System.out.println("Please enter:");
 	}
 
+	public static void printAskWarehouse() {
+		Printer.printWarehouse();
+		System.out.println("Please enter warehouse selection:");
+	}
+
 	public static void printAdminMenu() {
 		System.out.println("Welcome, administration options are as follows:");
 		System.out.println("1. Show all package.");
@@ -38,7 +43,8 @@ public class Printer {
 		System.out.println("4. Edit user data.");
 		System.out.println("5. Edit package.");
 		System.out.println("6. Fuzzy search by tracking number.");
-		System.out.println("7. Back to main menu.");
+		System.out.println("7. Call drone to warehouse.");
+		System.out.println("8. Back to main menu.");
 	}
 
 	public static void printUserMenu() {

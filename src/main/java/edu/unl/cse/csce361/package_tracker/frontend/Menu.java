@@ -32,6 +32,7 @@ public class Menu implements Observer {
 			String city;
 			String zipCode;
 			String inputTracking;
+			String warehouseID;
 			Printer.printAdminMenu();
 			userSelect = scnr.nextLine();
 			switch (userSelect) {
@@ -70,6 +71,10 @@ public class Menu implements Observer {
 				// TODO: Fuzzy search
 				break;
 			case "7":
+				Printer.printAskWarehouse();
+				warehouseID = scnr.nextLine();
+				logic.callDrone(warehouseID);
+			case "8":
 				programOn = false;
 				break;
 			default:

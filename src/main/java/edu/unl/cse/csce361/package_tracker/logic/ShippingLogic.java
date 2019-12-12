@@ -11,13 +11,12 @@ public class ShippingLogic {
 	public static void addDrone() {
 		Drone a = new Drone("Idle", 1);
 		drone.add(a);
-//		int f = 0;
-//		for (int i = 0; i < 1000; i++) {
-//			f++;
-//		}
+		int f = 0;
+		for (int i = 0; i < 1000; i++) {
+			f++;
+		} 
 		Drone b = new Drone("Idle", 12);
 		drone.add(b);
-		System.out.println("HAHA");
 	}
 
 	public static boolean checkAvilability() {
@@ -88,9 +87,7 @@ public class ShippingLogic {
 	}
 
 	public static void main(String args[]) throws InterruptedException {
-		System.out.println("HAHA");
 		logic.addDrone();
-		System.out.println("HAHA");
 		ShippingLogic.callDrone("10");
 	}
 }

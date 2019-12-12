@@ -176,6 +176,10 @@ public class logicFacade {
 	public void setCallDroneDestination(int destination) {
 		CallDrone.setDestination(destination);
 	}
+	
+	public void callDrone(String warehouseID) {
+		ShippingLogic.callDrone(warehouseID);
+	}
 
 	public int findNextWarehouse(int current, int destination) {
 		return ShippingLogic.findNextWarehouse(current, destination);
