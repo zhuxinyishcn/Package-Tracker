@@ -1,12 +1,23 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class ShippingLogic {
 	public static ArrayList<Drone> drone = new ArrayList<Drone>();
+	public static List<edu.unl.cse.csce361.package_tracker.backend.Package> dispatchingPackage;
 	private static final logicFacade logic = logicFacade.getInstance();
+
+
+	public static List<edu.unl.cse.csce361.package_tracker.backend.Package> getDispatchingPackage() {
+		return dispatchingPackage;
+	}
+
+	public static void setDispatchingPackage(List<edu.unl.cse.csce361.package_tracker.backend.Package> dispatchingPackage) {
+		ShippingLogic.dispatchingPackage = dispatchingPackage;
+	}
 
 	public static void addDrone() {
 		Drone a = new Drone(1, "Idle", 1);

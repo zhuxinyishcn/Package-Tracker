@@ -145,10 +145,6 @@ public class logicFacade {
 		BACKEND_FACADE.editPackageReceiver(trackingNumber);
 		UserLogic.returnPackage(trackingNumber);
 	}
-	//get all the dispatching packages
-	public List<Package> getDispatchingPackage(){
-		return BACKEND_FACADE.getDispatchingPackage();
-	}
 
 	public List<Warehouse> getWarehouse() {
 		return BACKEND_FACADE.retrieveWarehouse();
@@ -208,5 +204,26 @@ public class logicFacade {
 
 	public void setPickUpDestination(int destination) {
 		DronePickUp.setPickUpDestination(destination);
+	}
+
+	public void getUpdatePackage() {
+		DroneCheckPackage R1 = new DroneCheckPackage("Get package");
+		R1.start();
+	}
+
+	public List<edu.unl.cse.csce361.package_tracker.backend.Package> getDispatchingPackage() {
+		return ShippingLogic.getDispatchingPackage();
+	}
+
+	public void setDispatchingPackage(List<edu.unl.cse.csce361.package_tracker.backend.Package> dispatchingPackage) {
+		ShippingLogic.setDispatchingPackage(dispatchingPackage);
+	}
+
+	public boolean getisProgramOn() {
+		return Logic.isProgramOn();
+	}
+
+	public void setProgramOn(boolean programOn) {
+		Logic.programOn = programOn;
 	}
 }

@@ -35,8 +35,8 @@ public class DronePickUp implements Runnable {
 		try {
 			int droneID = logic.findAvilableDrone();
 			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
-				System.out.println(
-						"Drone is taking off to warehouse " + destination + " to preprare to pickup your package.");
+				System.out.println("Drone" + droneID + " is taking off to warehouse " + destination
+						+ " to preprare to pickup your package.");
 				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						destination);
 				logic.getDrone().get(droneID).setStatus("Calling");
@@ -52,7 +52,7 @@ public class DronePickUp implements Runnable {
 						+ logic.getDrone().get(droneID).getCurrentLocation());
 			}
 			Thread.sleep((int) distanceToWarehouse * 1000);
-			System.out.println("Drone " + droneID + " your address and picked up the package.");
+			System.out.println("Drone " + droneID + " come to your address and picked up the package.");
 			Thread.sleep((int) distanceToWarehouse * 1000);
 			logic.editStatus(trackingNumber, "Dispatching");
 			System.out.println(

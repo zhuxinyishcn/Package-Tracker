@@ -25,7 +25,7 @@ public class DroneCall implements Runnable {
 		try {
 			int droneID = logic.findAvilableDrone();
 			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
-				System.out.println("Drone is taking off.");
+				System.out.println("Drone " + droneID + " is taking off.");
 				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						destination);
 				logic.getDrone().get(droneID).setStatus("Calling");
@@ -41,7 +41,8 @@ public class DroneCall implements Runnable {
 						+ logic.getDrone().get(droneID).getCurrentLocation());
 				Thread.sleep(1000);
 			}
-			System.out.println("Drone " + droneID + "Arrived warehouse " + destination);
+			System.out.println("Drone " + droneID + " Arrived final warehouse "
+					+ logic.getDrone().get(droneID).getCurrentLocation());
 		} catch (InterruptedException e) {
 			System.out.println("Thread " + threadName + " interrupted.");
 		}
