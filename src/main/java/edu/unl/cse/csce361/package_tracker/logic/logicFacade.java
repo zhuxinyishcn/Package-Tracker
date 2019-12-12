@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.backend.Warehouse;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
@@ -143,6 +144,10 @@ public class logicFacade {
 	public void returnPackage(String trackingNumber) {
 		BACKEND_FACADE.editPackageReceiver(trackingNumber);
 		UserLogic.returnPackage(trackingNumber);
+	}
+	//get all the dispatching packages
+	public List<Package> getDispatchingPackage(){
+		return BACKEND_FACADE.getDispatchingPackage();
 	}
 
 	public List<Warehouse> getWarehouse() {

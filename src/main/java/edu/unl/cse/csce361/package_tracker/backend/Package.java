@@ -54,10 +54,10 @@ public class Package {
     @Column(name = "routeStatus", nullable = false, length = 100, updatable = false)
     private String route;
 
-    public Package () {
+    public Package() {
     }
 
-    public Package (Sender sender, Receiver receiver, int currentLocation, double distance) {
+    public Package(Sender sender, Receiver receiver, int currentLocation, double distance) {
         final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         final LocalDateTime now = LocalDateTime.now();
         this.sender = sender;
@@ -72,8 +72,8 @@ public class Package {
         this.route = "from " + currentLocation + " warehouse to " + receiver.getDestination() + " warehouse";
     }
 
-    public static String insertPackage (Session session, Sender sender, Receiver receiver,
-                                        int currentLocation, double distance) {
+    public static String insertPackage(Session session, Sender sender, Receiver receiver,
+                                       int currentLocation, double distance) {
         final Transaction transaction = session.beginTransaction();
         try {
             Package packageInfo = new Package(sender, receiver, currentLocation, distance);
@@ -91,15 +91,15 @@ public class Package {
         }
     }
 
-    public static void deletePakcage (Session session, String UUID) {
+    public static void deletePakcage(Session session, String UUID) {
         setPackage(session, UUID, "Canceled");
     }
 
-    public static void setPackage (Session session, String UUID) {
+    public static void setPackage(Session session, String UUID) {
         setPackage(session, UUID, "Delivered");
     }
 
-    public static void setPackage (Session session, String UUID, String status) {
+    public static void setPackage(Session session, String UUID, String status) {
         final Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         try {
@@ -114,11 +114,11 @@ public class Package {
         }
     }
 
-    public static List<Package> retrievePackages (Session session) {
+    public static List<Package> retrievePackages(Session session) {
         return (List<Package>) session.createQuery("from Package").list();
     }
 
-    public static Package searchTrackingNumber (Session session, String trackingNumber) {
+    public static Package searchTrackingNumber(Session session, String trackingNumber) {
         try {
             Query query =
                     session.createSQLQuery("SELECT p.PackageID FROM Packages p WHERE p.trackingNumber like :ids").
@@ -130,10 +130,10 @@ public class Package {
         }
     }
 
-    public static void editPackageAllInfo (Session session, Transaction transaction, String trackingNumber,
-                                           String currentLocation,
-                                           String priorityID, String shippingTime,
-                                           String status, String receiver, String sender) {
+    public static void editPackageAllInfo(Session session, Transaction transaction, String trackingNumber,
+                                          String currentLocation,
+                                          String priorityID, String shippingTime,
+                                          String status, String receiver, String sender) {
         try {
             Package packageInfo = searchTrackingNumber(session, trackingNumber);
             packageInfo.setCurrentLocation(Integer.parseInt(currentLocation));
@@ -149,7 +149,7 @@ public class Package {
         }
     }
 
-    public static void returnPackage (Session session, String trackingNumber) {
+    public static void returnPackage(Session session, String trackingNumber) {
         final Transaction transaction = session.beginTransaction();
         try {
             Package packageInfo = searchTrackingNumber(session, trackingNumber);
@@ -163,7 +163,7 @@ public class Package {
         }
     }
 
-    public static void setPriority (Session session, String UUID) {
+    public static void setPriority(Session session, String UUID) {
         final Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         try {
@@ -178,7 +178,7 @@ public class Package {
         }
     }
 
-    public static void setCurrentLocation (Session session, String UUID, int currentLocation) {
+    public static void setCurrentLocation(Session session, String UUID, int currentLocation) {
         final Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         try {
@@ -193,89 +193,102 @@ public class Package {
         }
     }
 
-    public String getRoute () {
+    public static List<Package> getDispatchingPackage(Session session) {
+        //TODO: get all the dispatching Packages from session
+        try {
+            Query query =
+                    session.createSQLQuery("SELECT * FROM Packages p WHERE p.status =:ids").
+                            setParameter("ids", "Dispatching");
+
+            return (List<Package>) (query.getResultList());
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public String getRoute() {
         return route;
     }
 
-    public void setRoute (String route) {
+    public void setRoute(String route) {
         this.route = route;
     }
 
-    public int getId () {
+    public int getId() {
         return id;
     }
 
-    public int getCurrentLocation () {
+    public int getCurrentLocation() {
         return currentLocation;
     }
 
-    public void setCurrentLocation (int currentLocation) {
+    public void setCurrentLocation(int currentLocation) {
         this.currentLocation = currentLocation;
     }
 
-    public String getEstimateTime () {
+    public String getEstimateTime() {
         return estimateTime;
     }
 
-    public void setEstimateTime (String estimateTime) {
+    public void setEstimateTime(String estimateTime) {
         this.estimateTime = estimateTime;
     }
 
-    public String getShippingTime () {
+    public String getShippingTime() {
         return shippingTime;
     }
 
-    public void setShippingTime (String shippingTime) {
+    public void setShippingTime(String shippingTime) {
         this.shippingTime = shippingTime;
     }
 
-    public String getTrackingNumber () {
+    public String getTrackingNumber() {
         return trackingNumber;
     }
 
-    public void setTrackingNumber (String trackingNumber) {
+    public void setTrackingNumber(String trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
 
-    public Sender getSender () {
+    public Sender getSender() {
         return sender;
     }
 
-    public void setSender (Sender sender) {
+    public void setSender(Sender sender) {
         this.sender = sender;
     }
 
-    public Receiver getReceiver () {
+    public Receiver getReceiver() {
         return receiver;
     }
 
-    public void setReceiver (Receiver receiver) {
+    public void setReceiver(Receiver receiver) {
         this.receiver = receiver;
     }
 
-    public String getStatus () {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus (String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public int getPriorityid () {
+    public int getPriorityid() {
         return priorityid;
     }
 
-    public void setPriorityid (int priorityid) {
+    public void setPriorityid(int priorityid) {
         this.priorityid = priorityid;
     }
 
     @Override
-    public int hashCode () {
+    public int hashCode() {
         return super.hashCode();
     }
 
     @Override
-    public boolean equals (Object obj) {
+    public boolean equals(Object obj) {
         return super.equals(obj);
     }
 }
