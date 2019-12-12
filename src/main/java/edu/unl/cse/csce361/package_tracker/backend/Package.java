@@ -72,8 +72,8 @@ public class Package {
         this.route = "from " + currentLocation + " warehouse to " + receiver.getDestination() + " warehouse";
     }
 
-    public static void insertPackage (Session session, Sender sender, Receiver receiver,
-                                      int currentLocation, double distance) {
+    public static String insertPackage (Session session, Sender sender, Receiver receiver,
+                                        int currentLocation, double distance) {
         final Transaction transaction = session.beginTransaction();
         try {
             Package packageInfo = new Package(sender, receiver, currentLocation, distance);
@@ -84,6 +84,7 @@ public class Package {
             session.persist(sender);
             session.persist(packageInfo);
             transaction.commit();
+            return packageInfo.getTrackingNumber();
         } catch (Throwable e) {
             session.getTransaction().rollback();
             throw e;
@@ -118,12 +119,15 @@ public class Package {
     }
 
     public static Package searchTrackingNumber (Session session, String trackingNumber) {
-
-        Query query =
-                session.createSQLQuery("SELECT p.PackageID FROM Packages p WHERE p.trackingNumber like :ids").
-                        setParameter("ids", trackingNumber);
-        int packageid = (int) query.getSingleResult();
-        return session.get(Package.class, packageid);
+        try {
+            Query query =
+                    session.createSQLQuery("SELECT p.PackageID FROM Packages p WHERE p.trackingNumber like :ids").
+                            setParameter("ids", trackingNumber);
+            int packageid = (int) query.getSingleResult();
+            return session.get(Package.class, packageid);
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public static void editPackageAllInfo (Session session, Transaction transaction, String trackingNumber,

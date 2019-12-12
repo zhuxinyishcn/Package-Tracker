@@ -38,9 +38,9 @@ public class BackendFacade extends Observable {
         Package.setCurrentLocation(SESSION, trackingNumber, currentLocation);
     }
 
-    public void addPackageRecord (Sender sender, Receiver receiver,
+    public String addPackageRecord (Sender sender, Receiver receiver,
                                   int currentLocation, double distance) {
-        Package.insertPackage(SESSION, sender, receiver, currentLocation, distance);
+        return Package.insertPackage(SESSION, sender, receiver, currentLocation, distance);
     }
 
     public void addPackageRecordToSender (Sender sender, Package packageInfo) {

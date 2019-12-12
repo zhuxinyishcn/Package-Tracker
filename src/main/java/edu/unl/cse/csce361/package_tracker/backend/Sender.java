@@ -112,11 +112,16 @@ public class Sender {
     }
 
     public static Sender searchSender (Session session, String userName) {
-        Query query =
-                session.createSQLQuery("select s.SenderID from Sender s  where s.username = :ids").
-                        setParameter("ids", userName);
-        int senderid = (int) query.getSingleResult();
-        return session.get(Sender.class, senderid);
+        try {
+            Query query =
+                    session.createSQLQuery("select s.SenderID from Sender s  where s.username = :ids").
+                            setParameter("ids", userName);
+            int senderid = (int) query.getSingleResult();
+            return session.get(Sender.class, senderid);
+        } catch (NoResultException e) {
+            return null;
+        }
+
     }
 
     public static void updateAddress (Session session, String userName, Address address) {
