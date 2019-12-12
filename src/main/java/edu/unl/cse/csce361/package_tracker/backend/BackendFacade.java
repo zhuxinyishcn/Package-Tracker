@@ -104,4 +104,8 @@ public class BackendFacade extends Observable {
     public void editSenderAddress (String userName, Address address) {
         Sender.updateAddress(SESSION, userName, address);
     }
+
+    public List<Package> getDispatchingPackage() {
+       return Package.getDispatchingPackage(SESSION);
+    }
 }
