@@ -174,7 +174,7 @@ public class logicFacade {
 	}
 
 	public void setCallDroneDestination(int destination) {
-		CallDrone.setDestination(destination);
+		DroneCall.setCallDroneDestination(destination);
 	}
 
 	public void callDrone(String warehouseID) {
@@ -194,6 +194,14 @@ public class logicFacade {
 	}
 
 	public void setsetDistanceToWarehouse(double distance) {
-		pickUpPackage.setDistanceToWarehouse(distance);
+		DronePickUp.setPickUpDistanceToWarehouse(distance);
+	}
+
+	public void setDronePickUpTrackingNumber(String trackingNumber) {
+		DronePickUp.setPickUprackingNumber(trackingNumber);
+	}
+
+	public void setPickUpDestination(int destination) {
+		DronePickUp.setPickUpDestination(destination);
 	}
 }

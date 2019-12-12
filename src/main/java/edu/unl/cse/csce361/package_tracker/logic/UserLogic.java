@@ -65,7 +65,6 @@ public class UserLogic {
 		double travelDistance = logic.CalculateDistance(Double.parseDouble(desitationGeocode.getLat()),
 				Double.parseDouble(desitationGeocode.getLng()), user.getAddress().getLatitude(),
 				user.getAddress().getLongitude());
-
 		if (!(desitationWarehouse == 0 || senderWarehouse == 0)) {
 			Address address = new Address(street, city, zipCode, user.getAddress().getLatitude(),
 					user.getAddress().getLongitude());
@@ -73,8 +72,10 @@ public class UserLogic {
 			String trackingNumber = BACKEND_FACADE.addPackageRecord(user, receiverInfo, senderWarehouse,
 					travelDistance);
 			Printer.printLogicNewPackage(trackingNumber);
+			
 			// Pickup
-			pickUpPackage R1 = new pickUpPackage("pick_up_Package" + senderWarehouse);
+			logic.setPickUpDestination(senderWarehouse);
+			DronePickUp R1 = new DronePickUp("pick_up_Package" + senderWarehouse);
 			R1.start();
 		}
 	}

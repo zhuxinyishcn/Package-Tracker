@@ -63,7 +63,7 @@ public class Package {
         this.sender = sender;
         this.receiver = receiver;
         this.currentLocation = currentLocation;
-        this.status = "Despatching";
+        this.status = "Requested";
         this.shippingTime = date.format(now);
         //note: we assume our latest drones latest speed is 22.352 m/s
         final double droneSpeed = 22.352;

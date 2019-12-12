@@ -70,7 +70,7 @@ public class ShippingLogic {
 	public static void callDrone(String warehouseID) {
 		if (logic.isNumber(warehouseID)) {
 			logic.setCallDroneDestination(Integer.parseInt(warehouseID));
-			CallDrone R1 = new CallDrone("CallDrone_Request_" + warehouseID);
+			DroneCall R1 = new DroneCall("CallDrone_Request_" + warehouseID);
 			R1.start();
 
 		} else {
