@@ -79,6 +79,10 @@ public class Logic {
 			BACKEND_FACADE.addUser(sender);
 		}
 	}
+	
+	public static boolean isSender(String trackingNumber) {
+		return true;
+	}
 
 	public static boolean isNumber(String s) {
 		// check if user is typing number.

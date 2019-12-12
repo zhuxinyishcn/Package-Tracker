@@ -2,6 +2,7 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 
 import java.util.List;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
+import edu.unl.cse.csce361.package_tracker.logic.Logic;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 import java.time.LocalDateTime;
@@ -71,6 +72,10 @@ public class Printer {
 		System.out.println("8. Estimate dilivery time.");
 		System.out.println("9. Change destination.");
 		System.out.println("10. Back to main menu.");
+	}
+	
+	public static void printAskreceiverName() {
+		System.out.println("Enter the receiver real name:");
 	}
 
 	public static void printAskRealName() {
@@ -207,6 +212,7 @@ public class Printer {
 	public static void printLogicUserFound(String userName) {
 		System.out.println("User Name: " + userName + " already been used, please try the another one");
 	}
+
 	public static void printLogicAddressNotFound() {
 		System.err.println("Your address can not be resolved, Please type in your actual address.");
 	}
@@ -217,5 +223,10 @@ public class Printer {
 				p.getTrackingNumber(), p.getSender().getName(), p.getReceiver().getName(),
 				logic.getWarehouse().get(p.getCurrentLocation() - 1).getName(), p.getStatus(),
 				p.getSender().getAddress(), p.getReceiver().getAddress(), p.getEstimateTime());
+	}
+
+	public static void printLogicNotSender(String trackingNumber) {
+		System.err.println("Tracking number: " + trackingNumber
+				+ " do not belong to you, Please double check your tracking number or contact admin for support.");
 	}
 }
