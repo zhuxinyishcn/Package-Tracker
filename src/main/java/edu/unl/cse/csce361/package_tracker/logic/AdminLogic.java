@@ -73,7 +73,8 @@ public class AdminLogic {
 				String lat = geocode.getLat();
 				String lng = geocode.getLng();
 				Printer.printLogicLoading();
-				//TODO: 
+				//TODO:
+
 				Printer.printLogicRequestSuccess("edit receiver");
 			} else {
 				Printer.printLogicErrAddress();
@@ -99,7 +100,6 @@ public class AdminLogic {
 
 	public static void estimatePackageTime(String trackingNumber) { // calculate estimate time the user can receive the
 																	// package.
-		// TODO: Awaiting for further instruction.
 		UserLogic.estimatePackage(trackingNumber);
 	}
 

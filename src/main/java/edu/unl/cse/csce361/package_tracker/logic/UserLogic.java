@@ -1,8 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
-import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
-import edu.unl.cse.csce361.package_tracker.backend.Sender;
+import edu.unl.cse.csce361.package_tracker.backend.*;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 import java.time.LocalDateTime;
@@ -66,14 +65,17 @@ public class UserLogic {
 		double travelDistance = logic.CalculateDistance(Double.parseDouble(desitationGeocode.getLat()),
 				Double.parseDouble(desitationGeocode.getLng()), user.getAddress().getLatitude(),
 				user.getAddress().getLongitude());
-		if (!(desitationWarehouse == 0 || senderWarehouse == 0)) {
-			// TODO: @login and @desinationLogin to create new package.
 
+		if (!(desitationWarehouse == 0 || senderWarehouse == 0)) {
+			Address address = new Address(street, city, zipCode, user.getAddress().getLatitude(),
+					user.getAddress().getLongitude());
+			Receiver receiverInfo = new Receiver(address, receiver, desitationWarehouse);
+			String trackingNumber = BACKEND_FACADE.addPackageRecord(user, receiverInfo, senderWarehouse,
+					travelDistance);
+			Printer.printLogicNewPackage(trackingNumber);
+			// Pickup
 			pickUpPackage R1 = new pickUpPackage("pick_up_Package" + senderWarehouse);
 			R1.start();
-			logic.setsetDistanceToWarehouse(senderToWarehouse);
-			String trackingNumber = null;
-			Printer.printLogicNewPackage(trackingNumber);
 		}
 	}
 
@@ -124,4 +126,5 @@ public class UserLogic {
 			Printer.printLogicNotSender(trackingNumber);
 		}
 	}
+
 }
