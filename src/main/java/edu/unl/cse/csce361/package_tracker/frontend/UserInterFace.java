@@ -1,5 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
 
+import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 import java.util.Scanner;
@@ -8,13 +9,22 @@ public class UserInterFace {
     private static logicFacade logic = logicFacade.getInstance();
     private static Scanner scnr = new Scanner(System.in);
     private static String userName;
+    private static Sender userFile;
 
     public static String getUserName () {
         return userName;
     }
+    
+    public static Sender getSender() {
+    	return userFile;
+    }
 
     public static void setUserName (String userName) {
         UserInterFace.userName = userName;
+    }
+    
+    public static void setSender (String userFile) {
+    	UserInterFace.userFile = logic.searchSender(userFile);
     }
 
     public static void main (String[] args) {
@@ -33,10 +43,11 @@ public class UserInterFace {
                     Printer.printAskUserName();
                     userName = scnr.nextLine();
                     String status = logic.checkUser(userName);
-                    logic.searchSender(userName);
                     if ("VIP".equals(status)) {
+                    	setSender(userName);
                         Menu.vipMenu();
                     } else if ("Active".equals(status)) {
+                    	setSender(userName);
                         Menu.userMenu();
                     } else {
                         Printer.printAskRegister();
