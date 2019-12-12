@@ -19,12 +19,14 @@ public class UserLogic {
 	}
 
 	public static void becomeVIP(String userLogin) {
-		Printer.printLogicRequestSuccess("upgrade to VIP");
+		Printer.printLogicLoading();
 		BACKEND_FACADE.editSenderStatus(userLogin);
+		Printer.printLogicRequestSuccess("upgrade to VIP");
 	}
 
 	public static void returnPackage(String trackingNumber) {
 		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
 			BACKEND_FACADE.editPackageReceiver(trackingNumber);
 			Printer.printLogicRequestSuccess("return package");
 		} else {
@@ -34,6 +36,7 @@ public class UserLogic {
 
 	public static void checkPackageByTrackingNumber(String trackingNumber) {
 		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
 			Package packageInfo = BACKEND_FACADE.searchPackage(trackingNumber);
 			Printer.printLogicPackageByTrackingNumber(packageInfo);
 		} else {
@@ -42,6 +45,7 @@ public class UserLogic {
 	}
 
 	public static void checkPackageByUserName(String login) {
+		Printer.printLogicLoading();
 		Sender sender = BACKEND_FACADE.searchSender(login);
 		Set<Package> packages = sender.getPackageSet();
 		Printer.printLogicPackageByUserName(packages);
@@ -49,6 +53,7 @@ public class UserLogic {
 
 	public static void newPackage(String userName, String receiver, String street, String city, String zipCode) {
 		GoogleGeocode desitationGeocode = GoogleGeocode.getLatLng(street, city, zipCode);
+		Printer.printLogicLoading();
 		Sender user = BACKEND_FACADE.searchSender(userName);
 
 		int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(desitationGeocode.getLat()),
@@ -68,6 +73,7 @@ public class UserLogic {
 
 	public static void cancelPackage(String trackingNumber) { // Without return services
 		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
 			BACKEND_FACADE.deletePakcageRecord(trackingNumber);
 			Printer.printLogicCencelPackage(trackingNumber);
 		} else {
@@ -77,6 +83,7 @@ public class UserLogic {
 
 	public static void holdAtWarehouse(String trackingNumber) {
 		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
 			BACKEND_FACADE.editPackageStatus(trackingNumber, "Hold");
 			int warehouseID = BACKEND_FACADE.searchPackage(trackingNumber).getCurrentLocation();
 			Printer.printLogicHoldWarehouse(warehouseID);
@@ -87,6 +94,7 @@ public class UserLogic {
 
 	public static void estimatePackage(String trackingNumber) {
 		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
 			String time = BACKEND_FACADE.searchPackage(trackingNumber).getEstimateTime();
 			final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 			LocalDateTime dateTime = LocalDateTime.from(date.parse(time));
@@ -103,6 +111,7 @@ public class UserLogic {
 
 	public static void confirmReceive(String trackingNumber) {
 		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
 			BACKEND_FACADE.editPackageArrived(trackingNumber);
 			Printer.printLogicRequestSuccess("confirm package" + trackingNumber + "received");
 		} else {

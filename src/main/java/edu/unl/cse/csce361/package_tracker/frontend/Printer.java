@@ -2,7 +2,6 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 
 import java.util.List;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
-import edu.unl.cse.csce361.package_tracker.logic.Logic;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 import java.time.LocalDateTime;
@@ -228,5 +227,8 @@ public class Printer {
 	public static void printLogicNotSender(String trackingNumber) {
 		System.err.println("Tracking number: " + trackingNumber
 				+ " do not belong to you, Please double check your tracking number or contact admin for support.");
+	}
+	public static void printLogicLoading() {
+		System.out.println("Loading................");
 	}
 }

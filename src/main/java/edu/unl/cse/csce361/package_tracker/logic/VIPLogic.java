@@ -13,6 +13,7 @@ public class VIPLogic {
 		} else {
 			if (street.length() <= 100 && city.length() <= 50 && zipCode.length() <= 10) {
 				// Using @trackingNumber to set @receiver address
+				Printer.printLogicLoading();
 				GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
 				String lat = geocode.getLat();
 				String lng = geocode.getLng();

@@ -4,6 +4,7 @@ import edu.unl.cse.csce361.package_tracker.backend.Address;
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+import edu.unl.cse.csce361.package_tracker.frontend.UserInterFace;
 
 public class Logic {
 	private static final logicFacade logic = logicFacade.getInstance();
@@ -11,6 +12,7 @@ public class Logic {
 
 	public static void editAddress(String userName, String street, String city, String zipCode) {
 		// Edit user's address by using their user name to locate
+		Printer.printLogicLoading();
 		if (userName.length() >= 10) { // @userName should less than 10 character.
 			Printer.printErrInput("User Name", "10");
 		} else {
@@ -30,6 +32,7 @@ public class Logic {
 	}
 
 	public static void register(String userName, String realName, String street, String city, String zipCode) {
+		Printer.printLogicLoading();
 		// TODO: Using @login to search is there a login exist
 		boolean legal = true;
 		double lat = 0;
@@ -79,9 +82,17 @@ public class Logic {
 			BACKEND_FACADE.addUser(sender);
 		}
 	}
-	
+
 	public static boolean isSender(String trackingNumber) {
-		return true;
+		Printer.printLogicLoading();
+		boolean isSender = false;
+		for (edu.unl.cse.csce361.package_tracker.backend.Package p : UserInterFace.getSender().getPackageSet()) {
+			if (p.getTrackingNumber().equals(trackingNumber)) {
+				isSender = true;
+			}
+
+		}
+		return isSender;
 	}
 
 	public static boolean isNumber(String s) {

@@ -136,8 +136,6 @@ public class Menu implements Observer {
 
 	public static void userMenu() {
 		boolean programOn = true;
-		logic.printAskUserName();
-		userName = scnr.nextLine();
 		while (programOn) {
 			String input;
 			String receiverName;
