@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class Printer {
-	private static logicFacade logic = logicFacade.getInstance();
+	private static final logicFacade logic = logicFacade.getInstance();
 
 	public static void printMainMenu() {
 		System.out.println("Welcome, this is main menu:");

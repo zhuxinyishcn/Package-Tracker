@@ -5,7 +5,7 @@ import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 public class Menu implements Observer {
-	private static logicFacade logic = logicFacade.getInstance();
+	private static final logicFacade logic = logicFacade.getInstance();
 	private static Scanner scnr = new Scanner(System.in);
 	private static String userName = UserInterFace.getUserName();
 	private static Sender userFile = UserInterFace.getSender();
