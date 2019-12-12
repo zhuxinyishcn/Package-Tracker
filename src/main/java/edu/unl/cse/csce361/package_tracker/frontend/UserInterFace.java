@@ -6,7 +6,7 @@ import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 import java.util.Scanner;
 
 public class UserInterFace {
-    private static logicFacade logic = logicFacade.getInstance();
+    private static final logicFacade logic = logicFacade.getInstance();
     private static Scanner scnr = new Scanner(System.in);
     private static String userName;
     private static Sender userFile;
@@ -28,6 +28,7 @@ public class UserInterFace {
     }
 
     public static void main (String[] args) {
+    	logic.addDrone();
         boolean programOn = true;
         while (programOn) {
             String inputMain;

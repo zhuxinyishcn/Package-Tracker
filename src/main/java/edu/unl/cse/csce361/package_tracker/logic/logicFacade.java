@@ -5,6 +5,7 @@ import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.backend.Warehouse;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class logicFacade {
@@ -154,5 +155,37 @@ public class logicFacade {
 
 	public boolean isSender(String trackingNumber) {
 		return Logic.isSender(trackingNumber);
+	}
+
+	public void addDrone() {
+		ShippingLogic.addDrone();
+	}
+
+	public boolean checkAvilability() {
+		return ShippingLogic.checkAvilability();
+	}
+
+	public int findAvilableDrone() {
+		return ShippingLogic.findAvilableDrone();
+	}
+
+	public ArrayList<Drone> getDrone() {
+		return ShippingLogic.drone;
+	}
+
+	public void setCallDroneDestination(int destination) {
+		CallDrone.setDestination(destination);
+	}
+
+	public int findNextWarehouse(int current, int destination) {
+		return ShippingLogic.findNextWarehouse(current, destination);
+	}
+
+	public boolean isNumber(String input) {
+		return Logic.isNumber(input);
+	}
+
+	public int findTimeNeededForWarehouse(int current, int destination) {
+		return ShippingLogic.findTimeNeededForWarehouse(current, destination);
 	}
 }

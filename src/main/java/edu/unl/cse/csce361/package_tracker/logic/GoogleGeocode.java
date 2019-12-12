@@ -51,6 +51,7 @@ public class GoogleGeocode {
 	}
 
 	public static GoogleGeocode getLatLng(String street, String city, String zipCode) {
+		Printer.printLogicLoading();
 		// Sent request to Google Cloud Map Geocoding, can get Geocode by address.
 		street = street.replace(" ", "?");// replace space to ? to added to http URL
 		city = city.replace(" ", "?");

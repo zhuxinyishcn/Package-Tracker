@@ -136,8 +136,6 @@ public class Menu implements Observer {
 
 	public static void userMenu() {
 		boolean programOn = true;
-		logic.printAskUserName();
-		userName = scnr.nextLine();
 		while (programOn) {
 			String input;
 			String receiverName;
@@ -150,15 +148,19 @@ public class Menu implements Observer {
 			input = scnr.nextLine();
 			switch (input) {
 			case "1":
-				Printer.printAskreceiverName();
-				receiverName = scnr.nextLine();
-				Printer.printAskStreet();
-				street = scnr.nextLine();
-				Printer.printAskCity();
-				city = scnr.nextLine();
-				Printer.printAskZipCode();
-				zipCode = scnr.nextLine();
-				logic.newPackage(userName, receiverName, street, city, zipCode);
+				if (logic.checkAvilability()) {
+					Printer.printAskreceiverName();
+					receiverName = scnr.nextLine();
+					Printer.printAskStreet();
+					street = scnr.nextLine();
+					Printer.printAskCity();
+					city = scnr.nextLine();
+					Printer.printAskZipCode();
+					zipCode = scnr.nextLine();
+					logic.newPackage(userName, receiverName, street, city, zipCode);
+				} else {
+					Printer.printNotAvilable();
+				}
 				break;
 			case "2":
 				// TODO: Confirm package
@@ -236,15 +238,19 @@ public class Menu implements Observer {
 			input = scnr.nextLine();
 			switch (input) {
 			case "1":
-				Printer.printAskreceiverName();
-				receiverName = scnr.nextLine();
-				Printer.printAskStreet();
-				street = scnr.nextLine();
-				Printer.printAskCity();
-				city = scnr.nextLine();
-				Printer.printAskZipCode();
-				zipCode = scnr.nextLine();
-				logic.newPackage(userName, receiverName, street, city, zipCode);
+				if (logic.checkAvilability()) {
+					Printer.printAskreceiverName();
+					receiverName = scnr.nextLine();
+					Printer.printAskStreet();
+					street = scnr.nextLine();
+					Printer.printAskCity();
+					city = scnr.nextLine();
+					Printer.printAskZipCode();
+					zipCode = scnr.nextLine();
+					logic.newPackage(userName, receiverName, street, city, zipCode);
+				} else {
+					Printer.printNotAvilable();
+				}
 				break;
 			case "2":
 				// TODO: Confirm package

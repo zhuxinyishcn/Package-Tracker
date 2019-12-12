@@ -2,7 +2,6 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 
 import java.util.List;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
-import edu.unl.cse.csce361.package_tracker.logic.Logic;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 import java.time.LocalDateTime;
@@ -73,7 +72,7 @@ public class Printer {
 		System.out.println("9. Change destination.");
 		System.out.println("10. Back to main menu.");
 	}
-	
+
 	public static void printAskreceiverName() {
 		System.out.println("Enter the receiver real name:");
 	}
@@ -134,6 +133,10 @@ public class Printer {
 		for (int i = 0; i <= logic.getWarehouse().size() - 1; i++) {
 			System.out.println(logic.getWarehouse().get(i).toString());
 		}
+	}
+
+	public static void printNotAvilable() {
+		System.out.println("We do not have abilable drone. Please try again later.");
 	}
 
 	/*
@@ -229,4 +232,9 @@ public class Printer {
 		System.err.println("Tracking number: " + trackingNumber
 				+ " do not belong to you, Please double check your tracking number or contact admin for support.");
 	}
+
+	public static void printLogicLoading() {
+		System.out.println("Loading................");
+	}
+
 }
