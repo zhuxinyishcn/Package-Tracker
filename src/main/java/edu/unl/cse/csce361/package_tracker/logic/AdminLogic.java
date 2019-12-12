@@ -19,6 +19,7 @@ public class AdminLogic {
 			Printer.printErrInput("Tracking number", "40");// Max 40 character for @trackingNumber.
 		} else {
 			if (currentLocation <= 12 && currentLocation > 0) { // @currentLocation should between 1 and 12
+				Printer.printLogicLoading();
 				backend.editCurrentlocation(trackingNumber, currentLocation);
 				Printer.printLogicRequestSuccess("edit current location");
 			} else {
@@ -34,6 +35,7 @@ public class AdminLogic {
 			Printer.printErrInput("Tracking number", "40");
 		} else {
 			if (priorityID <= 99 && priorityID >= 0) { // @ priorityID should less than 2 character.
+				Printer.printLogicLoading();
 				backend.editPiorityID(trackingNumber);
 				Printer.printLogicRequestSuccess("edit priority ID");
 			} else {
@@ -49,6 +51,7 @@ public class AdminLogic {
 			Printer.printErrInput("Tracking number", "40");
 		} else {
 			if (status.length() <= 50) { // Should be less than 50 character.
+				Printer.printLogicLoading();
 				backend.editPackageStatus(trackingNumber, status);
 				Printer.printLogicRequestSuccess("edit status");
 			} else {
@@ -69,6 +72,8 @@ public class AdminLogic {
 				GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
 				String lat = geocode.getLat();
 				String lng = geocode.getLng();
+				Printer.printLogicLoading();
+				//TODO: 
 				Printer.printLogicRequestSuccess("edit receiver");
 			} else {
 				Printer.printLogicErrAddress();
@@ -77,16 +82,18 @@ public class AdminLogic {
 	}
 
 	public static void confirmPackage(String trackingNumber) { // Set package status to confirm received.
+		Printer.printLogicLoading();
 		backend.editPackageArrived(trackingNumber);
 		Printer.printLogicRequestSuccess("confirm package received");
 	}
 
 	public static void cancelPackage(String trackingNumber) { // Set package status to cancel, the package will be
-																// destroyed.
+		Printer.printLogicLoading();						// destroyed.
 		backend.deletePakcageRecord(trackingNumber);
 	}
 
 	public static void holdPackage(String trackingNumber) { // Hold package at warehouse to wait for customer to pickup
+		Printer.printLogicLoading();
 		backend.editPackageStatus(trackingNumber, "hold");
 	}
 

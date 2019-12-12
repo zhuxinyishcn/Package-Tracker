@@ -28,6 +28,7 @@ public class UserInterFace {
     }
 
     public static void main (String[] args) {
+    	logic.addDrone();
         boolean programOn = true;
         while (programOn) {
             String inputMain;

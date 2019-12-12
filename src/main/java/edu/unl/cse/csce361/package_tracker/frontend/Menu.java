@@ -1,4 +1,5 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
+
 import java.util.*;
 
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
@@ -24,13 +25,14 @@ public class Menu implements Observer {
 
 	public static void adminMenu() {
 		boolean programOn = true;
-		while(programOn) {
+		while (programOn) {
 			String userSelect;
 			String user;
 			String street;
 			String city;
 			String zipCode;
 			String inputTracking;
+			String warehouseID;
 			Printer.printAdminMenu();
 			userSelect = scnr.nextLine();
 			switch (userSelect) {
@@ -38,7 +40,7 @@ public class Menu implements Observer {
 				logic.getAllPackage();
 				break;
 			case "2":
-				//TODO: Confirm package
+				// TODO: Confirm package
 				break;
 			case "3":
 				Printer.printAskTracking();
@@ -66,9 +68,13 @@ public class Menu implements Observer {
 				editPackage();
 				break;
 			case "6":
-				//TODO: Fuzzy search
+				// TODO: Fuzzy search
 				break;
 			case "7":
+				Printer.printAskWarehouse();
+				warehouseID = scnr.nextLine();
+				logic.callDrone(warehouseID);
+			case "8":
 				programOn = false;
 				break;
 			default:
@@ -90,7 +96,7 @@ public class Menu implements Observer {
 		inputTracking = scnr.nextLine();
 		Printer.printEditPackage();
 		input1 = scnr.nextLine();
-		switch(input1) {
+		switch (input1) {
 		case "1":
 			Printer.printWarehouse();
 			Printer.printAskInput();
@@ -98,7 +104,7 @@ public class Menu implements Observer {
 				currentLocation = scnr.nextInt();
 				scnr.nextLine();
 				logic.editCurrentLocation(inputTracking, currentLocation);
-			}catch(InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				Printer.printInvalid();
 			}
 			break;
@@ -108,7 +114,7 @@ public class Menu implements Observer {
 				priorityID = scnr.nextInt();
 				scnr.nextLine();
 				logic.editPriorityID(inputTracking, priorityID);
-			}catch(InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				Printer.printInvalid();
 			}
 			break;
@@ -135,8 +141,9 @@ public class Menu implements Observer {
 
 	public static void userMenu() {
 		boolean programOn = true;
-		while(programOn) {
+		while (programOn) {
 			String input;
+			String receiverName;
 			String street;
 			String city;
 			String zipCode;
@@ -144,18 +151,24 @@ public class Menu implements Observer {
 			String inputCheck;
 			logic.printUserMenu();
 			input = scnr.nextLine();
-			switch(input) {
+			switch (input) {
 			case "1":
-				Printer.printAskStreet();
-				street = scnr.nextLine();
-				Printer.printAskCity();
-				city = scnr.nextLine();
-				Printer.printAskZipCode();
-				zipCode = scnr.nextLine();
-				logic.newPackage(userName, street, city, zipCode);
+				if (logic.checkAvilability()) {
+					Printer.printAskreceiverName();
+					receiverName = scnr.nextLine();
+					Printer.printAskStreet();
+					street = scnr.nextLine();
+					Printer.printAskCity();
+					city = scnr.nextLine();
+					Printer.printAskZipCode();
+					zipCode = scnr.nextLine();
+					logic.newPackage(userName, receiverName, street, city, zipCode);
+				} else {
+					Printer.printNotAvilable();
+				}
 				break;
 			case "2":
-				//TODO: Confirm package
+				// TODO: Confirm package
 				break;
 			case "3":
 				Printer.printAskTracking();
@@ -174,7 +187,7 @@ public class Menu implements Observer {
 			case "5":
 				logic.printCheckPackage();
 				inputCheck = scnr.nextLine();
-				switch(inputCheck) {
+				switch (inputCheck) {
 				case "1":
 					logic.printAskTracking();
 					inputTracking = scnr.nextLine();
@@ -218,8 +231,9 @@ public class Menu implements Observer {
 
 	public static void vipMenu() {
 		boolean programOn = true;
-		while(programOn) {
+		while (programOn) {
 			String input;
+			String receiverName;
 			String street;
 			String city;
 			String zipCode;
@@ -227,18 +241,24 @@ public class Menu implements Observer {
 			String inputCheck;
 			logic.printVIPMenu();
 			input = scnr.nextLine();
-			switch(input) {
+			switch (input) {
 			case "1":
-				Printer.printAskStreet();
-				street = scnr.nextLine();
-				Printer.printAskCity();
-				city = scnr.nextLine();
-				Printer.printAskZipCode();
-				zipCode = scnr.nextLine();
-				logic.newPackage(userName, street, city, zipCode);
+				if (logic.checkAvilability()) {
+					Printer.printAskreceiverName();
+					receiverName = scnr.nextLine();
+					Printer.printAskStreet();
+					street = scnr.nextLine();
+					Printer.printAskCity();
+					city = scnr.nextLine();
+					Printer.printAskZipCode();
+					zipCode = scnr.nextLine();
+					logic.newPackage(userName, receiverName, street, city, zipCode);
+				} else {
+					Printer.printNotAvilable();
+				}
 				break;
 			case "2":
-				//TODO: Confirm package
+				// TODO: Confirm package
 				break;
 			case "3":
 				Printer.printAskTracking();
@@ -257,7 +277,7 @@ public class Menu implements Observer {
 			case "5":
 				logic.printCheckPackage();
 				inputCheck = scnr.nextLine();
-				switch(inputCheck) {
+				switch (inputCheck) {
 				case "1":
 					logic.printAskTracking();
 					inputTracking = scnr.nextLine();
@@ -324,11 +344,11 @@ public class Menu implements Observer {
 		Printer.printAskZipCode();
 		zipCode = scnr.nextLine();
 		logic.register(user, realName, street, city, zipCode);
-		
+
 	}
 
 	@Override
-	public void update (Observable o, Object arg) {
+	public void update(Observable o, Object arg) {
 
 	}
 }

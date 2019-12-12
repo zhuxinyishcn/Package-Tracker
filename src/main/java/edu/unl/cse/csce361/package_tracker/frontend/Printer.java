@@ -30,6 +30,11 @@ public class Printer {
 		System.out.println("Please enter:");
 	}
 
+	public static void printAskWarehouse() {
+		Printer.printWarehouse();
+		System.out.println("Please enter warehouse selection:");
+	}
+
 	public static void printAdminMenu() {
 		System.out.println("Welcome, administration options are as follows:");
 		System.out.println("1. Show all package.");
@@ -38,7 +43,8 @@ public class Printer {
 		System.out.println("4. Edit user data.");
 		System.out.println("5. Edit package.");
 		System.out.println("6. Fuzzy search by tracking number.");
-		System.out.println("7. Back to main menu.");
+		System.out.println("7. Call drone to warehouse.");
+		System.out.println("8. Back to main menu.");
 	}
 
 	public static void printUserMenu() {
@@ -71,6 +77,10 @@ public class Printer {
 		System.out.println("8. Estimate dilivery time.");
 		System.out.println("9. Change destination.");
 		System.out.println("10. Back to main menu.");
+	}
+
+	public static void printAskreceiverName() {
+		System.out.println("Enter the receiver real name:");
 	}
 
 	public static void printAskRealName() {
@@ -129,6 +139,10 @@ public class Printer {
 		for (int i = 0; i <= logic.getWarehouse().size() - 1; i++) {
 			System.out.println(logic.getWarehouse().get(i).toString());
 		}
+	}
+
+	public static void printNotAvilable() {
+		System.out.println("We do not have abilable drone. Please try again later.");
 	}
 
 	/*
@@ -207,6 +221,7 @@ public class Printer {
 	public static void printLogicUserFound(String userName) {
 		System.out.println("User Name: " + userName + " already been used, please try the another one");
 	}
+
 	public static void printLogicAddressNotFound() {
 		System.err.println("Your address can not be resolved, Please type in your actual address.");
 	}
@@ -218,4 +233,14 @@ public class Printer {
 				logic.getWarehouse().get(p.getCurrentLocation() - 1).getName(), p.getStatus(),
 				p.getSender().getAddress(), p.getReceiver().getAddress(), p.getEstimateTime());
 	}
+
+	public static void printLogicNotSender(String trackingNumber) {
+		System.err.println("Tracking number: " + trackingNumber
+				+ " do not belong to you, Please double check your tracking number or contact admin for support.");
+	}
+
+	public static void printLogicLoading() {
+		System.out.println("Loading................");
+	}
+
 }
