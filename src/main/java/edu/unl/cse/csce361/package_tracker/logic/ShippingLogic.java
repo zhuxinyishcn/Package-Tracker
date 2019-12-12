@@ -12,7 +12,7 @@ public class ShippingLogic {
 		Drone a = new Drone("Idle", 1);
 		drone.add(a);
 		int f = 0;
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 1000; i++) { //Java somethine skip this method.
 			f++;
 		} 
 		Drone b = new Drone("Idle", 12);
