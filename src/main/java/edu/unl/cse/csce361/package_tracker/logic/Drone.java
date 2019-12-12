@@ -1,8 +1,24 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 public class Drone {
+	private int id;
 	private String status;
 	private int currentLocation;
+
+	public Drone(int id, String status, int currentLocation) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.currentLocation = currentLocation;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getStatus() {
 		return status;
@@ -20,15 +36,9 @@ public class Drone {
 		this.currentLocation = currentLocation;
 	}
 
-	public Drone(String status, int currentLocation) {
-		super();
-		this.status = status;
-		this.currentLocation = currentLocation;
-	}
-
 	@Override
 	public String toString() {
-		return "Drone [status=" + status + ", currentLocation=" + currentLocation + "]";
+		return "Drone [id=" + id + ", status=" + status + ", currentLocation=" + currentLocation + "]";
 	}
 
 }

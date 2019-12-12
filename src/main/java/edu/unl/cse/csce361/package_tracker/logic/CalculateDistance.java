@@ -5,6 +5,22 @@ import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 import java.math.BigDecimal;
 
 public class CalculateDistance {
+	private final double distance;
+	private final int warehouseID;
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public int getWarehouseID() {
+		return warehouseID;
+	}
+
+	public CalculateDistance(double distance, int warehouseID) {
+		super();
+		this.distance = distance;
+		this.warehouseID = warehouseID;
+	}
 
 	private static final logicFacade logic = logicFacade.getInstance();
 
@@ -33,7 +49,7 @@ public class CalculateDistance {
 		}
 	}
 
-	public static int findClosestWarehouse(double lat, double lon) {
+	public static CalculateDistance findClosestWarehouse(double lat, double lon) {
 		// provide the Geocode to find the closest warehouse to user.
 		double finaldistance = 1000000;
 		int warehouseID = -1;
@@ -49,9 +65,9 @@ public class CalculateDistance {
 		if (finaldistance > 10.01) {
 			// not support user who are 10 mile away from one of our warehouse.
 			Printer.printLogicErrNotInServiceRange(finaldistance);
-			return -1;
+			return new CalculateDistance(-1, -1);
 		}
-		return warehouseID;
+		return new CalculateDistance(finaldistance, warehouseID);
 	}
 
 	public static double findPackageDistance(int warehouse1, int warehouse2) {

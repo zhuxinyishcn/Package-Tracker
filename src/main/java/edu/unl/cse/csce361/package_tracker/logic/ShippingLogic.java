@@ -9,25 +9,25 @@ public class ShippingLogic {
 	private static final logicFacade logic = logicFacade.getInstance();
 
 	public static void addDrone() {
-		Drone a = new Drone("Idle", 1);
+		Drone a = new Drone(1, "Idle", 1);
 		drone.add(a);
 		int f = 0;
-		for (int i = 0; i < 1000; i++) { //Java somethine skip this method.
+		for (int i = 0; i < 1000; i++) { // Java somethine skip this method.
 			f++;
-		} 
-		Drone b = new Drone("Idle", 12);
+		}
+		Drone b = new Drone(1, "Idle", 12);
 		drone.add(b);
 	}
 
 	public static boolean checkAvilability() {
 		int check = 0;
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < drone.size(); i++) {
 			if (drone.get(i).getStatus().equals("Idle")) {
-				check = i;
+				check = check + 1;
 			}
 		}
-		if (check > 0) {
+		if (check != 0) {
 			return true;
 		} else {
 			return false;
@@ -36,7 +36,7 @@ public class ShippingLogic {
 
 	public static int findAvilableDrone() {
 		int check = 0;
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < drone.size(); i++) {
 			if (drone.get(i).getStatus().equals("Idle")) {
 				check = i;
 			}
@@ -70,7 +70,7 @@ public class ShippingLogic {
 	public static void callDrone(String warehouseID) {
 		if (logic.isNumber(warehouseID)) {
 			logic.setCallDroneDestination(Integer.parseInt(warehouseID));
-			CallDrone R1 = new CallDrone("Drone-1");
+			CallDrone R1 = new CallDrone("CallDrone_Request_" + warehouseID);
 			R1.start();
 
 		} else {
@@ -84,10 +84,5 @@ public class ShippingLogic {
 				logic.getWarehouse().get(destination - 1).getAddress().getLatitude(),
 				logic.getWarehouse().get(destination - 1).getAddress().getLongitude());
 		return (int) (distance * 1000);
-	}
-
-	public static void main(String args[]) throws InterruptedException {
-		logic.addDrone();
-		ShippingLogic.callDrone("10");
 	}
 }

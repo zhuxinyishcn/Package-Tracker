@@ -22,7 +22,7 @@ public class logicFacade {
 		return unique;
 	}
 
-	public int findClosestWarehouse(double lat, double lng) {
+	public CalculateDistance findClosestWarehouse(double lat, double lng) {
 		return CalculateDistance.findClosestWarehouse(lat, lng);
 	}
 
@@ -176,7 +176,7 @@ public class logicFacade {
 	public void setCallDroneDestination(int destination) {
 		CallDrone.setDestination(destination);
 	}
-	
+
 	public void callDrone(String warehouseID) {
 		ShippingLogic.callDrone(warehouseID);
 	}
@@ -191,5 +191,9 @@ public class logicFacade {
 
 	public int findTimeNeededForWarehouse(int current, int destination) {
 		return ShippingLogic.findTimeNeededForWarehouse(current, destination);
+	}
+
+	public void setsetDistanceToWarehouse(double distance) {
+		pickUpPackage.setDistanceToWarehouse(distance);
 	}
 }

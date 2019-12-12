@@ -57,19 +57,25 @@ public class UserLogic {
 		Sender user = BACKEND_FACADE.searchSender(userName);
 
 		int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(desitationGeocode.getLat()),
-				Double.parseDouble(desitationGeocode.getLng()));
-		int senderWarehouse = logic.findClosestWarehouse(user.getAddress().getLatitude(),
-				user.getAddress().getLongitude());
+				Double.parseDouble(desitationGeocode.getLng())).getWarehouseID();
+		int senderWarehouse = logic
+				.findClosestWarehouse(user.getAddress().getLatitude(), user.getAddress().getLongitude())
+				.getWarehouseID();
+		double senderToWarehouse = logic
+				.findClosestWarehouse(user.getAddress().getLatitude(), user.getAddress().getLongitude()).getDistance();
 		double travelDistance = logic.CalculateDistance(Double.parseDouble(desitationGeocode.getLat()),
 				Double.parseDouble(desitationGeocode.getLng()), user.getAddress().getLatitude(),
 				user.getAddress().getLongitude());
+		if (!(desitationWarehouse == 0 || senderWarehouse == 0)) {
+			// TODO: @login and @desinationLogin to create new package.
 
-		// TODO: @login and @desinationLogin to create new package.
-		// need the disatnce
-		String trackingNumber = null;
-		Printer.printLogicNewPackage(trackingNumber);
+			pickUpPackage R1 = new pickUpPackage("pick_up_Package" + senderWarehouse);
+			R1.start();
+			logic.setsetDistanceToWarehouse(senderToWarehouse);
+			String trackingNumber = null;
+			Printer.printLogicNewPackage(trackingNumber);
+		}
 	}
-
 
 	public static void cancelPackage(String trackingNumber) { // Without return services
 		if (logic.isSender(trackingNumber)) {
