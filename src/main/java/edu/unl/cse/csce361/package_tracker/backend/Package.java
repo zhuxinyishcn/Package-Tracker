@@ -1,5 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -189,14 +191,15 @@ public class Package {
 	}
 
 	public static List<Package> getDispatchingPackage(Session session) {
-		// TODO: get all the dispatching Packages from session
-		try {
-			Query query = session.createSQLQuery("SELECT * FROM Packages p WHERE p.status =:ids").setParameter("ids",
-					"Dispatching");
-			return (List<Package>) (query.getResultList());
-		} catch (NoResultException e) {
-			return null;
+		List<Package> packages = new ArrayList<>();
+		ScrollableResults packageid = session.createQuery("from Package").scroll();
+		while (packageid.next()) {
+			Package packageInfo = (Package) packageid.get(0);
+			if (packageInfo.getStatus().equals("Dispatching")) {
+				packages.add(packageInfo);
+			}
 		}
+		return packages;
 	}
 
 	public String getRoute() {
