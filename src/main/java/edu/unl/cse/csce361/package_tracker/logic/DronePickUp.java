@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class DronePickUp implements Runnable {
 	private static final logicFacade logic = logicFacade.getInstance();
@@ -27,7 +28,9 @@ public class DronePickUp implements Runnable {
 
 	public void run() {
 		try {
+
 			int droneID = logic.findAvilableDrone();
+			logic.getDrone().get(droneID).setStatus("Calling");
 			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
 				System.out.println("Drone " + droneID + " is taking off to warehouse " + destination
 						+ " to preprare to pickup your package.");
@@ -42,18 +45,18 @@ public class DronePickUp implements Runnable {
 
 				// 让线程睡眠一会
 				Thread.sleep(time);
-				System.out.println("Drone " + droneID + " Arrive warehosue: "
-						+ logic.getDrone().get(droneID).getCurrentLocation());
+				Printer.PrintDroneArrive(droneID, logic.getDrone().get(droneID).getCurrentLocation(),
+						"to pickup your package");
 			}
 			Thread.sleep((int) distanceToWarehouse * 1000);
 			System.out.println("Drone " + droneID + " come to your address and picked up the package.");
 			Thread.sleep((int) distanceToWarehouse * 1000);
 			BACKEND_FACADE.editPackageStatus(trackingNumber, "Dispatching");
-			System.out.println(
-					"Drone " + droneID + " Arrived warehouse " + destination + " with your package. Dispatching.");
+			logic.getDrone().get(droneID).setStatus("Idle");
+			Printer.printDispatching(droneID, destination);
 
 		} catch (InterruptedException e) {
-			System.out.println("Thread " + threadName + " interrupted. Please contact support for help.");
+			Printer.printThreadException(threadName);
 		}
 	}
 

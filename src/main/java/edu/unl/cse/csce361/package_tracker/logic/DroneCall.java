@@ -23,28 +23,24 @@ public class DroneCall implements Runnable {
 	public void run() {
 		try {
 			int droneID = logic.findAvilableDrone();
-			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
-					destination) != 0) {
-				System.out.println("Drone " + droneID + " is taking off.");
-				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID)
-						.getCurrentLocation(),
+			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
+				Printer.PrintDroneTakeOff(droneID, logic.getDrone().get(droneID).getCurrentLocation(), "");
+				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						destination);
 				logic.getDrone().get(droneID).setStatus("Calling");
-				int time = logic.findTimeNeededForWarehouse(logic.getDrone().get(droneID)
-						.getCurrentLocation(),
+				int time = logic.findTimeNeededForWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						nextLocation);
-				int nextWarehouse = logic.findNextWarehouse(logic.getDrone().get(droneID)
-						.getCurrentLocation(),
+				int nextWarehouse = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						destination);
 				logic.getDrone().get(droneID).setCurrentLocation(nextWarehouse);
 
 				Thread.sleep(time);
-				System.out.println("Drone " + droneID + " Arrive warehosue: "
-						+ logic.getDrone().get(droneID).getCurrentLocation());
+				Printer.PrintDroneArrive(droneID, logic.getDrone().get(droneID).getCurrentLocation(), "");
+				logic.getDrone().get(droneID).setStatus("Idle");
 				Thread.sleep(1000);
 			}
-			System.out.println("Drone " + droneID + " Arrived final warehouse "
-					+ logic.getDrone().get(droneID).getCurrentLocation());
+			Printer.PrintDroneFinal(droneID, destination, "");
+
 		} catch (InterruptedException e) {
 			Printer.printThreadException(threadName);
 		}
