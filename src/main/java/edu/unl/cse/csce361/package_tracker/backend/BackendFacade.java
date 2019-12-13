@@ -108,4 +108,8 @@ public class BackendFacade extends Observable {
     public List<Package> searchFuzzyTrackingNumber (String trackingNumber) throws InterruptedException {
         return Package.searchFuzzy(SESSION, trackingNumber);
     }
+
+    public void editReceiverAddress (String trackingNumber, Address address) {
+        Receiver.editAddress(SESSION, trackingNumber, address);
+    }
 }

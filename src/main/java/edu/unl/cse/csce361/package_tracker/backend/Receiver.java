@@ -35,18 +35,18 @@ public class Receiver {
     public Receiver () {
     }
 
-    public static void insertReceiver (Session session, String realName, String street,
-                                       String city, String zipCode) {
+    public static void editAddress (Session session, String trackingNumber, Address address) {
         final Transaction transaction = session.beginTransaction();
         try {
-            Address address = new Address(street, city, zipCode);
-            Receiver receiver = new Receiver(address, realName, 0);
-            session.persist(receiver);
+            Package packageInfo = Package.searchTrackingNumber(session, trackingNumber);
+            packageInfo.getReceiver().setAddress(address);
+            session.update(packageInfo);
             transaction.commit();
         } catch (Throwable e) {
             session.getTransaction().rollback();
             throw e;
         }
+
     }
 
     public Package getPackageid () {
