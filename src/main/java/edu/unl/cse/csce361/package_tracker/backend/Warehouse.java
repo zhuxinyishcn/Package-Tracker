@@ -2,69 +2,45 @@ package edu.unl.cse.csce361.package_tracker.backend;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.bridge.builtin.DefaultStringBridge;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Indexed
 @Table(name = "Warehouse")
-public class Warehouse extends DefaultStringBridge {
+public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @DocumentId
     @Column(name = "warehouseID", unique = true, nullable = false, updatable = false)
-    private int warehouseID;
+    private int warehouseid;
     @Column(name = "Name")
-    @Field(name = "Name", index = Index.YES)
     private String name;
-    @Field(name = "Address", index = Index.YES)
-    private String address;
-    @Column(name = "Longitude")
-    @Field
-    private String longitude;
-    @Column(name = "Latitude")
-    @Field
-    private String Latitude;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "address")
+    private Address address;
 
     public Warehouse () {
     }
 
-    public Warehouse (String name, String address, String Longitude, String Latitude) {
+    public Warehouse (String name, Address address) {
         this.name = name;
         this.address = address;
-        this.longitude = Longitude;
-        this.Latitude = Latitude;
     }
 
-    public static void insertWarehouse (String name, String address, String southLatitude, String northLatitude) {
-        Session session = HibernateUtil.createSession().openSession();
-        Transaction transaction = session.beginTransaction();
+    public static void insertWarehouse (Session session, String name, Address address) {
+        final Transaction transaction = session.beginTransaction();
         try {
-            Warehouse warehouseInfo = new Warehouse(name, address, southLatitude, northLatitude);
-            session.persist(address);
+            Warehouse warehouseInfo = new Warehouse(name, address);
             session.persist(warehouseInfo);
             transaction.commit();
-            HibernateUtil.closeSession(session);
         } catch (Throwable e) {
             session.getTransaction().rollback();
-            HibernateUtil.closeSession(session);
             throw e;
         }
-
-
     }
 
-    public int getWarehouseID () {
-        return warehouseID;
-    }
-
-    public void setWarehouseID (int warehouseID) {
-        this.warehouseID = warehouseID;
+    public static List<Warehouse> retrieveWarehouse (Session session) {
+        return session.createQuery("from Warehouse").list();
     }
 
     public String getName () {
@@ -75,28 +51,15 @@ public class Warehouse extends DefaultStringBridge {
         this.name = name;
     }
 
-    public String getAddress () {
+    public Address getAddress () {
         return address;
     }
 
-
-    public void setAddress (String address) {
+    public void setAddress (Address address) {
         this.address = address;
     }
 
-    public String getLongitude () {
-        return longitude;
-    }
-
-    public void setLongitude (String longitude) {
-        longitude = longitude;
-    }
-
-    public String getLatitude () {
-        return Latitude;
-    }
-
-    public void setLatitude (String latitude) {
-        Latitude = latitude;
+    public int getWarehouseid () {
+        return warehouseid;
     }
 }

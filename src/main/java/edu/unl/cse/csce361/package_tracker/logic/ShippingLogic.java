@@ -1,55 +1,100 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import edu.unl.cse.csce361.package_tracker.backend.Drone;
+import edu.unl.cse.csce361.package_tracker.backend.Package;
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class ShippingLogic {
+	public static ArrayList<Drone> drone = new ArrayList<Drone>();
+	public static List<Package> dispatchingPackage;
+	private static final logicFacade logic = logicFacade.getInstance();
 
-    public static ArrayList<String> warehouse = new ArrayList<String>();
+	public static int i = 0;
 
-    public static void hasNextWareHouse (String trackingNumber) {
-        int current = 0;
-        int destination = -1;
-        // TODO: using @trackingNumber to get current and destination.
-        if (current == destination) {
-            System.out.println("Your package has arrived. Please confirm receive.");
-            AdminLogic.confirmPackage(trackingNumber);
-        } else {
-            nextWarehouse(trackingNumber, current, destination);
-        }
-    }
+	public static List<Package> getDispatchingPackage() {
+		return dispatchingPackage;
+	}
 
-    public static void deliverToNext (String trackingNumbner, int nextWarehouse) {
-        // TODO: //Count time.
-        // TODO: using @trackingNumber @nextWarehouse set status
-    }
+	public static void setDispatchingPackage(List<Package> dispatchingPackage) {
+		ShippingLogic.dispatchingPackage = dispatchingPackage;
+	}
 
-    public static void nextWarehouse (String trackingNumbner, int current, int destination) {
-        if (current < destination) {
-            deliverToNext(trackingNumbner, current++);
-        } else if (destination > current) {
-            deliverToNext(trackingNumbner, current--);
-        } else {
-            System.out.println("System Error! Contact customer support. Tracking Number: " + trackingNumbner);
-        }
-    }
+	public static void addDrone() {
+		Drone a = new Drone(1, "Idle", 1, null);
+		drone.add(a);
+		int f = 0;
+		for (int i = 0; i < 1000; i++) { // Java somethine skip this method.
+			f++;
+		}
+		Drone b = new Drone(1, "Idle", 12, null);
+		drone.add(b);
+	}
 
-    public static void addWarehouse () {
-        warehouse.add(
-                String.format("%-5s %-30s %-50s", "1", "Seward", "Weller Hall, 800 N Columbia Ave, Seward, NE 68434"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "2", "Milford", "923 238th Rd, Milford, NE 68405"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "3", "Lincoln 112st", "790-926 NW 112th St, Lincoln, NE 68528"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "4", "Lincoln Hub", "2701 O St, Lincoln, NE 68510"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "5", "O and 84",
-                "Weller Hall, 800 N Columbia Ave, Seward, NE 68434"));
-        warehouse.add(
-                String.format("%-5s %-30s %-50s", "6", "O and Nebraska", "8525 Andermatt Drive, Lincoln, NE 68526"));
-        warehouse.add(
-                String.format("%-5s %-30s %-50s", "7", "I80 and 154 st", "14541 Castlewood St, Waverly, NE 68462"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "8", "I80 and 250 st", "14599 250th St, Greenwood, NE 68366"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "9", "I80 and Nebraska Crossing",
-                "21209 Nebraska Crossing Dr, Gretna, NE 68028"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "10", "I80 and 118th St", "6271 S 118th St, Omaha, NE 68137"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "11", "Omaha Hub", "3110 Farnam St, Omaha, NE 68131"));
-        warehouse.add(String.format("%-5s %-30s %-50s", "12", "Missouri River", "4501 Abbott Dr, Omaha, NE 68110"));
-    }
+	public static boolean checkAvilability() {
+		int check = 0;
+
+		for (int i = 0; i < drone.size(); i++) {
+			if (drone.get(i).getStatus().equals("Idle")) {
+				check = check + 1;
+			}
+		}
+		if (check != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}// TODO : REMOVE RYS
+
+	public static int findAvilableDrone() {
+		int check = 0;
+		for (int i = 0; i < drone.size(); i++) {
+			if (drone.get(i).getStatus().equals("Idle")) {
+				check = i;
+			}
+		}
+		return check;
+	}
+
+	public static int findNextWarehouse(int current, int destination) {
+		if (current < destination) {
+			return current + 1;
+		}
+		if (current > destination) {
+			return current - 1;
+		} else {
+			return 0;
+		}
+	}
+
+	public static void callDrone(String warehouseID) {
+		if (logic.isNumber(warehouseID)) {
+			DroneCall R1 = new DroneCall("CallDrone_Request_" + warehouseID, Integer.parseInt(warehouseID));
+			R1.start();
+
+		} else {
+			Printer.printInvalid();
+		}
+	}
+
+	public static int findTimeNeededForWarehouse(int current, int destination) {
+		double distance = logic.CalculateDistance(logic.getWarehouse().get(current - 1).getAddress().getLatitude(),
+				logic.getWarehouse().get(current - 1).getAddress().getLongitude(),
+				logic.getWarehouse().get(destination - 1).getAddress().getLatitude(),
+				logic.getWarehouse().get(destination - 1).getAddress().getLongitude());
+		return (int) (distance * 1000);
+	}
+
+	public static void droneUpdate() {
+		DroneUpdate R1 = new DroneUpdate("CallDrone_Request");
+		R1.start();
+	}
+
+	public static void dispatchingPackages(String name, String trackingNumber) {
+		DroneDispatch d1 = new DroneDispatch(name, trackingNumber);
+		d1.run();
+	}
+
 }
