@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
 public class DroneUpdate implements Runnable {
 	private Thread t;
@@ -39,7 +40,7 @@ public class DroneUpdate implements Runnable {
 				Thread.sleep(10000);
 			}
 		} catch (InterruptedException e) {
-			System.out.println("Thread " + threadName + " interrupted.");
+			Printer.printThreadException(threadName);
 
 		}
 	}
