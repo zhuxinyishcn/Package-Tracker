@@ -115,4 +115,10 @@ public class AdminLogic {
 			Printer.printInvalid();
 		}
 	}
+
+	public static void confirmByAdmin(String trackingNumber) {
+		Printer.printLogicLoading();
+		backend.editPackageArrived(trackingNumber);
+		Printer.printLogicRequestSuccess("confirm package" + trackingNumber + "received");
+	}
 }

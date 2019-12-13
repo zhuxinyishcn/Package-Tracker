@@ -153,4 +153,8 @@ public class logicFacade {
 	public void fuzzySearch(String trackingNumber) {
 		AdminLogic.fuzzySearch(trackingNumber);
 	}
+	
+	public void confirmByAdmin(String trackingNumber) {
+		AdminLogic.confirmByAdmin(trackingNumber);
+	}
 }

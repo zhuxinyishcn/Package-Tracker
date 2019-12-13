@@ -42,7 +42,7 @@ public class Menu {
 			case "2":
 				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
-				logic.confirmReceive(inputTracking);
+				logic.confirmByAdmin(inputTracking);
 				break;
 			case "3":
 				Printer.printAskTracking();
