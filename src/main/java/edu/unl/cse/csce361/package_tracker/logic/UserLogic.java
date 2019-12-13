@@ -119,12 +119,8 @@ public class UserLogic {
 		}
 	}
 
-	public static void arriveNotify(String trackingNumber) {
-		// TODO: How to know package arrived.
-		Printer.printLogicArriveNotify(trackingNumber);
-	}
 
-	public static void confirmReceive(String trackingNumber) {
+	public static void confirmReceive (String trackingNumber) {
 		if (logic.isSender(trackingNumber)) {
 			Printer.printLogicLoading();
 			BACKEND_FACADE.editPackageArrived(trackingNumber);
@@ -133,5 +129,4 @@ public class UserLogic {
 			Printer.printLogicNotSender(trackingNumber);
 		}
 	}
-
 }

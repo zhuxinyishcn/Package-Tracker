@@ -71,19 +71,6 @@ public class Sender {
         }
     }
 
-    public static void insertPackage (Session session, Sender sender, Package packageInfo) {
-        final Transaction transaction = session.beginTransaction();
-        try {
-            Set<Package> packageSet = sender.getPackageSet();
-            packageSet.add(packageInfo);
-            sender.setPackageSet(packageSet);
-            session.update(sender);
-            transaction.commit();
-        } catch (Throwable e) {
-            session.getTransaction().rollback();
-            throw e;
-        }
-    }
 
     public static String searchSenderStatus (Session session, String userName) {
         try {

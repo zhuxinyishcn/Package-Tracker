@@ -8,11 +8,11 @@ public class Backup {
 
     public static void initialDataBase () throws NoSuchAlgorithmException {
         SecureRandom random1 = SecureRandom.getInstance("SHA1PRNG");
-//        Address address1 = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
-//        Sender sender1 = new Sender(address1, "UNL", "sxc258");
-//        Address address2 = new Address("122 East Jorgenson Street", "Chicago", "60613");
-//        Receiver receiver1 = new Receiver(address2, "dddsx258", Math.abs(random1.nextInt() % 8));
-//        BACKEND_FACADE.addPackageRecord(sender1, receiver1, Math.abs(random1.nextInt() % 8), Math.abs(random1.nextInt() % 20000));
+        Address address1 = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
+        Sender sender1 = new Sender(address1, "UNL", "sxc258");
+        Address address2 = new Address("122 East Jorgenson Street", "Chicago", "60613");
+        Receiver receiver1 = new Receiver(address2, "dddsx258", Math.abs(random1.nextInt() % 8));
+        BACKEND_FACADE.addPackageRecord(sender1, receiver1, Math.abs(random1.nextInt() % 8), Math.abs(random1.nextInt() % 20000));
         Address address3 = new Address("1705 Arbor Dr, Lincoln", "Lincoln", "68503", 40.832401, -96.678527);
         Sender sender2 = new Sender(address3, "University of Nebraska - Lincoln East Union", "unl-east");
         Address address4 = new Address("187 N 2nd Street", "Lincoln", "68116", 40.847067, -96.680766);

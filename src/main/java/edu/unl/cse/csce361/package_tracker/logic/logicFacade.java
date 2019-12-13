@@ -5,8 +5,6 @@ import edu.unl.cse.csce361.package_tracker.backend.Drone;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.backend.Warehouse;
-import edu.unl.cse.csce361.package_tracker.frontend.Printer;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,39 +24,6 @@ public class logicFacade {
 
 	public CalculateDistance findClosestWarehouse(double lat, double lng) {
 		return CalculateDistance.findClosestWarehouse(lat, lng);
-	}
-
-	public void printMainMenu() {
-		Printer.printMainMenu();
-	}
-
-	public void printExit() {
-		BACKEND_FACADE.closeConnection();
-		Printer.printExit();
-	}
-
-	public void printIsSender() {
-		Printer.printIsSender();
-	}
-
-	public void printAdminMenu() {
-		Printer.printAdminMenu();
-	}
-
-	public void printUserMenu() {
-		Printer.printUserMenu();
-	}
-
-	public void printAskUserName() {
-		Printer.printAskUserName();
-	}
-
-	public void printInvalid() {
-		Printer.printInvalid();
-	}
-
-	public void printVIPMenu() {
-		Printer.printVIPMenu();
 	}
 
 	public void editInfo(String userName, String street, String city, String zipCode) {
@@ -87,14 +52,6 @@ public class logicFacade {
 
 	public void newPackage(String login, String receiver, String street, String city, String zipCode) {
 		UserLogic.newPackage(login, receiver, street, city, zipCode);
-	}
-
-	public void printCheckPackage() {
-		Printer.printCheckPackage();
-	}
-
-	public void printAskTracking() {
-		Printer.printAskTracking();
 	}
 
 	public void holdAtWarehouse(String trackingNumber) {
@@ -134,7 +91,7 @@ public class logicFacade {
 		Logic.register(userName, realName, street, city, zipCode);
 	}
 
-	public void confirmArrived(String trackingNumber) {
+	public void confirmReceive(String trackingNumber) {
 		UserLogic.confirmReceive(trackingNumber);
 	}
 
@@ -207,4 +164,12 @@ public class logicFacade {
 		ShippingLogic.dispatchingPackages(name, trackingNumber);
 	}
 
+	
+	public void fuzzySearch(String trackingNumber) {
+		AdminLogic.fuzzySearch(trackingNumber);
+	}
+	
+	public void confirmByAdmin(String trackingNumber) {
+		AdminLogic.confirmByAdmin(trackingNumber);
+	}
 }
