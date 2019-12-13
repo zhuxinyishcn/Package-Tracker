@@ -132,24 +132,6 @@ public class Package {
         }
     }
 
-    public static void editPackageAllInfo (Session session, Transaction transaction, String trackingNumber,
-                                           String currentLocation,
-                                           String priorityID, String shippingTime,
-                                           String status, String receiver, String sender) {
-        try {
-            Package packageInfo = searchTrackingNumber(session, trackingNumber);
-            packageInfo.setCurrentLocation(Integer.parseInt(currentLocation));
-            packageInfo.setPriorityid(Integer.parseInt(priorityID));
-            packageInfo.setStatus(status);
-            packageInfo.setShippingTime(shippingTime);
-            packageInfo.getSender().setName(sender);
-            packageInfo.getReceiver().setName(receiver);
-            session.update(packageInfo);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void returnPackage (Session session, String trackingNumber) {
         final Transaction transaction = session.beginTransaction();

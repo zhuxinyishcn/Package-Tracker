@@ -224,14 +224,14 @@ public class BackendTestSuites {
     @Test
     public void TestCheckUserStatus () {
         long start = System.nanoTime();
-        System.out.println(backendFacade.searchUserStatus("uno"));
+        System.out.println(backendFacade.searchUserStatus("golf for ever"));
         System.out.println((System.nanoTime() - start));
     }
 
     @Test
     public void TestUpgradeVIP () {
         long start = System.nanoTime();
-        backendFacade.editSenderStatus("sxc258");
+        backendFacade.editSenderStatus("golf for ever");
         System.out.println((System.nanoTime() - start));
     }
 

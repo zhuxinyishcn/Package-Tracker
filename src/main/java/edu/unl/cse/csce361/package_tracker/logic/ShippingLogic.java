@@ -86,8 +86,4 @@ public class ShippingLogic {
 		return (int) (distance * 1000);
 	}
 
-	public static void main(String args[]) throws InterruptedException {
-		logic.addDrone();
-		ShippingLogic.callDrone("10");
-	}
 }
