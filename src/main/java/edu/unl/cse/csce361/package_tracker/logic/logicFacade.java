@@ -191,11 +191,6 @@ public class logicFacade {
 		return ShippingLogic.findTimeNeededForWarehouse(current, destination);
 	}
 
-	public void getUpdatePackage() {
-		DroneCheckPackage R1 = new DroneCheckPackage("Get package");
-		R1.start();
-	}
-
 	public List<Package> getDispatchingPackage() {
 		return ShippingLogic.getDispatchingPackage();
 	}
@@ -212,7 +207,12 @@ public class logicFacade {
 		Logic.programOn = programOn;
 	}
 
-	public void checkToShip() {
-		ShippingLogic.checkToShip();
+	public void droneUpdate() {
+		ShippingLogic.droneUpdate();
 	}
+
+	public void dispatchingPackages(String name, String trackingNumber) {
+		ShippingLogic.dispatchingPackages(name, trackingNumber);
+	}
+
 }

@@ -3,7 +3,6 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 import java.util.*;
 
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
-import edu.unl.cse.csce361.package_tracker.logic.DroneCheckPackage;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 public class Menu implements Observer {
@@ -75,6 +74,7 @@ public class Menu implements Observer {
 				Printer.printAskWarehouse();
 				warehouseID = scnr.nextLine();
 				logic.callDrone(warehouseID);
+				break;
 			case "8":
 				running = false;
 				break;

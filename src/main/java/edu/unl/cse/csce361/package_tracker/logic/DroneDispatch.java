@@ -58,6 +58,7 @@ public class DroneDispatch implements Runnable {
 								logic.getDispatchingPackage().get(packageID).getReceiver().getAddress().getLatitude(),
 								logic.getDispatchingPackage().get(packageID).getReceiver().getAddress().getLongitude())
 						.getDistance() * 1000);
+				logic.getDrone().get(droneID).setTrackingNumber(null);
 			}
 		} catch (InterruptedException e) {
 			System.out.println("Thread " + threadName + " interrupted. Please contact support for help.");

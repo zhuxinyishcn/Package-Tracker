@@ -99,19 +99,14 @@ public class ShippingLogic {
 		return (int) (distance * 1000);
 	}
 
-	public static void checkToShip() {
-		int packageWaiting = logic.getDispatchingPackage().size();
-		for (int i = 0; i < packageWaiting; i++) {
-
-			if (!logic.getDispatchingPackage().get(i).getTrackingNumber()
-					.equals(logic.getDrone().get(0).getTrackingNumber())
-					|| !logic.getDispatchingPackage().get(i).getTrackingNumber()
-							.equals(logic.getDrone().get(1).getTrackingNumber())) {
-				DroneDispatch R1 = new DroneDispatch("Shipping_" + i,
-						logic.getDispatchingPackage().get(i).getTrackingNumber());
-				R1.run();
-
-			}
-		}
+	public static void droneUpdate() {
+		DroneUpdate R1 = new DroneUpdate("CallDrone_Request");
+		R1.start();
 	}
+
+	public static void dispatchingPackages(String name, String trackingNumber) {
+		DroneDispatch d1 = new DroneDispatch(name, trackingNumber);
+		d1.run();
+	}
+
 }
