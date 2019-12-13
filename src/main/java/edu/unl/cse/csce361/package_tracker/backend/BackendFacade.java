@@ -39,7 +39,7 @@ public class BackendFacade extends Observable {
     }
 
     public String addPackageRecord (Sender sender, Receiver receiver,
-                                  int currentLocation, double distance) {
+                                    int currentLocation, double distance) {
         return Package.insertPackage(SESSION, sender, receiver, currentLocation, distance);
     }
 
@@ -103,5 +103,9 @@ public class BackendFacade extends Observable {
 
     public void editSenderAddress (String userName, Address address) {
         Sender.updateAddress(SESSION, userName, address);
+    }
+
+    public List<Package> searchFuzzyTrackingNumber (String trackingNumber) throws InterruptedException {
+        return Package.searchFuzzy(SESSION, trackingNumber);
     }
 }

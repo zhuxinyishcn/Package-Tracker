@@ -90,25 +90,25 @@ public class BackendTestSuites {
 
     @Test
     public void TestSearchTranckingNumber () throws InterruptedException {
-        long start = System.nanoTime();
         final Session session = HibernateUtil.createSession().openSession();
         FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
-        //fullTextSession.createIndexer().startAndWait();
+        fullTextSession.createIndexer().startAndWait();
         Transaction tx = fullTextSession.beginTransaction();
         QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
                 .buildQueryBuilder()
                 .forEntity(Package.class)
                 .get();
         try {
-            org.apache.lucene.search.Query query = queryBuilder.phrase().onField("trackingNumber")
-                    .sentence("7918f73b-bc4-448d-9652-f00f67355ac8").createQuery();
-            org.hibernate.query.Query hibQuery =
+            org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber")
+                    .matching("0e5221c2-4dab-488f-87bc-99f8285479df").createQuery();
+            org.hibernate.query.Query hibQuery  =
                     fullTextSession.createFullTextQuery(query, Package.class);
-            Package warehouseList = (Package) hibQuery.getSingleResult();
-            System.out.println(warehouseList.getEstimateTime());
+            List<Package> packagesList = hibQuery.getResultList();
+           for (Package packages: packagesList){
+               System.out.println(packages.getTrackingNumber()+" "+packages.getId());
+           }
             tx.commit();
             session.close();
-            System.out.println((System.nanoTime() - start) + " nanosecond");
         } catch (Exception e) {
             e.printStackTrace();
         }

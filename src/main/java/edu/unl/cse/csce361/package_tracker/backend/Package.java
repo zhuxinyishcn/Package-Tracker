@@ -4,8 +4,10 @@ package edu.unl.cse.csce361.package_tracker.backend;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.search.FullTextSession;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.*;
+import org.hibernate.search.query.dsl.QueryBuilder;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -191,6 +193,28 @@ public class Package {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<Package> searchFuzzy (Session session, String trackingNumber) throws InterruptedException {
+        FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
+        fullTextSession.createIndexer().startAndWait();
+        Transaction tx = fullTextSession.beginTransaction();
+        QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
+                .buildQueryBuilder()
+                .forEntity(Package.class)
+                .get();
+        try {
+            org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber")
+                    .matching(trackingNumber).createQuery();
+            org.hibernate.query.Query hibQuery =
+                    fullTextSession.createFullTextQuery(query, Package.class);
+            List<Package> packagesList = hibQuery.getResultList();
+            tx.commit();
+            return packagesList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String getRoute () {
