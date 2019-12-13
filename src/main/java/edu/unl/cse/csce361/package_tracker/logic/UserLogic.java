@@ -85,6 +85,11 @@ public class UserLogic {
 		if (logic.isSender(trackingNumber)) {
 			Printer.printLogicLoading();
 			BACKEND_FACADE.deletePakcageRecord(trackingNumber);
+			for (int i = 0; i < logic.getDispatchingPackage().size(); i++)
+				if (logic.getDispatchingPackage().get(i).getTrackingNumber().equals(trackingNumber)) {
+					logic.getDispatchingPackage().get(i).getReceiver()
+							.setDestination(logic.getDispatchingPackage().get(i).getCurrentLocation());
+				}
 			Printer.printLogicCencelPackage(trackingNumber);
 		} else {
 			Printer.printLogicNotSender(trackingNumber);

@@ -91,25 +91,25 @@ public class BackendTestSuites {
 
     @Test
     public void TestSearchTranckingNumber () throws InterruptedException {
-        long start = System.nanoTime();
         final Session session = HibernateUtil.createSession().openSession();
         FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
-        //fullTextSession.createIndexer().startAndWait();
+        fullTextSession.createIndexer().startAndWait();
         Transaction tx = fullTextSession.beginTransaction();
         QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
                 .buildQueryBuilder()
                 .forEntity(Package.class)
                 .get();
         try {
-            org.apache.lucene.search.Query query = queryBuilder.phrase().onField("trackingNumber")
-                    .sentence("7918f73b-bc43-448d-9652-f00f67355ac8").createQuery();
+            org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber")
+                    .matching("0e5221c2-4dab-488f-87bc-99f8285479df").createQuery();
             org.hibernate.query.Query hibQuery =
                     fullTextSession.createFullTextQuery(query, Package.class);
-            Package warehouseList = (Package) hibQuery.getSingleResult();
-            System.out.println(warehouseList.getEstimateTime());
+            List<Package> packagesList = hibQuery.getResultList();
+            for (Package packages : packagesList) {
+                System.out.println(packages.getTrackingNumber() + " " + packages.getId());
+            }
             tx.commit();
             session.close();
-            System.out.println((System.nanoTime() - start) + " nanosecond");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -258,6 +258,7 @@ public class BackendTestSuites {
     }
 
     @Test
+<<<<<<< HEAD
     public void TestPackage () {
         final Session session = HibernateUtil.createSession().openSession();
         List<Package> packages = new ArrayList<>();
@@ -269,5 +270,12 @@ public class BackendTestSuites {
             }
         }
         session.close();
+=======
+    public void TestEditReceiver () {
+        long start = System.nanoTime();
+        Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
+        backendFacade.editReceiverAddress("be94bd4d-0fe8-4c25-b6f8-d5f3202051ab", address);
+        System.out.println((System.nanoTime() - start));
+>>>>>>> a3a010fed27b0c8e02c4e0dafaca7d9116c7db12
     }
 }

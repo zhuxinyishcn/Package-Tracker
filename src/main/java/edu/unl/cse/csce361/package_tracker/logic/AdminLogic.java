@@ -1,5 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.backend.Address;
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
@@ -73,8 +74,16 @@ public class AdminLogic {
 				String lat = geocode.getLat();
 				String lng = geocode.getLng();
 				Printer.printLogicLoading();
-				//TODO:
-
+				// TODO:
+				Address address = new Address(street, city, zipCode, Double.parseDouble(lat), Double.parseDouble(lng));
+				backend.editReceiverAddress(trackingNumber, address);
+				for (int i = 0; i < logic.getDispatchingPackage().size(); i++) {
+					if (logic.getDispatchingPackage().get(i).getTrackingNumber().equals(trackingNumber)) {
+						logic.getDispatchingPackage().get(i).getReceiver().setDestination(
+								logic.findClosestWarehouse(Double.parseDouble(lat), Double.parseDouble(lng))
+										.getWarehouseID());
+					}
+				}
 				Printer.printLogicRequestSuccess("edit receiver");
 			} else {
 				Printer.printLogicErrAddress();
@@ -89,8 +98,13 @@ public class AdminLogic {
 	}
 
 	public static void cancelPackage(String trackingNumber) { // Set package status to cancel, the package will be
-		Printer.printLogicLoading();						// destroyed.
+		Printer.printLogicLoading(); // destroyed.
 		backend.deletePakcageRecord(trackingNumber);
+		for (int i = 0; i < logic.getDispatchingPackage().size(); i++)
+			if (logic.getDispatchingPackage().get(i).getTrackingNumber().equals(trackingNumber)) {
+				logic.getDispatchingPackage().get(i).getReceiver()
+						.setDestination(logic.getDispatchingPackage().get(i).getCurrentLocation());
+			}
 	}
 
 	public static void holdPackage(String trackingNumber) { // Hold package at warehouse to wait for customer to pickup

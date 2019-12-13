@@ -4,8 +4,10 @@ import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.search.FullTextSession;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.*;
+import org.hibernate.search.query.dsl.QueryBuilder;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -62,7 +64,7 @@ public class Package {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.currentLocation = currentLocation;
-		this.status = "Requested";
+		this.status = "Despatching";
 		this.shippingTime = date.format(now);
 		// note: we assume our latest drones latest speed is 22.352 m/s
 		final double droneSpeed = 22.352;
@@ -95,7 +97,7 @@ public class Package {
 	}
 
 	public static void setPackage(Session session, String UUID) {
-		setPackage(session, UUID, "Confirm Delivered");
+		setPackage(session, UUID, "Delivered");
 	}
 
 	public static void setPackage(Session session, String UUID, String status) {
@@ -190,18 +192,23 @@ public class Package {
 		}
 	}
 
-	public static List<Package> getDispatchingPackage() {
-		Session SESSION1 = HibernateUtil.createSession().openSession();
-		List<Package> packages = new ArrayList<>();
-		ScrollableResults packageid = SESSION1.createQuery("from Package").scroll();
-		while (packageid.next()) {
-			Package packageInfo = (Package) packageid.get(0);
-			if (packageInfo.getStatus().equals("Dispatching")) {
-				packages.add(packageInfo);
-			}
+	public static List<Package> searchFuzzy(Session session, String trackingNumber) throws InterruptedException {
+		FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
+		fullTextSession.createIndexer().startAndWait();
+		Transaction tx = fullTextSession.beginTransaction();
+		QueryBuilder queryBuilder = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Package.class)
+				.get();
+		try {
+			org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber")
+					.matching(trackingNumber).createQuery();
+			org.hibernate.query.Query hibQuery = fullTextSession.createFullTextQuery(query, Package.class);
+			List<Package> packagesList = hibQuery.getResultList();
+			tx.commit();
+			return packagesList;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		System.out.println("Fuck");
-		return packages;
+		return null;
 	}
 
 	public String getRoute() {
@@ -289,4 +296,18 @@ public class Package {
 	public boolean equals(Object obj) {
 		return super.equals(obj);
 	}
+
+	public static List<Package> getDispatchingPackage() {
+		Session SESSION1 = HibernateUtil.createSession().openSession();
+		List<Package> packages = new ArrayList<>();
+		ScrollableResults packageid = SESSION1.createQuery("from Package").scroll();
+		while (packageid.next()) {
+			Package packageInfo = (Package) packageid.get(0);
+			if (packageInfo.getStatus().equals("Dispatching")) {
+				packages.add(packageInfo);
+			}
+		}
+		return packages;
+	}
+
 }

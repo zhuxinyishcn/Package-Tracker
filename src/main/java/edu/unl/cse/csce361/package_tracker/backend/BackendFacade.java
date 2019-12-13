@@ -101,6 +101,14 @@ public class BackendFacade extends Observable {
 		Sender.updateAddress(SESSION, userName, address);
 	}
 
+	public List<Package> searchFuzzyTrackingNumber(String trackingNumber) throws InterruptedException {
+		return Package.searchFuzzy(SESSION, trackingNumber);
+	}
+
+	public void editReceiverAddress(String trackingNumber, Address address) {
+		Receiver.editAddress(SESSION, trackingNumber, address);
+	}
+
 	public List<Package> getDispatchingPackage() {
 		return Package.getDispatchingPackage();
 	}

@@ -14,6 +14,7 @@ public class ShippingLogic {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
 
+	public static int i = 0;
 	public static List<Package> getDispatchingPackage() {
 		return dispatchingPackage;
 	}

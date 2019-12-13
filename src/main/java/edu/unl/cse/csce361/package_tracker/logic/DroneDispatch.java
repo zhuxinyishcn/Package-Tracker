@@ -51,10 +51,10 @@ public class DroneDispatch implements Runnable {
 			
 			
 			
-			
+			int destination1 = logic.getDispatchingPackage().get(packageID).getReceiver().getDestination();
 			logic.getDrone().get(droneID).setTrackingNumber(trackingNumber);
-			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
-				int destination1 = logic.getDispatchingPackage().get(packageID).getReceiver().getDestination();
+			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination1) != 0) {
+				destination1 = logic.getDispatchingPackage().get(packageID).getReceiver().getDestination();
 				System.out.println("Drone " + droneID + " is taking off with your package.");
 				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						destination1);

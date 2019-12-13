@@ -32,7 +32,7 @@ public class DroneUpdate implements Runnable {
 					boolean drone2Match = logic.getDispatchingPackage().get(i).getTrackingNumber()
 							.equals(logic.getDrone().get(1).getTrackingNumber());
 					if (!drone1Match || !drone2Match) {
-						logic.dispatchingPackages("Flying" + i,
+						logic.dispatchingPackages("Flying" + logic.getDispatchingPackage().get(i).getTrackingNumber(),
 								logic.getDispatchingPackage().get(i).getTrackingNumber());
 					}
 				}
