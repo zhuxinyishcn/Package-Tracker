@@ -62,7 +62,7 @@ public class UserInterFace {
                     Printer.printExit();
                     break;
                 default:
-                    logic.printInvalid();
+                	Printer.printInvalid();
             }
         }
     }

@@ -78,7 +78,7 @@ public class Menu implements Observer {
 				programOn = false;
 				break;
 			default:
-				logic.printInvalid();
+				Printer.printInvalid();
 			}
 		}
 	}
@@ -149,7 +149,7 @@ public class Menu implements Observer {
 			String zipCode;
 			String inputTracking;
 			String inputCheck;
-			logic.printUserMenu();
+			Printer.printUserMenu();
 			input = scnr.nextLine();
 			switch (input) {
 			case "1":
@@ -185,11 +185,11 @@ public class Menu implements Observer {
 				logic.editInfo(userName, street, city, zipCode);
 				break;
 			case "5":
-				logic.printCheckPackage();
+				Printer.printCheckPackage();
 				inputCheck = scnr.nextLine();
 				switch (inputCheck) {
 				case "1":
-					logic.printAskTracking();
+					Printer.printAskTracking();
 					inputTracking = scnr.nextLine();
 					logic.checkPackageByTrackingNumber(inputTracking);
 					break;
@@ -199,24 +199,24 @@ public class Menu implements Observer {
 				case "3":
 					break;
 				default:
-					logic.printInvalid();
+					Printer.printInvalid();
 				}
 				break;
 			case "6":
 				logic.becomeVIP(userName);
 				break;
 			case "7":
-				logic.printAskTracking();
+				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.cancelPackage(inputTracking);
 				break;
 			case "8":
-				logic.printAskTracking();
+				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.holdAtWarehouse(inputTracking);
 				break;
 			case "9":
-				logic.printAskTracking();
+				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.estimatePackage(inputTracking);
 				break;
@@ -224,7 +224,7 @@ public class Menu implements Observer {
 				programOn = false;
 				break;
 			default:
-				logic.printInvalid();
+				Printer.printInvalid();
 			}
 		}
 	}
@@ -239,7 +239,7 @@ public class Menu implements Observer {
 			String zipCode;
 			String inputTracking;
 			String inputCheck;
-			logic.printVIPMenu();
+			Printer.printVIPMenu();
 			input = scnr.nextLine();
 			switch (input) {
 			case "1":
@@ -275,11 +275,11 @@ public class Menu implements Observer {
 				logic.editInfo(userName, street, city, zipCode);
 				break;
 			case "5":
-				logic.printCheckPackage();
+				Printer.printCheckPackage();
 				inputCheck = scnr.nextLine();
 				switch (inputCheck) {
 				case "1":
-					logic.printAskTracking();
+					Printer.printAskTracking();
 					inputTracking = scnr.nextLine();
 					logic.checkPackageByTrackingNumber(inputTracking);
 					break;
@@ -289,21 +289,21 @@ public class Menu implements Observer {
 				case "3":
 					break;
 				default:
-					logic.printInvalid();
+					Printer.printInvalid();
 				}
 				break;
 			case "6":
-				logic.printAskTracking();
+				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.cancelPackage(inputTracking);
 				break;
 			case "7":
-				logic.printAskTracking();
+				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.holdAtWarehouse(inputTracking);
 				break;
 			case "8":
-				logic.printAskTracking();
+				Printer.printAskTracking();
 				inputTracking = scnr.nextLine();
 				logic.estimatePackage(inputTracking);
 				break;
@@ -322,7 +322,7 @@ public class Menu implements Observer {
 				programOn = false;
 				break;
 			default:
-				logic.printInvalid();
+				Printer.printInvalid();
 			}
 		}
 	}
