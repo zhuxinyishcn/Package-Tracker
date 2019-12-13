@@ -5,7 +5,7 @@ import java.util.*;
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
-public class Menu implements Observer {
+public class Menu {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private static Scanner scnr = new Scanner(System.in);
 	private static String userName = UserInterFace.getUserName();
@@ -40,7 +40,9 @@ public class Menu implements Observer {
 				logic.getAllPackage();
 				break;
 			case "2":
-				// TODO: Confirm package
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.confirmReceive(inputTracking);
 				break;
 			case "3":
 				Printer.printAskTracking();
@@ -68,7 +70,9 @@ public class Menu implements Observer {
 				editPackage();
 				break;
 			case "6":
-				// TODO: Fuzzy search
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.fuzzySearch(inputTracking);
 				break;
 			case "7":
 				Printer.printAskWarehouse();
@@ -168,7 +172,9 @@ public class Menu implements Observer {
 				}
 				break;
 			case "2":
-				// TODO: Confirm package
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.confirmReceive(inputTracking);
 				break;
 			case "3":
 				Printer.printAskTracking();
@@ -222,6 +228,9 @@ public class Menu implements Observer {
 				logic.estimatePackage(inputTracking);
 				break;
 			case "10":
+				Printer.printUserHistory(getSender());
+				break;
+			case "11":
 				programOn = false;
 				break;
 			default:
@@ -259,7 +268,9 @@ public class Menu implements Observer {
 				}
 				break;
 			case "2":
-				// TODO: Confirm package
+				Printer.printAskTracking();
+				inputTracking = scnr.nextLine();
+				logic.confirmReceive(inputTracking);
 				break;
 			case "3":
 				Printer.printAskTracking();
@@ -320,6 +331,9 @@ public class Menu implements Observer {
 				logic.editReceiver(inputTracking, street, city, zipCode);
 				break;
 			case "10":
+				Printer.printUserHistory(getSender());
+				break;
+			case "11":
 				programOn = false;
 				break;
 			default:
@@ -345,11 +359,5 @@ public class Menu implements Observer {
 		Printer.printAskZipCode();
 		zipCode = scnr.nextLine();
 		logic.register(user, realName, street, city, zipCode);
-
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-
 	}
 }

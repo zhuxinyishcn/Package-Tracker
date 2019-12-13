@@ -59,7 +59,8 @@ public class Printer {
 		System.out.println("7. Cancel package.");
 		System.out.println("8. Hold at Warehouse.");
 		System.out.println("9. Estimate dilivery time.");
-		System.out.println("10. Back to main menu.");
+		System.out.println("10. Print history.");
+		System.out.println("11. Back to main menu.");
 	}
 
 	public static void printDestination() {
@@ -77,7 +78,8 @@ public class Printer {
 		System.out.println("7. Hold at Warehouse.");
 		System.out.println("8. Estimate dilivery time.");
 		System.out.println("9. Change destination.");
-		System.out.println("10. Back to main menu.");
+		System.out.println("10. Print history.");
+		System.out.println("11. Back to main menu.");
 	}
 
 	public static void printAskreceiverName() {
@@ -256,11 +258,11 @@ public class Printer {
 		System.out.println(
 				"Drone " + droneID + "Arrive warehosue: " + logic.getDrone().get(droneID).getCurrentLocation());
 	}
-	
+
 	public static void printThreadException(String threadName) {
 		System.out.println("Thread " + threadName + " interrupted.");
 	}
-	
+
 	public static void printUserHistory(Sender sender) {
 		for(Package packages: sender.getPackageSet()) {
 			if(!packages.getStatus().equalsIgnoreCase("Dispatching")) {
@@ -268,9 +270,9 @@ public class Printer {
 			}
 		}
 	}
-	
+
 	public static void printNoPackage() {
 		System.out.println("No such package.");
 	}
-	
+
 }
