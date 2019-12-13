@@ -204,6 +204,7 @@ public class Menu implements Observer {
 				break;
 			case "6":
 				logic.becomeVIP(userName);
+				vipMenu();
 				break;
 			case "7":
 				Printer.printAskTracking();
