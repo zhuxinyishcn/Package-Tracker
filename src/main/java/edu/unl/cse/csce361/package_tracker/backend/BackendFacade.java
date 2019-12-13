@@ -102,7 +102,7 @@ public class BackendFacade extends Observable {
 	}
 
 	public List<Package> getDispatchingPackage() {
-		return Package.getDispatchingPackage(SESSION);
+		return Package.getDispatchingPackage();
 	}
 
 }

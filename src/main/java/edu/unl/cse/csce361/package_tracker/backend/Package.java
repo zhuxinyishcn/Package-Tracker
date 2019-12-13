@@ -190,16 +190,17 @@ public class Package {
 		}
 	}
 
-	public static List<Package> getDispatchingPackage(Session session) {
+	public static List<Package> getDispatchingPackage() {
+		Session SESSION1 = HibernateUtil.createSession().openSession();
 		List<Package> packages = new ArrayList<>();
-		ScrollableResults packageid = session.createQuery("from Package").scroll();
+		ScrollableResults packageid = SESSION1.createQuery("from Package").scroll();
 		while (packageid.next()) {
 			Package packageInfo = (Package) packageid.get(0);
 			if (packageInfo.getStatus().equals("Dispatching")) {
 				packages.add(packageInfo);
 			}
 		}
-
+		System.out.println("Fuck");
 		return packages;
 	}
 

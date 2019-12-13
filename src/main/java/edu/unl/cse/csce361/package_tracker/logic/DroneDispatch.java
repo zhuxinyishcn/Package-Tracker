@@ -22,18 +22,46 @@ public class DroneDispatch implements Runnable {
 
 	public void run() {
 		int packageID = findPackageID(trackingNumber);
+		int droneID = logic.findAvilableDrone();
 		int destination = logic.getDispatchingPackage().get(packageID).getReceiver().getDestination();
+		int origian = logic.getDispatchingPackage().get(packageID).getCurrentLocation();
 		try {
-			int droneID = logic.findAvilableDrone();
+			
+			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
+					origian) != 0) {
+				System.out.println("Drone " + droneID + " is taking off to pick up your package.");
+				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID)
+						.getCurrentLocation(),
+						origian);
+				logic.getDrone().get(droneID).setStatus("Calling");
+				int time = logic.findTimeNeededForWarehouse(logic.getDrone().get(droneID)
+						.getCurrentLocation(),
+						nextLocation);
+				int nextWarehouse = logic.findNextWarehouse(logic.getDrone().get(droneID)
+						.getCurrentLocation(),
+						origian);
+				logic.getDrone().get(droneID).setCurrentLocation(nextWarehouse);
+
+				
+				Thread.sleep(time);
+				System.out.println("Drone " + droneID + " Arrive warehosue: "
+						+ logic.getDrone().get(droneID).getCurrentLocation());
+				Thread.sleep(1000);
+			}
+			
+			
+			
+			
 			logic.getDrone().get(droneID).setTrackingNumber(trackingNumber);
 			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
+				int destination1 = logic.getDispatchingPackage().get(packageID).getReceiver().getDestination();
 				System.out.println("Drone " + droneID + " is taking off with your package.");
 				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
-						destination);
+						destination1);
 				int time = logic.findTimeNeededForWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						nextLocation);
 				int nextWarehouse = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
-						destination);
+						destination1);
 				logic.getDrone().get(droneID).setCurrentLocation(nextWarehouse);
 				BACKEND_FACADE.editCurrentlocation(trackingNumber, nextWarehouse);
 				Thread.sleep(time);

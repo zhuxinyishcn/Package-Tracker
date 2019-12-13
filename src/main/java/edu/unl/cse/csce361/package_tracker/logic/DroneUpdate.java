@@ -20,12 +20,12 @@ public class DroneUpdate implements Runnable {
 	}
 
 	public void run() {
-		logic.setDispatchingPackage(BACKEND_FACADE.getDispatchingPackage());
 		try {
 			boolean running = true;
 			while (running) {
+				logic.setDispatchingPackage(BACKEND_FACADE.getDispatchingPackage());
 				int packageWaiting = logic.getDispatchingPackage().size();
-				System.out.println(packageWaiting);
+//				System.out.println(packageWaiting);
 				for (int i = 0; i < packageWaiting; i++) {
 					boolean drone1Match = logic.getDispatchingPackage().get(i).getTrackingNumber()
 							.equals(logic.getDrone().get(0).getTrackingNumber());
@@ -34,14 +34,9 @@ public class DroneUpdate implements Runnable {
 					if (!drone1Match || !drone2Match) {
 						logic.dispatchingPackages("Flying" + i,
 								logic.getDispatchingPackage().get(i).getTrackingNumber());
-						System.out.println("haha");
 					}
 				}
-				if (packageWaiting == 0) {
-					running = false;
-				}
 				Thread.sleep(10000);
-				ShippingLogic.dispatchingPackage.clear();
 			}
 		} catch (InterruptedException e) {
 			System.out.println("Thread " + threadName + " interrupted.");

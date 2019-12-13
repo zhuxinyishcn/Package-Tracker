@@ -69,18 +69,6 @@ public class ShippingLogic {
 		}
 	}
 
-	public static void hasNextWareHouse(String trackingNumber) {
-		int current = 0;
-		int destination = -1;
-		// TODO: using @trackingNumber to get current and destination.
-		if (current == destination) {
-			System.out.println("Your package has arrived. Please confirm receive.");
-			AdminLogic.confirmPackage(trackingNumber);
-		} else {
-//			nextWarehouse(trackingNumber, current, destination);
-		}
-	}
-
 	public static void callDrone(String warehouseID) {
 		if (logic.isNumber(warehouseID)) {
 			DroneCall R1 = new DroneCall("CallDrone_Request_" + warehouseID, Integer.parseInt(warehouseID));
