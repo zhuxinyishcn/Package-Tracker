@@ -3,6 +3,7 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 import java.util.*;
 
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
+import edu.unl.cse.csce361.package_tracker.logic.DroneCheckPackage;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 public class Menu implements Observer {
@@ -24,8 +25,7 @@ public class Menu implements Observer {
 	}
 
 	public static void adminMenu() {
-		boolean programOn = true;
-		while (programOn) {
+		while (logic.getisProgramOn()) {
 			String userSelect;
 			String user;
 			String street;
@@ -75,7 +75,7 @@ public class Menu implements Observer {
 				warehouseID = scnr.nextLine();
 				logic.callDrone(warehouseID);
 			case "8":
-				programOn = false;
+				logic.setProgramOn(false);
 				break;
 			default:
 				logic.printInvalid();
@@ -140,8 +140,7 @@ public class Menu implements Observer {
 	}
 
 	public static void userMenu() {
-		boolean programOn = true;
-		while (programOn) {
+		while (logic.getisProgramOn()) {
 			String input;
 			String receiverName;
 			String street;
@@ -221,7 +220,7 @@ public class Menu implements Observer {
 				logic.estimatePackage(inputTracking);
 				break;
 			case "10":
-				programOn = false;
+				logic.setProgramOn(false);
 				break;
 			default:
 				logic.printInvalid();
@@ -230,8 +229,7 @@ public class Menu implements Observer {
 	}
 
 	public static void vipMenu() {
-		boolean programOn = true;
-		while (programOn) {
+		while (logic.getisProgramOn()) {
 			String input;
 			String receiverName;
 			String street;
@@ -319,7 +317,7 @@ public class Menu implements Observer {
 				logic.editReceiver(inputTracking, street, city, zipCode);
 				break;
 			case "10":
-				programOn = false;
+				logic.setProgramOn(false);
 				break;
 			default:
 				logic.printInvalid();

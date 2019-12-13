@@ -65,9 +65,10 @@ public class CalculateDistance {
 		if (finaldistance > 10.01) {
 			// not support user who are 10 mile away from one of our warehouse.
 			Printer.printLogicErrNotInServiceRange(finaldistance);
-			return new CalculateDistance(-1, -1);
+			return new CalculateDistance(0, 0);
+		} else {
+			return new CalculateDistance(finaldistance, warehouseID);
 		}
-		return new CalculateDistance(finaldistance, warehouseID);
 	}
 
 	public static double findPackageDistance(int warehouse1, int warehouse2) {
@@ -76,6 +77,11 @@ public class CalculateDistance {
 				logic.getWarehouse().get(warehouse1 - 1).getAddress().getLongitude(),
 				logic.getWarehouse().get(warehouse2 - 1).getAddress().getLatitude(),
 				logic.getWarehouse().get(warehouse2 - 1).getAddress().getLongitude(), "M");
+	}
+
+	public static void main(String args[]) {
+		System.out.println(findClosestWarehouse(40.821004, -96.705833).getDistance());
+		System.out.println(findClosestWarehouse(40.821004, -96.705833).getWarehouseID());
 	}
 
 }

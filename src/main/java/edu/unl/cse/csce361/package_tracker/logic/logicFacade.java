@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.Drone;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.backend.Warehouse;
@@ -174,10 +175,6 @@ public class logicFacade {
 		return ShippingLogic.drone;
 	}
 
-	public void setCallDroneDestination(int destination) {
-		DroneCall.setCallDroneDestination(destination);
-	}
-
 	public void callDrone(String warehouseID) {
 		ShippingLogic.callDrone(warehouseID);
 	}
@@ -194,28 +191,16 @@ public class logicFacade {
 		return ShippingLogic.findTimeNeededForWarehouse(current, destination);
 	}
 
-	public void setsetDistanceToWarehouse(double distance) {
-		DronePickUp.setPickUpDistanceToWarehouse(distance);
-	}
-
-	public void setDronePickUpTrackingNumber(String trackingNumber) {
-		DronePickUp.setPickUprackingNumber(trackingNumber);
-	}
-
-	public void setPickUpDestination(int destination) {
-		DronePickUp.setPickUpDestination(destination);
-	}
-
 	public void getUpdatePackage() {
 		DroneCheckPackage R1 = new DroneCheckPackage("Get package");
 		R1.start();
 	}
 
-	public List<edu.unl.cse.csce361.package_tracker.backend.Package> getDispatchingPackage() {
+	public List<Package> getDispatchingPackage() {
 		return ShippingLogic.getDispatchingPackage();
 	}
 
-	public void setDispatchingPackage(List<edu.unl.cse.csce361.package_tracker.backend.Package> dispatchingPackage) {
+	public void setDispatchingPackage(List<Package> dispatchingPackage) {
 		ShippingLogic.setDispatchingPackage(dispatchingPackage);
 	}
 
@@ -225,5 +210,9 @@ public class logicFacade {
 
 	public void setProgramOn(boolean programOn) {
 		Logic.programOn = programOn;
+	}
+
+	public void checkToShip() {
+		ShippingLogic.checkToShip();
 	}
 }

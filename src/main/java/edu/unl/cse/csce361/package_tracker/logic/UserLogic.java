@@ -55,27 +55,28 @@ public class UserLogic {
 		Printer.printLogicLoading();
 		Sender user = BACKEND_FACADE.searchSender(userName);
 
-		int desitationWarehouse = logic.findClosestWarehouse(Double.parseDouble(desitationGeocode.getLat()),
-				Double.parseDouble(desitationGeocode.getLng())).getWarehouseID();
-		int senderWarehouse = logic
-				.findClosestWarehouse(user.getAddress().getLatitude(), user.getAddress().getLongitude())
-				.getWarehouseID();
+		CalculateDistance desitationWarehouse = logic.findClosestWarehouse(
+				Double.parseDouble(desitationGeocode.getLat()), Double.parseDouble(desitationGeocode.getLng()));
+		CalculateDistance senderWarehouse = logic.findClosestWarehouse(user.getAddress().getLatitude(),
+				user.getAddress().getLongitude());
 		double senderToWarehouse = logic
 				.findClosestWarehouse(user.getAddress().getLatitude(), user.getAddress().getLongitude()).getDistance();
 		double travelDistance = logic.CalculateDistance(Double.parseDouble(desitationGeocode.getLat()),
 				Double.parseDouble(desitationGeocode.getLng()), user.getAddress().getLatitude(),
 				user.getAddress().getLongitude());
-		if (!(desitationWarehouse == 0 || senderWarehouse == 0)) {
+		if (desitationWarehouse.getDistance() != 0 && senderWarehouse.getDistance() != 0) {
+			// BUG
 			Address address = new Address(street, city, zipCode, user.getAddress().getLatitude(),
 					user.getAddress().getLongitude());
-			Receiver receiverInfo = new Receiver(address, receiver, desitationWarehouse);
-			String trackingNumber = BACKEND_FACADE.addPackageRecord(user, receiverInfo, senderWarehouse,
-					travelDistance);
+			Receiver receiverInfo = new Receiver(address, receiver, desitationWarehouse.getWarehouseID());
+			String trackingNumber = BACKEND_FACADE.addPackageRecord(user, receiverInfo,
+					senderWarehouse.getWarehouseID(), travelDistance);
 			Printer.printLogicNewPackage(trackingNumber);
-			
+
 			// Pickup
-			logic.setPickUpDestination(senderWarehouse);
-			DronePickUp R1 = new DronePickUp("pick_up_Package" + senderWarehouse);
+			DronePickUp R1 = new DronePickUp("pick_up_Package" + senderWarehouse, trackingNumber, senderToWarehouse,
+					logic.findClosestWarehouse(user.getAddress().getLatitude(), user.getAddress().getLongitude())
+							.getWarehouseID());
 			R1.start();
 		}
 	}

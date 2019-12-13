@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.frontend;
 
 import edu.unl.cse.csce361.package_tracker.backend.Sender;
+import edu.unl.cse.csce361.package_tracker.logic.DroneCheckPackage;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 import java.util.Scanner;
@@ -30,10 +31,15 @@ public class UserInterFace {
 	public static void main(String[] args) {
 		logic.setProgramOn(true);
 		logic.addDrone();
+
 		while (logic.getisProgramOn()) {
+
 			String inputMain;
 			Printer.printMainMenu();
+			DroneCheckPackage R1 = new DroneCheckPackage("CheckPackage");
+			R1.run();
 			inputMain = scnr.nextLine();
+			
 			switch (inputMain) {
 			case "1":
 				// **ADMIN**

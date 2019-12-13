@@ -93,7 +93,7 @@ public class Package {
 	}
 
 	public static void setPackage(Session session, String UUID) {
-		setPackage(session, UUID, "Delivered");
+		setPackage(session, UUID, "Confirm Delivered");
 	}
 
 	public static void setPackage(Session session, String UUID, String status) {

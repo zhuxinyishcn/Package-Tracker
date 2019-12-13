@@ -23,7 +23,7 @@ public class DroneCheckPackage implements Runnable {
 		try {
 			while (logic.getisProgramOn()) {
 				logic.setDispatchingPackage(BACKEND_FACADE.getDispatchingPackage());
-				// 让线程睡眠一会
+				logic.checkToShip();
 				Thread.sleep(10000);
 			}
 		} catch (InterruptedException e) {

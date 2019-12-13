@@ -4,14 +4,11 @@ public class DroneCall implements Runnable {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private Thread t;
 	private String threadName;
-	public static int destination = 0;
+	private int destination;
 
-	public static void setCallDroneDestination(int destination) {
-		DroneCall.destination = destination;
-	}
-
-	public DroneCall(String name) {
+	public DroneCall(String name, int destination) {
 		threadName = name;
+		this.destination = destination;
 	}
 
 	public void start() {
@@ -24,14 +21,18 @@ public class DroneCall implements Runnable {
 	public void run() {
 		try {
 			int droneID = logic.findAvilableDrone();
-			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
+			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
+					destination) != 0) {
 				System.out.println("Drone " + droneID + " is taking off.");
-				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
+				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID)
+						.getCurrentLocation(),
 						destination);
 				logic.getDrone().get(droneID).setStatus("Calling");
-				int time = logic.findTimeNeededForWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
+				int time = logic.findTimeNeededForWarehouse(logic.getDrone().get(droneID)
+						.getCurrentLocation(),
 						nextLocation);
-				int nextWarehouse = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
+				int nextWarehouse = logic.findNextWarehouse(logic.getDrone().get(droneID)
+						.getCurrentLocation(),
 						destination);
 				logic.getDrone().get(droneID).setCurrentLocation(nextWarehouse);
 

@@ -1,27 +1,21 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+
 public class DronePickUp implements Runnable {
 	private static final logicFacade logic = logicFacade.getInstance();
+	private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
 	private Thread t;
 	private String threadName;
-	public static int destination = -1;
-	public static double distanceToWarehouse = -1;
-	public static String trackingNumber = "";
+	private int destination;
+	private double distanceToWarehouse;
+	private String trackingNumber;
 
-	public static void setPickUpDestination(int destination) {
-		DronePickUp.destination = destination;
-	}
-
-	public static void setPickUprackingNumber(String trackingNumber) {
-		DronePickUp.trackingNumber = trackingNumber;
-	}
-
-	public static void setPickUpDistanceToWarehouse(double distance) {
-		DronePickUp.distanceToWarehouse = distance;
-	}
-
-	public DronePickUp(String name) {
+	public DronePickUp(String name, String trackingNumber, double distanceToWarehouse, int destination) {
 		threadName = name;
+		this.trackingNumber = trackingNumber;
+		this.destination = destination;
+		this.distanceToWarehouse = distanceToWarehouse;
 	}
 
 	public void start() {
@@ -35,7 +29,7 @@ public class DronePickUp implements Runnable {
 		try {
 			int droneID = logic.findAvilableDrone();
 			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
-				System.out.println("Drone" + droneID + " is taking off to warehouse " + destination
+				System.out.println("Drone " + droneID + " is taking off to warehouse " + destination
 						+ " to preprare to pickup your package.");
 				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(),
 						destination);
@@ -54,7 +48,7 @@ public class DronePickUp implements Runnable {
 			Thread.sleep((int) distanceToWarehouse * 1000);
 			System.out.println("Drone " + droneID + " come to your address and picked up the package.");
 			Thread.sleep((int) distanceToWarehouse * 1000);
-			logic.editStatus(trackingNumber, "Dispatching");
+			BACKEND_FACADE.editPackageStatus(trackingNumber, "Dispatching");
 			System.out.println(
 					"Drone " + droneID + " Arrived warehouse " + destination + " with your package. Dispatching.");
 

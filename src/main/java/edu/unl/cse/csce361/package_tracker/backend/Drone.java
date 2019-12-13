@@ -1,16 +1,10 @@
-package edu.unl.cse.csce361.package_tracker.logic;
+package edu.unl.cse.csce361.package_tracker.backend;
 
 public class Drone {
 	private int id;
 	private String status;
 	private int currentLocation;
-
-	public Drone(int id, String status, int currentLocation) {
-		super();
-		this.id = id;
-		this.status = status;
-		this.currentLocation = currentLocation;
-	}
+	private String trackingNumber;
 
 	public int getId() {
 		return id;
@@ -34,6 +28,22 @@ public class Drone {
 
 	public void setCurrentLocation(int currentLocation) {
 		this.currentLocation = currentLocation;
+	}
+
+	public String getTrackingNumber() {
+		return trackingNumber;
+	}
+
+	public void setTrackingNumber(String trackingNumber) {
+		this.trackingNumber = trackingNumber;
+	}
+
+	public Drone(int id, String status, int currentLocation, String trackingNumber) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.currentLocation = currentLocation;
+		this.trackingNumber = trackingNumber;
 	}
 
 	@Override
