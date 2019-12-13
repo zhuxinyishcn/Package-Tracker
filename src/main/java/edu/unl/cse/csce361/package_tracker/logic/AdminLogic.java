@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import java.util.List;
+
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
 
@@ -101,6 +103,14 @@ public class AdminLogic {
 	public static void estimatePackageTime(String trackingNumber) { // calculate estimate time the user can receive the
 																	// package.
 		UserLogic.estimatePackage(trackingNumber);
+	}
+	
+	public static void packageList(List<Package> packageList) {
+		if (packageList.isEmpty() || packageList.equals(null)) {
+			Printer.printNoPackage();
+		}else {
+			
+		}
 	}
 
 }

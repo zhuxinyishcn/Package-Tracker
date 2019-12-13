@@ -101,7 +101,7 @@ public class BackendTestSuites {
                 .get();
         try {
             org.apache.lucene.search.Query query = queryBuilder.phrase().onField("trackingNumber")
-                    .sentence("7918f73b-bc43-448d-9652-f00f67355ac8").createQuery();
+                    .sentence("7918f73b-bc4-448d-9652-f00f67355ac8").createQuery();
             org.hibernate.query.Query hibQuery =
                     fullTextSession.createFullTextQuery(query, Package.class);
             Package warehouseList = (Package) hibQuery.getSingleResult();

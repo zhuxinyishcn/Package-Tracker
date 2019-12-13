@@ -2,6 +2,7 @@ package edu.unl.cse.csce361.package_tracker.frontend;
 
 import java.util.List;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
+import edu.unl.cse.csce361.package_tracker.backend.Sender;
 import edu.unl.cse.csce361.package_tracker.logic.logicFacade;
 
 import java.time.LocalDateTime;
@@ -228,10 +229,10 @@ public class Printer {
 
 	public static void printPacakge(Package p) {
 		System.out.printf(
-				"Tracking Number:%-20s\nSender:%-10s\nReceiver:%-10s\nCurrent Location:%-20s\nStatus:%-10s\nstart Location:%-10s\nend Location:%10s\nestimated time:%s\n\n",
+				"Tracking Number:%-20s\nSender:%-10s\nReceiver:%-10s\nCurrent Location:%-20s\nStatus:%-10s\nStart Location:%-10s\nEnd Location:%10s\nEstimated time:%s\nRouth Status:%-10s\n\n",
 				p.getTrackingNumber(), p.getSender().getName(), p.getReceiver().getName(),
 				logic.getWarehouse().get(p.getCurrentLocation() - 1).getName(), p.getStatus(),
-				p.getSender().getAddress(), p.getReceiver().getAddress(), p.getEstimateTime());
+				p.getSender().getAddress(), p.getReceiver().getAddress(), p.getEstimateTime(),p.getRoute());
 	}
 
 	public static void printLogicNotSender(String trackingNumber) {
@@ -259,4 +260,17 @@ public class Printer {
 	public static void printThreadException(String threadName) {
 		System.out.println("Thread " + threadName + " interrupted.");
 	}
+	
+	public static void printUserHistory(Sender sender) {
+		for(Package packages: sender.getPackageSet()) {
+			if(!packages.getStatus().equalsIgnoreCase("Dispatching")) {
+				Printer.printPacakge(packages);
+			}
+		}
+	}
+	
+	public static void printNoPackage() {
+		System.out.println("No such package.");
+	}
+	
 }
