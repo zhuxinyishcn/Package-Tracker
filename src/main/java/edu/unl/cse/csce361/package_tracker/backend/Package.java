@@ -1,15 +1,12 @@
 package edu.unl.cse.csce361.package_tracker.backend;
 
-
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.query.Query;
 import org.hibernate.search.FullTextSession;
-import org.hibernate.search.Search;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.*;
-import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 
 import javax.persistence.*;
@@ -18,257 +15,299 @@ import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
 
 /**
  * @author davidgao
  */
 @Entity
 @Indexed
-@Table(name = "Packages", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "packageid"),
-        @UniqueConstraint(columnNames = "trackingNumber")})
+@Table(name = "Packages", uniqueConstraints = { @UniqueConstraint(columnNames = "packageid"),
+		@UniqueConstraint(columnNames = "trackingNumber") })
 public class Package {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "PackageID", unique = true, nullable = false, updatable = false)
-    private int id;
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Field(name = "trackingNumber", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
-    @Column(name = "trackingNumber", unique = true, length = 40, updatable = false)
-    private String trackingNumber;
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender")
-    private Sender sender;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "receiver", nullable = false)
-    private Receiver receiver;
-    @Column(name = "currentLocation")
-    private int currentLocation;
-    @Column(name = "status", nullable = false, length = 50)
-    private String status;
-    @Column(name = "priorityID", nullable = false)
-    private int priorityid;
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Field(name = "shippingTime", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
-    @Column(name = "shippingTime", nullable = false, length = 100, updatable = false)
-    private String shippingTime;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "PackageID", unique = true, nullable = false, updatable = false)
+	private int id;
+	@Field(name = "trackingNumber", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
+	@Column(name = "trackingNumber", unique = true, length = 40, updatable = false)
+	private String trackingNumber;
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinColumn(name = "sender")
+	private Sender sender;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "receiver", nullable = false)
+	private Receiver receiver;
+	@Column(name = "currentLocation")
+	private int currentLocation;
+	@Column(name = "status", nullable = false, length = 50)
+	private String status;
+	@Column(name = "priorityID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int priorityid;
+	@Column(name = "shippingTime", nullable = false, length = 100, updatable = false)
+	private String shippingTime;
+	@Column(name = "estimateTime", nullable = false, length = 100, updatable = false)
+	private String estimateTime;
+	@Column(name = "routeStatus", nullable = false, length = 100, updatable = false)
+	private String route;
 
-    public Package () {
-    }
+	public Package() {
+	}
 
-    public Package (Sender sender, Receiver receiver, int currentLocation) {
-        final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        final LocalDateTime now = LocalDateTime.now();
-        this.sender = sender;
-        this.receiver = receiver;
-        this.currentLocation = currentLocation;
-        this.status = "Shipping";
-        this.shippingTime = date.format(now);
-        this.trackingNumber = UUID.randomUUID().toString();
-    }
+	public Package(Sender sender, Receiver receiver, int currentLocation, double distance) {
+		final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		final LocalDateTime now = LocalDateTime.now();
+		this.sender = sender;
+		this.receiver = receiver;
+		this.currentLocation = currentLocation;
+		this.status = "Despatching";
+		this.shippingTime = date.format(now);
+		// note: we assume our latest drones latest speed is 22.352 m/s
+		final double droneSpeed = 22.352;
+		this.estimateTime = date.format(now.plusSeconds((long) (distance / droneSpeed)));
+		this.trackingNumber = UUID.randomUUID().toString();
+		this.route = "from " + currentLocation + " warehouse to " + receiver.getDestination() + " warehouse";
+	}
 
-    public static void insertPackage (Sender sender, Receiver receiver,
-                                      int currentLocation) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
-        try {
-            Package packageInfo = new Package(sender, receiver, currentLocation);
-            receiver.setPackageid(packageInfo);
-            Set<Package> packages = new HashSet<>();
-            packages.add(packageInfo);
-            sender.setPackageSet(packages);
-            session.persist(sender);
-            session.persist(packageInfo);
-            transaction.commit();
-        } catch (Throwable e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            HibernateUtil.closeSession(session);
-        }
-    }
+	public static String insertPackage(Session session, Sender sender, Receiver receiver, int currentLocation,
+			double distance) {
+		final Transaction transaction = session.beginTransaction();
+		try {
+			Package packageInfo = new Package(sender, receiver, currentLocation, distance);
+			receiver.setPackageid(packageInfo);
+			Set<Package> packages = sender.getPackageSet();
+			packages.add(packageInfo);
+			sender.setPackageSet(packages);
+			session.persist(sender);
+			session.persist(packageInfo);
+			transaction.commit();
+			return packageInfo.getTrackingNumber();
+		} catch (Throwable e) {
+			session.getTransaction().rollback();
+			throw e;
+		}
+	}
 
-    public static void deletePakcage (String UUID) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
-        int packageid = searchTrackingNumber(session, UUID);
-        try {
-            final Package packages = session.get(Package.class, packageid);
-            session.delete(packages);
-            transaction.commit();
-        } catch (Throwable e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            HibernateUtil.closeSession(session);
-        }
-    }
+	public static void deletePakcage(Session session, String UUID) {
+		setPackage(session, UUID, "Canceled");
+	}
 
-    public static void setPackage (String UUID) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        try {
-            CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
-            Root e = update.from(Package.class);
-            update.set("status", "Arrived");
-            update.where(builder.equal(e.get("trackingNumber"), UUID));
-            session.createQuery(update).executeUpdate();
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession(session);
-        }
-    }
+	public static void setPackage(Session session, String UUID) {
+		setPackage(session, UUID, "Delivered");
+	}
 
-    public static void setPackage (String UUID, String status) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        try {
-            CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
-            Root e = update.from(Package.class);
-            update.set("status", status);
-            update.where(builder.equal(e.get("trackingNumber"), UUID));
-            session.createQuery(update).executeUpdate();
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession(session);
-        }
-    }
+	public static void setPackage(Session session, String UUID, String status) {
+		final Transaction transaction = session.beginTransaction();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		try {
+			CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
+			Root e = update.from(Package.class);
+			update.set("status", status);
+			update.where(builder.equal(e.get("trackingNumber"), UUID));
+			session.createQuery(update).executeUpdate();
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public static List<Package> retrievePackages () {
-        final Session session = HibernateUtil.createSession().openSession();
-        List<Package> result = (List<Package>) session.createQuery("from Package").list();
-        return result;
-    }
+	public static List<Package> retrievePackages(Session session) {
+		return (List<Package>) session.createQuery("from Package").list();
+	}
 
-    public static int searchTrackingNumber (Session session, String trackingNumber) {
-        Query query =
-                session.createSQLQuery("SELECT p.PackageID FROM Packages p WHERE p.trackingNumber like :ids").
-                        setParameter("ids", trackingNumber);
-        int packageID = (int) query.getSingleResult();
-        return packageID;
-    }
+	public static Package searchTrackingNumber(Session session, String trackingNumber) {
+		try {
+			Query query = session.createSQLQuery("SELECT p.PackageID FROM Packages p WHERE p.trackingNumber like :ids")
+					.setParameter("ids", trackingNumber);
+			int packageid = (int) query.getSingleResult();
+			return session.get(Package.class, packageid);
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
-    public static void editPackageAllInfo (String trackingNumber, String currentLocation,
-                                           String priorityID, String shippingTime,
-                                           String status, String receiver, String sender) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
-        try {
-            int packageid = searchTrackingNumber(session, trackingNumber);
-            Package packageInfo = session.get(Package.class, packageid);
-            packageInfo.setCurrentLocation(Integer.parseInt(currentLocation));
-            packageInfo.setPriorityid(Integer.parseInt(priorityID));
-            packageInfo.setStatus(status);
-            packageInfo.setShippingTime(shippingTime);
-            packageInfo.getSender().setName(sender);
-            packageInfo.getReceiver().setName(receiver);
-            session.update(packageInfo);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession(session);
-        }
-    }
+	public static void editPackageAllInfo(Session session, Transaction transaction, String trackingNumber,
+			String currentLocation, String priorityID, String shippingTime, String status, String receiver,
+			String sender) {
+		try {
+			Package packageInfo = searchTrackingNumber(session, trackingNumber);
+			packageInfo.setCurrentLocation(Integer.parseInt(currentLocation));
+			packageInfo.setPriorityid(Integer.parseInt(priorityID));
+			packageInfo.setStatus(status);
+			packageInfo.setShippingTime(shippingTime);
+			packageInfo.getSender().setName(sender);
+			packageInfo.getReceiver().setName(receiver);
+			session.update(packageInfo);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public static void returnPackage (String trackingNumber) {
-        final Session session = HibernateUtil.createSession().openSession();
-        final Transaction transaction = session.beginTransaction();
-        try {
-            int packageid = searchTrackingNumber(session, trackingNumber);
-            Package packageInfo = session.get(Package.class, packageid);
-            packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
-            session.update(packageInfo);
-            transaction.commit();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }
-    }
+	public static void returnPackage(Session session, String trackingNumber) {
+		final Transaction transaction = session.beginTransaction();
+		try {
+			Package packageInfo = searchTrackingNumber(session, trackingNumber);
+			packageInfo.getReceiver().setName(packageInfo.getSender().getName());
+			packageInfo.getReceiver().setAddress(packageInfo.getSender().getAddress());
+			packageInfo.setStatus("Returned");
+			session.update(packageInfo);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public String getShippingTime () {
-        return shippingTime;
-    }
+	public static void setPriority(Session session, String UUID) {
+		final Transaction transaction = session.beginTransaction();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		try {
+			CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
+			Root e = update.from(Package.class);
+			update.set("priorityid", 1);
+			update.where(builder.equal(e.get("trackingNumber"), UUID));
+			session.createQuery(update).executeUpdate();
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public void setShippingTime (String shippingTime) {
-        this.shippingTime = shippingTime;
-    }
+	public static void setCurrentLocation(Session session, String UUID, int currentLocation) {
+		final Transaction transaction = session.beginTransaction();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		try {
+			CriteriaUpdate<Package> update = builder.createCriteriaUpdate(Package.class);
+			Root e = update.from(Package.class);
+			update.set("currentLocation", currentLocation);
+			update.where(builder.equal(e.get("trackingNumber"), UUID));
+			session.createQuery(update).executeUpdate();
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public int getId () {
-        return id;
-    }
+	public static List<Package> searchFuzzy(Session session, String trackingNumber) throws InterruptedException {
+		FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
+		fullTextSession.createIndexer().startAndWait();
+		Transaction tx = fullTextSession.beginTransaction();
+		QueryBuilder queryBuilder = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Package.class)
+				.get();
+		try {
+			org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber")
+					.matching(trackingNumber).createQuery();
+			org.hibernate.query.Query hibQuery = fullTextSession.createFullTextQuery(query, Package.class);
+			List<Package> packagesList = hibQuery.getResultList();
+			tx.commit();
+			return packagesList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-    public void setId (int id) {
-        this.id = id;
-    }
+	public String getRoute() {
+		return route;
+	}
 
-    public String getTrackingNumber () {
-        return trackingNumber;
-    }
+	public void setRoute(String route) {
+		this.route = route;
+	}
 
-    public void setTrackingNumber (String trackingNumber) {
-        this.trackingNumber = trackingNumber;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public Sender getSender () {
-        return sender;
-    }
+	public int getCurrentLocation() {
+		return currentLocation;
+	}
 
-    public void setSender (Sender sender) {
-        this.sender = sender;
-    }
+	public void setCurrentLocation(int currentLocation) {
+		this.currentLocation = currentLocation;
+	}
 
-    public Receiver getReceiver () {
-        return receiver;
-    }
+	public String getEstimateTime() {
+		return estimateTime;
+	}
 
-    public void setReceiver (Receiver receiver) {
-        this.receiver = receiver;
-    }
+	public void setEstimateTime(String estimateTime) {
+		this.estimateTime = estimateTime;
+	}
 
-//    public String getCurrentLocation(){
-//
-//    }
-    public void setCurrentLocation (int currentLocation) {
-        this.currentLocation = currentLocation;
-    }
+	public String getShippingTime() {
+		return shippingTime;
+	}
 
-    public String getStatus () {
-        return status;
-    }
+	public void setShippingTime(String shippingTime) {
+		this.shippingTime = shippingTime;
+	}
 
-    public void setStatus (String status) {
-        this.status = status;
-    }
+	public String getTrackingNumber() {
+		return trackingNumber;
+	}
 
-    public int getPriorityid () {
-        return priorityid;
-    }
+	public void setTrackingNumber(String trackingNumber) {
+		this.trackingNumber = trackingNumber;
+	}
 
-    public void setPriorityid (int priorityid) {
-        this.priorityid = priorityid;
-    }
+	public Sender getSender() {
+		return sender;
+	}
 
-    @Override
-    public int hashCode () {
-        return super.hashCode();
-    }
+	public void setSender(Sender sender) {
+		this.sender = sender;
+	}
 
-    @Override
-    public boolean equals (Object obj) {
-        return super.equals(obj);
-    }
+	public Receiver getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(Receiver receiver) {
+		this.receiver = receiver;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getPriorityid() {
+		return priorityid;
+	}
+
+	public void setPriorityid(int priorityid) {
+		this.priorityid = priorityid;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+
+	public static List<Package> getDispatchingPackage() {
+		Session SESSION1 = HibernateUtil.createSession().openSession();
+		List<Package> packages = new ArrayList<>();
+		ScrollableResults packageid = SESSION1.createQuery("from Package").scroll();
+		while (packageid.next()) {
+			Package packageInfo = (Package) packageid.get(0);
+			if (packageInfo.getStatus().equals("Dispatching")) {
+				packages.add(packageInfo);
+			}
+		}
+		return packages;
+	}
+
 }

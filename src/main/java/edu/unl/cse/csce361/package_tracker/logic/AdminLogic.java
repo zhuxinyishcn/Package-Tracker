@@ -1,104 +1,138 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.backend.Address;
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+
+import java.util.List;
 
 public class AdminLogic {
-	public static void changeDestitation(String trackingNumber, String destitationLogin) {
-		// TODO: Using @trackingNumber to set @receiver as @destitation
-		BackendFacade.getBackendFacade().changeDestination(trackingNumber, destitationLogin);
-	}
+    private static final logicFacade logic = logicFacade.getInstance();
+    private static final BackendFacade backend = BackendFacade.getBackendFacade();
 
-	public static void changeDestination(String trackingNumber, String destinationLogin) {
-		// TODO: Using @trackingNumber to set @receiver as @destination
-	}
+    public static void getAllPackage () {
+        // Get all package from data base
+        Printer.printLogicAllPackage(backend.retrievePackages());
+    }
 
-	public static void getAllPackage() {
-		System.out.println(String.format("%-20s %-10s %-10s %-20s %-10s", "Tracking Number", "Sender", "Receiver",
-				"Current Location", "Status"));
-		// TODO: Get all package info
-		int i = 0;
-		for (Package p : BackendFacade.getBackendFacade().retrievePackages()) {
-			System.out.printf("Tracking Number:%-20s\nSender:%-10s\n Receiver:%-10s\n %-20s %-10s\n\n",
-					p.getTrackingNumber(), p.getSender().getName(), p.getReceiver().getName(),
-					ShippingLogic.warehouse.get(i), p.getStatus());
-			i++;
-		}
-	}
+    public static void editCurrentLocation (String trackingNumber, int currentLocation) {
+        // By provided @trackingNumber to locate the package to change the
+        // @currentLocation in database.
+        if (trackingNumber.length() >= 40) {
+            Printer.printErrInput("Tracking number", "40");// Max 40 character for @trackingNumber.
+        } else {
+            if (currentLocation <= 12 && currentLocation > 0) { // @currentLocation should between 1 and 12
+                Printer.printLogicLoading();
+                backend.editCurrentlocation(trackingNumber, currentLocation);
+                Printer.printLogicRequestSuccess("edit current location");
+            } else {
+                Printer.printErrInput("Current location", "10");
+            }
+        }
+    }
 
-	public static void editPackage(String trackingNumber, String currentLocation, String priorityID,
-			String shippingTime, String status, String receiver, String sender) {
-		if (trackingNumber.length() <= 40) {
-			System.err.println("Tracking number should less than 40 charactor.");
-		}
-		while (trackingNumber.length() <= 40) {
-			if (currentLocation != null) {
-				if (currentLocation.length() <= 10) {
-					// TODO: Using @trackingNumber to set @currentLocation
-					BackendFacade.getBackendFacade().changeDestination(trackingNumber, currentLocation);
-					System.out.println("You have successfully set Current Location for " + trackingNumber + " to "
-							+ currentLocation + ".");
-				} else {
-					System.err.println("Current Location should be less than 10 charactor.");
-				}
-				if (priorityID != null) {
-					if (priorityID.length() <= 10) {
-						// TODO: Using @trackingNumber to set @priorityID
-						System.out.println("You have successfully set priorityID for " + trackingNumber + " to "
-								+ priorityID + ".");
-					} else {
-						System.err.println("Priority ID should be less than 10 charactor.");
-					}
-					if (shippingTime != null) {
-						if (shippingTime.length() <= 100) {
-							// Using @trackingNumber to set @shippingTime
-							System.out.println("You have successfully set shipping time for " + trackingNumber + " to "
-									+ shippingTime + ".");
-						} else {
-							System.err.println("Shipping Time should be less than 99 charactor.");
+    public static void editPriorityID (String trackingNumber, int priorityID) {
+        // By provided @trackingNumber to locate the package to change the @priorityID
+        // in database.
+        if (trackingNumber.length() >= 40) {
+            Printer.printErrInput("Tracking number", "40");
+        } else {
+            if (priorityID <= 99 && priorityID >= 0) { // @ priorityID should less than 2 character.
+                Printer.printLogicLoading();
+                backend.editPiorityID(trackingNumber);
+                Printer.printLogicRequestSuccess("edit priority ID");
+            } else {
+                Printer.printErrInput("Priority ID", "2");
+            }
+        }
+    }
 
-						}
-						if (status != null) {
-							if (status.length() <= 50) {
-								// Using @trackingNumber to set @status
-								System.out.println("You have successfully set status for " + trackingNumber + " to "
-										+ status + ".");
-							} else
-								System.err.println("status should be less than 49 charactor.");
-						}
-						if (receiver != null) {
-							if (receiver.length() <= 11) {
-								// Using @trackingNumber to set @receiver
-								System.out.println("You have successfully set receiver for " + trackingNumber + " to "
-										+ receiver + ".");
-							} else
-								System.err.println("receiver should be less than 49 charactor.");
-						}
-						if (sender != null) {
-							if (sender.length() <= 11) {
-								// Using @trackingNumber to set @sender
-								System.out.println("You have successfully set sender for " + trackingNumber + " to "
-										+ sender + ".");
-							} else {
-								System.err.println("sender should be less than 49 charactor.");
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+    public static void editStatus (String trackingNumber, String status) {
+        // By provided @trackingNumber to locate the package to change the @status in
+        // database.
+        if (trackingNumber.length() >= 40) {
+            Printer.printErrInput("Tracking number", "40");
+        } else {
+            if (status.length() <= 50) { // Should be less than 50 character.
+                Printer.printLogicLoading();
+                backend.editPackageStatus(trackingNumber, status);
+                Printer.printLogicRequestSuccess("edit status");
+            } else {
+                Printer.printErrInput("Status", "50");
+            }
+        }
+    }
 
-	public static boolean confirmPackage(String trackingNumber) {
-		// TODO: using @trackingNumber to confirm package
-		boolean success = false;
-		try {
-			BackendFacade.getBackendFacade().setPackageArrived(trackingNumber);
-			return true;
-		} catch (RuntimeException e) {
-			// wait();
-			return false;
-		}
-	}
+    public static void editReceiver (String trackingNumber, String street, String city, String zipCode) {
 
+        // By provided @trackingNumber to locate the package to change the receiver and
+        // get the new Geocode to direct the package.
+        if (trackingNumber.length() >= 40) {
+            Printer.printErrInput("Tracking number", "40");
+        } else {
+            if (street.length() <= 100 && city.length() <= 50 && zipCode.length() <= 10) { // street less than 100, city
+                // 50, zip 10 character.
+                GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
+                String lat = geocode.getLat();
+                String lng = geocode.getLng();
+                Printer.printLogicLoading();
+                Address address = new Address(street, city, zipCode, Double.parseDouble(lat), Double.parseDouble(lng));
+                backend.editReceiverAddress(trackingNumber, address);
+                for (int i = 0; i < logic.getDispatchingPackage().size(); i++) {
+                    if (logic.getDispatchingPackage().get(i).getTrackingNumber().equals(trackingNumber)) {
+                        logic.getDispatchingPackage().get(i).getReceiver().setDestination(
+                                logic.findClosestWarehouse(Double.parseDouble(lat), Double.parseDouble(lng))
+                                        .getWarehouseID());
+                    }
+                }
+                Printer.printLogicRequestSuccess("edit receiver");
+            } else {
+                Printer.printLogicErrAddress();
+            }
+        }
+    }
+
+    public static void confirmPackage (String trackingNumber) { // Set package status to confirm received.
+        Printer.printLogicLoading();
+        backend.editPackageArrived(trackingNumber);
+        Printer.printLogicRequestSuccess("confirm package received");
+    }
+
+    public static void cancelPackage (String trackingNumber) { // Set package status to cancel, the package will be
+        Printer.printLogicLoading(); // destroyed.
+        backend.deletePakcageRecord(trackingNumber);
+        for (int i = 0; i < logic.getDispatchingPackage().size(); i++)
+            if (logic.getDispatchingPackage().get(i).getTrackingNumber().equals(trackingNumber)) {
+                logic.getDispatchingPackage().get(i).getReceiver()
+                        .setDestination(logic.getDispatchingPackage().get(i).getCurrentLocation());
+            }
+    }
+
+    public static void holdPackage (String trackingNumber) { // Hold package at warehouse to wait for customer to pickup
+        Printer.printLogicLoading();
+        backend.editPackageStatus(trackingNumber, "hold");
+    }
+
+    public static void estimatePackageTime (String trackingNumber) { // calculate estimate time the user can receive the
+        // package.
+        UserLogic.estimatePackage(trackingNumber);
+    }
+
+    public static void fuzzySearch (String trackingNumber) {
+        try {
+            List<Package> packages = backend.searchFuzzyTrackingNumber(trackingNumber);
+            for (Package packageInfo : packages) {
+                Printer.printPacakge(packageInfo);
+            }
+        } catch (InterruptedException e) {
+            Printer.printInvalid();
+        }
+    }
+
+    public static void confirmByAdmin (String trackingNumber) {
+        Printer.printLogicLoading();
+        backend.editPackageArrived(trackingNumber);
+        Printer.printLogicRequestSuccess("confirm package" + trackingNumber + "received");
+    }
 }

@@ -1,90 +1,132 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
-import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
+import edu.unl.cse.csce361.package_tracker.backend.Package;
+import edu.unl.cse.csce361.package_tracker.backend.*;
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 public class UserLogic {
 
-	private static logicFacade logic = logicFacade.getInstance();
+	private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
+	private final static logicFacade logic = logicFacade.getInstance();
+
+	public static String checkUser(String userName) {
+		return BACKEND_FACADE.searchUserStatus(userName);
+	}
 
 	public static void becomeVIP(String userLogin) {
-		// TODO: using @login to set user as vip.
-		System.out.println("You have successfully become a VIP");
+		Printer.printLogicLoading();
+		BACKEND_FACADE.editSenderStatus(userLogin);
+		Printer.printLogicRequestSuccess("upgrade to VIP");
 	}
 
 	public static void returnPackage(String trackingNumber) {
-		System.out.println("Your package had been successfully returned tracking number: " + trackingNumber);
-	}
-
-	public static void checkPackage(String trackingNumber, String login, boolean isSender, boolean onGoing) {
-		if (trackingNumber != null) {
-			// TODO: Using @trackingNumber find package info
-			System.out.println(String.format("%-20s %-10s %-10s %-10s %-10s", "Tracking Number", "Sender", "Receiver",
-					"Current Location", "Status"));
-		}
-		if (login != null) {
-			if (isSender) {
-				if (!onGoing) {
-					// TODO: using @login who is a sender to find package info
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-				if (onGoing) {
-					// TODO: using @login who is a sender to find package info which is in transit
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-			}
-			if (!isSender) {
-				if (!onGoing) {
-					// TODO: using @login who is a receiver to find package info
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-				if (onGoing) {
-					// TODO: using @login who is a receiver to find package info which is in
-					// transit
-					System.out.println(String.format("%-20s %-10s %-10s %-10s %-10", "Tracking Number", "Sender",
-							"Receiver", "Current Location", "Status"));
-				}
-			}
+		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
+			BACKEND_FACADE.editPackageReceiver(trackingNumber);
+			Printer.printLogicRequestSuccess("return package");
+		} else {
+			Printer.printLogicNotSender(trackingNumber);
 		}
 	}
 
-	public static void newPackage(String login, String destinationLogin) {
-		// TODO: @login and @desinationLogin to create new package.
-		String trackingNumber = null;
-		System.out.println("You have successfully create a new package, your tacking number is: " + trackingNumber);
+	public static void checkPackageByTrackingNumber(String trackingNumber) {
+		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
+			Package packageInfo = BACKEND_FACADE.searchPackage(trackingNumber);
+			Printer.printLogicPackageByTrackingNumber(packageInfo);
+		} else {
+			Printer.printLogicNotSender(trackingNumber);
+		}
+	}
+
+	public static void checkPackageByUserName(String login) {
+		Printer.printLogicLoading();
+		Sender sender = BACKEND_FACADE.searchSender(login);
+		Set<Package> packages = sender.getPackageSet();
+		Printer.printLogicPackageByUserName(packages);
+	}
+
+	public static void newPackage(String userName, String receiver, String street, String city, String zipCode) {
+		GoogleGeocode desitationGeocode = GoogleGeocode.getLatLng(street, city, zipCode);
+		Printer.printLogicLoading();
+		Sender user = BACKEND_FACADE.searchSender(userName);
+
+		CalculateDistance desitationWarehouse = logic.findClosestWarehouse(
+				Double.parseDouble(desitationGeocode.getLat()), Double.parseDouble(desitationGeocode.getLng()));
+		CalculateDistance senderWarehouse = logic.findClosestWarehouse(user.getAddress().getLatitude(),
+				user.getAddress().getLongitude());
+		double senderToWarehouse = logic
+				.findClosestWarehouse(user.getAddress().getLatitude(), user.getAddress().getLongitude()).getDistance();
+		double travelDistance = logic.CalculateDistance(Double.parseDouble(desitationGeocode.getLat()),
+				Double.parseDouble(desitationGeocode.getLng()), user.getAddress().getLatitude(),
+				user.getAddress().getLongitude());
+		if (desitationWarehouse.getDistance() != 0 && senderWarehouse.getDistance() != 0) {
+			// BUG
+			Address address = new Address(street, city, zipCode, user.getAddress().getLatitude(),
+					user.getAddress().getLongitude());
+			Receiver receiverInfo = new Receiver(address, receiver, desitationWarehouse.getWarehouseID());
+			String trackingNumber = BACKEND_FACADE.addPackageRecord(user, receiverInfo,
+					senderWarehouse.getWarehouseID(), travelDistance);
+			Printer.printLogicNewPackage(trackingNumber);
+
+			// Pickup
+			DronePickUp R1 = new DronePickUp("pick_up_Package" + senderWarehouse, trackingNumber, senderToWarehouse,
+					logic.findClosestWarehouse(user.getAddress().getLatitude(), user.getAddress().getLongitude())
+							.getWarehouseID());
+			R1.start();
+		}
 	}
 
 	public static void cancelPackage(String trackingNumber) { // Without return services
-		System.out.println("Your package: " + trackingNumber + " had been canceled.");
+		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
+			BACKEND_FACADE.deletePakcageRecord(trackingNumber);
+			for (int i = 0; i < logic.getDispatchingPackage().size(); i++)
+				if (logic.getDispatchingPackage().get(i).getTrackingNumber().equals(trackingNumber)) {
+					logic.getDispatchingPackage().get(i).getReceiver()
+							.setDestination(logic.getDispatchingPackage().get(i).getCurrentLocation());
+				}
+			Printer.printLogicCencelPackage(trackingNumber);
+		} else {
+			Printer.printLogicNotSender(trackingNumber);
+		}
 	}
 
 	public static void holdAtWarehouse(String trackingNumber) {
-		// TODO: Set @trackingNumber to hold.
-		// TODO: Get current location to @warehouseID.
-		int warehouseID = 1;
-		System.out.println("Your package will be hold at: ");
-		System.out.println(String.format("%-5s %-30s %-50s", "ID", "Name", "Address"));
-		System.out.println(logic.getWarehouse().get(warehouseID).toString());
+		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
+			BACKEND_FACADE.editPackageStatus(trackingNumber, "Hold");
+			int warehouseID = BACKEND_FACADE.searchPackage(trackingNumber).getCurrentLocation();
+			Printer.printLogicHoldWarehouse(warehouseID);
+		} else {
+			Printer.printLogicNotSender(trackingNumber);
+		}
 	}
 
 	public static void estimatePackage(String trackingNumber) {
-		int eachLocationTime = 30; // Each stop 30 second
-		int current = 0;
-		int destination = 0;
-		// TODO: Using @trackingNumber to get @current @destination
-		int estimate = Math.abs(current - destination) * eachLocationTime + 30;// From last warehouse to final location.
-		System.out.println("Your estimate deliver time is in " + estimate + " second.");
+		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
+			String time = BACKEND_FACADE.searchPackage(trackingNumber).getEstimateTime();
+			final DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime dateTime = LocalDateTime.from(date.parse(time));
+			Printer.printLogicEstimateTime(dateTime);
+		} else {
+			Printer.printLogicNotSender(trackingNumber);
+		}
 	}
 
-	public static void arriveNotify(String trackingNumber) {
-		// TODO: How to know package arrived.
-		System.out.println("Your package: " + trackingNumber + " has arrived.");
-	}
 
-	public static void confirmReceive(String trackingNumber) {
-		logic.returnPackage(trackingNumber);
-		System.out.println("You have confirm receive of " + trackingNumber);
+	public static void confirmReceive (String trackingNumber) {
+		if (logic.isSender(trackingNumber)) {
+			Printer.printLogicLoading();
+			BACKEND_FACADE.editPackageArrived(trackingNumber);
+			Printer.printLogicRequestSuccess("confirm package" + trackingNumber + "received");
+		} else {
+			Printer.printLogicNotSender(trackingNumber);
+		}
 	}
 }

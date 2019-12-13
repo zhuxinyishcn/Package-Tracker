@@ -1,7 +1,14 @@
 # Project-specific
+
 # SQL authentication
 *.info
+hibernate.cfg.xml
 *.cfg.xml
+
+#Log4J Log
+geocodeDebugLog.info.*
+geocodeErrorLog.info.*
+*.log
 
 # Mac file finder metadata
 .DS_Store
@@ -77,7 +84,6 @@ nb-configuration.xml
 *.xcodeproj/
 xcuserdata/
 .build/
-
 # Maven
 target/
 
@@ -89,4 +95,3 @@ tmp/
 *.swp
 *.gcno
 
-*edu.unl.cse.csce361.package_tracker.backend.Address
