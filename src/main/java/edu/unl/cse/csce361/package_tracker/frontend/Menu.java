@@ -25,7 +25,8 @@ public class Menu implements Observer {
 	}
 
 	public static void adminMenu() {
-		while (logic.getisProgramOn()) {
+		boolean running = true;
+		while (running) {
 			String userSelect;
 			String user;
 			String street;
@@ -75,7 +76,7 @@ public class Menu implements Observer {
 				warehouseID = scnr.nextLine();
 				logic.callDrone(warehouseID);
 			case "8":
-				logic.setProgramOn(false);
+				running = false;
 				break;
 			default:
 				logic.printInvalid();
@@ -140,7 +141,8 @@ public class Menu implements Observer {
 	}
 
 	public static void userMenu() {
-		while (logic.getisProgramOn()) {
+		boolean running = true;
+		while (running) {
 			String input;
 			String receiverName;
 			String street;
@@ -220,7 +222,7 @@ public class Menu implements Observer {
 				logic.estimatePackage(inputTracking);
 				break;
 			case "10":
-				logic.setProgramOn(false);
+				running = false;
 				break;
 			default:
 				logic.printInvalid();
@@ -229,7 +231,8 @@ public class Menu implements Observer {
 	}
 
 	public static void vipMenu() {
-		while (logic.getisProgramOn()) {
+		boolean running = true;
+		while (running) {
 			String input;
 			String receiverName;
 			String street;
@@ -317,7 +320,7 @@ public class Menu implements Observer {
 				logic.editReceiver(inputTracking, street, city, zipCode);
 				break;
 			case "10":
-				logic.setProgramOn(false);
+				running = false;
 				break;
 			default:
 				logic.printInvalid();

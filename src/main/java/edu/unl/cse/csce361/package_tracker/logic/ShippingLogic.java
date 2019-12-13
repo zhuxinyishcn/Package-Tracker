@@ -102,13 +102,13 @@ public class ShippingLogic {
 	public static void checkToShip() {
 		int packageWaiting = logic.getDispatchingPackage().size();
 		for (int i = 0; i < packageWaiting; i++) {
-			
-			if (!BACKEND_FACADE.retrievePackages().get(i).getTrackingNumber()
+
+			if (!logic.getDispatchingPackage().get(i).getTrackingNumber()
 					.equals(logic.getDrone().get(0).getTrackingNumber())
-					|| !BACKEND_FACADE.retrievePackages().get(i).getTrackingNumber()
+					|| !logic.getDispatchingPackage().get(i).getTrackingNumber()
 							.equals(logic.getDrone().get(1).getTrackingNumber())) {
 				DroneDispatch R1 = new DroneDispatch("Shipping_" + i,
-						BACKEND_FACADE.retrievePackages().get(i).getTrackingNumber());
+						logic.getDispatchingPackage().get(i).getTrackingNumber());
 				R1.run();
 
 			}

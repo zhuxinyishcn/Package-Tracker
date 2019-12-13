@@ -24,15 +24,10 @@ public class DroneCheckPackage implements Runnable {
 			while (logic.getisProgramOn()) {
 				logic.setDispatchingPackage(BACKEND_FACADE.getDispatchingPackage());
 				logic.checkToShip();
-				Thread.sleep(10000);
+				Thread.sleep(100000000);
 			}
 		} catch (InterruptedException e) {
 			System.out.println("Thread " + threadName + " interrupted. Please contact support for help.");
 		}
-	}
-
-	public static void main(String args[]) {
-		DroneCheckPackage R1 = new DroneCheckPackage("Get package");
-		R1.start();
 	}
 }

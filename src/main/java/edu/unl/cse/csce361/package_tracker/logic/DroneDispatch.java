@@ -1,8 +1,6 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
-import edu.unl.cse.csce361.package_tracker.backend.Package;
-
 public class DroneDispatch implements Runnable {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
@@ -24,7 +22,7 @@ public class DroneDispatch implements Runnable {
 
 	public void run() {
 		int packageID = findPackageID(trackingNumber);
-		int destination = BACKEND_FACADE.retrievePackages().get(packageID).getReceiver().getDestination();
+		int destination = logic.getDispatchingPackage().get(packageID).getReceiver().getDestination();
 		try {
 			int droneID = logic.findAvilableDrone();
 			logic.getDrone().get(droneID).setTrackingNumber(trackingNumber);
@@ -68,7 +66,7 @@ public class DroneDispatch implements Runnable {
 
 	public int findPackageID(String trackingNumber) {
 		for (int i = 0; i < logic.getDispatchingPackage().size(); i++) {
-			if (trackingNumber == BACKEND_FACADE.retrievePackages().get(i).getTrackingNumber()) {
+			if (trackingNumber == logic.getDispatchingPackage().get(i).getTrackingNumber()) {
 				return i;
 			}
 		}
