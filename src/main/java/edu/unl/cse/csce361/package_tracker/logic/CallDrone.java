@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
+import edu.unl.cse.csce361.package_tracker.frontend.Printer;
+
 public class CallDrone implements Runnable {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private Thread t;
@@ -30,11 +32,11 @@ public class CallDrone implements Runnable {
 
 	public void run() {
 		try {
-			System.out.println("Drone is Comming");
+			Printer.printDroneComing();
 			int droneID = logic.findAvilableDrone();
 			int next = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination);
 			if (next == 0) {
-				System.out.println("Drone already here!");
+				Printer.printDroneHere();
 			}
 			while (logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination) != 0) {
 				int nextLocation = logic.findNextWarehouse(logic.getDrone().get(droneID).getCurrentLocation(), destination);
@@ -45,13 +47,11 @@ public class CallDrone implements Runnable {
 						destination);
 				logic.getDrone().get(droneID).setCurrentLocation(nextWarehouse);
 
-				// 让线程睡眠一会
 				Thread.sleep(time);
-				System.out.println(
-						"Drone " + droneID + "Arrive warehosue: " + logic.getDrone().get(droneID).getCurrentLocation());
+				Printer.printDroneLocation(droneID);
 			}
 		} catch (InterruptedException e) {
-			System.out.println("Thread " + threadName + " interrupted.");
+			Printer.printThreadException(threadName);
 		}
 	}
 

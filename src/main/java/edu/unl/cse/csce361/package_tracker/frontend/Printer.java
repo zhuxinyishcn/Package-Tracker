@@ -243,4 +243,20 @@ public class Printer {
 		System.out.println("Loading................");
 	}
 
+	public static void printDroneComing() {
+		System.out.println("Drone is Coming");
+	}
+
+	public static void printDroneHere() {
+		System.out.println("Drone already here!");
+	}
+
+	public static void printDroneLocation(int droneID) {
+		System.out.println(
+				"Drone " + droneID + "Arrive warehosue: " + logic.getDrone().get(droneID).getCurrentLocation());
+	}
+	
+	public static void printThreadException(String threadName) {
+		System.out.println("Thread " + threadName + " interrupted.");
+	}
 }
