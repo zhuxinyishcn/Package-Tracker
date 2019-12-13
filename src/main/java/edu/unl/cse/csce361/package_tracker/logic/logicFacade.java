@@ -89,7 +89,7 @@ public class logicFacade {
 		Logic.register(userName, realName, street, city, zipCode);
 	}
 
-	public void confirmArrived(String trackingNumber) {
+	public void confirmReceive(String trackingNumber) {
 		UserLogic.confirmReceive(trackingNumber);
 	}
 
@@ -148,5 +148,9 @@ public class logicFacade {
 
 	public int findTimeNeededForWarehouse(int current, int destination) {
 		return ShippingLogic.findTimeNeededForWarehouse(current, destination);
+	}
+	
+	public void fuzzySearch(String trackingNumber) {
+		AdminLogic.fuzzySearch(trackingNumber);
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
-
+import edu.unl.cse.csce361.package_tracker.backend.Package;
 public class AdminLogic {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private static final BackendFacade backend = BackendFacade.getBackendFacade();
@@ -70,7 +70,7 @@ public class AdminLogic {
 			Printer.printErrInput("Tracking number", "40");
 		} else {
 			if (street.length() <= 100 && city.length() <= 50 && zipCode.length() <= 10) { // street less than 100, city
-																							// 50, zip 10 character.
+				// 50, zip 10 character.
 				GoogleGeocode geocode = logic.getLatLng(street, city, zipCode);
 				String lat = geocode.getLat();
 				String lng = geocode.getLng();
@@ -101,16 +101,18 @@ public class AdminLogic {
 	}
 
 	public static void estimatePackageTime(String trackingNumber) { // calculate estimate time the user can receive the
-																	// package.
+		// package.
 		UserLogic.estimatePackage(trackingNumber);
 	}
-	
-	public static void packageList(List<Package> packageList) {
-		if (packageList.isEmpty() || packageList.equals(null)) {
-			Printer.printNoPackage();
-		}else {
-			
+
+	public static void fuzzySearch(String trackingNumber) {
+		try {
+			List <Package>packages=backend.searchFuzzyTrackingNumber(trackingNumber);
+			for (Package packageInfo: packages) {
+				Printer.printPacakge(packageInfo);
+			}
+		} catch (InterruptedException e) {
+			Printer.printInvalid();
 		}
 	}
-
 }
