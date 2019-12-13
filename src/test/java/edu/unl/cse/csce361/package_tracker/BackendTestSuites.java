@@ -58,7 +58,7 @@ public class BackendTestSuites {
         final Transaction transaction = session.beginTransaction();
         try {
             Address address = new Address("140024 R St, Lincoln", "Lincoln", "68508");
-            Receiver receiver = new Receiver(address, "test123", (int) Math.abs(Math.random()% 8));
+            Receiver receiver = new Receiver(address, "test123", (int) Math.abs(Math.random() % 8));
             session.persist(receiver);
             transaction.commit();
             HibernateUtil.closeSession(session);
@@ -101,12 +101,12 @@ public class BackendTestSuites {
         try {
             org.apache.lucene.search.Query query = queryBuilder.keyword().fuzzy().onField("trackingNumber")
                     .matching("0e5221c2-4dab-488f-87bc-99f8285479df").createQuery();
-            org.hibernate.query.Query hibQuery  =
+            org.hibernate.query.Query hibQuery =
                     fullTextSession.createFullTextQuery(query, Package.class);
             List<Package> packagesList = hibQuery.getResultList();
-           for (Package packages: packagesList){
-               System.out.println(packages.getTrackingNumber()+" "+packages.getId());
-           }
+            for (Package packages : packagesList) {
+                System.out.println(packages.getTrackingNumber() + " " + packages.getId());
+            }
             tx.commit();
             session.close();
         } catch (Exception e) {
@@ -239,7 +239,7 @@ public class BackendTestSuites {
     public void TestSearchSender () {
         long start = System.nanoTime();
         Address address = new Address("1213400 R St", "test", "200102");
-        Receiver receiver = new Receiver(address, "dddsx258", (int) Math.abs(Math.random()% 8));
+        Receiver receiver = new Receiver(address, "dddsx258", (int) Math.abs(Math.random() % 8));
         Sender sender = backendFacade.searchSender("golf for ever");
         System.out.println(sender.getPackageSet().size());
         for (Package packageinfo : sender.getPackageSet()) {
@@ -253,6 +253,14 @@ public class BackendTestSuites {
     public void TestEditLocation () {
         long start = System.nanoTime();
         backendFacade.editCurrentlocation("7918f73b-bc43-448d-9652-f00f67355ac8", 11);
+        System.out.println((System.nanoTime() - start));
+    }
+
+    @Test
+    public void TestEditReceiver () {
+        long start = System.nanoTime();
+        Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
+        backendFacade.editReceiverAddress("be94bd4d-0fe8-4c25-b6f8-d5f3202051ab", address);
         System.out.println((System.nanoTime() - start));
     }
 }
