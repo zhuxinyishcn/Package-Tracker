@@ -1,7 +1,5 @@
 package edu.unl.cse.csce361.package_tracker.logic;
 
-import java.util.Scanner;
-
 public class CallDrone implements Runnable {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private Thread t;
