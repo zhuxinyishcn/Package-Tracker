@@ -3,7 +3,6 @@ package edu.unl.cse.csce361.package_tracker.logic;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.unl.cse.csce361.package_tracker.backend.BackendFacade;
 import edu.unl.cse.csce361.package_tracker.backend.Drone;
 import edu.unl.cse.csce361.package_tracker.backend.Package;
 import edu.unl.cse.csce361.package_tracker.frontend.Printer;
@@ -12,9 +11,9 @@ public class ShippingLogic {
 	public static ArrayList<Drone> drone = new ArrayList<Drone>();
 	public static List<Package> dispatchingPackage;
 	private static final logicFacade logic = logicFacade.getInstance();
-	private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
 
 	public static int i = 0;
+
 	public static List<Package> getDispatchingPackage() {
 		return dispatchingPackage;
 	}

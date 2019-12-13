@@ -256,26 +256,4 @@ public class BackendTestSuites {
         backendFacade.editCurrentlocation("7918f73b-bc43-448d-9652-f00f67355ac8", 11);
         System.out.println((System.nanoTime() - start));
     }
-
-    @Test
-<<<<<<< HEAD
-    public void TestPackage () {
-        final Session session = HibernateUtil.createSession().openSession();
-        List<Package> packages = new ArrayList<>();
-        ScrollableResults packageid = session.createQuery("from Package").scroll();
-        while (packageid.next()) {
-            Package packageInfo = (Package) packageid.get(0);
-            if (packageInfo.getStatus().equals("Dispatching")) {
-                packages.add(packageInfo);
-            }
-        }
-        session.close();
-=======
-    public void TestEditReceiver () {
-        long start = System.nanoTime();
-        Address address = new Address("1400 R St, Lincoln, NE 68588", "Lincoln", "68508");
-        backendFacade.editReceiverAddress("be94bd4d-0fe8-4c25-b6f8-d5f3202051ab", address);
-        System.out.println((System.nanoTime() - start));
->>>>>>> a3a010fed27b0c8e02c4e0dafaca7d9116c7db12
-    }
 }

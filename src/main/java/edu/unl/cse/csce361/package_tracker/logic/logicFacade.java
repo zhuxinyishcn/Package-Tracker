@@ -199,14 +199,6 @@ public class logicFacade {
 		ShippingLogic.setDispatchingPackage(dispatchingPackage);
 	}
 
-	public boolean getisProgramOn() {
-		return Logic.isProgramOn();
-	}
-
-	public void setProgramOn(boolean programOn) {
-		Logic.programOn = programOn;
-	}
-
 	public void droneUpdate() {
 		ShippingLogic.droneUpdate();
 	}

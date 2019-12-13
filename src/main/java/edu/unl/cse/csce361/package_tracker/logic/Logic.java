@@ -9,15 +9,6 @@ import edu.unl.cse.csce361.package_tracker.frontend.UserInterFace;
 public class Logic {
 	private static final logicFacade logic = logicFacade.getInstance();
 	private final static BackendFacade BACKEND_FACADE = BackendFacade.getBackendFacade();
-	static boolean programOn;
-
-	public static boolean isProgramOn() {
-		return programOn;
-	}
-
-	public static void setProgramOn(boolean programOn) {
-		programOn = programOn;
-	}
 
 	public static void editAddress(String userName, String street, String city, String zipCode) {
 		// Edit user's address by using their user name to locate
