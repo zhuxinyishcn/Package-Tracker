@@ -50,5 +50,5 @@ the staff should be able to dispatch an empty SUAS from one depot to another.
 Current information about the SUAS & package locations & destinations must be
 recoverable after a power outage.
 
-
-
+## Preview
+![Preview](./presentation/Preview.PNG)
