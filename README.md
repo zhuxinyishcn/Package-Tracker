@@ -1,14 +1,14 @@
+<h1 align="center"><a href="https://github.com/zhuxinyishcn/package-tracker" target="_blank">Package-Tracker</a></h1>
 
-#   PACKAGE TRACKER
+> Package-Tracker a  small unmanned aerial systems (SUAS) to track packages within the Lincoln and Omaha, Nebraska, areas. 
 
 ##  Instructions to build and run the program
 
->Import `/src/main/resources/table.sql` to your MySQL database.
+>- Import `/src/main/resources/table.sql` to your MySQL database.
 Rename file `/src/main/resources/hibernate.cfg.xml.sample` to `/src/main/resources/hibernate.cfg.xml`.   
-Change these line using SQL connection authentication:   
->  5. `<property name="connection.url"> jdbc:mysql://cse.unl.edu/`User Name`?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC`       
->  7. `<property name="connection.username">`User Name`</property>`    
->  8. `property name="connection.password">`Password`</property>`    
+>  - `<property name="connection.url"> jdbc:mysql://127.0.0.1:3306/Username?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC`       
+>  - `<property name="connection.username">`User Name`</property>`    
+>  -  `property name="connection.password">`Password`</property>`    
     
 >Rename file `/src/main/resources/api.info.sample` to `/src/main/resources/api.info`.   
 > Add API key for Google Cloud Platform with access to `Geocoding API`
@@ -45,26 +45,5 @@ the staff should be able to dispatch an empty SUAS from one depot to another.
 Current information about the SUAS & package locations & destinations must be
 recoverable after a power outage.
 
-The system may be implemented in text-mode or GUI-mode.
 
-##  Rubrics
 
-The assignment is worth **100 points**:
-
--   **8 points** for providing meeting minutes (1 point per meeting).
--   **15 points** for implementing the functionality as required.
--   **10 points** for following Scrum practices.
--   **16 points** for making good design decisions.
--   **16 points** for using good coding style.
--   **6 points** for class diagram (3 points per sprint)
--   **10 points** for meaningful and well-formatted commit messages.
--   **9 points** for otherwise following good software engineering practices.
--   **10 points** for presentation/demonstration.
-
-The contribution is worth **20 points**:
-
--   **1 point** for completing sprint 1 peer assessment
--   **1 point** for completing sprint 2 peer assessment
--   **5 points** for equitable contribution based on sprint 1 peer assessments
--   **5 points** for equitable contribution based on sprint 2 peer assessments
--   **8 points** for equitable contribution based on git history
