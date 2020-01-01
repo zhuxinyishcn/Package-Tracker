@@ -1,7 +1,12 @@
 <h1 align="center"><a href="https://github.com/zhuxinyishcn/package-tracker" target="_blank">Package-Tracker</a></h1>
 
 > Package-Tracker a  small unmanned aerial systems (SUAS) to track packages within the Lincoln and Omaha, Nebraska, areas. 
-
+## Libraries && Implementation
+>- [Hibernate](https://hibernate.org/orm/): The Object/Relational Mapping (ORM) framework. We use hibernate to populate backend database    
+> - [Google cloud Platform](https://cloud.google.com/): Google cloud Platform: Geocoding API web service is easy to use Take advantage of the Big data that google have   
+> -[Gson](https://sites.google.com/site/gson/gson-user-guide):  It help us better manage the Http response after we sent the get request to Google cloud  
+>  -[JUnit](https://junit.org/junit5/): JUnit is helpful Library to design and implement a test suite  
+>  -__Multithreading__ :  Using Thread as an alternate way to imitate mulTple package shipments 
 ##  Instructions to build and run the program
 
 >- Import `/src/main/resources/table.sql` to your MySQL database.
